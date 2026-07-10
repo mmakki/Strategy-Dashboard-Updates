@@ -4968,7 +4968,7 @@ sbRender();
 let dlvOpen={};
 function dlvToggle(key){ dlvOpen[key]=!dlvOpen[key]; renderDelivery(); }
 // Seniority classification from the academics directory (light-theme palette)
-const DLV_LV={prof:{label:'Prof / A.Prof',col:'#E0B478'},snr:{label:'Senior Lecturer',col:'#9FB8DC'},lec:{label:'Lecturer',col:'#8FC8B4'},cas:{label:'Casual',col:'#C2CC96'},oth:{label:'Other role',col:'#BCA6D6'},ext:{label:'External / unlisted',col:'#B4ACA4'}};
+const DLV_LV={prof:{label:'Prof / A.Prof',col:'#F2DDB8'},snr:{label:'Senior Lecturer',col:'#DCA96E'},lec:{label:'Lecturer',col:'#B87B42'},cas:{label:'Casual',col:'#9E6231'},oth:{label:'Other role',col:'#9C8B7E'},ext:{label:'External / unlisted',col:'#7A7066'}};
 const DLV_LV_ORDER=['prof','snr','lec','cas','oth','ext'];
 function dlvLevelInfo(nm){
   const m=peopleDir().find(x=>x.n===nm)||null;
@@ -5018,12 +5018,12 @@ function renderDelivery(){
   const covered=SB.goals.filter(g=>inits.some(n=>(n.goalIds||[]).includes(g.id)));
   const uncovered=SB.goals.length-covered.length;
   const crew=allPeople().filter(nm=>inits.some(n=>(n.people||[]).includes(nm)));
-  const chip=(v,l,c)=>`<div style="background:rgba(255,255,255,0.06);border:1px solid ${c}44;border-radius:10px;padding:10px 16px;min-width:96px"><div style="font-size:22px;font-weight:700;color:${c}">${v}</div><div style="font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5)">${l}</div></div>`;
+  const chip=(v,l)=>`<div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:10px 16px;min-width:96px"><div style="font-size:22px;font-weight:700;color:#fff">${v}</div><div style="font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5)">${l}</div></div>`;
   const dirN=peopleDir().length;
-  sum.innerHTML=chip(SB.objectives.length,'objectives','#F0E8DC')
-    +chip(inits.length,'initiatives','#8FC8B4')
-    +chip('<span style="color:#8FC8B4">'+covered.length+'</span> / <span style="color:#F0A868">'+uncovered+'</span>','goals covered / uncovered','#F0E8DC')
-    +chip(crew.length+(dirN?' / '+dirN:''),'academics engaged','#9FB8DC');
+  sum.innerHTML=chip(SB.objectives.length,'objectives')
+    +chip(inits.length,'initiatives')
+    +chip(covered.length+' / '+uncovered,'goals covered / uncovered')
+    +chip(crew.length+(dirN?' / '+dirN:''),'academics engaged');
   if(!SB.objectives.length&&!inits.length){
     body.innerHTML='<div style="color:rgba(255,255,255,0.55);font-size:12px">No data yet — load or build a roadmap in the Sandbox tab.</div>';
     return;
