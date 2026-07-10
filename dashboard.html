@@ -3098,7 +3098,18 @@ function wrapText(txt,maxLen){
 }
 function chintFade(show){ const c=document.getElementById('chint'); if(c)c.style.opacity=show?'0.7':'0'; }
 // ── GERTY people-assignment state & helpers ──
-let v4PickName=null,v4DragName=null,v4CurrentObjId=null,v4InitEls={},v4SystemById={},v4SelInit=null,v4ShowGoalText=false,v4GoalTextApply=null;
+let v4PickName=null,v4DragName=null,v4CurrentObjId=null,v4InitEls={},v4SystemById={},v4SelInit=null,v4ShowGoalText=false,v4GoalTextApply=null,v4GradSeq=0;
+// Glow curve — log scale reaching full power at ~12 people. Radius, overall
+// opacity AND the brightness/colour of the core all rise with crew size.
+function v4GlowVals(pc,baseR){
+  const t=pc?Math.min(1,Math.log(1+pc)/Math.log(13)):0;
+  const mix=(a,b,k)=>{const pa=parseInt(a.slice(1),16),pb=parseInt(b.slice(1),16);
+    const r=Math.round(((pa>>16)&255)+(((pb>>16)&255)-((pa>>16)&255))*k),
+          g=Math.round(((pa>>8)&255)+(((pb>>8)&255)-((pa>>8)&255))*k),
+          bl=Math.round((pa&255)+((pb&255)-(pa&255))*k);
+    return '#'+((1<<24)+(r<<16)+(g<<8)+bl).toString(16).slice(1);};
+  return{r:baseR*(0.85+0.85*t),op:pc?0.2+0.4*t:0,coreOp:0.35+0.65*t,coreCol:mix('#35C4A8','#C8FFEE',t*0.6)};
+}
 function v4GoalTextToggle(){ v4ShowGoalText=!v4ShowGoalText; if(v4GoalTextApply)v4GoalTextApply(); }
 function v4Assign(initId,name){
   name=(name||'').trim();if(!name)return;
@@ -3119,8 +3130,10 @@ function v4AfterPeopleChange(initId){
   const n=(SB.initiatives||[]).find(x=>x.id===initId);
   const pc=(n?.people||[]).length;
   (v4InitEls[initId]||[]).forEach(r=>{
-    r.glow.setAttribute('r',Math.min(r.baseR+pc*2.5,r.baseR*1.7));
-    r.glow.setAttribute('opacity',pc?Math.min(0.6,0.245+pc*0.105):0);
+    const gv=v4GlowVals(pc,r.baseR);
+    r.glow.setAttribute('r',gv.r);
+    r.glow.setAttribute('opacity',gv.op);
+    if(r.st1){r.st1.setAttribute('stop-color',gv.coreCol);r.st1.setAttribute('stop-opacity',gv.coreOp);}
   });
   if(v4CurrentObjId&&v4SystemById[v4CurrentObjId]){
     const sys=v4SystemById[v4CurrentObjId];
@@ -3583,7 +3596,15 @@ function drawV4(cSvg,cW,cH){
       const grp=cSvgEl('g',{transform:'translate('+x+','+y+')',style:'cursor:pointer'});
       const pc=(n.people||[]).length;
       const baseR=R_GOAL*2.2;
-      const glow=cSvgEl('circle',{cx:0,cy:0,r:Math.min(baseR+pc*2.5,baseR*1.7),fill:'url(#v4gg)',opacity:pc?Math.min(0.6,0.245+pc*0.105):0,'pointer-events':'none'});
+      const gv=v4GlowVals(pc,baseR);
+      const NSs='http://www.w3.org/2000/svg';
+      const gradId='v4glow-'+(++v4GradSeq);
+      const gdefs=cSvgEl('defs',{});
+      const grad=document.createElementNS(NSs,'radialGradient');grad.setAttribute('id',gradId);
+      const st1=document.createElementNS(NSs,'stop');st1.setAttribute('offset','0%');st1.setAttribute('stop-color',gv.coreCol);st1.setAttribute('stop-opacity',gv.coreOp);
+      const st2=document.createElementNS(NSs,'stop');st2.setAttribute('offset','100%');st2.setAttribute('stop-color','#35C4A8');st2.setAttribute('stop-opacity','0');
+      grad.appendChild(st1);grad.appendChild(st2);gdefs.appendChild(grad);sysG.appendChild(gdefs);
+      const glow=cSvgEl('circle',{cx:0,cy:0,r:gv.r,fill:'url(#'+gradId+')',opacity:gv.op,'pointer-events':'none'});
       grp.appendChild(glow);
       const dR=R_GOAL*0.98;
       const dia=cSvgEl('path',{d:'M 0,'+(-dR)+' L '+dR+',0 L 0,'+dR+' L '+(-dR)+',0 Z',fill:'#35C4A8',stroke:C_BG,'stroke-width':0.7});
@@ -3610,7 +3631,7 @@ function drawV4(cSvg,cW,cH){
       glEls.forEach(l=>{l.setAttribute('fill','#8fe0cf');initLabelEls.push(l);});
       initOrb.push({grp,glow,labelEls:glEls,angle:angle0,satR,initId:n.id});
       if(!v4InitEls[n.id])v4InitEls[n.id]=[];
-      v4InitEls[n.id].push({glow,baseR});
+      v4InitEls[n.id].push({glow,baseR,st1});
     });
 
     const sysR4=initOrb.length?Math.max(...initOrb.map(o=>o.satR)):R3;
