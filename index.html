@@ -1,0 +1,2798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community of Practice - Teaching &amp; Learning Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --space:#07080c; --orange:#4A220F; --orange-br:#C25E2E; --orange-lt:#E08A4F;
+  --cream:#EBD9C9; --warm-white:#F6ECE3; --warm-mut:#cbb5a4; --warm-faint:#9c8676;
+  --card:rgba(255,255,255,0.055); --card-bd:rgba(255,255,255,0.13);
+  --disp:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--warm-white);background:var(--space);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.disp{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-0.02em}
+
+#bg{position:fixed;inset:0;z-index:0;background:var(--space);will-change:background-color}
+#starfield{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:1}
+#progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:100;
+  background:linear-gradient(90deg,var(--orange-lt),var(--orange-br));transition:width .1s linear}
+
+.sec{position:relative;z-index:2;width:100%;padding:9rem 6vw;overflow:hidden}
+.wrap{max-width:1180px;margin:0 auto;width:100%}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--orange-lt);margin-bottom:1.6rem}
+
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--disp),transform .9s var(--disp);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.rv-s{opacity:0;transform:scale(.7);transition:opacity .7s var(--disp),transform .7s var(--disp);transition-delay:var(--d,0s)}
+.rv-s.in{opacity:1;transform:none}
+.sv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--disp),transform .7s var(--disp)}
+.sv.in{opacity:1;transform:none}
+.sv-s{opacity:0;transform:scale(.6);transition:opacity .55s var(--disp),transform .55s var(--disp)}
+.sv-s.in{opacity:1;transform:none}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:6rem 6vw 4rem;position:relative;z-index:2}
+.hero .kicker{font-size:13px;font-weight:500;letter-spacing:0.34em;text-transform:uppercase;color:#a9b6c9;margin-bottom:2.4rem}
+.hero h1{font-size:clamp(2.6rem,8vw,6.4rem);font-weight:600;line-height:0.98;margin-bottom:0.2em;color:#fff}
+.hero h1 .sub{display:block;font-weight:300;color:#c9cdd6;font-size:clamp(1.6rem,4.4vw,3.2rem);margin-top:0.12em}
+.hero .place{margin-top:2.2rem;font-size:clamp(.95rem,1.6vw,1.15rem);color:#aeb4c0;font-weight:400}
+.hero .lede{margin-top:1.5rem;max-width:660px;font-size:clamp(1rem,1.7vw,1.2rem);color:#d3d7df;font-weight:300;line-height:1.75}
+.hero .dates{margin-top:1.6rem;display:inline-flex;align-items:center;gap:14px;font-size:13px;color:#8c93a0;letter-spacing:0.04em}
+.hero .dates .dot{width:5px;height:5px;border-radius:50%;background:var(--orange-lt)}
+.statrow{display:flex;flex-wrap:wrap;gap:2.6rem;margin-top:4rem}
+.stat .num{font-family:'Space Grotesk';font-size:clamp(2.2rem,5vw,3.4rem);font-weight:600;line-height:1;
+  background:linear-gradient(135deg,#fff,#b9c2d2);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat .lbl{font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#8c93a0;margin-top:.6rem}
+.scrollcue{position:absolute;bottom:2.4rem;left:6vw;display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#7c8393}
+.scrollcue .bar{width:1px;height:34px;background:linear-gradient(#7c8393,transparent);animation:cue 2.6s var(--disp) infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+.sec h2,.who-sticky h2{font-size:clamp(1.9rem,4.4vw,3.2rem);font-weight:600;line-height:1.05;margin-bottom:.5em;color:var(--warm-white)}
+.sec .deck{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--warm-mut);font-weight:300;max-width:640px;line-height:1.6}
+
+/* WHO */
+.who-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem;margin-bottom:4rem}
+.who-count{font-family:'Space Grotesk';font-weight:600;text-align:right;line-height:.9}
+.who-count b{display:block;font-size:clamp(3rem,7vw,5rem);color:var(--orange-lt)}
+.who-count span{font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:var(--warm-mut)}
+.who-pin{position:relative;z-index:2;height:185vh}
+.who-sticky{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;padding:6rem 6vw}
+.who-layout{display:grid;grid-template-columns:1.35fr 1fr;gap:1.4rem;align-items:stretch}
+.disc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
+.disc{background:var(--card);border:1px solid var(--card-bd);border-radius:18px;padding:2.4rem 2.2rem;display:flex;align-items:baseline;gap:1.3rem}
+.disc .dn{font-family:'Space Grotesk';font-size:3.2rem;font-weight:600;line-height:1;color:var(--cream);flex-shrink:0}
+.disc .dl{font-size:17px;color:var(--warm-white);font-weight:500;line-height:1.25}
+.names-col{border:1px solid var(--card-bd);border-left:3px solid var(--orange-lt);border-radius:18px;background:rgba(0,0,0,0.2);padding:2rem 2.2rem;display:flex;flex-direction:column;justify-content:center}
+.names-label{font-size:12px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange-lt);margin-bottom:1.3rem}
+.names-list{list-style:none;columns:2;column-gap:1.8rem}
+.names-list li{font-size:15px;color:var(--warm-white);font-weight:400;line-height:1.45;padding:.3rem 0;break-inside:avoid;
+  opacity:0;transform:translateY(10px);transition:opacity .6s var(--disp),transform .6s var(--disp)}
+.names-list li.in{opacity:1;transform:none}
+/* who reveal (title + number cards) */
+.whv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--disp),transform .7s var(--disp)}
+.whv.in{opacity:1;transform:none}
+@media(max-width:900px){.who-layout{grid-template-columns:1fr}}
+@media(max-width:720px){.disc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.names-list{columns:1}}
+
+/* TOPICS */
+.qbar{display:grid;grid-template-columns:repeat(3,1fr);gap:2.4rem;margin:2.4rem 0 2.8rem;padding-bottom:2.6rem;border-bottom:1px solid var(--card-bd)}
+.q .qt{font-family:'Space Grotesk';font-size:1.3rem;font-weight:400;line-height:1.3;color:var(--cream)}
+.topics-layout{display:grid;grid-template-columns:minmax(230px,300px) 1fr;gap:20px;margin:1.6rem 0 3.6rem;align-items:stretch}
+.topics-list{display:flex;flex-direction:column;gap:8px}
+.topic{border:1px solid var(--card-bd);border-radius:12px;padding:1rem 1.15rem;background:var(--card);
+  cursor:pointer;display:flex;align-items:center;gap:.9rem;transition:transform .3s var(--disp),background .3s,border-color .3s}
+.topic:hover{border-color:var(--orange-lt);transform:translateX(3px)}
+.topic.active{background:rgba(224,138,79,0.16);border-color:var(--orange-lt);box-shadow:0 0 0 1px var(--orange-lt) inset}
+.topic .tn{font-family:'Space Grotesk';font-size:12px;font-weight:600;color:var(--warm-faint);letter-spacing:0.06em;flex-shrink:0}
+.topic .tt{font-family:'Space Grotesk';font-size:1.05rem;font-weight:600;line-height:1.15;color:var(--warm-white)}
+.topic .tt u{text-decoration-thickness:2px;text-underline-offset:2px}
+.blurb{border:1px solid var(--card-bd);border-left:3px solid var(--orange-lt);border-radius:12px;
+  background:rgba(0,0,0,0.2);padding:2rem 2.2rem;display:flex;flex-direction:column;justify-content:center}
+.blurb .bt{font-family:'Space Grotesk';font-size:1.3rem;font-weight:600;color:var(--orange-lt);margin-bottom:.9rem}
+.blurb .bd{font-size:15.5px;line-height:1.75;color:var(--warm-white);font-weight:300;transition:opacity .35s var(--disp)}
+.blurb .bd.fade{opacity:0}
+
+/* PROCESS */
+.process-pin{position:relative;z-index:2;height:240vh}
+.process-sticky{position:sticky;top:0;min-height:100vh;display:flex;align-items:center;padding:6rem 6vw}
+.process-sticky h2{font-size:clamp(1.9rem,4.4vw,3.2rem);font-weight:600;line-height:1.05;margin-bottom:.5em;color:var(--warm-white)}
+.process-sticky .deck{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--warm-mut);font-weight:300;max-width:640px;line-height:1.6}
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-top:3.6rem;width:100%}
+.fnode{flex:1;min-width:150px;background:var(--card);border:1px solid var(--card-bd);border-radius:16px;padding:1.8rem 1.5rem}
+.fnode .fst{font-family:'Space Grotesk';font-size:1.5rem;font-weight:600;line-height:1;color:var(--cream)}
+.fnode .fds{font-size:13.5px;color:var(--warm-mut);margin-top:.7rem;line-height:1.5}
+.farrow{display:flex;align-items:center;justify-content:center;width:56px;flex-shrink:0;color:var(--orange-lt)}
+.farrow svg{width:24px;height:24px}
+@media(max-width:760px){.flow{flex-direction:column}.farrow{width:100%;height:44px;transform:rotate(90deg)}.topics-layout{grid-template-columns:1fr}.qbar{grid-template-columns:1fr;gap:1.4rem}}
+
+/* IDEAS WALL */
+.ideas-pin{position:relative;z-index:2;height:300vh}
+.ideas-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:5vh 3vw 4vh;overflow:hidden}
+.wall-head{margin-bottom:2vh}
+.wall-head .eyebrow{color:var(--orange-lt);margin-bottom:.9rem}
+.wall-head .big{font-family:'Space Grotesk';font-weight:700;font-size:clamp(2.4rem,6vw,4rem);line-height:.9;color:var(--warm-white);display:inline-block}
+.wall-head .deck{display:inline-block;margin-left:1.4rem;color:var(--warm-mut);font-size:clamp(.95rem,1.6vw,1.15rem);vertical-align:baseline}
+.wall{columns:120px auto;column-gap:9px;width:100%}
+@media(min-width:1100px){.wall{column-count:9}}
+@media(min-width:1500px){.wall{column-count:10}}
+.chip{break-inside:avoid;margin-bottom:9px;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;padding:7px 9px;font-size:10.5px;line-height:1.4;color:var(--warm-mut);
+  opacity:0;transform:translateY(10px) scale(.98);transition:opacity .5s var(--disp),transform .5s var(--disp),background .25s,border-color .25s,color .25s}
+.chip.in{opacity:1;transform:none}
+.wall:not(.filtered) .chip:hover{background:rgba(224,138,79,0.16);border-color:var(--orange-lt);color:#fff}
+.wall.filtered .chip:not(.dim){background:rgba(224,138,79,0.16);border-color:var(--orange-lt);color:#fff}
+.chip.dim{opacity:.08!important;pointer-events:none;filter:saturate(.3)}
+.wall-filter{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.4vh;opacity:0;transform:translateY(-6px);
+  transition:opacity .5s var(--disp),transform .5s var(--disp);pointer-events:none}
+.wall-filter.show{opacity:1;transform:none;pointer-events:auto}
+.mf{font-size:11px;padding:5px 13px;border-radius:20px;border:1px solid var(--card-bd);background:var(--card);
+  color:var(--warm-mut);cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s,border-color .2s,color .2s}
+.mf:hover{border-color:var(--orange-lt);color:var(--warm-white)}
+.mf.active{background:var(--orange-lt);border-color:var(--orange-lt);color:#231007;font-weight:600}
+.notes-toggle{margin-left:auto}
+.mf:disabled{opacity:.4;cursor:default}
+.mf:disabled:hover{border-color:var(--card-bd);color:var(--warm-mut)}
+.notes-drawer{position:absolute;top:0;right:0;height:100%;width:57%;max-width:832px;z-index:20;
+  background:rgb(74,34,15);border-left:1px solid var(--card-bd);box-shadow:-24px 0 60px rgba(0,0,0,0.4);
+  transform:translateX(101%);transition:transform .5s var(--disp);display:flex;flex-direction:column}
+.notes-drawer.open{transform:translateX(0)}
+.notes-close{position:absolute;top:14px;right:32px;z-index:2;width:32px;height:32px;border-radius:50%;
+  background:rgba(0,0,0,0.4);border:1px solid var(--card-bd);color:var(--warm-white);
+  font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s}
+.notes-close:hover{background:rgba(0,0,0,0.7)}
+.notes-doc{flex:1;min-height:0;width:100%}
+.notes-doc iframe{width:100%;height:100%;border:0;background:rgb(74,34,15)}
+.notes-empty{color:var(--warm-mut);font-size:13.5px;line-height:1.7;padding:4rem 2.4rem;font-weight:300;text-align:center}
+
+/* ===== SECTION 3: HAL CONSTELLATION ===== */
+.hal-pin{position:relative;z-index:2;height:140vh}
+.hal-stage{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#0a0b10 0%,#0a0b10 55%,#07080c 100%);overflow:hidden}
+.hal-intro{position:absolute;top:6vh;left:6vw;z-index:40;opacity:0;transform:translateY(16px);
+  transition:opacity 1s var(--disp) .3s,transform 1s var(--disp) .3s;pointer-events:none}
+.hal-stage.lit .hal-intro{opacity:1;transform:none}
+.hal-title-c{font-size:12px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--orange-lt);margin-bottom:.9rem}
+.hal-title-h{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-0.02em;font-size:clamp(1.9rem,4.4vw,3.2rem);font-weight:600;line-height:1.05;color:var(--warm-white)}
+.hal-hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:40;font-size:16.5px;
+  letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.4);pointer-events:none;text-align:center;line-height:1.6;
+  opacity:0;transition:opacity 2s var(--disp)}
+.hal-stage.allin .hal-hint{opacity:1}
+.hal-stage.allin.ody-sel .hal-hint{opacity:0.1}
+/* ===== TARS (compact constellation) ===== */
+.tars-pin{position:relative;z-index:2;height:150vh}
+.tars-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+#const-container{position:absolute;inset:0}
+#csvg{width:100%;height:100%;display:block;cursor:grab}
+.tars-intro{position:absolute;top:6vh;left:6vw;z-index:40;pointer-events:none;opacity:0;transform:translateY(16px);transition:opacity 1s var(--disp) .2s,transform 1s var(--disp) .2s}
+.tars-stage.lit .tars-intro{opacity:1;transform:none}
+.tars-hint{margin-top:1.6rem;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);opacity:0;transition:opacity 1.4s var(--disp)}
+.tars-hint.show{opacity:1}
+.tars-shuffle{position:absolute;top:7vh;right:6vw;z-index:10;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.2);color:var(--warm-white);
+  font-family:'Space Grotesk';font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:9px 22px;border-radius:20px;cursor:pointer;pointer-events:none;opacity:0;
+  transition:opacity 1.4s var(--disp),background .2s,border-color .2s}
+.tars-shuffle:hover{background:rgba(224,138,79,0.16);border-color:var(--orange-lt)}
+.tars-shuffle.show{opacity:1;pointer-events:auto}
+/* ===== GERTY (v4 / Moon constellation) ===== */
+.gerty-pin{position:relative;z-index:2;height:150vh}
+.gerty-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+#gerty-container{position:absolute;inset:0}
+#gsvg{width:100%;height:100%;display:block;cursor:grab}
+.gerty-intro{position:absolute;top:6vh;left:6vw;z-index:40;pointer-events:none;opacity:0;transform:translateY(16px);transition:opacity 1s var(--disp) .2s,transform 1s var(--disp) .2s}
+.gerty-stage.lit .gerty-intro{opacity:1;transform:none}
+#ghint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);margin-top:0;text-align:center;z-index:40}
+.gerty-stage.g-sel #ghint{opacity:0.1}
+/* ===== FINALE: BY THE NUMBERS (sticky) + CARDS ===== */
+.finale-pin{position:relative;z-index:2;height:230vh}
+.finale-stage{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:stretch;overflow:hidden;padding:0 3vw;box-sizing:border-box}
+.numbers-block{flex-shrink:0;padding:2.5vh 0}
+.numbers-inner{max-width:1240px;margin:0 auto;text-align:center}
+.numbers-inner .eyebrow{margin-bottom:2rem;color:var(--orange-lt)}
+.numbers-row{display:flex;align-items:flex-start;justify-content:center;flex-wrap:wrap;gap:1.1rem 1.8rem}
+.num-item{display:flex;flex-direction:column;align-items:center;min-width:96px}
+.num-big{font-family:'Space Grotesk';font-weight:600;font-size:clamp(2.6rem,6vw,5rem);line-height:1;color:var(--warm-white)}
+.num-cap{margin-top:.65rem;font-size:clamp(.68rem,1.05vw,.85rem);letter-spacing:.12em;text-transform:uppercase;color:var(--warm-mut);max-width:8em;line-height:1.3}
+.num-sep{align-self:center;margin-top:-1rem;font-size:clamp(1.2rem,2.4vw,1.9rem);color:var(--orange-lt);opacity:.6;font-weight:300}
+.cards-block{flex-shrink:0;height:0;overflow:hidden;will-change:height}
+.cards-head{font-size:clamp(.95rem,1.5vw,1.15rem);color:var(--warm-mut);text-align:center;margin-bottom:3rem;letter-spacing:.02em}
+.cards-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;height:100%;padding-bottom:2.5vh}
+.flip-card{height:100%;min-height:0;perspective:1400px;cursor:pointer}
+.flip-card-inner{position:relative;width:100%;height:100%;transition:transform .65s cubic-bezier(.4,.05,.2,1);transform-style:preserve-3d}
+.flip-card.flipped .flip-card-inner{transform:rotateY(180deg)}
+.flip-card-front,.flip-card-back{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border:1px solid rgba(246,236,227,0.28);border-radius:14px;box-sizing:border-box;overflow:hidden}
+.flip-card-front{display:flex;flex-direction:column;align-items:center;text-align:center;padding:14px 16px 18px;background:rgba(0,0,0,0.14)}
+.fc-top-space{flex:0 0 25%}
+.flip-card-front-name{flex-shrink:0;height:4.9em;overflow:hidden;font-family:'Space Grotesk';font-weight:600;font-size:clamp(1.43rem,1.8vw,1.8rem);line-height:1.22;color:var(--warm-white)}
+.fc-front-stats{display:flex;flex-direction:column;align-items:center;gap:.9rem;margin-top:4.5rem}
+.fcs{display:flex;flex-direction:column;align-items:center;gap:2px}
+.fcs b{font-family:'Space Grotesk';font-size:2.4rem;font-weight:600;color:#cc7f4a;line-height:1}
+.fcs span{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:rgba(246,236,227,0.62);line-height:1.15}
+/* ===== LEFT SECTION NAV ===== */
+#progress{display:none}
+#sidenav{position:fixed;left:26px;top:18vh;height:64vh;width:18px;z-index:120;opacity:0;pointer-events:none;transition:opacity .5s ease}
+#sidenav.show{opacity:0.8;pointer-events:auto}
+.sn-track{position:absolute;left:8px;top:0;bottom:0;width:2px;background:rgba(255,255,255,0.26);border-radius:2px}
+.sn-dot{position:absolute;left:9px;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.5);border:none;padding:0;cursor:pointer;transition:background .2s,transform .2s}
+.sn-dot:hover{background:#fff;transform:translate(-50%,-50%) scale(1.6)}
+.sn-cursor{position:absolute;left:9px;transform:translate(-50%,-50%);width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 6px 1.5px rgba(255,255,255,0.49);transition:top .1s linear;pointer-events:none}
+#secWho{min-height:100vh;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box}
+.fc-front-hint{display:flex;align-items:center;justify-content:center;margin-top:auto;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,236,227,0.55)}
+.flip-card-back{transform:rotateY(180deg);background:rgba(0,0,0,0.3);display:flex;flex-direction:column}
+.flip-card-back-sticky{padding:13px 16px;border-bottom:1px solid rgba(246,236,227,0.18);flex-shrink:0}
+.flip-card-back-title{font-family:'Space Grotesk';font-weight:600;font-size:.98rem;line-height:1.2;color:var(--warm-white)}
+.flip-card-back-content{padding:12px 16px 18px;overflow-y:auto;color:var(--warm-white);font-size:12.5px;line-height:1.5}
+.flip-card-back-content::-webkit-scrollbar{width:6px}
+.flip-card-back-content::-webkit-scrollbar-thumb{background:rgba(246,236,227,0.25);border-radius:3px}
+.fc-desc{color:rgba(246,236,227,0.82);margin-bottom:4px}
+.fc-section-bar{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange-lt);margin:13px 0 6px;font-weight:600}
+.fc-goal-type{font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:rgba(246,236,227,0.5);margin:8px 0 3px}
+.fc-goal{margin-bottom:5px;padding-left:10px;border-left:2px solid rgba(246,236,227,0.32)}
+.fc-theme-text{font-weight:600;margin-top:7px}
+.fc-theme-desc{color:rgba(246,236,227,0.66);margin-bottom:4px}
+.fc-idea-text{margin-bottom:4px;color:rgba(246,236,227,0.85)}
+/* ===== CLOSING STATEMENT ===== */
+.closing-sec{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;padding:12vh 8vw;box-sizing:border-box}
+.closing-inner{max-width:1010px;text-align:center}
+.closing-eyebrow{font-size:12px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--orange-lt);margin-bottom:1.4rem}
+.closing-title{font-family:'Space Grotesk';font-weight:600;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.08;color:var(--warm-white);margin-bottom:1.8rem}
+.closing-rule{width:54px;height:2px;background:var(--orange-lt);opacity:.85;margin:0 auto 2.6rem}
+.closing-text{font-size:clamp(0.81rem,1.35vw,1.09rem);line-height:1.82;color:var(--warm-white);font-weight:300}
+.closing-edit{margin-top:100px;display:flex;justify-content:center}
+.cbtn.closing-top{position:absolute;bottom:3.5vh;left:50%;transform:translateX(-50%);font-size:.64rem;padding:8.6px 18px;border-radius:18px}
+.cbtn.closing-top:hover{transform:translateX(-50%) translateY(-1px)}
+.cbtn{font-family:'Space Grotesk';font-size:.9rem;font-weight:500;letter-spacing:.02em;padding:12px 26px;border-radius:26px;border:1px solid rgba(246,236,227,0.35);background:transparent;color:var(--warm-white);cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.cbtn:hover{background:rgba(246,236,227,0.1);border-color:var(--warm-white);transform:translateY(-1px)}
+.cbtn-primary{background:var(--warm-white);color:#3a1a0c;border-color:var(--warm-white)}
+.cbtn-primary:hover{background:var(--cream);border-color:var(--cream)}
+.tars-counts{margin-top:1.5rem;display:flex;flex-direction:column;gap:.4rem}
+.tars-counts .tc-row{display:flex;align-items:baseline;gap:.5rem}
+.tars-counts .tc-n{font-family:'Space Grotesk';font-weight:600;color:var(--orange-lt);font-size:1.15rem;line-height:1;min-width:2.4em;text-align:right}
+.tars-counts .tc-l{font-size:.82rem;color:var(--warm-mut);letter-spacing:.05em}
+.oe-hidden{opacity:0}
+.scroll-buffer{height:55vh;position:relative;z-index:2;pointer-events:none}
+@keyframes halDing{
+  0%{filter:drop-shadow(0 0 0 rgba(255,190,130,0)) brightness(1)}
+  20%{filter:drop-shadow(0 0 14px rgba(255,200,150,0.48)) brightness(1.3)}
+  55%{filter:drop-shadow(0 0 8px rgba(255,190,130,0.25)) brightness(1.11)}
+  100%{filter:drop-shadow(0 0 0 rgba(255,190,130,0)) brightness(1)}
+}
+#ody-zoom-g > g.hal-ding{animation:halDing 1.15s ease-out}
+#odyssey-wrap{position:absolute;top:0;left:0;width:100%;height:100%;display:none;
+  opacity:0;transform:scale(.94);transition:opacity 1.3s var(--disp),transform 1.3s var(--disp)}
+#odyssey-wrap.in{opacity:1;transform:none}
+#ody-sidebar{position:absolute;right:14px;top:14px;bottom:14px;width:480px;background:rgba(8,8,18,0.97);border:1px solid rgba(255,255,255,0.09);border-radius:12px;transform:translateX(calc(100% + 28px));transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);overflow-y:auto;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+#ody-sidebar.open{transform:translateX(0);}
+#ody-sidebar-inner{padding:32px 26px 56px;}
+#ody-sidebar-close{position:absolute;top:14px;right:18px;background:none;border:none;color:rgba(255,255,255,0.28);font-size:26px;cursor:pointer;line-height:1;transition:color 0.18s;z-index:2;}
+#ody-sidebar-close:hover{color:rgba(255,255,255,0.75);}
+.ody-obj-label{font-size:10.4px;letter-spacing:0.22em;text-transform:uppercase;margin-bottom:11px;}
+.ody-obj-name{font-size:17.6px;font-weight:600;line-height:1.4;color:#fff;margin-bottom:12px;}
+.ody-obj-desc{font-size:13.6px;color:rgba(255,255,255,0.4);line-height:1.65;}
+#ody-obj-header{margin-bottom:24px;padding-bottom:22px;}
+.ody-section{margin-bottom:28px;}
+.ody-section-label{font-size:9.6px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.ody-theme{margin-bottom:18px;}.ody-theme:last-child{margin-bottom:0;}
+.ody-theme-name{font-size:14.4px;font-weight:600;letter-spacing:0.01em;margin-bottom:5px;}
+.ody-theme-desc{font-size:12.8px;color:rgba(255,255,255,0.32);line-height:1.6;}
+.ody-ideas{list-style:none;}
+.ody-ideas li{display:flex;align-items:flex-start;gap:10px;font-size:12.8px;color:rgba(255,255,255,0.48);line-height:1.5;padding:4px 0;}
+.ody-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:7px;opacity:0.65;}
+
+#ideaTip{position:fixed;z-index:300;pointer-events:none;opacity:0;transform:translateY(4px);
+  transition:opacity .14s var(--disp),transform .14s var(--disp);
+  background:rgba(18,9,4,0.5);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  border:1px solid rgba(224,138,79,0.45);border-radius:8px;
+  padding:6px 11px;font-size:11.5px;color:var(--cream);white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,0.28)}
+#ideaTip.on{opacity:1;transform:none}
+#ideaTip b{color:var(--orange-lt);font-weight:600}
+
+@media(max-width:620px){.sec{padding:6rem 7vw}.hero{padding:5rem 7vw 4rem}}
+/* ===== Auto-fit for the two floor-to-ceiling panels =====
+   The ideas wall and the finale flip-cards pack content edge-to-edge inside a 100vh
+   sticky stage (overflow:hidden), which clips on shorter / OS-scaled laptop screens.
+   Instead of guessing breakpoints, an inner wrapper is measured at runtime and
+   uniformly scaled to fit whatever viewport height the laptop has - the same effect
+   as zooming the browser out, but automatic. See fitSections() in the script. */
+#ideasFitInner,#finaleFitInner{width:100%;display:flex;flex-direction:column;
+  align-self:center;transform-origin:center center;will-change:transform}
+#finaleFitInner{align-items:stretch}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+<div id="bg"></div>
+<canvas id="starfield"></canvas>
+<div id="progress"></div>
+<nav id="sidenav" aria-label="Sections"><div class="sn-track"></div><div class="sn-cursor" id="snCursor"></div></nav>
+<div id="ideaTip"></div>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="kicker rv">Faculty of Design &amp; Society · Community of Practice</div>
+  <h1 class="rv" style="--d:.08s">Community of Practice<span class="sub">Teaching &amp; Learning</span></h1>
+  <div class="place rv" style="--d:.18s">University of Technology Sydney</div>
+  <p class="lede rv" style="--d:.26s">The roadmap and shared output of the Faculty of Design &amp; Society's Community of Practice on Teaching &amp; Learning. A cross-disciplinary conversation that brought together collective input from across the faculty and shaped it into a shared direction.</p>
+  <div class="dates rv" style="--d:.34s"><span class="dot"></span>Initiated 30 April 2026 &nbsp;·&nbsp; Concluded 6 July 2026</div>
+  <div class="statrow">
+    <div class="stat rv" style="--d:.42s"><div class="num" data-count="8">0</div><div class="lbl">Sessions</div></div>
+    <div class="stat rv" style="--d:.50s"><div class="num" data-count="119" data-sb="ideas">0</div><div class="lbl">Ideas</div></div>
+    <div class="stat rv" style="--d:.58s"><div class="num" data-count="10" data-sb="themes">0</div><div class="lbl">Themes</div></div>
+    <div class="stat rv" style="--d:.66s"><div class="num" data-count="6" data-sb="objectives">0</div><div class="lbl">Objectives</div></div>
+  </div>
+  <div class="scrollcue"><span class="bar"></span>Scroll to explore</div>
+</header>
+
+<!-- WHO -->
+<section class="who-pin" id="whoPin">
+  <div class="who-sticky">
+    <div class="wrap">
+      <div class="who-head">
+        <div>
+          <div class="eyebrow whv" data-wth="0.02">Who was in the room</div>
+          <h2 class="whv" data-wth="0.06">A cross-disciplinary<br>community of practice</h2>
+        </div>
+        <div class="who-count whv" data-wth="0.10"><b>18</b><span>members</span></div>
+      </div>
+      <div class="who-layout">
+        <div class="disc-grid" id="discGrid"></div>
+        <div class="names-col whv" data-wth="0.29">
+          <div class="names-label">The members</div>
+          <ul class="names-list" id="namesList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="sec" id="secTopics">
+  <div class="wrap">
+    <div class="eyebrow rv">Topics of inquiry</div>
+    <h2 class="rv" style="--d:.06s">Seven conversations,<br>three guiding questions</h2>
+    <div class="qbar rv" id="qbar" style="--d:.1s"></div>
+    <div class="topics-layout">
+      <div class="topics-list rv" id="topicsGrid" style="--d:.16s"></div>
+      <div class="blurb rv" id="blurb" style="--d:.2s"><div class="bt" id="blurbTitle"></div><div class="bd" id="blurbText"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-pin" id="processPin">
+  <div class="process-sticky">
+    <div class="wrap">
+      <div class="eyebrow sv" data-th="0.05">How it came together</div>
+      <h2 class="sv" data-th="0.10">From open conversation<br>to a shared roadmap</h2>
+      <p class="deck sv" data-th="0.17">Every session generated ideas. Ideas were gathered into themes, themes were shaped into objectives, and each objective was given short and long-term goals.</p>
+      <div class="flow" id="flow"></div>
+    </div>
+  </div>
+</section>
+
+<!-- IDEAS WALL -->
+<section class="ideas-pin" id="ideasPin">
+  <div class="ideas-sticky">
+    <div id="ideasFitInner">
+    <div class="wall-head">
+      <div class="eyebrow rv">The raw material</div>
+      <div><span class="big rv" style="--d:.05s">119 ideas</span><span class="deck rv" style="--d:.12s">Everything the community put on the table - unfiltered.</span></div>
+    </div>
+    <div class="wall-filter" id="wallFilter"></div>
+    <div class="wall" id="wall"></div>
+    </div>
+    <div class="notes-drawer" id="notesDrawer">
+      <button class="notes-close" id="notesClose" aria-label="Close notes">&times;</button>
+      <div class="notes-doc" id="notesDoc"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== SECTION 3: HAL CONSTELLATION ===== -->
+<div class="scroll-buffer"></div>
+<section class="hal-pin" id="halPin">
+  <div class="hal-stage" id="halStage">
+    <div class="hal-intro">
+      <div class="hal-title-c">The constellation</div>
+      <div class="hal-title-h">HAL</div>
+    </div>
+    <div id="odyssey-wrap"></div>
+    <div id="ody-sidebar">
+      <div id="ody-sidebar-inner">
+        <button id="ody-sidebar-close" onclick="odyCloseSidebar()">&times;</button>
+        <div id="ody-obj-header"></div>
+        <div id="ody-themes-content"></div>
+      </div>
+    </div>
+    <div class="hal-hint">Click an objective<br>to explore</div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: TARS CONSTELLATION ===== -->
+<div class="scroll-buffer"></div>
+<section class="tars-pin" id="tarsPin">
+  <div class="tars-stage" id="tarsStage">
+    <div id="const-container"><svg id="csvg"></svg></div>
+    <div class="tars-intro">
+      <div class="hal-title-c">The constellation</div>
+      <div class="hal-title-h">TARS</div>
+      <div class="tars-counts">
+        <div class="tc-row"><span class="tc-n" id="tcIdeas">0</span><span class="tc-l">Ideas</span></div>
+        <div class="tc-row"><span class="tc-n" id="tcThemes">0</span><span class="tc-l">Themes</span></div>
+        <div class="tc-row"><span class="tc-n" id="tcObjectives">0</span><span class="tc-l">Objectives</span></div>
+      </div>
+      <div class="tars-hint" id="chint">Click to explore</div>
+    </div>
+    <button class="tars-shuffle" id="tarsShuffle" onclick="shuffleTars()">Shuffle</button>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: GERTY CONSTELLATION ===== -->
+<div class="scroll-buffer"></div>
+<section class="gerty-pin" id="gertyPin">
+  <div class="gerty-stage" id="gertyStage">
+    <div id="gerty-container"><svg id="gsvg"></svg></div>
+    <div class="gerty-intro">
+      <div class="hal-title-c">The constellation</div>
+      <div class="hal-title-h">GERTY</div>
+    </div>
+    <div class="tars-hint" id="ghint">Click to explore</div>
+  </div>
+</section>
+
+<!-- ===== SECTION 6: BY THE NUMBERS ===== -->
+<div class="scroll-buffer"></div>
+<section class="finale-pin" id="finalePin">
+  <div class="finale-stage" id="finaleStage">
+  <div id="finaleFitInner">
+  <div class="numbers-block" id="numbersSec">
+  <div class="numbers-inner">
+    <div class="eyebrow rv">The strategy in numbers</div>
+    <div class="numbers-row">
+      <div class="num-item rv" style="--d:.04s"><span class="num-big" data-count="119" data-sb="ideas">0</span><span class="num-cap">Ideas</span></div>
+      <span class="num-sep rv" style="--d:.10s">&rarr;</span>
+      <div class="num-item rv" style="--d:.16s"><span class="num-big" data-count="10" data-sb="themes">0</span><span class="num-cap">Themes</span></div>
+      <span class="num-sep rv" style="--d:.22s">&rarr;</span>
+      <div class="num-item rv" style="--d:.28s"><span class="num-big" data-count="6" data-sb="objectives">0</span><span class="num-cap">Objectives</span></div>
+      <span class="num-sep rv" style="--d:.34s">&rarr;</span>
+      <div class="num-item rv" style="--d:.40s"><span class="num-big" data-count="16" data-sb="goals-short">0</span><span class="num-cap">Short-term goals</span></div>
+      <span class="num-sep rv" style="--d:.46s">&rarr;</span>
+      <div class="num-item rv" style="--d:.52s"><span class="num-big" data-count="13" data-sb="goals-long">0</span><span class="num-cap">Long-term goals</span></div>
+    </div>
+  </div>
+  </div>
+  <div class="cards-block" id="cardsBlock">
+    <div class="cards-grid" id="cards-grid"></div>
+  </div>
+  </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 8: CLOSING STATEMENT ===== -->
+<section class="closing-sec" id="closingSec">
+  <div class="closing-inner rv">
+    <div class="closing-eyebrow">Community of Practice &middot; Teaching &amp; Learning Strategy</div>
+    <h2 class="closing-title">A collective direction</h2>
+    <div class="closing-rule"></div>
+    <p class="closing-text">The presented roadmap is a shared direction that examines experience, capability, connection and identity. It asks us to think about how students enter, move through and belong in the Faculty; how we prepare them to work creatively and critically in changing fields; how we embed ethical, cultural and community responsibilities into learning; and how we use our partnerships, disciplines, place and people to define what makes FDS distinct. More importantly, it gives us an opportunity to grow with greater clarity and confidence. By building from what we already do well, while being honest about what needs to change, we can shape a Faculty that stands out not by trying to be like others, but by being clearer about who we are, what we value, and the kind of learning experience only we can offer.</p>
+    <div class="closing-edit rv" style="--d:.35s">
+      <button class="cbtn" id="btnEdit" onclick="location.href='dashboard.html'">Edit this roadmap or build your own</button>
+    </div>
+  </div>
+  <button class="cbtn closing-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Return to top</button>
+</section>
+
+<script>
+const BAKED_SB = {"ideas": [{"id": "sb1", "text": "Students develop creative problem-solving capabilities that industry values."}, {"id": "sb25", "text": "UTS graduates are often recognised as creative and able to respond to problems in unexpected ways."}, {"id": "sb26", "text": "Students are encouraged to explore their own interests, ideas and directions."}, {"id": "sb27", "text": "Academics curate briefs while leaving space for students to challenge assumptions."}, {"id": "sb28", "text": "Creativity is embedded in core learning rather than being limited to electives."}, {"id": "sb29", "text": "Students develop their own voice and create work shaped by their generation and lived experience."}, {"id": "sb30", "text": "Student agency and autonomy are defining parts of the Faculty teaching culture."}, {"id": "sb31", "text": "The Faculty gives academics freedom to experiment with curriculum, assessment and delivery."}, {"id": "sb32", "text": "Creativity should be understood broadly across making and non-making disciplines."}, {"id": "sb33", "text": "Creativity is connected to culture, identity and human experience."}, {"id": "sb34", "text": "Time, feedback and smaller class settings are important conditions for creative learning."}, {"id": "sb35", "text": "The student experience should move beyond grades as the main form of recognition."}, {"id": "sb36", "text": "Alternative forms of student recognition can celebrate presentation, peer support, leadership and creative contribution."}, {"id": "sb37", "text": "Creative practice should not be reduced to technology or AI-assisted processes."}, {"id": "sb38", "text": "Technology should be taught as a broad concept that includes digital, analogue, material and cultural tools."}, {"id": "sb40", "text": "Students should question when and why to use technology, rather than simply adopt it."}, {"id": "sb41", "text": "AI should be used critically and meaningfully within teaching and learning."}, {"id": "sb42", "text": "Ethics and social responsibility should be embedded in how technologies are taught."}, {"id": "sb43", "text": "Teaching should keep pace with new tools while avoiding novelty for its own sake."}, {"id": "sb44", "text": "Students should develop broad technological capability rather than being trained in one tool only."}, {"id": "sb45", "text": "Computational literacy and analogue skills should both remain important in graduate learning."}, {"id": "sb46", "text": "Students need support regardless of their starting level of technological knowledge."}, {"id": "sb47", "text": "A common digital literacy subject or module could support all FDS students."}, {"id": "sb48", "text": "Specialised IT and discipline-specific technology support need to be strengthened."}, {"id": "sb49", "text": "Access to emerging technologies and specialised software is uneven and sometimes restricted to campus labs."}, {"id": "sb50", "text": "Clear AI expectations are needed for students, including international students arriving with different prior practices."}, {"id": "sb51", "text": "The impact of AI and digital tools on the social process of learning should be regularly reviewed."}, {"id": "sb52", "text": "Technology should be treated as a tool or service, not the goal of learning."}, {"id": "sb53", "text": "Students and staff need better access to contemporary creative technologies and platforms."}, {"id": "sb54", "text": "Student support exists but is not always clearly communicated."}, {"id": "sb62", "text": "Students should be able to easily understand what support is available and how to access it."}, {"id": "sb63", "text": "Peer support, academic support and access to facilities are important strengths."}, {"id": "sb64", "text": "Growth in cohort size can make the student experience feel less personal."}, {"id": "sb65", "text": "Appropriate cohort sizes and workload settings are needed to maintain quality teaching."}, {"id": "sb66", "text": "The first semester experience is critical and currently difficult for many students."}, {"id": "sb67", "text": "Students need stronger orientation to workload, expectations, value of the degree and faculty spaces."}, {"id": "sb68", "text": "Student societies are effective at creating engagement and community."}, {"id": "sb69", "text": "Students should want to come to campus because it offers identity, community and belonging."}, {"id": "sb70", "text": "Teaching teams are flexible and responsive when students face challenges."}, {"id": "sb71", "text": "Some students need stronger language and academic preparedness support."}, {"id": "sb72", "text": "Regular feedback and touchpoints help reduce anxiety around major assessments."}, {"id": "sb73", "text": "Administrative speed and responsiveness are part of student wellbeing and experience."}, {"id": "sb74", "text": "International students need stronger support to integrate with domestic students."}, {"id": "sb75", "text": "Assessment design can encourage meaningful cross-cultural collaboration."}, {"id": "sb76", "text": "All students should see the Faculty as inclusive, welcoming and safe."}, {"id": "sb77", "text": "Students could have more flexibility and choice in shaping their degree pathways."}, {"id": "sb78", "text": "The Faculty should improve participation from low SES students."}, {"id": "sb87", "text": "Earlier engagement with schools and communities can help build aspiration for university study."}, {"id": "sb88", "text": "The diversity of academics from underrepresented groups should be celebrated and made visible."}, {"id": "sb89", "text": "Costs for printing, model-making materials and software create pressure for students."}, {"id": "sb90", "text": "Bulk purchasing, recycled materials or subsidised supplies could reduce student costs."}, {"id": "sb91", "text": "Assessment design should consider the cost burden placed on students."}, {"id": "sb92", "text": "Faculty-based scholarships could help attract and retain high-quality students from diverse markets."}, {"id": "sb93", "text": "International students should not be viewed primarily as a revenue source."}, {"id": "sb94", "text": "A diverse international cohort strengthens the academic, cultural and social life of the Faculty."}, {"id": "sb95", "text": "The term Indigenous Knowledges needs clearer meaning and must avoid tokenistic use."}, {"id": "sb97", "text": "The Faculty has strong Indigenous research but needs stronger translation into teaching and learning."}, {"id": "sb98", "text": "Non-Indigenous staff need confidence and support to engage with Indigenous Knowledges in teaching."}, {"id": "sb99", "text": "Indigenous allies want to contribute but need stronger support to do so meaningfully."}, {"id": "sb100", "text": "There is a disconnect between aspirations for Indigenous Knowledge and institutional support."}, {"id": "sb101", "text": "Good Indigenous initiatives need to be communicated and shared across schools."}, {"id": "sb102", "text": "Collaboration with Jumbunna should be strengthened across all schools."}, {"id": "sb103", "text": "Indigenous Knowledge should not be homogenised across disciplines."}, {"id": "sb104", "text": "Cultural safety for Indigenous colleagues and students must be protected."}, {"id": "sb105", "text": "Indigenous engagement should be discipline-specific and carefully supported."}, {"id": "sb106", "text": "Students should have more direct engagement with Indigenous community members and Elders."}, {"id": "sb107", "text": "Students should have opportunities to learn on Country with Traditional Owners."}, {"id": "sb108", "text": "Community engagement with Indigenous partners requires flexibility and cannot always be fully pre-planned."}, {"id": "sb109", "text": "A dedicated budget is needed for Indigenous guests, Elders and community engagement."}, {"id": "sb110", "text": "Staff training in Indigenous pedagogy and cultural safety is needed."}, {"id": "sb111", "text": "Compulsory Indigenous learning modules or electives could support all students."}, {"id": "sb112", "text": "A faculty Indigenous Community of Practice could support academics and reduce cultural load."}, {"id": "sb113", "text": "Indigenous Graduate Attribute champions provide a useful model for supported implementation."}, {"id": "sb114", "text": "Teaching is relevant, industry-aligned and connected to real-world contexts."}, {"id": "sb116", "text": "Strong alumni relationships support mentoring, networking and career pathway conversations."}, {"id": "sb117", "text": "Alumni provide internships, sponsorship and emotional connection to the Faculty."}, {"id": "sb118", "text": "Alumni engagement needs stronger channels beyond alumni email, such as LinkedIn and Instagram."}, {"id": "sb119", "text": "Work-integrated learning and practice-inspired teaching are major strengths."}, {"id": "sb120", "text": "Industry lectures, curriculum collaboration and guest input enrich learning."}, {"id": "sb121", "text": "Internships, cadetships and industry-linked subjects support employability."}, {"id": "sb122", "text": "Clearer guidance is needed for ethical industry partnerships and student engagement."}, {"id": "sb123", "text": "The Faculty should remain industry-engaged but not industry-led."}, {"id": "sb124", "text": "Students need earlier preparation to understand professional practice and creative industries."}, {"id": "sb125", "text": "Employment during study can reduce final-year campus engagement and needs careful attention."}, {"id": "sb126", "text": "Community engagement should be recognised as part of creative practice and learning."}, {"id": "sb127", "text": "The effort required to build community relationships should be recognised and supported."}, {"id": "sb128", "text": "Sessional academics are important to the teaching culture and should be included in the faculty strategy narrative."}, {"id": "sb129", "text": "Cross-school collaboration can support new curriculum and curriculum innovation."}, {"id": "sb131", "text": "Interdisciplinary learning is one of the Faculty's strongest opportunities."}, {"id": "sb132", "text": "Academics can learn from one another and share creative teaching approaches across disciplines."}, {"id": "sb133", "text": "Co-teaching between academics from different disciplines can create richer learning environments."}, {"id": "sb134", "text": "Students should apply disciplinary expertise in new contexts."}, {"id": "sb135", "text": "Interdisciplinary thinking helps prepare students for changing futures and careers."}, {"id": "sb136", "text": "Disciplinary silos create barriers for students and staff."}, {"id": "sb137", "text": "Administrative and organisational barriers make collaboration difficult."}, {"id": "sb138", "text": "Students should have better access to existing subjects across the Faculty."}, {"id": "sb139", "text": "The strategy needs a clear audience because internal and external documents require different framing."}, {"id": "sb141", "text": "Some schools have clearer identities than others, and the strategy should help create a stronger shared identity."}, {"id": "sb142", "text": "The Faculty should move beyond ex-DAB and ex-FASS identities toward a unified FDS identity."}, {"id": "sb143", "text": "The Faculty should compete through relevance, innovation and distinctiveness rather than prestige alone."}, {"id": "sb144", "text": "External audiences may not fully understand the FDS merger or the Faculty's strengths."}, {"id": "sb145", "text": "Student work can communicate the Faculty more authentically than generic marketing."}, {"id": "sb146", "text": "The Faculty needs a stronger narrative about who it is and what makes it distinct."}, {"id": "sb147", "text": "The Faculty should clearly communicate the diversity of disciplines within FDS."}, {"id": "sb148", "text": "Sydney, Tech Central and the city campus are major competitive advantages."}, {"id": "sb149", "text": "FDS is recognised by many international students as a strong destination in Australia."}, {"id": "sb151", "text": "Location, industry connections and reputation are key strengths for international students."}, {"id": "sb152", "text": "Internationally recognised initiatives strengthen student portfolios and graduate outcomes."}, {"id": "sb153", "text": "Global learning and recognition opportunities should be coordinated across the Faculty."}, {"id": "sb154", "text": "Relying too heavily on a small number of international markets creates risk."}, {"id": "sb155", "text": "Diverse perspectives strengthen creativity, innovation and learning."}, {"id": "sb156", "text": "The physical campus experience is part of the value the Faculty offers."}, {"id": "sb158", "text": "Students and industry value face-to-face engagement and physical presence."}, {"id": "sb159", "text": "Specialised facilities, technologies and equipment make the student experience distinctive."}, {"id": "sb160", "text": "Creative environments differ from conventional classrooms and support distinctive learning."}, {"id": "sb161", "text": "Collaborative spaces across the Faculty could better support experimentation and creative exchange."}, {"id": "sb162", "text": "Creative activity should be more visible across campus."}, {"id": "sb163", "text": "Infrastructure should support both collaboration and independent creative practice."}, {"id": "sb164", "text": "Extended access to buildings and facilities could support creativity and improve competitiveness."}], "themes": [{"id": "sb2", "name": "Creativity, Agency & Distinctive Pedagogy", "desc": "Strengthening creative problem-solving, student voice, academic freedom and distinctive approaches to teaching and learning.", "alignment": ["ci", "fds"], "ideaIds": ["sb1", "sb25", "sb26", "sb27", "sb28", "sb29", "sb30", "sb31", "sb32", "sb33", "sb34", "sb35", "sb36", "sb37", "sb155"]}, {"id": "sb39", "name": "Technology & Future Capabilities", "desc": "Building critical, ethical and adaptable capability with digital, analogue and emerging technologies.", "alignment": ["uts", "ci", "fds"], "ideaIds": ["sb38", "sb40", "sb41", "sb42", "sb43", "sb44", "sb45", "sb46", "sb47", "sb48", "sb49", "sb50", "sb51", "sb52", "sb53"]}, {"id": "sb55", "name": "Student Experience, Belonging & Support", "desc": "Creating a connected student journey where students feel supported, included and part of the faculty community.", "alignment": ["uts", "fds"], "ideaIds": ["sb54", "sb62", "sb63", "sb64", "sb65", "sb66", "sb67", "sb68", "sb69", "sb70", "sb71", "sb72", "sb73", "sb74", "sb75", "sb76", "sb77"]}, {"id": "sb79", "name": "Equity, Access & Affordability", "desc": "Reducing barriers to participation and success, including cost, access, aspiration and student diversity.", "alignment": ["uts", "fds"], "ideaIds": ["sb78", "sb87", "sb88", "sb89", "sb90", "sb91", "sb92", "sb93", "sb94"]}, {"id": "sb96", "name": "Indigenous Knowledges, Country & Cultural Capability", "desc": "Embedding Indigenous Knowledges, Country, cultural safety and staff capability in meaningful and supported ways.", "alignment": ["uts", "ci", "fds"], "ideaIds": ["sb95", "sb97", "sb98", "sb99", "sb100", "sb101", "sb102", "sb103", "sb104", "sb105", "sb106", "sb107", "sb108", "sb109", "sb110", "sb111", "sb112", "sb113"]}, {"id": "sb115", "name": "Industry, Alumni & Professional Practice", "desc": "Connecting learning with industry, alumni, community and professional practice while protecting academic leadership.", "alignment": ["uts", "ci", "fds"], "ideaIds": ["sb114", "sb116", "sb117", "sb118", "sb119", "sb120", "sb121", "sb122", "sb123", "sb124", "sb125", "sb126", "sb127", "sb128"]}, {"id": "sb130", "name": "Interdisciplinary Collaboration & Curriculum", "desc": "Creating stronger connections across disciplines through shared curriculum, co-teaching and cross-school learning.", "alignment": ["uts", "ci", "fds"], "ideaIds": ["sb129", "sb131", "sb132", "sb133", "sb134", "sb135", "sb136", "sb137", "sb138"]}, {"id": "sb140", "name": "Faculty Identity, Storytelling & Reputation", "desc": "Clarifying and communicating what makes FDS distinctive to students, staff, industry and international audiences.", "alignment": ["fds"], "ideaIds": ["sb139", "sb141", "sb142", "sb143", "sb144", "sb145", "sb146", "sb147", "sb148"]}, {"id": "sb150", "name": "Global Positioning & International Engagement", "desc": "Strengthening global recognition, international engagement, market diversity and international learning opportunities.", "alignment": ["uts", "ci", "fds"], "ideaIds": ["sb149", "sb151", "sb152", "sb153", "sb154"]}, {"id": "sb157", "name": "Creative Infrastructure, Campus & Learning Environments", "desc": "Using the city campus, facilities and learning spaces as active drivers of creativity, belonging and collaboration.", "alignment": ["ci", "fds"], "ideaIds": ["sb156", "sb158", "sb159", "sb160", "sb161", "sb162", "sb163", "sb164"]}], "objectives": [{"id": "sb3", "title": "Build creative, critical and future-ready graduates", "desc": "Develop graduates who are creative, critical, adaptable and confident in using technologies responsibly across changing futures.", "themeIds": ["sb2", "sb39", "sb130"]}, {"id": "sb8", "title": "Advance interdisciplinary curriculum and collaboration", "desc": "Enable cross-school teaching, shared curriculum and collaboration that makes interdisciplinary learning easier to teach and experience.", "themeIds": ["sb2", "sb55", "sb115", "sb130"]}, {"id": "sb14", "title": "Shape a distinctive faculty identity and place-based learning experience", "desc": "Position FDS through its distinctive identity, city campus, facilities and learning environments as active strengths in teaching and learning.", "themeIds": ["sb2", "sb79", "sb140", "sb157"]}, {"id": "sb20", "title": "Create a connected, inclusive and supportive student journey", "desc": "Support students from entry to graduation through belonging, equity, access, wellbeing and meaningful participation.", "themeIds": ["sb2", "sb39", "sb55", "sb79", "sb115"]}, {"id": "sb56", "title": "Affirm Indigenous self-determination, ethical relationality & community-engaged learning", "desc": "Embed Indigenous Knowledges, cultural safety, ethics, Country and community engagement in supported and meaningful ways.", "themeIds": ["sb55", "sb79", "sb96"]}, {"id": "sb80", "title": "Strengthen industry, alumni and internationalised learning pathways", "desc": "Build meaningful industry, alumni and international partnerships that expand student and staff learning, strengthen intercultural capability, and create local and global opportunities.", "themeIds": ["sb79", "sb115", "sb150"]}], "goals": [{"id": "sb4", "title": "Develop clearer guidance for ethical and human-centred use of technology, including AI, in teaching.", "desc": "", "type": "short", "objectiveIds": ["sb3"]}, {"id": "sb5", "title": "Position FDS as a leader in ethical, human-centred and practice-led engagement with emerging technologies including AI.", "desc": "", "type": "long", "objectiveIds": ["sb3"]}, {"id": "sb6", "title": "Map where creative, critical, digital and AI capabilities are currently taught across the Faculty.", "desc": "", "type": "short", "objectiveIds": ["sb3"]}, {"id": "sb7", "title": "Build a recognised faculty-wide model for creative, critical and technology-capable graduate learning.", "desc": "", "type": "long", "objectiveIds": ["sb3"]}, {"id": "sb9", "title": "Identify practical opportunities for shared subjects, co-teaching and student access across schools.", "desc": "", "type": "short", "objectiveIds": ["sb8"]}, {"id": "sb10", "title": "Build a faculty teaching culture that supports academic experimentation, student agency and distinctive pedagogy.", "desc": "", "type": "long", "objectiveIds": ["sb8"]}, {"id": "sb11", "title": "Review class size and workload settings needed for high-engagement creative and interdisciplinary learning.", "desc": "", "type": "short", "objectiveIds": ["sb8"]}, {"id": "sb12", "title": "Create a flexible interdisciplinary curriculum ecosystem that allows students to apply disciplinary expertise in new contexts.", "desc": "", "type": "long", "objectiveIds": ["sb8"]}, {"id": "sb13", "title": "Remove administrative barriers that prevent cross-disciplinary teaching and collaboration.", "desc": "", "type": "short", "objectiveIds": ["sb8"]}, {"id": "sb15", "title": "Develop a clearer faculty narrative that communicates FDS identity, student work, disciplines and strengths.", "desc": "", "type": "short", "objectiveIds": ["sb14"]}, {"id": "sb16", "title": "Build a coherent faculty identity and reputation based on relevance, creativity, diversity and impact.", "desc": "", "type": "long", "objectiveIds": ["sb14"]}, {"id": "sb17", "title": "Use Sydney, Tech Central and the city campus more clearly in student recruitment and learning narratives.", "desc": "", "type": "short", "objectiveIds": ["sb14"]}, {"id": "sb18", "title": "Position the city campus, facilities and creative environments as defining parts of the FDS learning experience.", "desc": "", "type": "long", "objectiveIds": ["sb14"]}, {"id": "sb19", "title": "Identify quick improvements to shared spaces, facilities and visibility of creative activity across campus.", "desc": "", "type": "short", "objectiveIds": ["sb14"]}, {"id": "sb21", "title": "Improve first-year transition, orientation and navigation of faculty spaces, support and expectations.", "desc": "", "type": "short", "objectiveIds": ["sb20"]}, {"id": "sb22", "title": "Create a connected student journey from entry through to alumni that builds identity, belonging and confidence.", "desc": "", "type": "long", "objectiveIds": ["sb20"]}, {"id": "sb23", "title": "Review student support and administrative touchpoints that create anxiety or confusion.", "desc": "", "type": "short", "objectiveIds": ["sb20"]}, {"id": "sb24", "title": "Sustain a personalised and inclusive learning experience as cohorts grow and student needs diversify.", "desc": "", "type": "long", "objectiveIds": ["sb20"]}, {"id": "sb57", "title": "Identify budget and process support for Indigenous guests, Elders and community engagement.", "desc": "", "type": "short", "objectiveIds": ["sb56"]}, {"id": "sb58", "title": "Embed Indigenous Knowledges and Country in curriculum through supported, discipline-specific and community-led approaches.", "desc": "", "type": "long", "objectiveIds": ["sb56"]}, {"id": "sb59", "title": "Provide staff development and discipline-specific support for culturally safe Indigenous teaching.", "desc": "", "type": "short", "objectiveIds": ["sb56"]}, {"id": "sb60", "title": "Reduce cultural load on Indigenous colleagues by building shared staff capability and institutional support.", "desc": "", "type": "long", "objectiveIds": ["sb56"]}, {"id": "sb61", "title": "Establish, under Indigenous control, a faculty-based Indigenous Knowledges Community of Practice with genuine decision-making authority and workload allocation.", "desc": "", "type": "short", "objectiveIds": ["sb56"]}, {"id": "sb81", "title": "Embed intercultural learning and diverse community voices into the classroom.", "desc": "", "type": "short", "objectiveIds": ["sb80"]}, {"id": "sb82", "title": "Grow a more diverse international student cohort that enriches the academic, cultural and social life of the Faculty.", "desc": "", "type": "long", "objectiveIds": ["sb80"]}, {"id": "sb83", "title": "Create clearer guidance for ethical and academically led industry, alumni and community partnerships.", "desc": "", "type": "short", "objectiveIds": ["sb80"]}, {"id": "sb84", "title": "Build a lifelong FDS community connecting students, alumni, industry, community and global partners.", "desc": "", "type": "long", "objectiveIds": ["sb80"]}, {"id": "sb85", "title": "Develop a coordinated model of global learning, recognition and partnership opportunities across disciplines.", "desc": "", "type": "long", "objectiveIds": ["sb80"]}, {"id": "sb86", "title": "Map existing industry, alumni, international, diasporic and cross-institutional learning opportunities across the Faculty.", "desc": "", "type": "short", "objectiveIds": ["sb80"]}]};
+const BAKED_ORIGIN = {"Students develop creative problem-solving capabilities that industry values.": "Meeting 6 – Creativity and Interdisciplinarity", "UTS graduates are often recognised as creative and able to respond to problems in unexpected ways.": "Meeting 6 – Creativity and Interdisciplinarity", "Students are encouraged to explore their own interests, ideas and directions.": "Meeting 6 – Creativity and Interdisciplinarity", "Academics curate briefs while leaving space for students to challenge assumptions.": "Meeting 6 – Creativity and Interdisciplinarity", "Creativity is embedded in core learning rather than being limited to electives.": "Meeting 6 – Creativity and Interdisciplinarity", "Students develop their own voice and create work shaped by their generation and lived experience.": "Meeting 6 – Creativity and Interdisciplinarity", "Student agency and autonomy are defining parts of the Faculty teaching culture.": "Meeting 6 – Creativity and Interdisciplinarity", "The Faculty gives academics freedom to experiment with curriculum, assessment and delivery.": "Meeting 6 – Creativity and Interdisciplinarity", "Creativity should be understood broadly across making and non-making disciplines.": "Meeting 6 – Creativity and Interdisciplinarity", "Creativity is connected to culture, identity and human experience.": "Meeting 6 – Creativity and Interdisciplinarity", "Time, feedback and smaller class settings are important conditions for creative learning.": "Meeting 6 – Creativity and Interdisciplinarity", "The student experience should move beyond grades as the main form of recognition.": "Meeting 4 – Student Experience", "Alternative forms of student recognition can celebrate presentation, peer support, leadership and creative contribution.": "Meeting 4 – Student Experience", "Creative practice should not be reduced to technology or AI-assisted processes.": "Meeting 6 – Creativity and Interdisciplinarity", "Technology should be taught as a broad concept that includes digital, analogue, material and cultural tools.": "Meeting 3 – Technology", "Students should question when and why to use technology, rather than simply adopt it.": "Meeting 3 – Technology", "AI should be used critically and meaningfully within teaching and learning.": "Meeting 3 – Technology", "Ethics and social responsibility should be embedded in how technologies are taught.": "Meeting 3 – Technology", "Teaching should keep pace with new tools while avoiding novelty for its own sake.": "Meeting 3 – Technology", "Students should develop broad technological capability rather than being trained in one tool only.": "Meeting 3 – Technology", "Computational literacy and analogue skills should both remain important in graduate learning.": "Meeting 3 – Technology", "Students need support regardless of their starting level of technological knowledge.": "Meeting 3 – Technology", "A common digital literacy subject or module could support all FDS students.": "Meeting 3 – Technology", "Specialised IT and discipline-specific technology support need to be strengthened.": "Meeting 3 – Technology", "Access to emerging technologies and specialised software is uneven and sometimes restricted to campus labs.": "Meeting 3 – Technology", "Clear AI expectations are needed for students, including international students arriving with different prior practices.": "Meeting 3 – Technology", "The impact of AI and digital tools on the social process of learning should be regularly reviewed.": "Meeting 3 – Technology", "Technology should be treated as a tool or service, not the goal of learning.": "Meeting 3 – Technology", "Students and staff need better access to contemporary creative technologies and platforms.": "Meeting 6 – Creativity and Interdisciplinarity", "Student support exists but is not always clearly communicated.": "Meeting 2 – Strengths, Improvements and Letting Go", "Students should be able to easily understand what support is available and how to access it.": "Meeting 2 – Strengths, Improvements and Letting Go", "Peer support, academic support and access to facilities are important strengths.": "Meeting 2 – Strengths, Improvements and Letting Go", "Growth in cohort size can make the student experience feel less personal.": "Meeting 2 – Strengths, Improvements and Letting Go", "Appropriate cohort sizes and workload settings are needed to maintain quality teaching.": "Meeting 2 – Strengths, Improvements and Letting Go", "The first semester experience is critical and currently difficult for many students.": "Meeting 4 – Student Experience", "Students need stronger orientation to workload, expectations, value of the degree and faculty spaces.": "Meeting 4 – Student Experience", "Student societies are effective at creating engagement and community.": "Meeting 4 – Student Experience", "Students should want to come to campus because it offers identity, community and belonging.": "Meeting 4 – Student Experience", "Teaching teams are flexible and responsive when students face challenges.": "Meeting 4 – Student Experience", "Some students need stronger language and academic preparedness support.": "Meeting 4 – Student Experience", "Regular feedback and touchpoints help reduce anxiety around major assessments.": "Meeting 7 – International and Competition", "Administrative speed and responsiveness are part of student wellbeing and experience.": "Meeting 7 – International and Competition", "International students need stronger support to integrate with domestic students.": "Meeting 7 – International and Competition", "Assessment design can encourage meaningful cross-cultural collaboration.": "Meeting 7 – International and Competition", "All students should see the Faculty as inclusive, welcoming and safe.": "Meeting 7 – International and Competition", "Students could have more flexibility and choice in shaping their degree pathways.": "Meeting 7 – International and Competition", "The Faculty should improve participation from low SES students.": "Meeting 2 – Strengths, Improvements and Letting Go", "Earlier engagement with schools and communities can help build aspiration for university study.": "Meeting 2 – Strengths, Improvements and Letting Go", "The diversity of academics from underrepresented groups should be celebrated and made visible.": "Meeting 2 – Strengths, Improvements and Letting Go", "Costs for printing, model-making materials and software create pressure for students.": "Meeting 2 – Strengths, Improvements and Letting Go", "Bulk purchasing, recycled materials or subsidised supplies could reduce student costs.": "Meeting 2 – Strengths, Improvements and Letting Go", "Assessment design should consider the cost burden placed on students.": "Meeting 2 – Strengths, Improvements and Letting Go", "Faculty-based scholarships could help attract and retain high-quality students from diverse markets.": "Meeting 7 – International and Competition", "International students should not be viewed primarily as a revenue source.": "Meeting 7 – International and Competition", "A diverse international cohort strengthens the academic, cultural and social life of the Faculty.": "Meeting 7 – International and Competition", "The term Indigenous Knowledges needs clearer meaning and must avoid tokenistic use.": "Meeting 1 – Introductions and Strategy Framing", "The Faculty has strong Indigenous research but needs stronger translation into teaching and learning.": "Meeting 5 – Indigenous Knowledges", "Non-Indigenous staff need confidence and support to engage with Indigenous Knowledges in teaching.": "Meeting 5 – Indigenous Knowledges", "Indigenous allies want to contribute but need stronger support to do so meaningfully.": "Meeting 5 – Indigenous Knowledges", "There is a disconnect between aspirations for Indigenous Knowledge and institutional support.": "Meeting 5 – Indigenous Knowledges", "Good Indigenous initiatives need to be communicated and shared across schools.": "Meeting 5 – Indigenous Knowledges", "Collaboration with Jumbunna should be strengthened across all schools.": "Meeting 5 – Indigenous Knowledges", "Indigenous Knowledge should not be homogenised across disciplines.": "Meeting 5 – Indigenous Knowledges", "Cultural safety for Indigenous colleagues and students must be protected.": "Meeting 5 – Indigenous Knowledges", "Indigenous engagement should be discipline-specific and carefully supported.": "Meeting 5 – Indigenous Knowledges", "Students should have more direct engagement with Indigenous community members and Elders.": "Meeting 5 – Indigenous Knowledges", "Students should have opportunities to learn on Country with Traditional Owners.": "Meeting 5 – Indigenous Knowledges", "Community engagement with Indigenous partners requires flexibility and cannot always be fully pre-planned.": "Meeting 5 – Indigenous Knowledges", "A dedicated budget is needed for Indigenous guests, Elders and community engagement.": "Meeting 5 – Indigenous Knowledges", "Staff training in Indigenous pedagogy and cultural safety is needed.": "Meeting 5 – Indigenous Knowledges", "Compulsory Indigenous learning modules or electives could support all students.": "Meeting 5 – Indigenous Knowledges", "A faculty Indigenous Community of Practice could support academics and reduce cultural load.": "Meeting 5 – Indigenous Knowledges", "Indigenous Graduate Attribute champions provide a useful model for supported implementation.": "Meeting 5 – Indigenous Knowledges", "Teaching is relevant, industry-aligned and connected to real-world contexts.": "Meeting 2 – Strengths, Improvements and Letting Go", "Strong alumni relationships support mentoring, networking and career pathway conversations.": "Meeting 2 – Strengths, Improvements and Letting Go", "Alumni provide internships, sponsorship and emotional connection to the Faculty.": "Meeting 2 – Strengths, Improvements and Letting Go", "Alumni engagement needs stronger channels beyond alumni email, such as LinkedIn and Instagram.": "Meeting 2 – Strengths, Improvements and Letting Go", "Work-integrated learning and practice-inspired teaching are major strengths.": "Meeting 4 – Student Experience", "Industry lectures, curriculum collaboration and guest input enrich learning.": "Meeting 4 – Student Experience", "Internships, cadetships and industry-linked subjects support employability.": "Meeting 4 – Student Experience", "Clearer guidance is needed for ethical industry partnerships and student engagement.": "Meeting 4 – Student Experience", "The Faculty should remain industry-engaged but not industry-led.": "Meeting 2 – Strengths, Improvements and Letting Go", "Students need earlier preparation to understand professional practice and creative industries.": "Meeting 4 – Student Experience", "Employment during study can reduce final-year campus engagement and needs careful attention.": "Meeting 4 – Student Experience", "Community engagement should be recognised as part of creative practice and learning.": "Meeting 6 – Creativity and Interdisciplinarity", "The effort required to build community relationships should be recognised and supported.": "Meeting 6 – Creativity and Interdisciplinarity", "Sessional academics are important to the teaching culture and should be included in the faculty strategy narrative.": "Meeting 7 – International and Competition", "Cross-school collaboration can support new curriculum and curriculum innovation.": "Meeting 1 – Introductions and Strategy Framing", "Interdisciplinary learning is one of the Faculty's strongest opportunities.": "Meeting 6 – Creativity and Interdisciplinarity", "Academics can learn from one another and share creative teaching approaches across disciplines.": "Meeting 6 – Creativity and Interdisciplinarity", "Co-teaching between academics from different disciplines can create richer learning environments.": "Meeting 6 – Creativity and Interdisciplinarity", "Students should apply disciplinary expertise in new contexts.": "Meeting 6 – Creativity and Interdisciplinarity", "Interdisciplinary thinking helps prepare students for changing futures and careers.": "Meeting 6 – Creativity and Interdisciplinarity", "Disciplinary silos create barriers for students and staff.": "Meeting 6 – Creativity and Interdisciplinarity", "Administrative and organisational barriers make collaboration difficult.": "Meeting 6 – Creativity and Interdisciplinarity", "Students should have better access to existing subjects across the Faculty.": "Meeting 6 – Creativity and Interdisciplinarity", "The strategy needs a clear audience because internal and external documents require different framing.": "Meeting 1 – Introductions and Strategy Framing", "Some schools have clearer identities than others, and the strategy should help create a stronger shared identity.": "Meeting 1 – Introductions and Strategy Framing", "The Faculty should move beyond ex-DAB and ex-FASS identities toward a unified FDS identity.": "Meeting 2 – Strengths, Improvements and Letting Go", "The Faculty should compete through relevance, innovation and distinctiveness rather than prestige alone.": "Meeting 2 – Strengths, Improvements and Letting Go", "External audiences may not fully understand the FDS merger or the Faculty's strengths.": "Meeting 2 – Strengths, Improvements and Letting Go", "Student work can communicate the Faculty more authentically than generic marketing.": "Meeting 7 – International and Competition", "The Faculty needs a stronger narrative about who it is and what makes it distinct.": "Meeting 7 – International and Competition", "The Faculty should clearly communicate the diversity of disciplines within FDS.": "Meeting 7 – International and Competition", "Sydney, Tech Central and the city campus are major competitive advantages.": "Meeting 7 – International and Competition", "FDS is recognised by many international students as a strong destination in Australia.": "Meeting 7 – International and Competition", "Location, industry connections and reputation are key strengths for international students.": "Meeting 7 – International and Competition", "Internationally recognised initiatives strengthen student portfolios and graduate outcomes.": "Meeting 7 – International and Competition", "Global learning and recognition opportunities should be coordinated across the Faculty.": "Meeting 7 – International and Competition", "Relying too heavily on a small number of international markets creates risk.": "Meeting 7 – International and Competition", "Diverse perspectives strengthen creativity, innovation and learning.": "Meeting 7 – International and Competition", "The physical campus experience is part of the value the Faculty offers.": "Meeting 1 – Introductions and Strategy Framing", "Students and industry value face-to-face engagement and physical presence.": "Meeting 2 – Strengths, Improvements and Letting Go", "Specialised facilities, technologies and equipment make the student experience distinctive.": "Meeting 7 – International and Competition", "Creative environments differ from conventional classrooms and support distinctive learning.": "Meeting 7 – International and Competition", "Collaborative spaces across the Faculty could better support experimentation and creative exchange.": "Meeting 6 – Creativity and Interdisciplinarity", "Creative activity should be more visible across campus.": "Meeting 6 – Creativity and Interdisciplinarity", "Infrastructure should support both collaboration and independent creative practice.": "Meeting 6 – Creativity and Interdisciplinarity", "Extended access to buildings and facilities could support creativity and improve competitiveness.": "Meeting 7 – International and Competition"};
+
+/* ============ DATA: read the shared data.xlsx (same file the dashboard uses) ============ */
+function parseSbFromRows(rows){
+  if(!rows||!rows.length) return null;
+  const firstRow=rows[0].map(c=>String(c||'').trim().toLowerCase());
+  const startRow=firstRow.some(h=>h.includes('idea')||h.includes('theme')||h.includes('col')||h.includes('text'))?1:0;
+  function ci(terms,fb){const i=firstRow.findIndex(h=>terms.some(t=>h===t||h.includes(t)));return i>-1?i:fb;}
+  const cIdea=ci(['idea'],0),cTheme=ci(['theme'],1),cTDesc=ci(['theme description','theme desc'],2),
+        cStrat=ci(['strategy','zone'],3),cObj=ci(['objective'],4),cODesc=ci(['objective description','objective desc'],5),
+        cGoal=ci(['goal'],6),cGType=ci(['goal type'],7);
+  const parseStrat=x=>{const r=[];const v=String(x||'').toLowerCase();if(v.includes('uts'))r.push('uts');if(v.includes('ci')||v.includes('creative'))r.push('ci');if(v.includes('fds'))r.push('fds');return r;};
+  const sb={ideas:[],themes:[],objectives:[],goals:[],_n:1};
+  const uid=()=>'sb'+(sb._n++);
+  const tMap={},oMap={};
+  for(let i=startRow;i<rows.length;i++){
+    const row=rows[i]||[];
+    const ideaText=String(row[cIdea]||'').trim();
+    const themeName=String(row[cTheme]||'').trim();
+    const themeDesc=String(row[cTDesc]||'').trim();
+    const stratRaw=String(row[cStrat]||'').trim().toLowerCase();
+    const objTitle=String(row[cObj]||'').trim();
+    const objDesc=String(row[cODesc]||'').trim();
+    const goalTitle=String(row[cGoal]||'').trim();
+    const goalType=String(row[cGType]||'').trim().toLowerCase().includes('long')?'long':'short';
+    if(!ideaText&&!themeName&&!objTitle&&!goalTitle)continue;
+    let idea=null;
+    if(ideaText){ idea=sb.ideas.find(x=>x.text.trim().toLowerCase()===ideaText.toLowerCase()); if(!idea){idea={id:uid(),text:ideaText};sb.ideas.push(idea);} }
+    let theme=null;
+    if(themeName){ theme=tMap[themeName]; if(!theme){theme={id:uid(),name:themeName,desc:themeDesc,alignment:parseStrat(stratRaw),ideaIds:[]};tMap[themeName]=theme;sb.themes.push(theme);} else {if(themeDesc&&!theme.desc)theme.desc=themeDesc;parseStrat(stratRaw).forEach(a=>{if(!theme.alignment.includes(a))theme.alignment.push(a);});} if(idea&&!theme.ideaIds.includes(idea.id))theme.ideaIds.push(idea.id); }
+    let obj=null;
+    if(objTitle){ obj=oMap[objTitle]; if(!obj){obj={id:uid(),title:objTitle,desc:objDesc,themeIds:[]};oMap[objTitle]=obj;sb.objectives.push(obj);} if(theme&&!obj.themeIds.includes(theme.id))obj.themeIds.push(theme.id); }
+    if(goalTitle&&obj){ const ex=sb.goals.find(g=>g.title===goalTitle&&g.objectiveIds.includes(obj.id)); if(!ex)sb.goals.push({id:uid(),title:goalTitle,desc:'',type:goalType,objectiveIds:[obj.id]}); }
+  }
+  return sb.objectives.length?sb:null;
+}
+async function loadData(){
+  try{
+    if(typeof XLSX==='undefined') return null;
+    const res=await fetch('data.xlsx?t='+Date.now(),{cache:'no-store'});
+    if(!res.ok) return null;
+    const buf=await res.arrayBuffer();
+    const wb=XLSX.read(buf,{type:'array'});
+    const ws=wb.Sheets[wb.SheetNames[0]];
+    const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
+    return parseSbFromRows(rows);
+  }catch(e){ return null; }
+}
+function runApp(SB, ORIGIN){
+  (function(){
+    const c={ideas:SB.ideas.length,themes:SB.themes.length,objectives:SB.objectives.length,'goals-short':SB.goals.filter(g=>g.type==='short').length,'goals-long':SB.goals.filter(g=>g.type!=='short').length};
+    document.querySelectorAll('[data-sb]').forEach(e=>{const v=c[e.getAttribute('data-sb')];if(v!=null)e.setAttribute('data-count',v);});
+  })();
+
+/* SCROLL STATE */
+let heroH=innerHeight, whoTop=0, whoPinH=0, ideasTop=0, ideasPinH=0, processTop=0, processPinH=0, halTop=0, halPinH=0, finaleTop=0, finalePinH=0;
+let halGroups=null, halStageEl=null, halPlayed=false, halSeq=null;
+function measure(){
+  heroH=document.querySelector('.hero').offsetHeight;
+  const wpn=document.getElementById('whoPin');
+  if(wpn){ whoTop=wpn.offsetTop; whoPinH=wpn.offsetHeight; }
+  const pin=document.getElementById('ideasPin');
+  ideasTop=pin.offsetTop; ideasPinH=pin.offsetHeight;
+  const pp=document.getElementById('processPin');
+  processTop=pp.offsetTop; processPinH=pp.offsetHeight;
+  const hpN=document.getElementById('halPin');
+  halTop=hpN.offsetTop; halPinH=hpN.offsetHeight;
+  const fp=document.getElementById('finalePin');
+  if(fp){ finaleTop=fp.offsetTop; finalePinH=fp.offsetHeight; }
+}
+
+/* STARFIELD (slow, faint) */
+let starOpacity=1;
+(function(){
+  const cv=document.getElementById('starfield'),ctx=cv.getContext('2d');
+  let stars=[],W,H,DPR=Math.min(window.devicePixelRatio||1,2);
+  function resize(){
+    W=cv.width=innerWidth*DPR;H=cv.height=innerHeight*DPR;
+    cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';
+    const n=Math.round((innerWidth*innerHeight)/9000);
+    stars=[];for(let i=0;i<n;i++)stars.push({
+      x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.2+0.3)*DPR,
+      a:Math.random()*0.3+0.1, tw:Math.random()*0.00035+0.00012, ph:Math.random()*Math.PI*2});
+  }
+  function draw(t){
+    ctx.clearRect(0,0,W,H);
+    if(starOpacity>0.01){
+      for(const s of stars){
+        const a=(s.a+Math.sin(t*s.tw+s.ph)*0.09)*starOpacity;
+        if(a<=0.01)continue;
+        ctx.globalAlpha=Math.max(0,Math.min(1,a));
+        ctx.fillStyle='#fff';
+        ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.283);ctx.fill();
+      }
+    }
+    ctx.globalAlpha=1;requestAnimationFrame(draw);
+  }
+  resize();requestAnimationFrame(draw);
+  addEventListener('resize',()=>{resize();measure();});
+})();
+
+/* SCROLL-DRIVEN BG + STARS + PROGRESS + PROCESS + WALL */
+const bg=document.getElementById('bg');
+const prog=document.getElementById('progress');
+const snCursor=document.getElementById('snCursor');
+const sidenavEl=document.getElementById('sidenav');
+const ideasSticky=document.querySelector('.ideas-sticky');
+const numbersSecEl=document.getElementById('numbersSec');
+const cardsBlockEl=document.getElementById('cardsBlock');
+const finaleStageEl=document.getElementById('finaleStage');
+const SPACE=[7,8,12], ORANGE=[74,34,15];
+function lerp(a,b,t){return Math.round(a+(b-a)*t);}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+let chips=[], svEls=[], whvEls=[], allIn=false;
+/* ---- Auto-fit: scale the two edge-to-edge sticky panels to the viewport height,
+   so nothing is clipped on shorter laptops regardless of OS display scaling. ---- */
+const NAT_CARDS_H=880;                       // natural (design) height of the cards area
+const ideasFitEl=document.getElementById('ideasFitInner');
+const finaleFitEl=document.getElementById('finaleFitInner');
+function _availH(stage){ if(!stage) return 0; const cs=getComputedStyle(stage);
+  return stage.clientHeight - (parseFloat(cs.paddingTop)||0) - (parseFloat(cs.paddingBottom)||0); }
+function _clampS(v){ return Math.max(0.2, Math.min(1, v)); }
+function _applyFit(inner, avail, natHint, iterate){ if(!inner||!(avail>0)) return;
+  inner.style.width='100%'; inner.style.transform='none';
+  let nat=(natHint>0)?natHint:inner.offsetHeight;
+  let s=_clampS((avail-6)/nat);
+  if(iterate){
+    // the wall re-flows shorter when widened, so settle the zoom over a few passes
+    for(let i=0;i<6 && s<0.999;i++){
+      inner.style.width=(100/s).toFixed(3)+'%';
+      nat=inner.offsetHeight;                     // layout height at this width
+      s=_clampS((avail-6)/nat);
+    }
+    // final safety: never let it clip
+    inner.style.width=(s>=0.999?'100%':(100/s).toFixed(3)+'%');
+    const fn=inner.offsetHeight, s2=_clampS((avail-6)/fn);
+    if(s2<s) s=s2;
+  }
+  if(s>=0.999){ inner.style.width='100%'; inner.style.transform='none'; }
+  else { inner.style.width=(100/s).toFixed(3)+'%'; inner.style.transform='scale('+s.toFixed(4)+')'; } }
+function fitIdeas(){ _applyFit(ideasFitEl, _availH(ideasSticky), 0, true); }
+function fitFinale(){ if(!finaleFitEl||!numbersSecEl||!finaleStageEl) return;
+  finaleFitEl.style.transform='none'; finaleFitEl.style.width='100%';
+  const nat=numbersSecEl.offsetHeight + NAT_CARDS_H + 28;
+  _applyFit(finaleFitEl, _availH(finaleStageEl), nat, false); }
+function fitSections(){ fitIdeas(); fitFinale(); }
+window.addEventListener('resize', fitSections);
+window.addEventListener('load', fitSections);
+if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(fitSections); }
+function onScroll(){
+  const y=scrollY, vh=innerHeight;
+  const docH=document.documentElement.scrollHeight-vh;
+  prog.style.width=(y/docH*100)+'%';
+  if(snCursor) snCursor.style.top=(clamp(y/docH,0,1)*100)+'%';
+  if(sidenavEl) sidenavEl.classList.toggle('show', y>heroH*0.75);
+  const g=clamp((y-heroH)/Math.max(1,(ideasTop-heroH)),0,1);
+  // quick fade orange -> black as we leave the ideas wall and enter HAL
+  const back = halPinH>0 ? clamp((y-(halTop-vh*0.55))/(vh*0.5),0,1) : 0;
+  // slow gradient back toward the ideas-orange as we approach the numbers section
+  const fwd = finalePinH>0 ? Math.min(1, clamp((y-(finaleTop-vh*1.2))/(vh*1.4),0,1)*0.55 + clamp((y-finaleTop)/Math.max(1,finalePinH*0.6),0,1)*0.5) : 0;
+  const orangeAmt = Math.max(g*(1-back), fwd);
+  bg.style.backgroundColor='rgb('+lerp(SPACE[0],ORANGE[0],orangeAmt)+','+lerp(SPACE[1],ORANGE[1],orangeAmt)+','+lerp(SPACE[2],ORANGE[2],orangeAmt)+')';
+  if(ideasSticky) ideasSticky.style.opacity=(1-back);
+  const heroFade=clamp(1-(y-heroH*0.45)/(heroH*0.5),0,1);
+  const ideasFade=clamp((y-(ideasTop-vh*0.7))/(vh*0.7),0,1)*0.6;
+  starOpacity=Math.max(heroFade,ideasFade);
+  // who: title + number cards reveal on entry, names stagger in on continued scroll
+  if(whoPinH>vh){
+    const wpp=clamp((y-whoTop)/(whoPinH-vh),0,1);
+    for(const el of whvEls){ if(!el._in && wpp>=el._th){el.classList.add('in');el._in=true;} }
+  }
+  // process roadmap: scroll-driven sequential reveal (title/blurb first, then nodes L->R)
+  if(processPinH>vh){
+    const pp=clamp((y-processTop)/(processPinH-vh),0,1);
+    for(const el of svEls){ if(!el._in && pp>=el._th){el.classList.add('in');el._in=true;} }
+  }
+  // ideas wall reveal driven by scroll through the pinned section
+  if(ideasPinH>vh){
+    const p=clamp((y-ideasTop)/(ideasPinH-vh),0,1);
+    const shown=p*1.9;
+    for(const c of chips){ if(!c._in && c._th<=shown){c.classList.add('in');c._in=true;} }
+    if(!allIn){
+      let n=0; for(const c of chips) if(c._in) n++;
+      if(n===chips.length){ allIn=true; const wf=document.getElementById('wallFilter'); if(wf)wf.classList.add('show'); }
+    }
+  }
+  // HAL: once we've settled to black and scrolled a touch further, kick off the
+  // self-playing reveal. It runs at a fixed speed, independent of scroll.
+  if(halPinH>vh && halGroups && halGroups.length){
+    const hpn=clamp((y-halTop)/(halPinH-vh),0,1);
+    if(hpn>0.015 && halStageEl) halStageEl.classList.add('lit');
+    if(!halPlayed && hpn>=0.10){ halPlayed=true; playHalReveal(); holdScroll(null,3000); }
+  }
+  // FINALE: numbers settle centre-stage, then cards grow in to fill the page
+  if(finalePinH>vh && cardsBlockEl && finaleStageEl && numbersSecEl){
+    const p=clamp((y-finaleTop)/(finalePinH-vh),0,1);
+    const cardP=clamp((p-0.28)/0.5,0,1);
+    cardsBlockEl.style.height=(cardP*NAT_CARDS_H)+'px';
+  }
+}
+/* Timed radial reveal: clusters grow in left-to-right, one at a time, at a
+   standard cadence regardless of how fast the user scrolls. */
+function growLine(el,fx,fy,tx,ty,dur){
+  const t0=performance.now();
+  function step(now){
+    let p=(now-t0)/dur; if(p>1)p=1;
+    const e=1-Math.pow(1-p,2);
+    el.setAttribute('x2',(fx+(tx-fx)*e).toFixed(2));
+    el.setAttribute('y2',(fy+(ty-fy)*e).toFixed(2));
+    if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+let _holdActive=false;
+function holdScroll(atY, ms){
+  if(_holdActive) return;
+  _holdActive=true;
+  const y=(atY==null)?window.scrollY:atY;
+  window.scrollTo(0,y);
+  const keep=()=>{ if(_holdActive) window.scrollTo(0,y); };
+  const block=(e)=>{ if(_holdActive) e.preventDefault(); };
+  const keyBlock=(e)=>{ if(_holdActive && [32,33,34,35,36,38,40].indexOf(e.keyCode)>-1) e.preventDefault(); };
+  window.addEventListener('scroll',keep,{passive:true});
+  window.addEventListener('wheel',block,{passive:false});
+  window.addEventListener('touchmove',block,{passive:false});
+  window.addEventListener('keydown',keyBlock,{passive:false});
+  setTimeout(function(){
+    _holdActive=false;
+    window.removeEventListener('scroll',keep);
+    window.removeEventListener('wheel',block);
+    window.removeEventListener('touchmove',block);
+    window.removeEventListener('keydown',keyBlock);
+  }, ms);
+}
+function playHalReveal(){
+  if(!halSeq) return;
+  const show=e=>{ if(e){ e.classList.remove('oe-hidden'); e.style.transform='none'; } };
+  const draw=e=>{ if(e) e.style.strokeDashoffset='0'; };
+  // 1) ideas fade in first (0.5x)  [200 -> 1400]
+  setTimeout(()=>{ halSeq.ideas.forEach(show); }, 200);
+  // 2) dashed lines grow out to the themes  [1400 -> 2050]
+  setTimeout(()=>{ halSeq.conn2.forEach(e=>growLine(e, e._x1, e._y1, e._x0, e._y0, 1300)); }, 2500);
+  // themes pop the instant the dashed lines land  [2050 -> 2450]
+  setTimeout(()=>{ halSeq.themeEls.forEach(show); show(halSeq.themeRing); }, 3800);
+  // 3) solid lines start the instant the themes finish popping  [2450 -> 3150]
+  setTimeout(()=>{ halSeq.conn1.forEach(draw); }, 5100);
+  // objectives pop the instant the solid lines land  [3150 -> 3550]
+  setTimeout(()=>{ halSeq.obj.forEach(show); show(halSeq.ring); }, 6500);
+  // 4) the explore hint fades in last
+  setTimeout(()=>{ if(halStageEl) halStageEl.classList.add('allin'); }, 7900);
+}
+
+/* COUNT-UP */
+const countObs=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=+el.dataset.count,dur=2200;
+    const t0=performance.now();
+    (function step(t){
+      const p=Math.min(1,(t-t0)/dur),ease=1-Math.pow(1-p,3);
+      el.textContent=Math.round(ease*target);
+      if(p<1)requestAnimationFrame(step);else el.textContent=target;
+    })(performance.now());
+    countObs.unobserve(el);
+  });
+},{threshold:0.6});
+document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
+
+/* REVEAL ENGINE (non-pinned sections) */
+const revObs=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target);}});
+},{threshold:0.15,rootMargin:'0px 0px -8% 0px'});
+function observeReveals(){document.querySelectorAll('.rv,.rv-s').forEach(el=>revObs.observe(el));}
+
+/* WHO / DISCIPLINES (numbers + names only) */
+const DISCIPLINES=[
+  {n:'Communications',c:6},{n:'Architecture',c:3},{n:'Professional Staff',c:3},
+  {n:'Built Environment',c:2},{n:'International Studies',c:2},{n:'Design',c:2},
+];
+const MEMBERS=['Matte Ager-McConnell','Sarah Attfield','Endriana Audisho','Milena Bojovic','Marcus Eckermann','Biyanka Ekanayake','Nicole Ely','Bettina Frankham','Nicola Hardcastle','Justin Harvey','Siobhan Irving','Mohammed Makki','Andrew McCowan','Leila Moslemi Naeni','Betty Romero','N.A.J. Taylor','Lin Wei','Joanne Yoo'];
+(function(){
+  const g=document.getElementById('discGrid');
+  DISCIPLINES.forEach((d,i)=>{
+    const th=(0.10+i*0.03).toFixed(2);
+    g.insertAdjacentHTML('beforeend',
+      '<div class="disc whv" data-wth="'+th+'"><div class="dn">'+d.c+'</div><div class="dl">'+d.n+'</div></div>');
+  });
+  const nl=document.getElementById('namesList');
+  MEMBERS.forEach((nm)=>{
+    nl.insertAdjacentHTML('beforeend','<li data-wth="0.34">'+nm+'</li>');
+  });
+})();
+
+/* TOPICS + BLURBS */
+const TOPICS=[
+  {label:'<u>t</u>echnology', title:'Technology',
+   blurb:`The discussion focused on how the Faculty understands and teaches technology, not only as digital tools, but as a broader set of practices, materials, systems and ways of working. The conversation highlighted the Faculty's strength in helping students critically engage with existing and emerging technologies, including AI, while maintaining a human-centred, ethical and practice-led approach. It also identified the need for clearer support, access and staff development so that technology can be used purposefully, rather than adopted for its own sake.`},
+  {label:'Student Experience', title:'Student Experience',
+   blurb:`The discussion explored the student journey across the Faculty, including belonging, support, engagement, campus life and the transition into university. The group identified strong student support, responsive teaching, student societies, agency in learning and practice-inspired teaching as key strengths. It also highlighted areas for improvement, including first-year transition, international and language support, administrative responsiveness, and the need to create a campus culture where students want to participate because they feel connected, not because attendance is required.`},
+  {label:'Indigenous Knowledges', title:'Indigenous Knowledges',
+   blurb:`The discussion examined how Indigenous Knowledges are shaping teaching, learning, curriculum, research and community engagement across the Faculty. The group recognised strong Indigenous work in research, but also identified a gap in translating this strength into teaching and learning. Key issues included staff confidence, cultural safety, institutional support, workload, community engagement, and the need to avoid tokenistic or homogenised approaches. A major outcome was the need for stronger faculty-level structures, including a possible Indigenous Community of Practice, to support meaningful and discipline-specific engagement.`},
+  {label:'(c)reativity', title:'Creativity',
+   blurb:`The discussion explored creativity as a defining strength of the Faculty and as a core graduate capability. The group discussed creativity not only as making or artistic production, but as a broader capacity for critical thinking, problem-solving, experimentation, cultural expression and student agency. The conversation highlighted the Faculty's ability to support students in developing their own voice, while also identifying the need to protect time, space, flexibility and infrastructure that allow creative practice to flourish.`},
+  {label:'Interdisciplinarity', title:'Interdisciplinarity',
+   blurb:`The discussion focused on interdisciplinarity as both a current strength and a major opportunity for the Faculty. The group explored how cross-disciplinary learning can expose students and staff to different ways of thinking, working and creating, while also preparing graduates for futures that extend beyond traditional disciplinary boundaries. The conversation also recognised that interdisciplinarity requires practical support, including shared curriculum models, co-teaching opportunities, flexible structures and reduced administrative barriers.`},
+  {label:'International', title:'International',
+   blurb:`The discussion considered the role of international students, global engagement, reputation and international learning opportunities in shaping the Faculty's future. The group identified location, industry connections and reputation as major strengths for international students, while also noting the need to better support cross-cultural connection, classroom integration and belonging. The discussion also pointed to broader forms of internationalisation, including outbound staff and student experiences, international partnerships, global recognition, and the value of diverse perspectives in strengthening creativity and learning.`},
+  {label:'Competition', title:'Competition',
+   blurb:`The discussion examined how the Faculty positions itself within a competitive higher education landscape, particularly in Sydney and Australia. The group identified the Faculty's city-campus location, proximity to industry, specialised facilities, student work, reputation and creative learning environments as important points of difference. The discussion also raised the need for clearer storytelling about what makes FDS distinct, including how it communicates its strengths to domestic and international audiences, and how it competes through relevance, student experience and authentic identity rather than prestige alone.`},
+];
+const QUESTIONS=['What are we great at?','What do we want to be great at?','What do we want to move beyond?'];
+(function(){
+  const g=document.getElementById('topicsGrid');
+  TOPICS.forEach((t,i)=>{
+    g.insertAdjacentHTML('beforeend',
+      '<div class="topic" data-i="'+i+'"><div class="tn">'+String(i+1).padStart(2,'0')+'</div><div class="tt">'+t.label+'</div></div>');
+  });
+  const q=document.getElementById('qbar');
+  QUESTIONS.forEach(x=>q.insertAdjacentHTML('beforeend','<div class="q"><div class="qt">'+x+'</div></div>'));
+  const bt=document.getElementById('blurbTitle'), bd=document.getElementById('blurbText');
+  function show(i){
+    document.querySelectorAll('.topic').forEach(el=>el.classList.toggle('active',+el.dataset.i===i));
+    bd.classList.add('fade');
+    setTimeout(()=>{ bt.textContent=TOPICS[i].title; bd.textContent=TOPICS[i].blurb; bd.classList.remove('fade'); },180);
+  }
+  g.querySelectorAll('.topic').forEach(el=>el.addEventListener('click',()=>show(+el.dataset.i)));
+  document.querySelector('.topic').classList.add('active');
+  bt.textContent=TOPICS[0].title; bd.textContent=TOPICS[0].blurb;
+})();
+
+/* PROCESS FLOW (words, scroll-driven L->R) */
+(function(){
+  const nodes=[
+    {t:'Ideas',d:'Raw contributions surfaced in every session - unfiltered.'},
+    {t:'Themes',d:'Ideas clustered together by shared pattern and intent.'},
+    {t:'Objectives',d:'Themes shaped into a clear, collective direction.'},
+    {t:'Goals',d:'Each objective anchored with short and long-term goals.'},
+  ];
+  const f=document.getElementById('flow');
+  let th=0.32;
+  nodes.forEach((nd,i)=>{
+    f.insertAdjacentHTML('beforeend',
+      '<div class="fnode sv" data-th="'+th.toFixed(2)+'"><div class="fst">'+nd.t+'</div><div class="fds">'+nd.d+'</div></div>');
+    th+=0.09;
+    if(i<nodes.length-1){
+      f.insertAdjacentHTML('beforeend',
+        '<div class="farrow sv-s" data-th="'+th.toFixed(2)+'"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>');
+      th+=0.09;
+    }
+  });
+})();
+
+/* IDEAS WALL (single view, scroll-revealed, meeting filter, hover origin) */
+(function(){
+  const wall=document.getElementById('wall');
+  const clean=o=>String(o||'').replace(/^\s*Meeting\s*\d+\s*[–—-]\s*/,'').trim();
+  const th=SB.ideas.map((_,i)=>i/SB.ideas.length);
+  for(let i=th.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=th[i];th[i]=th[j];th[j]=tmp;}
+  SB.ideas.forEach((idea,i)=>{
+    const c=document.createElement('div');c.className='chip';c.textContent=idea.text;
+    c.dataset.origin=clean(ORIGIN[idea.text]);
+    c.dataset.meeting=(String(ORIGIN[idea.text]||'').match(/Meeting\s*(\d+)/)||[])[1]||'';
+    c._th=th[i]; c._in=false; wall.appendChild(c); chips.push(c);
+  });
+  // meeting filter buttons (revealed once all ideas are in)
+  const MEETINGS=['Introductions and Strategy Framing','Strengths, Improvements and Letting Go','Technology',
+    'Student Experience','Indigenous Knowledges','Creativity and Interdisciplinarity','International and Competition'];
+  const wf=document.getElementById('wallFilter');
+  wf.insertAdjacentHTML('beforeend','<button class="mf active" data-m="all">All</button>');
+  MEETINGS.forEach((nm,i)=>wf.insertAdjacentHTML('beforeend',
+    '<button class="mf" data-m="'+(i+1)+'">Meeting '+(i+1)+' - '+nm+'</button>'));
+  wf.insertAdjacentHTML('beforeend','<button class="mf notes-toggle" id="notesToggle" disabled>Show meeting notes</button>');
+
+  // ── MEETING NOTES ──
+  // Final (GitHub): PDFs are named "CoP TL_Meeting N.pdf" (only the number changes).
+  // Set NOTES_BASE to the raw folder URL WITH a trailing slash, e.g.
+  //   const NOTES_BASE='https://raw.githubusercontent.com/USER/REPO/main/notes/';
+  // Then every meeting button loads its file automatically.
+  const NOTES_BASE='notes/';                 // '' = load from the same folder as this page
+  // Standalone-test override: Meeting 1 embedded as a data URI so this file works alone.
+  // Delete NOTES_EMBED (and set NOTES_BASE) for the GitHub version.
+  const NOTES_EMBED={};
+  function pdfSrc(m){ return NOTES_EMBED[m] || (NOTES_BASE+encodeURIComponent('CoP TL_Meeting '+m)+'.pdf'); }
+  function hasNotes(m){ return m!=='all' && (!!NOTES_EMBED[m] || NOTES_BASE!==''); }
+  const drawer=document.getElementById('notesDrawer');
+  const notesDoc=document.getElementById('notesDoc');
+  const notesToggle=document.getElementById('notesToggle');
+  let currentMeeting='all';
+  function closeDrawer(){ drawer.classList.remove('open'); notesToggle.textContent='Show meeting notes'; if(currentMeeting!=='all') wall.classList.add('filtered'); }
+  function openDrawer(){
+    const m=currentMeeting;
+    if(hasNotes(m)) notesDoc.innerHTML='<iframe src="'+pdfSrc(m)+'#toolbar=0&navpanes=0&view=FitH" title="Meeting '+m+' notes"></iframe>';
+    else notesDoc.innerHTML='<div class="notes-empty">Meeting notes for this session have not been added yet.</div>';
+    drawer.classList.add('open'); notesToggle.textContent='Hide meeting notes'; wall.classList.remove('filtered');
+  }
+  notesToggle.addEventListener('click',()=>{ if(notesToggle.disabled)return; drawer.classList.contains('open')?closeDrawer():openDrawer(); });
+  document.getElementById('notesClose').addEventListener('click',closeDrawer);
+  document.addEventListener('click',e=>{
+    if(e.target.closest && e.target.closest('#wallFilter'))return;   // filter controls: ignore
+    if(drawer.classList.contains('open')){
+      if(drawer.contains(e.target))return;                          // clicks inside the pane
+      closeDrawer();                                                // background click just hides notes
+      return;
+    }
+    if(currentMeeting!=='all'){                                     // filtered, no notes -> show all ideas
+      const allBtn=wf.querySelector('.mf[data-m="all"]');
+      wf.querySelectorAll('.mf:not(.notes-toggle)').forEach(x=>x.classList.toggle('active',x===allBtn));
+      applyFilter('all');
+    }
+  });
+  function applyFilter(m){
+    currentMeeting=m;
+    wall.classList.toggle('filtered', m!=='all');
+    chips.forEach(c=>c.classList.toggle('dim', m!=='all' && c.dataset.meeting!==m));
+    if(m==='all'){ notesToggle.disabled=true; closeDrawer(); }
+    else{ notesToggle.disabled=false; if(drawer.classList.contains('open')) openDrawer(); }
+  }
+  wf.querySelectorAll('.mf:not(.notes-toggle)').forEach(b=>b.addEventListener('click',()=>{
+    wf.querySelectorAll('.mf:not(.notes-toggle)').forEach(x=>x.classList.toggle('active',x===b));
+    applyFilter(b.dataset.m);
+  }));
+  // hover tooltip (only once all ideas are in)
+  const tip=document.getElementById('ideaTip');
+  wall.addEventListener('mouseover',e=>{
+    if(!allIn||currentMeeting!=='all')return;
+    const c=e.target.closest('.chip'); if(!c||!c.dataset.origin)return;
+    tip.innerHTML='<b>'+c.dataset.origin+'</b>';
+    tip.classList.add('on');
+  });
+  wall.addEventListener('mousemove',e=>{
+    let x=e.clientX+14, y=e.clientY+16;
+    if(x+tip.offsetWidth>innerWidth-8) x=e.clientX-tip.offsetWidth-14;
+    if(y+tip.offsetHeight>innerHeight-8) y=e.clientY-tip.offsetHeight-16;
+    tip.style.left=x+'px'; tip.style.top=y+'px';
+  });
+  wall.addEventListener('mouseout',e=>{
+    const c=e.target.closest('.chip'); if(!c)return;
+    if(!e.relatedTarget||!e.relatedTarget.closest||!e.relatedTarget.closest('.chip')) tip.classList.remove('on');
+  });
+})();
+
+/* INIT */
+svEls=[...document.querySelectorAll('#processPin [data-th]')].map(el=>{el._th=parseFloat(el.dataset.th);el._in=false;return el;});
+whvEls=[...document.querySelectorAll('#whoPin [data-wth]')].map(el=>{el._th=parseFloat(el.dataset.wth);el._in=false;return el;});
+observeReveals();
+measure();
+addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});
+addEventListener('load',()=>{measure();onScroll();});
+onScroll();
+
+/* ===== SECTION 3: HAL CONSTELLATION (lifted from dashboard) ===== */
+function cEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+const ODY_STOPS=['#e55c5c','#e07b39','#d4a875','#7cb87a','#4a9cc4','#5b7fce','#9b72c8'];
+function odyColor(i,n){
+  if(n<=1)return ODY_STOPS[0];
+  const t=i/(n-1), stops=ODY_STOPS;
+  const seg=t*(stops.length-1), si=Math.min(Math.floor(seg),stops.length-2), f=seg-si;
+  const p=h=>[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];
+  const a=p(stops[si]),b=p(stops[si+1]);
+  const hx=c=>Math.round(a[c]+(b[c]-a[c])*f).toString(16).padStart(2,'0');
+  return '#'+hx(0)+hx(1)+hx(2);
+}
+let odyRafId=null;
+let odySelectedObj=null;
+let odySelectFn=null;
+
+let odyZoomOnClick=true;
+function odyToggleZoomOnClick(btn){odyZoomOnClick=!odyZoomOnClick;btn.classList.toggle('on',odyZoomOnClick);}
+function odyCloseSidebar(){if(odySelectFn)odySelectFn(odySelectedObj);}
+function drawOdysseyArc(wrap,cW,cH){
+  wrap.innerHTML='';
+
+  // ── Build lookup tables from SB ──
+  const themeById={};
+  SB.themes.forEach(t=>{themeById[t.id]=t;});
+  const ideaById={};
+  SB.ideas.forEach(i=>{ideaById[i.id]=i;});
+  // Attach idea names + count to each theme (temp properties)
+  SB.themes.forEach(t=>{
+    t._ideaNames=(t.ideaIds||[]).map(iid=>(ideaById[iid]||{text:'Idea'}).text);
+    t._ideaCount=(t.ideaIds||[]).length;
+  });
+
+  const objs=SB.objectives;
+  const N=objs.length;
+  // Resolve each objective's themes
+  const objThemes=objs.map(o=>(o.themeIds||[]).map(tid=>themeById[tid]).filter(Boolean));
+
+  // ── SVG setup ──
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');
+  svg.setAttribute('viewBox','0 0 '+cW+' '+cH);
+  svg.style.cssText='width:100%;height:100%;display:block;';
+  wrap.appendChild(svg);
+  const defs=document.createElementNS(NS,'defs');svg.appendChild(defs);
+
+  function el(tag,attrs,parent){
+    const e=document.createElementNS(NS,tag);
+    Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v));
+    if(parent)parent.appendChild(e);
+    return e;
+  }
+
+  // ── Text helpers ──
+  function maxFs(lines,r,gap){
+    gap=gap||3;const rI=r-gap;if(rI<=0)return 1;
+    const mc=Math.max(...lines.map(l=>l.length));const n=lines.length;
+    if(!mc)return rI;const a=mc*0.56,b=n-1;
+    if(b===0)return Math.max(1,2*rI/a);
+    const A=a*a+b*b,B=4*b*b,C=4*b*b-4*rI*rI;
+    const disc=B*B-4*A*C;if(disc<0)return 1;
+    return Math.max(1,(-B+Math.sqrt(disc))/(2*A));
+  }
+  function wrapAt(raw,maxCh){
+    const words=raw.replace(/\n/g,' ').replace(/-/g,'- ').trim().split(/\s+/);
+    const lines=[];let cur='';
+    for(const w of words){const t=cur?cur+' '+w:w;if(t.length<=maxCh)cur=t;else{if(cur)lines.push(cur);cur=w;}}
+    if(cur)lines.push(cur);return lines;
+  }
+  function optimalWrap(raw,r,gap){
+    let bestFs=0,bestLines=[raw.replace(/\n/g,' ')];
+    for(let mc=8;mc<=26;mc++){const lines=wrapAt(raw,mc);const fs=maxFs(lines,r,gap||4);if(fs>bestFs){bestFs=fs;bestLines=lines;}}
+    return bestLines;
+  }
+  function circleText(parent,x,y,lines,fs,color,weight,cls){
+    const lh=fs+2;const totalH=(lines.length-1)*lh;
+    lines.forEach((line,i)=>{
+      const _t=el('text',{x,y:y-totalH/2+i*lh,'text-anchor':'middle','dominant-baseline':'middle',
+      'font-size':fs,'font-family':'system-ui',fill:color||'#111','font-weight':weight||'500','pointer-events':'none'},parent);
+      if(cls)_t.setAttribute('class',cls);
+      _t.textContent=line;
+    });
+  }
+  function srand(seed){let s=seed>>>0;return()=>{s^=s<<13;s^=s>>17;s^=s<<5;return(s>>>0)/4294967296;};}
+  const rng=srand(88);
+
+  // ── Geometry — fills the actual viewport ──
+  // The horseshoe arc spans 220°, opening at the bottom.
+  // We solve for R_OBJ such that the arc's bounding box fits within (cW × cH)
+  // with a comfortable padding, then derive all other radii proportionally.
+  const ARC_START=160*Math.PI/180;
+  const ARC_SPAN=220*Math.PI/180;
+  const ARC_STEP=ARC_SPAN/Math.max(N-1,1);
+  const PAD=48;
+  // Objective circles are small (30/310) so R_OBJ can be larger, giving theme circles more room.
+  // Span factors recalculated for R_OBJ_C/R_OBJ = 0.097:
+  //   Horiz: 2×cos(20°) + 2×0.097 → 2.07
+  //   Vert:  1+sin(160°) + 2×0.097 → 1.54
+  const R_OBJ=Math.round(Math.min(
+    (cW-2*PAD)/2.07,
+    (cH-2*PAD)/1.54
+  ));
+  const R_THEME=Math.round(R_OBJ*(222/310));  // larger ring = more circumference per theme
+  const R_IDEA =Math.round(R_OBJ*(105/310));
+  const R_OBJ_C=Math.round(R_OBJ*(30/310));   // smaller obj circles → arc scales up
+  const R_IDEA_C=Math.max(3,Math.round(R_OBJ*(5/310)));
+  // Centre: vertically place so the arc top sits near PAD
+  const CX=Math.round(cW/2);
+  const CY=Math.round(PAD+R_OBJ+R_OBJ_C);
+  // Theme circle radius: three independent constraints, take the smallest.
+  // 1. Natural proportion cap
+  // 2. Arc-length cap: totalThemes circles fit on the full arc with ≥6px gaps
+  // 3. Sector cap: the most-crowded objective can spread its themes within its
+  //    sector without overlapping — derived analytically so it's always exact.
+  //    Formula: R_TC <= (R_THEME*ARC_STEP - (M-1)*GAP) / (2*(M-1) + MARGIN)
+  //    where M = max themes per objective, GAP = 6px, MARGIN = 2.0 (safety buffer)
+  const totalThemes=objThemes.reduce((s,ths)=>s+ths.length,0);
+  const arcLenPerTheme=(R_THEME*ARC_SPAN)/Math.max(totalThemes,1);
+  const maxTPO=Math.max(1,...objThemes.map(ths=>ths.length));
+  const sectorCap=maxTPO>1
+    ? Math.floor((R_THEME*ARC_STEP-(maxTPO-1)*6)/(2*(maxTPO-1)+2.0))
+    : Math.round(R_OBJ*(36/310));
+  const R_THEME_C=Math.max(16,Math.min(
+    Math.round(R_OBJ*(36/310)),          // natural proportion
+    Math.floor((arcLenPerTheme-6)/2),    // arc-length constraint
+    sectorCap                            // per-objective no-overlap guarantee
+  ));
+
+  function objAngle(oi){return ARC_START+oi*ARC_STEP;}
+  function pos(r,a){return[CX+Math.cos(a)*r,CY+Math.sin(a)*r];}
+  function arcPath(r,a0,a1){
+    return'M '+Array.from({length:121},(_,i)=>{const a=a0+i*(a1-a0)/120;return(CX+Math.cos(a)*r)+','+(CY+Math.sin(a)*r);}).join(' L ');
+  }
+  function arcCurve(aA,rA,aB,rB,color,sw,op,dash,parent,cls){
+    const[x1,y1]=[CX+Math.cos(aA)*rA,CY+Math.sin(aA)*rA];
+    const[x2,y2]=[CX+Math.cos(aB)*rB,CY+Math.sin(aB)*rB];
+    const midA=(aA+aB)/2,midR=(rA+rB)/2;
+    const attrs={d:'M '+x1+','+y1+' Q '+(CX+Math.cos(midA)*midR)+','+(CY+Math.sin(midA)*midR)+' '+x2+','+y2,
+      fill:'none',stroke:color,'stroke-width':sw,opacity:op};
+    if(dash)attrs['stroke-dasharray']=dash;
+    const _p=el('path',attrs,parent||zg);
+    if(cls)_p.setAttribute('class',cls);
+    return _p;
+  }
+  // minThemeSep: angular gap = (diameter + 6px) / radius
+  const minThemeSep=(2*R_THEME_C+6)/R_THEME;
+  // spreadCap: derived from MARGIN=2.0 — consistent with sectorCap formula above
+  const spreadCap=Math.min(ARC_STEP*0.90, ARC_STEP-2.0*(R_THEME_C/R_THEME));
+  function themeAngle(a,ti,nT){
+    if(nT===1)return a;
+    const ts=Math.min((nT-1)*minThemeSep,spreadCap);
+    return a+(ti-(nT-1)/2)*(ts/(nT-1));
+  }
+
+  // ── Pre-compute text layout ──
+  const objWrapped=objs.map(o=>optimalWrap(o.title||o.name||'',R_OBJ_C,4));
+  const objFs=Math.min(...objWrapped.map(lines=>maxFs(lines,R_OBJ_C,4)));
+  const themeWrappedMap={};const themeFsMap={};
+  objThemes.forEach(ths=>ths.forEach(th=>{
+    if(!th||themeWrappedMap[th.id])return;
+    themeWrappedMap[th.id]=optimalWrap(th.name||'',R_THEME_C,3);
+    themeFsMap[th.id]=maxFs(themeWrappedMap[th.id],R_THEME_C,3);
+  }));
+
+  // ── Star field (fixed background — outside zoom group) ──
+  const starRng=srand(9371);
+  for(let i=0;i<260;i++){
+    el('circle',{cx:(starRng()*cW).toFixed(1),cy:(starRng()*cH).toFixed(1),
+      r:(0.3+starRng()*0.9).toFixed(2),fill:'#ffffff',opacity:(0.06+starRng()*0.22).toFixed(2)},svg);
+  }
+
+  // ── Zoom/pan group — use a distinct id so getElementById doesn't
+  //    pick up the Stellar/Moon czoom-group that's already in the DOM ──
+  const zg=el('g',{id:'ody-zoom-g'},svg);
+  let odyPanX=0,odyPanY=0,odyZoom=1;
+  function odyApplyT(){
+    zg.setAttribute('transform','translate('+odyPanX+','+odyPanY+') scale('+odyZoom+')');
+    const _hh=document.querySelector('.hal-hint');
+    if(_hh){ _hh.style.left=(odyPanX+CX*odyZoom)+'px'; _hh.style.top=(odyPanY+CY*odyZoom)+'px'; }
+    const sl=document.getElementById('czoom');
+    const lab=document.getElementById('czoom-label');
+    if(sl)sl.value=Math.max(parseFloat(sl.min),Math.min(parseFloat(sl.max),Math.round(odyZoom*100)));
+    if(lab)lab.textContent=Math.round(odyZoom*100)+'%';
+  }
+  function odyZoomAt(px,py,factor){
+    const nz=Math.max(0.2,Math.min(8,odyZoom*factor));
+    odyPanX=px-(px-odyPanX)*(nz/odyZoom);
+    odyPanY=py-(py-odyPanY)*(nz/odyZoom);
+    odyZoom=nz;odyApplyT();
+  }
+  odyApplyT();
+  // Expose reset hook for the toolbar Reset button
+  svg._odyReset=()=>{odyPanX=0;odyPanY=0;odyZoom=1;odyApplyT();};
+  svg._odyZoomTo=function(pct){odyZoomAt(cW/2,cH/2,(pct/100)/odyZoom);};
+
+  // ── Arc guide rings ──
+  const a0=ARC_START,a1=ARC_START+ARC_SPAN;
+  el('path',{'class':'oe oe-themering oe-hidden',d:arcPath(R_THEME,a0,a1),fill:'none',stroke:'rgba(255,255,255,0.12)','stroke-width':'1','stroke-dasharray':'3,6'},zg);
+  el('path',{'class':'oe oe-ring oe-hidden',d:arcPath(R_OBJ,  a0,a1),fill:'none',stroke:'rgba(255,255,255,0.12)','stroke-width':'1','stroke-dasharray':'4,7'},zg);
+
+  // ── Per-objective SVG groups (for dimming) ──
+  const odyGroups=objs.map((_,oi)=>{
+    const g=document.createElementNS(NS,'g');
+    g.style.transition='opacity 0.38s ease';
+    zg.appendChild(g);
+    return g;
+  });
+  svg._odyGroups=odyGroups; svg._odyCX=CX; svg._odyCY=CY;
+
+  // ── Pan/zoom wiring (drag to pan, scroll wheel to zoom) ──
+  (function(){
+    let drag=false,moved=false,sx=0,sy=0,spx=0,spy=0;
+    svg.style.cursor='grab';
+    svg.addEventListener('mousedown',e=>{
+      drag=true;moved=false;sx=e.clientX;sy=e.clientY;spx=odyPanX;spy=odyPanY;
+      svg.style.cursor='grabbing';
+    });
+    window.addEventListener('mousemove',e=>{
+      if(!drag)return;
+      const dx=e.clientX-sx,dy=e.clientY-sy;
+      if(Math.abs(dx)+Math.abs(dy)>3)moved=true;
+      odyPanX=spx+dx;odyPanY=spy+dy;odyApplyT();
+    });
+    window.addEventListener('mouseup',()=>{drag=false;svg.style.cursor='grab';});
+    svg._odyMoved=()=>moved;
+  })();
+
+  // ── Draw content per objective ──
+  const odyAnimDots=[];
+  objs.forEach((obj,oi)=>{
+    const a=objAngle(oi);
+    const color=odyColor(oi,N);
+    const themes=objThemes[oi];
+    const nT=themes.length;
+    const g=odyGroups[oi];
+
+    themes.forEach((th,ti)=>{
+      if(!th)return;
+      const tAngle=themeAngle(a,ti,nT);
+      const ideaCnt=th._ideaCount||0;
+
+      // Idea dots (animated)
+      for(let ii=0;ii<ideaCnt;ii++){
+        const iOff=(ii-(ideaCnt-1)/2)*(ARC_STEP*0.20/Math.max(nT,1));
+        const iAngle=tAngle+iOff+(rng()-0.5)*0.022;
+        const iR=R_IDEA+(rng()-0.5)*18;
+        const[ix,iy]=pos(iR,iAngle);
+        const dot=el('circle',{'class':'oe oe-idea oe-hidden',cx:ix,cy:iy,r:R_IDEA_C,fill:color,opacity:'0.52'},g);
+        odyAnimDots.push({dot,baseAngle:iAngle,baseR:iR,
+          aAmp:0.05+rng()*0.07,aFreq:0.05+rng()*0.07,aPhase:rng()*Math.PI*2,
+          rAmp:4+rng()*6,rFreq:0.04+rng()*0.05,rPhase:rng()*Math.PI*2});
+      }
+
+      // Obj→theme curve + theme→ideas dashed line
+      arcCurve(a,R_OBJ-R_OBJ_C-1,tAngle,R_THEME+R_THEME_C+1,color,1.1,0.35,null,g,'oe oe-conn1');
+      const[ic0x,ic0y]=pos(R_THEME-R_THEME_C-2,tAngle);
+      const[ic1x,ic1y]=pos(R_IDEA+R_IDEA_C+4,tAngle);
+      const _cl=el('line',{'class':'oe oe-conn2',x1:ic0x,y1:ic0y,x2:ic1x,y2:ic1y,stroke:color,'stroke-width':'1.6',opacity:'0.38','stroke-dasharray':'4,5'},g);
+      _cl._x0=ic0x;_cl._y0=ic0y;_cl._x1=ic1x;_cl._y1=ic1y;
+
+      // Theme circle
+      const[tx,ty]=pos(R_THEME,tAngle);
+      el('circle',{'class':'oe oe-theme oe-hidden',cx:tx,cy:ty,r:R_THEME_C,fill:color,opacity:'0.85',stroke:'rgba(255,255,255,0.18)','stroke-width':'0.8'},g);
+      const tw=themeWrappedMap[th.id]||[th.name||''];
+      circleText(g,tx,ty,tw,themeFsMap[th.id]||8,'#111111','400','oe oe-theme oe-hidden');
+    });
+
+    // Objective glow + circle
+    const[ox,oy]=pos(R_OBJ,a);
+    const gid='odyog'+oi;
+    const grad=el('radialGradient',{id:gid,gradientUnits:'userSpaceOnUse',cx:ox,cy:oy,r:R_OBJ_C*1.8},defs);
+    el('stop',{offset:'0%','stop-color':color,'stop-opacity':'0.22'},grad);
+    el('stop',{offset:'100%','stop-color':color,'stop-opacity':'0'},grad);
+    el('circle',{'class':'oe oe-obj oe-hidden',cx:ox,cy:oy,r:R_OBJ_C*1.8,fill:'url(#'+gid+')'},g);
+    const objCircle=el('circle',{'class':'oe oe-obj oe-hidden',cx:ox,cy:oy,r:R_OBJ_C,fill:color,stroke:'rgba(255,255,255,0.28)','stroke-width':'1.4'},g);
+    objCircle.style.cursor='pointer';
+    circleText(g,ox,oy,objWrapped[oi],objFs,'#111111','600','oe oe-obj oe-hidden');
+    objCircle.addEventListener('click',e=>{e.stopPropagation();if(odySelectFn)odySelectFn(oi);});
+  });
+
+  // ── Animation ──
+  function tick(t){
+    const s=t/1000;
+    odyAnimDots.forEach(d=>{
+      const angle=d.baseAngle+d.aAmp*Math.sin(s*d.aFreq+d.aPhase);
+      const r=d.baseR+d.rAmp*Math.sin(s*d.rFreq+d.rPhase);
+      const[nx,ny]=pos(r,angle);
+      d.dot.setAttribute('cx',nx);d.dot.setAttribute('cy',ny);
+    });
+    odyRafId=requestAnimationFrame(tick);
+  }
+  odyRafId=requestAnimationFrame(tick);
+
+  // Click background to deselect (ignored during drag)
+  svg.addEventListener('click',e=>{if(e.target===svg&&!svg._odyMoved()){if(odySelectedObj!==null&&odySelectFn)odySelectFn(odySelectedObj);else odyAnimateTo(0,0,1);}});
+
+  // ── Smooth pan/zoom animation ──
+  function odyAnimateTo(tx,ty,tz){
+    const sx=odyPanX,sy=odyPanY,sz=odyZoom,t0=performance.now(),dur=600;
+    function step(t){
+      const p=Math.min(1,(t-t0)/dur),e=p<0.5?2*p*p:-1+(4-2*p)*p;
+      odyPanX=sx+(tx-sx)*e;odyPanY=sy+(ty-sy)*e;odyZoom=sz+(tz-sz)*e;
+      odyApplyT();
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // ── Zoom to fit a single objective's content in the remaining viewport ──
+  function odyFitObj(oi){
+    const a=objAngle(oi);
+    const nT=objThemes[oi].length;
+    const pts=[];
+    // Objective circle extremes
+    const[ox,oy]=pos(R_OBJ,a);
+    pts.push([ox-R_OBJ_C,oy],[ox+R_OBJ_C,oy],[ox,oy-R_OBJ_C],[ox,oy+R_OBJ_C]);
+    // Theme circles + idea cloud
+    for(let ti=0;ti<nT;ti++){
+      const tA=themeAngle(a,ti,nT);
+      const[tx,ty]=pos(R_THEME,tA);
+      pts.push([tx-R_THEME_C,ty],[tx+R_THEME_C,ty],[tx,ty-R_THEME_C],[tx,ty+R_THEME_C]);
+      // sweep around idea ring at this angle ±a bit
+      for(let da=-0.12;da<=0.12;da+=0.06){
+        const[ix,iy]=pos(R_IDEA+R_IDEA_C+12,tA+da);
+        pts.push([ix,iy]);
+        const[ix2,iy2]=pos(Math.max(R_IDEA-R_IDEA_C-12,0),tA+da);
+        pts.push([ix2,iy2]);
+      }
+    }
+    if(!pts.length)return;
+    const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);
+    const pad=44;
+    const x1=Math.min(...xs)-pad,y1=Math.min(...ys)-pad;
+    const x2=Math.max(...xs)+pad,y2=Math.max(...ys)+pad;
+    const bW=x2-x1,bH=y2-y1;
+    // Sidebar occupies right 494px (480px wide + 14px right margin)
+    const SB_W=494;
+    const vpW=cW-SB_W;  // available width after sidebar
+    const vpH=cH;
+    const z=Math.min(vpW/bW,vpH/bH)*0.88;
+    // Centre of bbox → centre of left available area
+    const bcx=(x1+x2)/2,bcy=(y1+y2)/2;
+    odyAnimateTo(vpW/2-z*bcx, vpH/2-z*bcy, z);
+  }
+
+  // ── Selection function (stored at module level so close button can call it) ──
+  odySelectFn=function(oi){
+    if(oi===odySelectedObj){
+      odySelectedObj=null;
+      odyGroups.forEach(g=>{g.style.opacity='1';});
+      document.getElementById('ody-sidebar').classList.remove('open');
+      document.getElementById('halStage').classList.remove('ody-sel');
+      odyAnimateTo(0,0,1);
+      return;
+    }
+    odySelectedObj=oi;
+    odyGroups.forEach((g,i)=>{g.style.opacity=i===oi?'1':'0.07';});
+    odyPopulateSidebar(oi,objs,objThemes);
+    document.getElementById('ody-sidebar').classList.add('open');
+    document.getElementById('halStage').classList.add('ody-sel');
+    if(odyZoomOnClick)odyFitObj(oi);
+    else odyAnimateTo(0,0,1);
+  };
+}
+function odyPopulateSidebar(oi,objs,objThemes){
+  const obj=objs[oi];
+  const color=odyColor(oi,objs.length);
+  const N=objs.length;
+
+  // Objective header
+  const header=document.getElementById('ody-obj-header');
+  header.innerHTML=
+    '<div class="ody-obj-label" style="color:'+color+'">Objective</div>'+
+    '<div class="ody-obj-name">'+cEsc(obj.title||obj.name||'')+'</div>'+
+    '<div class="ody-obj-desc">'+cEsc(obj.desc||'No description yet.')+'</div>';
+  header.style.borderBottom='1px solid '+color+'28';
+
+  const content=document.getElementById('ody-themes-content');
+  content.innerHTML='';
+
+  const themes=objThemes[oi];
+
+  // Themes section
+  const ts=document.createElement('div');ts.className='ody-section';
+  const tLabel=document.createElement('div');tLabel.className='ody-section-label';tLabel.style.color=color;tLabel.textContent='Themes';
+  ts.appendChild(tLabel);
+  themes.forEach(th=>{
+    if(!th)return;
+    const d=document.createElement('div');d.className='ody-theme';
+    const dn=document.createElement('div');dn.className='ody-theme-name';dn.style.color=color;dn.textContent=th.name||'';
+    const dd=document.createElement('div');dd.className='ody-theme-desc';dd.textContent=th.desc||'No description yet.';
+    d.appendChild(dn);d.appendChild(dd);ts.appendChild(d);
+  });
+  content.appendChild(ts);
+
+  // Ideas section (flat, all themes)
+  const is=document.createElement('div');is.className='ody-section';
+  const iLabel=document.createElement('div');iLabel.className='ody-section-label';iLabel.style.color=color;iLabel.textContent='Ideas';
+  is.appendChild(iLabel);
+  const ul=document.createElement('ul');ul.className='ody-ideas';
+  themes.forEach(th=>{
+    if(!th)return;
+    (th._ideaNames||[]).forEach(name=>{
+      const li=document.createElement('li');
+      const dot=document.createElement('span');dot.className='ody-dot';dot.style.background=color;
+      li.appendChild(dot);li.appendChild(document.createTextNode(name));
+      ul.appendChild(li);
+    });
+  });
+  is.appendChild(ul);content.appendChild(is);
+}
+function initHal(){
+  const stage=document.getElementById('halStage');
+  const wrap=document.getElementById('odyssey-wrap');
+  const cW=window.innerWidth, cH=stage.clientHeight;
+  wrap.style.display='block';
+  if(!SB.objectives.length){ wrap.innerHTML='<div style="color:rgba(255,255,255,0.4);font-size:13px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)">No objectives.</div>'; return; }
+  drawOdysseyArc(wrap, cW, cH);
+  const svg=wrap.querySelector('svg');
+  halStageEl=stage;
+  halGroups=(svg && svg._odyGroups)?svg._odyGroups:[];
+  const CX=svg?svg._odyCX:0, CY=svg?svg._odyCY:0;
+  // Gather elements by type for the layered reveal
+  const q=sel=>Array.prototype.slice.call(svg.querySelectorAll(sel));
+  halSeq={
+    obj:q('.oe-obj'), ring:svg.querySelector('.oe-ring'),
+    conn1:q('.oe-conn1'), themeEls:q('.oe-theme'), themeRing:svg.querySelector('.oe-themering'),
+    conn2:q('.oe-conn2'), ideas:q('.oe-idea')
+  };
+  // Objectives + outer ring: fade in together (match solid-line speed)
+  halSeq.obj.concat(halSeq.ring?[halSeq.ring]:[]).forEach(e=>{ e.style.transition='opacity 1.4s ease'; });
+  // Theme->obj connectors: undrawn strokes (draw out toward the objectives)
+  halSeq.conn1.forEach(e=>{
+    e.setAttribute('pathLength','1');
+    e.style.transition='stroke-dashoffset 1.4s ease';
+    e.style.strokeDasharray='1'; e.style.strokeDashoffset='-1';
+  });
+  // Themes: fade in together (match dashed-line speed)
+  halSeq.themeEls.concat(halSeq.themeRing?[halSeq.themeRing]:[]).forEach(e=>{ e.style.transition='opacity 1.3s ease'; });
+  // Idea->theme connectors: anchored at the idea end, collapsed, ready to grow out to the themes
+  halSeq.conn2.forEach(e=>{ e.setAttribute('x1', e._x1); e.setAttribute('y1', e._y1); e.setAttribute('x2', e._x1); e.setAttribute('y2', e._y1); });
+  // Ideas: slow fade in together (3x slower -> 3.6s)
+  halSeq.ideas.forEach(e=>{ e.style.transition='opacity 3.6s ease'; });
+  const hintEl=document.querySelector('.hal-hint');
+  if(hintEl && CY){ hintEl.style.top=CY+'px'; hintEl.style.bottom='auto'; }
+  wrap.classList.add('in');
+  measure();
+  onScroll();
+}
+let halInited=false;
+new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting && !halInited){ halInited=true; initHal(); } });
+},{rootMargin:'300px 0px',threshold:0}).observe(document.getElementById('halPin'));
+
+/* ===================== TARS (compact constellation) — lifted from dashboard ===================== */
+let cSel=null;                 // {type:'obj'|'theme'|'idea', id}
+let cLayoutMode='ring';        // 'compact' (Stellar) | 'ring' (Odyssey) | 'v4' (Moon)
+let sStellarPositions=null;    // saved Stellar node positions {id:{x,y}} — persists between tab switches until Shuffle
+let cPanX=0,cPanY=0,cZoom=1;   // view transform
+let CG=null;                   // graph {nodes,edges,byId}
+let v4SelectFn=null;           // set by drawV4; called on click/deselect
+let v4AnimId=null;             // global rAF id for V4 orbital animation
+let cDragMoved=false;
+
+const C_OPAL=['#E0A437','#E879C8','#5BA8E8','#7BC86E','#B08CE8','#E8775E','#54C8B8','#E8D058','#8C9CE8','#E89CB0'];
+const C_BG='#101016';
+
+function cMix(hex,t){
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  const m=v=>Math.round(v+(255-v)*t);
+  return'#'+[m(r),m(g),m(b)].map(v=>v.toString(16).padStart(2,'0')).join('');
+}
+const C_RAMP50=['#ea2600','#ea2700','#ea2c00','#ea3200','#ea3b00','#ea4500','#ea5100','#ea5c00','#ea6600','#ea7000','#ea7700','#ea7c00','#ea7e00','#ea7f01','#eb8404','#ec8c0a','#ee9712','#f1a51b','#f3b326','#f6c231','#f8d13b','#fade44','#fce84c','#fdf051','#fef454','#fef455','#fbf35a','#f6f064','#efec73','#e6e885','#dce399','#d2deae','#c8d8c3','#bed4d6','#b7d0e5','#b1cdf1','#aecbf7','#adcbf9','#abc9f7','#a5c3f3','#9dbbec','#93b1e4','#87a6da','#7a99d0','#6e8dc6','#6382bc','#5979b4','#5171ae','#4d6daa','#4b6ba9']; // red → blue, 50 steps
+function cTextOn(hex){
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return(0.299*r+0.587*g+0.114*b)/255>0.62?'#1d1d2a':'rgba(255,255,255,0.97)';
+}
+function cHeatHex(c,mn,mx){
+  // continuous gradient: blue (fewest) → yellow → orange → red (most)
+  const t=mx===mn?0.5:(c-mn)/(mx-mn);
+  const stops=[[0,[45,80,230]],[0.25,[120,175,242]],[0.45,[232,238,235]],[0.62,[246,222,92]],[0.8,[246,152,56]],[1,[226,52,40]]];
+  let a=stops[0],b=stops[stops.length-1];
+  for(let i=0;i<stops.length-1;i++)if(t>=stops[i][0]&&t<=stops[i+1][0]){a=stops[i];b=stops[i+1];break;}
+  const u=(t-a[0])/Math.max(b[0]-a[0],1e-9);
+  return'#'+a[1].map((v,i)=>Math.round(v+(b[1][i]-v)*u).toString(16).padStart(2,'0')).join('');
+}
+function cWrapLines(text,maxChars,maxLines){
+  const words=String(text).split(' ');const lines=[];let line='';
+  words.forEach(w=>{const t=line?line+' '+w:w;
+    if(t.length>maxChars&&line){lines.push(line);line=w;}else line=t;});
+  if(line)lines.push(line);
+  if(maxLines&&lines.length>maxLines){
+    const cut=lines.slice(0,maxLines);
+    cut[maxLines-1]=cut[maxLines-1].replace(/\s*\S*$/,'')+' …';
+    return cut;
+  }
+  return lines;
+}
+function cSvgEl(tag,attrs){
+  const e=document.createElementNS('http://www.w3.org/2000/svg',tag);
+  Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));return e;
+}
+function cTip(){}
+function cTipHide(){document.getElementById('ctip').style.display='none';}
+
+// ---- graph construction ----
+function makeCGraph(){
+  const nodes=[],edges=[],byId={};
+  const oCounts=SB.objectives.map(o=>{
+    const set=new Set();
+    (o.themeIds||[]).forEach(tid=>{const t=SB.themes.find(x=>x.id===tid);if(t)(t.ideaIds||[]).forEach(i=>set.add(i));});
+    return set.size;
+  });
+  const oOrder=SB.objectives.map((o,i)=>i).sort((a,b)=>oCounts[b]-oCounts[a]);
+  const oRank={};oOrder.forEach((idx,r)=>oRank[idx]=r);
+  const NO=SB.objectives.length;
+  const oComb=SB.objectives.map((o,i)=>oCounts[i]+(o.themeIds||[]).length);
+  const cbMin=Math.min(...oComb),cbMax=Math.max(...oComb);
+  const tCountsAll=SB.themes.map(t=>(t.ideaIds||[]).length);
+  const tcMin=Math.min(...tCountsAll),tcMax=Math.max(...tCountsAll);
+  SB.objectives.forEach((o,oi)=>{
+    const hue=C_RAMP50[NO>1?Math.round(oRank[oi]*(C_RAMP50.length-1)/(NO-1)):0];
+    const themeIds=o.themeIds||[];
+    const ideaSet=new Set();
+    themeIds.forEach(tid=>{const t=SB.themes.find(x=>x.id===tid);if(t)(t.ideaIds||[]).forEach(i=>ideaSet.add(i));});
+    const oLines=cWrapLines(o.title,18);
+    const oW=Math.max(...oLines.map(l=>l.length))*18*0.58;
+    const oH=oLines.length*20.5;
+    const n={id:o.id,type:'obj',label:o.title,desc:o.desc||'',hue,inLines:oLines,
+      r:Math.max(72,Math.sqrt(oW*oW+oH*oH)/2+14)*(1+0.16*(cbMax>cbMin?(oComb[oi]-cbMin)/(cbMax-cbMin):0.5)),ideaCount:ideaSet.size,themeCount:themeIds.length,
+      goalsShort:SB.goals.filter(g=>g.type==='short'&&(g.objectiveIds||[]).includes(o.id)),
+      goalsLong:SB.goals.filter(g=>g.type!=='short'&&(g.objectiveIds||[]).includes(o.id)),
+      x:0,y:0,vx:0,vy:0};
+    nodes.push(n);byId[o.id]=n;
+  });
+  SB.themes.forEach(t=>{
+    const parents=SB.objectives.filter(o=>(o.themeIds||[]).includes(t.id));
+    if(!parents.length)return; // unallocated themes stay in the sandbox
+    const hue=byId[parents[0].id].hue;
+    const m=(t.ideaIds||[]).length;
+    const tLines=cWrapLines(t.name,14);
+    const tW=Math.max(...tLines.map(l=>l.length))*13.5*0.58;
+    const tH=tLines.length*15.5;
+    const n={id:t.id,type:'theme',label:t.name,desc:t.desc||'',hue,shared:parents.length>1,inLines:tLines,
+      r:Math.max(34,Math.sqrt(tW*tW+tH*tH)/2+11)*(1+0.16*(tcMax>tcMin?(m-tcMin)/(tcMax-tcMin):0.5)),ideaCount:m,parents:parents.map(p=>p.id),cluster:parents[0].id,x:0,y:0,vx:0,vy:0};
+    nodes.push(n);byId[t.id]=n;
+    parents.forEach((p,pi)=>edges.push({a:p.id,b:t.id,len:150,k:0.05,hue:byId[p.id].hue,kind:'ot',sec:pi>0}));
+  });
+  SB.ideas.forEach(i=>{
+    const parents=SB.themes.filter(t=>(t.ideaIds||[]).includes(i.id)&&byId[t.id]);
+    if(!parents.length)return;
+    const hue=byId[parents[0].id].hue;
+    const n={id:i.id,type:'idea',label:i.text,hue,shared:parents.length>1,
+      r:13,parents:parents.map(p=>p.id),cluster:byId[parents[0].id].cluster,x:0,y:0,vx:0,vy:0};
+    nodes.push(n);byId[i.id]=n;
+    parents.forEach((p,pi)=>edges.push({a:p.id,b:i.id,len:75,k:0.08,hue:byId[p.id].hue,kind:'ti',sec:pi>0}));
+  });
+  return{nodes,edges,byId};
+}
+
+// ---- force simulation (precomputed, then fitted to canvas) ----
+function cSimulate(G,cW,cH){
+  const{nodes,edges,byId}=G;
+  const cx=cW/2,cy=cH/2;
+  if(cLayoutMode==='compact'){cLayoutCompact(G,cW,cH);return;}
+  // seed: objectives on a circle, children near parents
+  const objs=nodes.filter(n=>n.type==='obj');
+  {
+    const nA=objs.length;
+    const aspect=cW/Math.max(cH,1);
+    const cols=Math.max(1,Math.round(Math.sqrt(nA*aspect)));
+    const rows=Math.ceil(nA/cols);
+    const order=[...objs].sort(()=>Math.random()-0.5);
+    const cellW=cW/cols,cellH=cH/rows;
+    order.forEach((o,i)=>{
+      const r=Math.floor(i/cols);
+      const inRow=Math.min(cols,nA-r*cols);
+      const c=(i%cols)+(cols-inRow)/2; // centre a short last row
+      o._ax=cellW*(c+0.5)+(Math.random()-0.5)*cellW*0.45;
+      o._ay=cellH*(r+0.5)+(Math.random()-0.5)*cellH*0.35;
+      o._ax=Math.max(230,Math.min(cW-230,o._ax));
+      o._ay=Math.max(210,Math.min(cH-210,o._ay));
+      o.x=o._ax;o.y=o._ay;
+    });
+  }
+  const tByObj={};
+  nodes.filter(n=>n.type==='theme').forEach(t=>{(tByObj[t.cluster]=tByObj[t.cluster]||[]).push(t);});
+  Object.entries(tByObj).forEach(([oid,list])=>{
+    const o=byId[oid];
+    list.forEach((t,i)=>{const a=2*Math.PI*i/list.length+0.4;t.x=o.x+Math.cos(a)*150;t.y=o.y+Math.sin(a)*150;});
+  });
+  const iByTheme={};
+  nodes.filter(n=>n.type==='idea').forEach(m=>{(iByTheme[m.parents[0]]=iByTheme[m.parents[0]]||[]).push(m);});
+  Object.entries(iByTheme).forEach(([tid,list])=>{
+    const t=byId[tid];
+    list.forEach((m,i)=>{const a=2*Math.PI*i/list.length;m.x=t.x+Math.cos(a)*75;m.y=t.y+Math.sin(a)*75;});
+  });
+  const N=nodes.length;
+  for(let step=0;step<360;step++){
+    const cf={}; // accumulated objective-objective forces, shared with cluster members
+    // repulsion
+    for(let i=0;i<N;i++){
+      const a=nodes[i];
+      for(let j=i+1;j<N;j++){
+        const b=nodes[j];
+        let dx=b.x-a.x,dy=b.y-a.y;
+        let d2=dx*dx+dy*dy;if(d2<1){dx=Math.random()-0.5;dy=Math.random()-0.5;d2=1;}
+        const d=Math.sqrt(d2);
+        const bigPair=a.type==='obj'&&b.type==='obj';
+        if(!bigPair&&d>260)continue;
+        let q=bigPair?120000:1100*((a.r+b.r)/10+0.6);
+        if(a.type==='theme'&&b.type==='theme'&&a.cluster===b.cluster)q*=3;
+        const f=Math.min(q/d2,12);
+        const fx=dx/d*f,fy=dy/d*f;
+        a.vx-=fx;a.vy-=fy;b.vx+=fx;b.vy+=fy;
+        if(bigPair){
+          (cf[a.id]=cf[a.id]||{x:0,y:0});cf[a.id].x-=fx;cf[a.id].y-=fy;
+          (cf[b.id]=cf[b.id]||{x:0,y:0});cf[b.id].x+=fx;cf[b.id].y+=fy;
+        }
+      }
+    }
+    // springs
+    edges.forEach(e=>{
+      const a=byId[e.a],b=byId[e.b];
+      const dx=b.x-a.x,dy=b.y-a.y;
+      const d=Math.sqrt(dx*dx+dy*dy)||1;
+      const f=e.k*(d-e.len);
+      const fx=dx/d*f,fy=dy/d*f;
+      a.vx+=fx;a.vy+=fy;b.vx-=fx;b.vy-=fy;
+    });
+    // objectives: canvas gravity, recorded into cf so each cluster moves as one
+    nodes.forEach(n=>{
+      if(n.type!=='obj')return;
+      const gx=(n._ax-n.x)*0.02,gy=(n._ay-n.y)*0.02;
+      n.vx+=gx;n.vy+=gy;
+      (cf[n.id]=cf[n.id]||{x:0,y:0});cf[n.id].x+=gx;cf[n.id].y+=gy;
+    });
+    // members inherit their objective's global forces + local gravity toward it
+    nodes.forEach(n=>{
+      if(n.type==='obj')return;
+      const f=cf[n.cluster];if(f){n.vx+=f.x;n.vy+=f.y;}
+      const t=byId[n.cluster]||{x:cx,y:cy};
+      n.vx+=(t.x-n.x)*0.03;n.vy+=(t.y-n.y)*0.03;
+    });
+    // integrate
+    nodes.forEach(n=>{
+      n.vx*=0.55;n.vy*=0.55;
+      const sp=Math.sqrt(n.vx*n.vx+n.vy*n.vy);
+      if(sp>9){n.vx*=9/sp;n.vy*=9/sp;}
+      n.x+=n.vx;n.y+=n.vy;
+    });
+  }
+  // compact the objective spread to a fixed canvas footprint — keeps the
+  // sim's irregular arrangement but guarantees the fitted view stays large
+  {
+    const ox=objs.map(o=>o.x),oy=objs.map(o=>o.y);
+    const x0=Math.min(...ox),x1=Math.max(...ox),y0=Math.min(...oy),y1=Math.max(...oy);
+    const tx0=280,tx1=cW-280,ty0=255,ty1=cH-255;
+    objs.forEach(o=>{
+      o.x=x1>x0?tx0+(o.x-x0)/(x1-x0)*(tx1-tx0):cW/2;
+      o.y=y1>y0?ty0+(o.y-y0)/(y1-y0)*(ty1-ty0):cH/2;
+    });
+  }
+
+  // cluster-aware separation: push objectives apart when their systems would collide
+  {
+    const est={};
+    objs.forEach(o=>{
+      const themes=nodes.filter(n=>n.type==='theme'&&n.cluster===o.id);
+      let mx=0;
+      themes.forEach(t=>{
+        const m=(iByTheme[t.id]||[]).length;
+        const ring0=t.r+44+m*3;
+        const cap=Math.max(5,Math.floor((2*Math.PI*ring0)/46));
+        const sub=(m?(m>cap?ring0+52:ring0)+13:t.r+5)+16;
+        mx=Math.max(mx,sub);
+      });
+      est[o.id]=themes.length?(o.r+62+mx)*1.15+mx*0.8:o.r+50;
+    });
+    for(let it=0;it<120;it++){
+      for(let i=0;i<objs.length;i++)for(let j=i+1;j<objs.length;j++){
+        const a=objs[i],b=objs[j];
+        const dx=b.x-a.x,dy=b.y-a.y;
+        const d=Math.sqrt(dx*dx+dy*dy)||0.01;
+        const minD=(est[a.id]+est[b.id])*0.8;
+        if(d<minD){const f=(minD-d)/d*0.3;a.x-=dx*f*0.5;a.y-=dy*f*0.5;b.x+=dx*f*0.5;b.y+=dy*f*0.5;}
+      }
+      objs.forEach(o=>{o.x=Math.max(250,Math.min(cW-250,o.x));o.y=Math.max(225,Math.min(cH-225,o.y));});
+    }
+  }
+
+  // V2 ring layout: objectives evenly around an ellipse with angular jitter
+  if(cLayoutMode==='ring'&&objs.length){
+    const est={};
+    objs.forEach(o=>{
+      const themes=nodes.filter(n=>n.type==='theme'&&n.cluster===o.id);
+      let mx=0;
+      themes.forEach(t=>{
+        const m=(iByTheme[t.id]||[]).length;
+        const ring0=t.r+44+m*3;
+        const cap=Math.max(5,Math.floor((2*Math.PI*ring0)/46));
+        const sub=(m?(m>cap?ring0+52:ring0)+13:t.r+5)+16;
+        mx=Math.max(mx,sub);
+      });
+      est[o.id]=themes.length?(o.r+62+mx)*1.15+mx*0.8:o.r+50;
+    });
+    let rx=cW/2-300,ry=cH/2-250;
+    const need=objs.reduce((a,o)=>a+2*est[o.id],0)*1.12;
+    const per=Math.PI*(3*(rx+ry)-Math.sqrt((3*rx+ry)*(rx+3*ry)));
+    if(per<need){const f=need/per;rx*=f;ry*=f;}
+    // equal arc-length spacing (equal angles bunch up on an ellipse)
+    const S=2400,pts=[];let plen=0,prevPt=null;
+    for(let k=0;k<=S;k++){
+      const a=-Math.PI/2+2*Math.PI*k/S;
+      const pt={x:cW/2+Math.cos(a)*rx,y:cH/2+Math.sin(a)*ry};
+      if(prevPt)plen+=Math.hypot(pt.x-prevPt.x,pt.y-prevPt.y);
+      pts.push({p:pt,d:plen});prevPt=pt;
+    }
+    const jArc=0.12*plen/Math.max(objs.length,1);
+    objs.forEach((o,i)=>{
+      const target=(plen*i/objs.length+(objs.length>1?(Math.random()-0.5)*jArc:0)+plen)%plen;
+      let lo=0,hi=pts.length-1;
+      while(lo<hi){const mid=(lo+hi)>>1;if(pts[mid].d<target)lo=mid+1;else hi=mid;}
+      o.x=pts[lo].p.x;o.y=pts[lo].p.y;
+    });
+    G._ring={cx:cW/2,cy:cH/2,rx,ry};
+  } else G._ring=null;
+
+  // deterministic surround: each objective's own themes on equal angular slots
+  // around it (bridge themes aimed at their other objectives), ideas ringed
+  // around their primary theme — guarantees the star sits centre-cluster
+  Object.entries(tByObj).forEach(([oid,list])=>{
+    const o=byId[oid],n=list.length;
+    list.forEach(t=>{
+      const own=iByTheme[t.id]||[];
+      t._ring0=t.r+44+own.length*3;t._ring1=t._ring0+52;
+      t._cap0=Math.max(5,Math.floor((2*Math.PI*t._ring0)/46));
+      t._sub=own.length?(own.length>t._cap0?t._ring1:t._ring0)+6:t.r+5;
+      const others=t.parents.filter(pid=>pid!==oid).map(pid=>byId[pid]).filter(Boolean);
+      t._pref=others.length?Math.atan2(
+        others.reduce((a,x)=>a+x.y,0)/others.length-o.y,
+        others.reduce((a,x)=>a+x.x,0)/others.length-o.x):null;
+    });
+    const base=(list.find(t=>t._pref!=null)||{})._pref??-Math.PI/2;
+    const slots=Array.from({length:n},(_,k)=>base+2*Math.PI*k/n);
+    const taken=new Array(n).fill(false);
+    const norm=a=>Math.atan2(Math.sin(a),Math.cos(a));
+    list.filter(t=>t._pref!=null).forEach(t=>{
+      let bi=-1,bd=1e9;
+      slots.forEach((sa,si)=>{if(!taken[si]){const d=Math.abs(norm(sa-t._pref));if(d<bd){bd=d;bi=si;}}});
+      taken[bi]=true;t._slot=slots[bi];
+    });
+    list.filter(t=>t._pref==null).forEach(t=>{
+      const si=taken.indexOf(false);taken[si]=true;t._slot=slots[si];
+    });
+    list.forEach(t=>{
+      t._slot+=(Math.random()-0.5)*0.55;
+      const orbit=(o.r+62+t._sub)*(0.9+Math.random()*0.35);
+      t.x=o.x+Math.cos(t._slot)*orbit;
+      t.y=o.y+Math.sin(t._slot)*orbit;
+    });
+  });
+  Object.entries(iByTheme).forEach(([tid,list])=>{
+    const t=byId[tid];
+    const n0=Math.min(list.length,t._cap0);
+    list.forEach((m,i)=>{
+      const inner=i<t._cap0;
+      const idx=inner?i:i-t._cap0,tot=inner?n0:list.length-t._cap0;
+      const a=(t._slot||0)+2*Math.PI*idx/Math.max(tot,1)+(inner?0:0.3)+(Math.random()-0.5)*0.5;
+      const ring=Math.max(t.r+16,(inner?t._ring0:t._ring1)*(0.8+Math.random()*0.5));
+      m.x=t.x+Math.cos(a)*ring;m.y=t.y+Math.sin(a)*ring;
+    });
+  });
+
+  // de-overlap pass
+  for(let it=0;it<90;it++){
+    for(let i=0;i<N;i++){for(let j=i+1;j<N;j++){
+      const a=nodes[i],b=nodes[j];
+      const dx=b.x-a.x,dy=b.y-a.y;
+      const d=Math.sqrt(dx*dx+dy*dy)||0.01;
+      const minD=a.r+b.r+24;
+      if(d<minD){const f=(minD-d)/d*0.4;a.x-=dx*f*0.5;a.y-=dy*f*0.5;b.x+=dx*f*0.5;b.y+=dy*f*0.5;}
+    }}
+  }
+  // fit to canvas with margin
+  const xs=nodes.map(n=>n.x),ys=nodes.map(n=>n.y);
+  const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+  const mg=70;
+  const sc=Math.max(1,Math.min((cW-2*mg)/Math.max(maxX-minX,1),(cH-2*mg)/Math.max(maxY-minY,1),2.2));
+  nodes.forEach(n=>{
+    n.x=cx+(n.x-(minX+maxX)/2)*sc;
+    n.y=cy+(n.y-(minY+maxY)/2)*sc;
+  });
+}
+
+// ---- V3 'compact' layout (ported from the old dashboard) ----
+// objectives + themes pack tightly in the centre; ideas scatter outward on
+// long crossing lines via stochastic scoring (no overlaps, maximal spread)
+function cLayoutCompact(G,cW,cH){
+  const{nodes,byId}=G;
+  const cx=cW/2,cy=cH/2;
+  G._ring=null;
+  const objs=nodes.filter(n=>n.type==='obj');
+  const themes=nodes.filter(n=>n.type==='theme');
+  const ideas=nodes.filter(n=>n.type==='idea');
+  objs.forEach((o,i)=>{
+    const a=2*Math.PI*i/Math.max(objs.length,1)-Math.PI/2;
+    o.x=cx+Math.cos(a)*Math.min(cW,cH)*0.16+(Math.random()-0.5)*40;
+    o.y=cy+Math.sin(a)*Math.min(cW,cH)*0.16+(Math.random()-0.5)*40;
+  });
+  themes.forEach(t=>{
+    const o=byId[t.cluster]||{x:cx,y:cy,r:60};
+    const a=Math.random()*2*Math.PI;
+    t.x=o.x+Math.cos(a)*(o.r+t.r+12);
+    t.y=o.y+Math.sin(a)*(o.r+t.r+12);
+  });
+  const big=[...objs,...themes];
+  const tByC={};themes.forEach(t=>{(tByC[t.cluster]=tByC[t.cluster]||[]).push(t);});
+  for(let iter=0;iter<600;iter++){
+    for(let i=0;i<big.length;i++){for(let j=i+1;j<big.length;j++){
+      const a=big[i],b=big[j];const dx=b.x-a.x,dy=b.y-a.y;
+      const dist=Math.sqrt(dx*dx+dy*dy)||0.01;const minD=a.r+b.r+78;
+      if(dist<minD){const f=(minD-dist)/dist*0.45;a.x-=dx*f*0.5;a.y-=dy*f*0.5;b.x+=dx*f*0.5;b.y+=dy*f*0.5;}
+    }}
+    big.forEach(n=>{n.x+=(cx-n.x)*0.01;n.y+=(cy-n.y)*0.01;});
+    themes.forEach(t=>{const o=byId[t.cluster];if(o){t.x+=(o.x-t.x)*0.01;t.y+=(o.y-t.y)*0.01;}});
+    objs.forEach(o=>{
+      const list=tByC[o.id];if(!list||!list.length)return;
+      const mx2=list.reduce((a,t)=>a+t.x,0)/list.length;
+      const my2=list.reduce((a,t)=>a+t.y,0)/list.length;
+      const kC=iter<300?0.05:0.13;o.x+=(mx2-o.x)*kC;o.y+=(my2-o.y)*kC;
+    });
+    Object.values(tByC).forEach(list=>{
+      for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){
+        const a=list[i],b=list[j];const dx=b.x-a.x,dy=b.y-a.y;
+        const d=Math.sqrt(dx*dx+dy*dy)||0.01;const want=a.r+b.r+235;
+        if(d<want){const f=(want-d)/d*0.14;a.x-=dx*f*0.5;a.y-=dy*f*0.5;b.x+=dx*f*0.5;b.y+=dy*f*0.5;}
+      }
+    });
+    const mg=40;big.forEach(n=>{
+      n.x=Math.max(n.r+mg,Math.min(cW-n.r-mg,n.x));
+      n.y=Math.max(n.r+mg,Math.min(cH-n.r-mg,n.y));
+    });
+  }
+  // settle: remove residual overlaps without gravity (keeps the compact look)
+  for(let it=0;it<150;it++){
+    let moved=false;
+    for(let i=0;i<big.length;i++){for(let j=i+1;j<big.length;j++){
+      const a=big[i],b=big[j];const dx=b.x-a.x,dy=b.y-a.y;
+      const dist=Math.sqrt(dx*dx+dy*dy)||0.01;const minD=a.r+b.r+64;
+      if(dist<minD){const f=(minD-dist)/dist*0.5;a.x-=dx*f*0.5;a.y-=dy*f*0.5;b.x+=dx*f*0.5;b.y+=dy*f*0.5;moved=true;}
+    }}
+    if(!moved)break;
+  }
+  const IR=13;
+  const placedIdeas=[];
+  const perTheme={},sibAng={};
+  ideas.forEach(m=>{
+    const t=byId[m.parents[0]]||{x:cx,y:cy,r:60,ideaCount:3};
+    const minO=t.r+IR+18;
+    const maxO=t.r+IR+130+(t.ideaCount||3)*10;
+    const ti2=(perTheme[m.parents[0]]=(perTheme[m.parents[0]]||0)+1)-1;
+    let best=null,bestScore=-Infinity;
+    for(let att=0;att<400;att++){
+      const angle=(2*Math.PI/Math.max(t.ideaCount||1,1))*ti2+(Math.random()-0.5)*1.6+att*0.16;
+      const dist=minO+Math.random()*(maxO-minO);
+      const x=t.x+Math.cos(angle)*dist,y=t.y+Math.sin(angle)*dist;
+      // ideas may overflow the canvas top/bottom (and slightly the sides) —
+      // the auto-fit zoom brings them into view, so they can spread beyond
+      // the themes/objectives in every direction
+      if(x<-80||x>cW+80||y<-190||y>cH+190)continue;
+      let blocked=false,score=0;
+      const candA=Math.atan2(y-t.y,x-t.x);
+      for(const sa of(sibAng[m.parents[0]]||[])){
+        const dA=Math.abs(Math.atan2(Math.sin(candA-sa),Math.cos(candA-sa)));
+        if(dA<0.24){blocked=true;break;}
+      }
+      if(blocked)continue;
+      for(const ot of big){if(Math.hypot(x-ot.x,y-ot.y)<ot.r+IR+12){blocked=true;break;}}
+      if(blocked)continue;
+      for(const p2 of placedIdeas){const d=Math.hypot(x-p2.x,y-p2.y);if(d<IR*2+12){blocked=true;break;}score+=Math.min(d,120)-30;}
+      if(blocked)continue;
+      if(score>bestScore){bestScore=score;best={x,y};}
+    }
+    if(!best){
+      outer:for(let sd=minO;sd<maxO*2.5;sd+=10){
+        for(let a2=0;a2<Math.PI*2;a2+=0.22){
+          const x=t.x+Math.cos(a2)*sd,y=t.y+Math.sin(a2)*sd;
+          let clear=true;
+          big.forEach(ot=>{if(Math.hypot(x-ot.x,y-ot.y)<ot.r+IR+12)clear=false;});
+          placedIdeas.forEach(p=>{if(Math.hypot(x-p.x,y-p.y)<IR*2+12)clear=false;});
+          if(clear){best={x,y};break outer;}
+        }
+      }
+    }
+    if(!best)best={x:t.x+minO,y:t.y};
+    m.x=best.x;m.y=best.y;placedIdeas.push(m);
+    (sibAng[m.parents[0]]=sibAng[m.parents[0]]||[]).push(Math.atan2(m.y-t.y,m.x-t.x));
+  });
+}
+
+// ---- highlight set for current selection ----
+function cHighlight(G){
+  if(!cSel)return null;
+  const set=new Set([cSel.id]);
+  const{byId}=G;
+  if(cSel.type==='obj'){
+    const o=SB.objectives.find(x=>x.id===cSel.id);
+    (o?.themeIds||[]).forEach(tid=>{
+      if(!byId[tid])return;set.add(tid);
+      const t=SB.themes.find(x=>x.id===tid);
+      (t?.ideaIds||[]).forEach(iid=>{if(byId[iid])set.add(iid);});
+    });
+  }else if(cSel.type==='theme'){
+    const t=SB.themes.find(x=>x.id===cSel.id);
+    (t?.ideaIds||[]).forEach(iid=>{if(byId[iid])set.add(iid);});
+    SB.objectives.forEach(o=>{if((o.themeIds||[]).includes(cSel.id))set.add(o.id);});
+  }else{
+    SB.themes.forEach(t=>{
+      if((t.ideaIds||[]).includes(cSel.id)&&byId[t.id]){
+        set.add(t.id);
+        SB.objectives.forEach(o=>{if((o.themeIds||[]).includes(t.id))set.add(o.id);});
+      }
+    });
+  }
+  return set;
+}
+
+// ---- view transform / pan / zoom ----
+function cApplyTransform(){
+  const g=document.getElementById('czoom-group');
+  if(g)g.setAttribute('transform',`translate(${cPanX},${cPanY}) scale(${cZoom})`);
+  const sl=document.getElementById('czoom');
+  const lab=document.getElementById('czoom-label');
+  if(sl)sl.value=Math.max(parseFloat(sl.min),Math.min(parseFloat(sl.max),Math.round(cZoom*100)));
+  if(lab)lab.textContent=Math.round(cZoom*100)+'%';
+}
+function cZoomAt(px,py,factor){
+  const nz=Math.max(0.25,Math.min(4,cZoom*factor));
+  cPanX=px-(px-cPanX)*(nz/cZoom);
+  cPanY=py-(py-cPanY)*(nz/cZoom);
+  cZoom=nz;
+  cApplyTransform();
+}
+function cApplyZoom(val){ // slider → zoom around canvas centre
+  if(cLayoutMode==='ring'){
+    const wrap=document.getElementById('odyssey-wrap');
+    const svg=wrap&&wrap.querySelector('svg');
+    if(svg&&svg._odyZoomTo){svg._odyZoomTo(parseFloat(val));return;}
+  }
+  const cSvg=document.getElementById('csvg');
+  const cW=parseFloat(cSvg.getAttribute('width'))||800;
+  const cH=parseFloat(cSvg.getAttribute('height'))||600;
+  const target=val/100;
+  cZoomAt(cW/2,cH/2,target/cZoom);
+}
+let cFitView={x:0,y:0,z:1};
+function cComputeFit(cW,cH){
+  if(!CG||!CG.nodes.length)return;
+  const xs=CG.nodes.map(n=>n.x),ys=CG.nodes.map(n=>n.y);
+  const pad=150; // diagram extents plus a bit of extra space
+  const minX=Math.min(...xs)-pad,maxX=Math.max(...xs)+pad;
+  const minY=Math.min(...ys)-pad,maxY=Math.max(...ys)+pad;
+  const z=Math.min(1,cW/(maxX-minX),cH/(maxY-minY));
+  cFitView={x:cW/2-z*(minX+maxX)/2,y:cH/2-z*(minY+maxY)/2,z};
+}
+function cResetView(){
+  if(cLayoutMode==='ring'){
+    const wrap=document.getElementById('odyssey-wrap');
+    const svg=wrap&&wrap.querySelector('svg');
+    if(svg&&svg._odyReset){svg._odyReset();return;}
+  }
+  cPanX=cFitView.x;cPanY=cFitView.y;cZoom=cFitView.z;cApplyTransform();
+}
+let cAnimRAF=null;
+function cAnimStop(){if(cAnimRAF&&typeof cancelAnimationFrame!=='undefined')cancelAnimationFrame(cAnimRAF);cAnimRAF=null;}
+function cAnimateTo(tx,ty,tz){
+  if(typeof requestAnimationFrame==='undefined'){cPanX=tx;cPanY=ty;cZoom=tz;cApplyTransform();return;}
+  cAnimStop();
+  const sx=cPanX,sy=cPanY,sz=cZoom,t0=performance.now(),dur=845;
+  const ease=u=>u<0.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;
+  const stepFn=now=>{
+    const u=Math.min(1,(now-t0)/dur),e=ease(u);
+    cPanX=sx+(tx-sx)*e;cPanY=sy+(ty-sy)*e;cZoom=sz+(tz-sz)*e;
+    cApplyTransform();
+    cAnimRAF=u<1?requestAnimationFrame(stepFn):null;
+  };
+  cAnimRAF=requestAnimationFrame(stepFn);
+}
+function cZoomToSelection(){
+  const G=CG;if(!G||!cSel)return;
+  const hl=cHighlight(G);if(!hl||!hl.size)return;
+  const cSvg=document.getElementById('csvg');
+  const cW=parseFloat(cSvg.getAttribute('width')),cH=parseFloat(cSvg.getAttribute('height'));
+  const ns=G.nodes.filter(n=>hl.has(n.id));
+  const pad=135; // labels around the highlighted system
+  const x0=Math.min(...ns.map(n=>n.x-n.r))-pad,x1=Math.max(...ns.map(n=>n.x+n.r))+pad;
+  const y0=Math.min(...ns.map(n=>n.y-n.r))-pad,y1=Math.max(...ns.map(n=>n.y+n.r))+pad;
+  const vw=cW-345; // keep clear of the sidebar
+  const z=Math.max(0.3,Math.min(1.5,vw/(x1-x0),cH/(y1-y0)));
+  cAnimateTo((vw-z*(x1-x0))/2-z*x0,(cH-z*(y1-y0))/2-z*y0,z);
+}
+
+// ---- label placement with collision avoidance ----
+function cPlaceLabels(layer,items,placed){
+  // items: [{node,lines,fs,fill,weight,priority}] sorted by priority already
+  items.forEach(it=>{
+    const n=it.node;
+    const lh=it.fs+2;
+    const w=Math.max(...it.lines.map(l=>l.length))*it.fs*0.56+4;
+    const h=it.lines.length*lh;
+    const offs=[[n.r+5,0,'start'],[-n.r-5,0,'end'],[0,-n.r-6-h/2,'middle'],[0,n.r+8+h/2,'middle'],
+      [n.r+4,-n.r-4-h/2,'start'],[-n.r-4,-n.r-4-h/2,'end'],[n.r+4,n.r+6+h/2,'start'],[-n.r-4,n.r+6+h/2,'end'],
+      [n.r+16,0,'start'],[-n.r-16,0,'end'],[0,-n.r-16-h/2,'middle'],[0,n.r+18+h/2,'middle'],
+      [n.r+14,-n.r-12-h/2,'start'],[-n.r-14,-n.r-12-h/2,'end'],[n.r+14,n.r+14+h/2,'start'],[-n.r-14,n.r+14+h/2,'end'],
+      [n.r+34,0,'start',1],[-n.r-34,0,'end',1],[0,-n.r-34-h/2,'middle',1],[0,n.r+36+h/2,'middle',1],
+      [n.r+28,-n.r-24-h/2,'start',1],[-n.r-28,-n.r-24-h/2,'end',1],[n.r+28,n.r+26+h/2,'start',1],[-n.r-28,n.r+26+h/2,'end',1],
+      [n.r+52,0,'start',1],[-n.r-52,0,'end',1],[0,-n.r-52-h/2,'middle',1],[0,n.r+54+h/2,'middle',1]];
+    let spot=null;
+    for(const[ox,oy,anchor,far]of offs){
+      const bx=anchor==='start'?n.x+ox:anchor==='end'?n.x+ox-w:n.x-w/2;
+      const by=n.y+oy-h/2;
+      const box={x:bx-2,y:by-2,w:w+4,h:h+4};
+      if(!placed.some(p=>box.x<p.x+p.w&&p.x<box.x+box.w&&box.y<p.y+p.h&&p.y<box.y+box.h)){
+        spot={ox,oy,anchor,box,far};break;
+      }
+    }
+    if(!spot){ // spiral outward until free space — every label gets placed
+      outer:for(let dd=n.r+70;dd<=n.r+320;dd+=36){
+        for(let k=0;k<18;k++){
+          const a=(2*Math.PI*k)/18+dd*0.05;
+          const lx2=n.x+Math.cos(a)*dd,ly2=n.y+Math.sin(a)*dd;
+          const anchor=Math.cos(a)>0.3?'start':Math.cos(a)<-0.3?'end':'middle';
+          const bx=anchor==='start'?lx2:anchor==='end'?lx2-w:lx2-w/2;
+          const by=ly2-h/2;
+          const box={x:bx-2,y:by-2,w:w+4,h:h+4};
+          if(!placed.some(p=>box.x<p.x+p.w&&p.x<box.x+box.w&&box.y<p.y+p.h&&p.y<box.y+box.h)){
+            spot={ox:lx2-n.x,oy:ly2-n.y,anchor,box,far:1};break outer;
+          }
+        }
+      }
+    }
+    if(!spot)return;
+    placed.push(spot.box);
+    if(spot.far){ // leader line so distant labels clearly point to their dot
+      const tx=spot.anchor==='start'?n.x+spot.ox-3:spot.anchor==='end'?n.x+spot.ox+3:n.x;
+      const ty=n.y+spot.oy;
+      const dx=tx-n.x,dy=ty-n.y,dl=Math.sqrt(dx*dx+dy*dy)||1;
+      layer.appendChild(cSvgEl('line',{x1:n.x+dx/dl*(n.r+1),y1:n.y+dy/dl*(n.r+1),
+        x2:tx,y2:ty,stroke:'#777','stroke-width':0.6,opacity:0.55}));
+    }
+    const ty0=n.y+spot.oy-((it.lines.length-1)*lh)/2;
+    it.lines.forEach((l,i)=>{
+      const ts=cSvgEl('text',{x:n.x+spot.ox,y:ty0+i*lh,'text-anchor':spot.anchor,
+        'dominant-baseline':'middle','font-size':it.fs,'font-family':'system-ui',
+        fill:it.fill,'font-weight':it.weight||'400','paint-order':'stroke',
+        stroke:C_BG,'stroke-width':3,'stroke-linejoin':'round'});
+      ts.textContent=l;layer.appendChild(ts);
+    });
+  });
+}
+
+// ---- sidebar ----
+function cEnsureSidebar(){
+  let sb=document.getElementById('cside');
+  if(!sb){
+    sb=document.createElement('div');sb.id='cside';
+    sb.style.cssText='position:absolute;top:14px;right:14px;height:calc(100% - 28px);width:480px;box-sizing:border-box;'+
+      'background:rgba(16,16,24,0.96);border:1px solid #2a2a38;border-radius:14px;color:#e8e8ee;padding:20px 24px 28px;'+
+      'overflow-y:auto;z-index:15;font-family:system-ui;transform:translateX(120%);transition:transform .28s ease;'+
+      'box-shadow:0 10px 34px rgba(0,0,0,0.5)';
+    document.getElementById('const-container').appendChild(sb);
+  }
+  return sb;
+}
+function cShowSidebar(html){
+  const sb=cEnsureSidebar();
+  sb.innerHTML='<div style="text-align:right;margin-bottom:4px"><span onclick="cSideClose()" style="cursor:pointer;color:#888;font-size:16px;padding:4px">✕</span></div>'+html;
+  sb.style.transform='translateX(0)';
+}
+function cHideSidebar(){const sb=document.getElementById('cside');if(sb)sb.style.transform='translateX(120%)';}
+function cSideClose(){cSetSel(null);}
+function cSideSelect(type,id){cSetSel({type,id});}
+
+function cGoalList(goals,color,title){
+  if(!goals.length)return'';
+  return'<div style="font-size:9px;letter-spacing:1px;color:'+color+';font-weight:600;margin:14px 0 6px">'+title+'</div>'+
+    goals.map(g=>'<div style="background:rgba(255,255,255,0.05);border:1px solid '+color+'44;border-left:3px solid '+color+
+      ';border-radius:6px;padding:7px 10px;font-size:11px;line-height:1.45;margin-bottom:6px">'+cEsc(g.title)+
+      (g.desc?'<div style="color:#999;font-size:10px;margin-top:3px">'+cEsc(g.desc)+'</div>':'')+'</div>').join('');
+}
+function cSidebarFor(G,sel){
+  const n=G.byId[sel.id];if(!n)return'';
+  if(sel.type==='obj'){
+    const themes=SB.themes.filter(t=>{const o=SB.objectives.find(x=>x.id===sel.id);return(o?.themeIds||[]).includes(t.id);});
+    return'<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600">OBJECTIVE</div>'+
+      '<div style="font-size:20px;font-weight:600;color:'+n.hue+';margin:4px 0 6px;line-height:1.3">'+cEsc(n.label)+'</div>'+
+      (n.desc?'<div style="font-size:15px;color:#b8b8c2;line-height:1.5;margin-bottom:4px">'+cEsc(n.desc)+'</div>':'')+
+      '<div style="font-size:13px;color:#777;margin-bottom:2px">'+n.themeCount+' themes · '+n.ideaCount+' ideas</div>'+
+      cGoalList(n.goalsShort,'#E8A04C','SHORT-TERM GOALS')+
+      cGoalList(n.goalsLong,'#6FA8E8','LONG-TERM GOALS')+
+      ((n.goalsShort.length+n.goalsLong.length)===0?'<div style="font-size:11px;color:#777;margin-top:12px">No goals linked yet — add them in the Sandbox tab.</div>':'')+
+      '<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600;margin:16px 0 6px">THEMES</div>'+
+      themes.map(t=>'<div onclick="cSideSelect(\'theme\',\''+t.id+'\')" style="cursor:pointer;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.05);margin-bottom:5px;line-height:1.4">'+
+        cEsc(t.name)+' <span style="color:#777">· '+(t.ideaIds||[]).length+' ideas</span></div>').join('');
+  }
+  if(sel.type==='theme'){
+    const t=SB.themes.find(x=>x.id===sel.id);
+    const ideas=SB.ideas.filter(i=>(t?.ideaIds||[]).includes(i.id));
+    const parents=SB.objectives.filter(o=>(o.themeIds||[]).includes(sel.id));
+    return'<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600">THEME</div>'+
+      '<div style="font-size:20px;font-weight:600;color:'+n.hue+';margin:4px 0 6px;line-height:1.3">'+cEsc(n.label)+'</div>'+
+      (n.desc?'<div style="font-size:15px;color:#b8b8c2;line-height:1.5;margin-bottom:4px">'+cEsc(n.desc)+'</div>':'')+
+      '<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600;margin:14px 0 6px">CONTRIBUTES TO</div>'+
+      parents.map(o=>'<div onclick="cSideSelect(\'obj\',\''+o.id+'\')" style="cursor:pointer;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.05);margin-bottom:5px">'+cEsc(o.title)+'</div>').join('')+
+      '<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600;margin:14px 0 6px">IDEAS ('+ideas.length+')</div>'+
+      ideas.map(i=>'<div style="font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.05);margin-bottom:5px;line-height:1.4;border-left:3px solid '+n.hue+'66">'+cEsc(i.text)+'</div>').join('');
+  }
+  const themes=SB.themes.filter(t=>(t.ideaIds||[]).includes(sel.id));
+  return'<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600">IDEA</div>'+
+    '<div style="font-size:18px;font-weight:500;color:#eee;margin:4px 0 6px;line-height:1.45">'+cEsc(n.label)+'</div>'+
+    '<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600;margin:14px 0 6px">BELONGS TO '+(themes.length>1?'(shared)':'')+'</div>'+
+    themes.map(t=>'<div onclick="cSideSelect(\'theme\',\''+t.id+'\')" style="cursor:pointer;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.05);margin-bottom:5px">'+cEsc(t.name)+'</div>').join('');
+}
+
+// ---- selection / render ----
+function cSetSel(sel){
+  cSel=sel;
+  const G=CG;
+  if(!G){cHideSidebar();cAnimateTo(cFitView.x,cFitView.y,cFitView.z);if(v4SelectFn)v4SelectFn(null);return;}
+  if(!sel){cHideSidebar();}
+  else{
+    cShowSidebar(cSidebarFor(G,sel));
+  }
+  if(sel)cZoomToSelection();
+  else if(CG){
+    const cSvg=document.getElementById('csvg');
+    cComputeFit(parseFloat(cSvg.getAttribute('width'))||window.innerWidth,parseFloat(cSvg.getAttribute('height'))||window.innerHeight-80);
+    cAnimateTo(cFitView.x,cFitView.y,cFitView.z);
+  }
+  cRenderGraph();
+}
+
+function cRenderGraph(){
+  const cSvg=document.getElementById('csvg');
+  const G=CG;if(!G)return;
+  const cW=parseFloat(cSvg.getAttribute('width')),cH=parseFloat(cSvg.getAttribute('height'));
+  cSvg.innerHTML='';
+  // Star field background
+  {const _sr=function(seed){let s=seed>>>0;return()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return(s>>>0)/4294967296;};};const _rng=_sr(9371);for(let _i=0;_i<260;_i++){const _s=cSvgEl('circle',{cx:(_rng()*cW).toFixed(1),cy:(_rng()*cH).toFixed(1),r:(0.3+_rng()*0.9).toFixed(2),fill:'#ffffff',opacity:(0.06+_rng()*0.22).toFixed(2)});cSvg.appendChild(_s);}}
+  
+  if(!document.getElementById('cfade-style')){
+    const st=document.createElement('style');st.id='cfade-style';
+    st.textContent='@keyframes cfadein{from{opacity:0}to{opacity:1}} .cfade{animation:cfadein .3s ease}';
+    document.head.appendChild(st);
+  }
+  const zg=cSvgEl('g',{id:'czoom-group',class:'cfade'});
+  cSvg.appendChild(zg);
+  cApplyTransform();
+
+  const hl=cHighlight(G);
+  const edgeLayer=cSvgEl('g',{class:'cedges'});zg.appendChild(edgeLayer);
+  const nodeLayer=cSvgEl('g',{});zg.appendChild(nodeLayer);
+  const labelLayer=cSvgEl('g',{});zg.appendChild(labelLayer);
+  labelLayer.setAttribute('pointer-events','none');
+
+  // faint guiding ring (V2 layout)
+  if(G._ring){
+    edgeLayer.appendChild(cSvgEl('ellipse',{cx:G._ring.cx,cy:G._ring.cy,rx:G._ring.rx,ry:G._ring.ry,
+      fill:'none',stroke:'#9a9ab8','stroke-width':1.2,opacity:0.1}));
+  }
+  // faint constellation lines between objectives
+  {
+    const objNodes=G.nodes.filter(n=>n.type==='obj');
+    for(let i=0;i<objNodes.length;i++)for(let j=i+1;j<objNodes.length;j++){
+      const a=objNodes[i],b=objNodes[j];
+      edgeLayer.appendChild(cSvgEl('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,
+        stroke:'#a8a8c8','stroke-width':1,opacity:hl?0.024:0.13}));
+    }
+  }
+  // edges
+  G.edges.forEach(e=>{
+    const a=G.byId[e.a],b=G.byId[e.b];
+    let op=e.kind==='ot'?0.5:0.3,w=e.kind==='ot'?1.2:0.7;
+    if(e.sec)op*=0.8;
+    if(hl){
+      const both=hl.has(e.a)&&hl.has(e.b),one=hl.has(e.a)||hl.has(e.b);
+      op=both?(e.kind==='ot'?0.85:0.7):one?0.2:0.03;
+      if(both)w+=0.4;
+    }
+    const eAttrs={x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:e.hue,'stroke-width':w,opacity:op};
+    if(e.sec)eAttrs['stroke-dasharray']='3,4';
+    edgeLayer.appendChild(cSvgEl('line',eAttrs));
+  });
+
+  // nodes
+  G.nodes.forEach(n=>{
+    const dim=hl&&!hl.has(n.id);
+    const selN=cSel&&cSel.id===n.id;
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','cnode cnode-'+n.type);
+    g.style.cursor='pointer';
+    if(n.type==='obj')g.appendChild(cSvgEl('circle',{cx:n.x,cy:n.y,r:n.r+6,fill:n.hue,opacity:dim?0.024:0.16}));
+    g.appendChild(cSvgEl('circle',{cx:n.x,cy:n.y,r:n.r,
+      fill:n.type==='obj'?n.hue:n.type==='theme'?cMix(n.hue,0.18):cMix(n.hue,0.4),
+      stroke:n.shared?'#fff':C_BG,'stroke-width':n.shared?1.4:1,
+      opacity:dim?0.11:1}));
+    if(selN)g.appendChild(cSvgEl('circle',{cx:n.x,cy:n.y,r:n.r+4,fill:'none',
+      stroke:'#fff','stroke-width':1.4,opacity:0.9}));
+    if(n.inLines){
+      const fs=n.type==='obj'?18:13.5;
+      const lh=fs+2,totalH=(n.inLines.length-1)*lh;
+      n.inLines.forEach((l,i)=>{
+        const ts=cSvgEl('text',{x:n.x,y:n.y-totalH/2+i*lh,'text-anchor':'middle','dominant-baseline':'middle',
+          'font-size':fs,'font-family':'system-ui',fill:cTextOn(n.type==='obj'?n.hue:cMix(n.hue,0.18)),
+          'font-weight':n.type==='obj'?'600':'500',opacity:dim?0.09:1});
+        ts.textContent=l;g.appendChild(ts);
+      });
+    }
+    g.addEventListener('click',()=>{
+      if(cDragMoved)return;
+      cSetSel(cSel&&cSel.id===n.id?null:{type:n.type,id:n.id});
+    });
+    g.addEventListener('mouseenter',e=>{
+      const kind=n.type==='obj'?'objective':n.type;
+      let extra='';
+      if(n.type==='obj')extra=n.themeCount+' themes · '+n.ideaCount+' ideas · '+(n.goalsShort.length+n.goalsLong.length)+' goals';
+      else if(n.type==='theme')extra=n.ideaCount+' ideas'+(n.shared?' · shared across objectives':'');
+      else extra=n.shared?'shared across themes':'';
+      cTip(e,'<strong>'+cEsc(n.label)+'</strong>'+(n.desc?'<br>'+cEsc(n.desc):'')+
+        '<br><span style="color:#999">'+kind+(extra?' · '+extra:'')+' — click to explore</span>');
+    });
+    g.addEventListener('mouseleave',cTipHide);
+    nodeLayer.appendChild(g);
+  });
+
+  // labels (collision-aware, priority: selected > objectives > themes > ideas)
+  const placed=[];
+  // reserve node bubbles so labels don't sit on top of big nodes
+  G.nodes.forEach(n=>{if(n.r>8&&(!hl||hl.has(n.id)))placed.push({x:n.x-n.r,y:n.y-n.r,w:n.r*2,h:n.r*2});});
+  const items=[];
+  const selNode=cSel?G.byId[cSel.id]:null;
+  if(selNode&&selNode.type==='idea')items.push({node:selNode,lines:cWrapLines(selNode.label,24),fs:13,fill:'#fff',weight:'700'});
+  if(hl)G.nodes.filter(n=>n.type==='idea'&&hl.has(n.id)&&(!selNode||n.id!==selNode.id)).forEach(n=>{
+    items.push({node:n,lines:cWrapLines(n.label,20),fs:8.8,fill:'#ffffff'});
+  });
+  cPlaceLabels(labelLayer,items,placed);
+}
+
+// ---- pan & zoom wiring ----
+function cWireView(cSvg){
+  if(cSvg._cWired)return;cSvg._cWired=true;
+  let dragging=false,sx=0,sy=0,spx=0,spy=0;
+  cSvg.addEventListener('mousedown',e=>{
+    cAnimStop();
+    dragging=true;cDragMoved=false;sx=e.clientX;sy=e.clientY;spx=cPanX;spy=cPanY;
+  });
+  window.addEventListener('mousemove',e=>{
+    if(!dragging)return;
+    const dx=e.clientX-sx,dy=e.clientY-sy;
+    if(Math.abs(dx)+Math.abs(dy)>4)cDragMoved=true;
+    cPanX=spx+dx;cPanY=spy+dy;cApplyTransform();
+  });
+  window.addEventListener('mouseup',()=>{dragging=false;setTimeout(()=>{cDragMoved=false;},0);});
+  cSvg.addEventListener('wheel',e=>{
+    if(!cSel)return; // full-chart view → let the page scroll normally
+    e.preventDefault();cAnimStop();
+    const rect=cSvg.getBoundingClientRect();
+    cZoomAt(e.clientX-rect.left,e.clientY-rect.top,e.deltaY<0?1.12:1/1.12);
+  },{passive:false});
+  cSvg.addEventListener('click',e=>{
+    if(e.target===cSvg&&!cDragMoved)cSetSel(null);
+  });
+}
+
+// tooltip for constellation
+if(!document.getElementById('ctip')){
+  const ctip=document.createElement('div');ctip.id='ctip';
+  ctip.style.cssText='position:fixed;background:#fff;border:0.5px solid #ddd;border-radius:8px;padding:7px 11px;font-size:11px;color:#333;line-height:1.5;max-width:240px;pointer-events:none;z-index:999;display:none;box-shadow:0 4px 14px rgba(0,0,0,0.1)';
+  document.body.appendChild(ctip);
+}
+
+/* ---- TARS init + reveal ---- */
+let tarsInited=false;
+function shuffleTars(){
+  if(!CG)return;
+  const cSvg=document.getElementById('csvg');
+  const cW=parseFloat(cSvg.getAttribute('width'))||innerWidth, cH=parseFloat(cSvg.getAttribute('height'))||innerHeight;
+  cSel=null; cHideSidebar();
+  cSimulate(CG,cW,cH);
+  cComputeFit(cW,cH);
+  cPanX=cFitView.x; cPanY=cFitView.y; cZoom=cFitView.z;
+  cRenderGraph();
+}
+function initTars(){
+  const stage=document.getElementById('tarsStage');
+  const cSvg=document.getElementById('csvg');
+  const cW=stage.clientWidth||innerWidth, cH=stage.clientHeight||innerHeight;
+  cSvg.setAttribute('width',cW); cSvg.setAttribute('height',cH);
+  cSvg.setAttribute('viewBox','0 0 '+cW+' '+cH);
+  cLayoutMode='compact';
+  CG=makeCGraph();
+  cSimulate(CG,cW,cH);
+  cComputeFit(cW,cH);
+  cPanX=cFitView.x; cPanY=cFitView.y; cZoom=cFitView.z;
+  cSel=null;
+  cRenderGraph();
+  cWireView(cSvg);
+}
+function playTarsReveal(){
+  const zg=document.getElementById('czoom-group'); if(!zg)return;
+  const edgeG=zg.querySelector('.cedges');
+  const ideas=Array.prototype.slice.call(zg.querySelectorAll('.cnode-idea'));
+  const themes=Array.prototype.slice.call(zg.querySelectorAll('.cnode-theme'));
+  const objs=Array.prototype.slice.call(zg.querySelectorAll('.cnode-obj'));
+  const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t;}return a;};
+  if(edgeG){ edgeG.style.opacity='0'; edgeG.style.transition='opacity 1.1s ease'; }
+  ideas.concat(themes,objs).forEach(g=>{ g.style.opacity='0'; g.style.transition='opacity .5s ease'; });
+  const revealSet=(list,start,total,counterEl)=>{
+    const arr=shuffle(list.slice());
+    const step=arr.length>1?total/arr.length:0;
+    arr.forEach((g,i)=>setTimeout(()=>{ g.style.opacity='1'; if(counterEl) counterEl.textContent=String(i+1); }, start+i*step));
+    return start+arr.length*step;
+  };
+  const cI=document.getElementById('tcIdeas'), cT=document.getElementById('tcThemes'), cO=document.getElementById('tcObjectives');
+  let t=300;
+  t=revealSet(ideas,t,1800,cI)+250;
+  t=revealSet(themes,t,800,cT)+250;
+  t=revealSet(objs,t,700,cO)+300;
+  setTimeout(()=>{ if(edgeG) edgeG.style.opacity='1'; }, t); t+=1200;
+  setTimeout(()=>{ const h=document.getElementById('chint'); if(h) h.classList.add('show'); const sb=document.getElementById('tarsShuffle'); if(sb) sb.classList.add('show'); }, t);
+}
+new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting && !tarsInited){ tarsInited=true;
+  document.getElementById('tarsStage').classList.add('lit');
+  initTars(); playTarsReveal(); holdScroll(document.getElementById('tarsPin').offsetTop,3000); } }); },{threshold:0.55}).observe(document.getElementById('tarsStage'));
+
+/* ===================== GERTY (v4 / Moon) — namespaced g*, lifted from dashboard ===================== */
+function showTT(e,t){ cTip(e, cEsc(String(t))); }
+function hideTT(){ cTipHide(); }
+let gPanX=0,gPanY=0,gZoom=1, gFitView={x:0,y:0,z:1}, gPanRAF=null, gOrbitRAF=null, gSelectFn=null, gSelId=null, gDragMoved=false;
+function gApplyTransform(){ const g=document.getElementById('gzoom-group'); if(g)g.setAttribute('transform','translate('+gPanX+','+gPanY+') scale('+gZoom+')');
+  const hint=document.getElementById('ghint'), svg=document.getElementById('gsvg');
+  if(hint&&svg){ const cw=parseFloat(svg.getAttribute('width'))||innerWidth, ch=parseFloat(svg.getAttribute('height'))||innerHeight; hint.style.left=(gPanX+cw/2*gZoom)+'px'; hint.style.top=(gPanY+ch/2*gZoom)+'px'; } }
+function gAnimStop(){ if(gPanRAF&&typeof cancelAnimationFrame!=='undefined')cancelAnimationFrame(gPanRAF); gPanRAF=null; }
+function gAnimateTo(tx,ty,tz){
+  if(typeof requestAnimationFrame==='undefined'){gPanX=tx;gPanY=ty;gZoom=tz;gApplyTransform();return;}
+  gAnimStop();
+  const sx=gPanX,sy=gPanY,sz=gZoom,t0=performance.now(),dur=845;
+  const ease=u=>u<0.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;
+  const step=now=>{ const u=Math.min(1,(now-t0)/dur),e=ease(u); gPanX=sx+(tx-sx)*e;gPanY=sy+(ty-sy)*e;gZoom=sz+(tz-sz)*e; gApplyTransform(); gPanRAF=u<1?requestAnimationFrame(step):null; };
+  gPanRAF=requestAnimationFrame(step);
+}
+function gZoomAt(px,py,factor){ const nz=Math.max(0.25,Math.min(6,gZoom*factor)); gPanX=px-(px-gPanX)*(nz/gZoom); gPanY=py-(py-gPanY)*(nz/gZoom); gZoom=nz; gApplyTransform(); }
+function gResetView(){ gPanX=gFitView.x;gPanY=gFitView.y;gZoom=gFitView.z; gApplyTransform(); }
+function gEnsureSidebar(){
+  let sb=document.getElementById('gside');
+  if(!sb){
+    sb=document.createElement('div'); sb.id='gside';
+    sb.style.cssText='position:absolute;top:14px;right:14px;height:calc(100% - 28px);width:480px;box-sizing:border-box;background:rgba(16,16,24,0.96);border:1px solid #2a2a38;border-radius:14px;color:#e8e8ee;padding:20px 24px 28px;overflow-y:auto;z-index:15;font-family:system-ui;transform:translateX(120%);transition:transform .28s ease;box-shadow:0 10px 34px rgba(0,0,0,0.5)';
+    document.getElementById('gerty-container').appendChild(sb);
+  }
+  return sb;
+}
+function gShowSidebar(html){ const _gs=document.getElementById('gertyStage'); if(_gs)_gs.classList.add('g-sel'); const sb=gEnsureSidebar(); sb.innerHTML='<div style="text-align:right;margin-bottom:4px"><span onclick="gDeselect()" style="cursor:pointer;color:#888;font-size:16px;padding:4px">&times;</span></div>'+html; sb.style.transform='translateX(0)'; }
+function gHideSidebar(){ const sb=document.getElementById('gside'); if(sb)sb.style.transform='translateX(120%)'; }
+function gDeselect(){ gSelId=null; const _gs=document.getElementById('gertyStage'); if(_gs)_gs.classList.remove('g-sel'); gHideSidebar(); if(gSelectFn)gSelectFn(null); gAnimateTo(gFitView.x,gFitView.y,gFitView.z); }
+function gWireView(svg){
+  if(svg._gWired)return; svg._gWired=true;
+  let dragging=false,sx=0,sy=0,spx=0,spy=0;
+  svg.addEventListener('mousedown',e=>{ gAnimStop(); dragging=true;gDragMoved=false;sx=e.clientX;sy=e.clientY;spx=gPanX;spy=gPanY; });
+  window.addEventListener('mousemove',e=>{ if(!dragging)return; const dx=e.clientX-sx,dy=e.clientY-sy; if(Math.abs(dx)+Math.abs(dy)>4)gDragMoved=true; gPanX=spx+dx;gPanY=spy+dy;gApplyTransform(); });
+  window.addEventListener('mouseup',()=>{ dragging=false; setTimeout(()=>{gDragMoved=false;},0); });
+  svg.addEventListener('wheel',e=>{ if(!gSelId)return; e.preventDefault();gAnimStop(); const rect=svg.getBoundingClientRect(); gZoomAt(e.clientX-rect.left,e.clientY-rect.top,e.deltaY<0?1.12:1/1.12); },{passive:false});
+  svg.addEventListener('click',e=>{ if(e.target===svg&&!gDragMoved)gDeselect(); });
+}
+
+function v4ObjSidebar(obj,themes,sg,lg,hue){
+  const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const dot=(c,r)=>`<span style="display:inline-block;width:${r*2}px;height:${r*2}px;border-radius:50%;background:${c};vertical-align:middle;margin-right:5px;flex-shrink:0"></span>`;
+  let h=`<div style="margin-bottom:14px"><div style="font-size:20px;font-weight:700;color:${hue};margin-bottom:5px;display:flex;align-items:center">${dot(hue,5)}${esc(obj.title)}</div>${obj.desc?`<div style="font-size:14px;color:#aaa;line-height:1.5">${esc(obj.desc)}</div>`:''}</div>`;
+  if(themes.length){
+    h+=`<div style="font-size:13px;letter-spacing:1px;color:${hue}99;font-weight:600;margin-bottom:6px">THEMES (${themes.length})</div>`;
+    h+=themes.map(t=>`<div style="font-size:14px;color:#ddd;margin-bottom:4px;padding:5px 8px;background:rgba(255,255,255,0.05);border-left:2px solid ${hue};border-radius:3px">${esc(t.name)}</div>`).join('');
+  }
+  if(sg.length){
+    h+=`<div style="font-size:13px;letter-spacing:1px;color:#E8961E99;font-weight:600;margin:10px 0 5px">SHORT TERM GOALS (${sg.length})</div>`;
+    h+=sg.map(g=>`<div style="font-size:14px;color:#ddd;margin-bottom:4px;padding:5px 8px;background:rgba(255,152,30,0.06);border-left:2px solid #E8961E;border-radius:3px"><div style="font-weight:600">${esc(g.title)}</div>${g.desc?`<div style="font-size:12px;color:#aaa;margin-top:2px">${esc(g.desc)}</div>`:''}</div>`).join('');
+  }
+  if(lg.length){
+    h+=`<div style="font-size:13px;letter-spacing:1px;color:#2C72B099;font-weight:600;margin:10px 0 5px">LONG TERM GOALS (${lg.length})</div>`;
+    h+=lg.map(g=>`<div style="font-size:14px;color:#ddd;margin-bottom:4px;padding:5px 8px;background:rgba(44,114,176,0.07);border-left:2px solid #2C72B0;border-radius:3px"><div style="font-weight:600">${esc(g.title)}</div>${g.desc?`<div style="font-size:12px;color:#aaa;margin-top:2px">${esc(g.desc)}</div>`:''}</div>`).join('');
+  }
+  return h;
+}
+function drawV4(cSvg,cW,cH){
+  if(gOrbitRAF){cancelAnimationFrame(gOrbitRAF);gOrbitRAF=null;}
+  cSvg.innerHTML='';
+  // Star field background
+  {const _sr=function(seed){let s=seed>>>0;return()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return(s>>>0)/4294967296;};};const _rng=_sr(9371);for(let _i=0;_i<260;_i++){const _s=cSvgEl('circle',{cx:(_rng()*cW).toFixed(1),cy:(_rng()*cH).toFixed(1),r:(0.3+_rng()*0.9).toFixed(2),fill:'#ffffff',opacity:(0.06+_rng()*0.22).toFixed(2)});cSvg.appendChild(_s);}}
+  
+  if(!document.getElementById('cfade-style')){
+    const st=document.createElement('style');st.id='cfade-style';
+    st.textContent='@keyframes cfadein{from{opacity:0}to{opacity:1}} .cfade{animation:cfadein .3s ease}';
+    document.head.appendChild(st);
+  }
+  const zg=cSvgEl('g',{id:'gzoom-group',class:'cfade'});cSvg.appendChild(zg);gApplyTransform();
+
+  const N=SB.objectives.length;if(!N)return;
+  const cx=cW/2,cy=cH/2;
+
+  // Ellipse path for objective positions
+  const ea=Math.min(cW*0.40,cH*0.46);
+  const eb=Math.min(cW*0.20,cH*0.27);
+
+  // Seeded RNG (for jittered ring angles)
+  function hashStr(s){let h=5381;for(let i=0;i<s.length;i++)h=(h*33^s.charCodeAt(i))>>>0;return h;}
+  function srand(seed){let s=(seed^0x9e3779b9)>>>0;return()=>{s^=s<<13;s^=s>>>17;s^=s<<5;s>>>=0;return s/4294967296;};}
+
+  // Equal arc-length objective spacing
+  const SAMPS=2400;const pts=[];let totLen=0;let prev=null;
+  for(let k=0;k<=SAMPS;k++){
+    const a=-Math.PI/2+2*Math.PI*k/SAMPS;
+    const pt={x:cx+Math.cos(a)*ea,y:cy+Math.sin(a)*eb};
+    if(prev)totLen+=Math.hypot(pt.x-prev.x,pt.y-prev.y);
+    pts.push({p:pt,d:totLen});prev=pt;
+  }
+  // Arc-length lookup — returns {x,y} on the ellipse for a given arc-length value
+  function arcLenToPos(target){
+    const t=((target%totLen)+totLen)%totLen;
+    let lo=0,hi=pts.length-1;
+    while(lo<hi){const mid=(lo+hi)>>1;if(pts[mid].d<t)lo=mid+1;else hi=mid;}
+    return{x:pts[lo].p.x,y:pts[lo].p.y};
+  }
+
+  // Shuffle the arc positions so objectives appear in random order (seeded, stable)
+  const posOrder=Array.from({length:N},(_,i)=>i);
+  const shuffleRng=srand(hashStr('v4objpos'));
+  for(let i=N-1;i>0;i--){const j=Math.floor(shuffleRng()*(i+1));[posOrder[i],posOrder[j]]=[posOrder[j],posOrder[i]];}
+  const objArcParams=SB.objectives.map((_,i)=>totLen*posOrder[i]/N);
+  const objPos=objArcParams.map(a=>arcLenToPos(a));
+
+  // Min adjacent distance → max system radius budget
+  let minAdj=Infinity;
+  for(let i=0;i<N;i++){const a=objPos[i],b=objPos[(i+1)%N];minAdj=Math.min(minAdj,Math.hypot(b.x-a.x,b.y-a.y));}
+  if(!isFinite(minAdj)||N<=1)minAdj=Math.min(ea,eb)*1.4;
+  const maxR=Math.min(minAdj*0.44,200);
+
+  // ── V3 EXACT: compute natural radius from text bounding box ──
+  // r = sqrt(textW² + textH²)/2 + pad   — same formula as makeCGraph
+  // Then scale BOTH font AND radius by the same factor → text always fits
+  const REF_OBJ_FS=18, REF_T_FS=13.5, REF_GOAL_FS=8.8, R_GOAL_NAT=13;
+
+  function natR(lines,fs,minRad,pad){
+    const tW=Math.max(...lines.map(l=>l.length))*fs*0.58;
+    const tH=Math.max(0,lines.length-1)*(fs+2);
+    return Math.max(minRad,Math.sqrt(tW*tW+tH*tH)/2+pad);
+  }
+
+  // Pre-compute at V3 reference font sizes
+  const objPrep=SB.objectives.map(obj=>{
+    const lines=cWrapLines(obj.title,18);
+    return{lines,r:natR(lines,REF_OBJ_FS,72,14)};
+  });
+  const themePrep={};
+  SB.themes.forEach(t=>{
+    const lines=cWrapLines(t.name,14);
+    themePrep[t.id]={lines,r:natR(lines,REF_T_FS,34,11)};
+  });
+
+  // Max natural system footprint
+  const maxNatObjR=Math.max(...objPrep.map(d=>d.r));
+  const allNatThemeR=Object.values(themePrep).map(d=>d.r);
+  const maxNatThemeR=allNatThemeR.length?Math.max(...allNatThemeR):20;
+  // Theme circles are 0.6× — reduce natSysR accordingly so objectives get a larger share
+  const natSysR=maxNatObjR+maxNatThemeR*0.6+R_GOAL_NAT*2+R_GOAL_NAT*2+22*3;
+
+  // Scale to fit — preserves text-fits-in-circle property
+  const scale=Math.min(1,(maxR*0.88)/natSysR);
+
+  const GOAL_FS=REF_GOAL_FS*scale*1.5;
+  const R_GOAL=Math.max(3,R_GOAL_NAT*scale);
+
+  // ── Uniform radii: every objective same size, every theme 0.6× ──
+  const R_OBJ_U=maxNatObjR*scale;
+  const R_T_U  =(allNatThemeR.length?maxNatThemeR:20)*scale*0.6;
+
+  // Global ring radii (same for every system)
+  const R1=R_OBJ_U+R_T_U+12*scale;
+  const R2=R1+R_T_U+R_GOAL+12*scale;
+  const R3=R2+R_GOAL*2+12*scale;
+
+  // Max font size that fills a circle of radius r.
+  // Uses the exact diagonal formula: sqrt(W²+H²)/2 ≤ rI, solved as a quadratic.
+  // This guarantees no overflow regardless of circle size, with a 1px minimum.
+  function maxFsInCircle(lines,r,gap){
+    const rI=r-(gap||3);
+    if(rI<=0)return 1;
+    const mc=Math.max(...lines.map(l=>l.length));
+    const n=lines.length;
+    if(!mc)return rI;
+    const a=mc*0.58; // text width coefficient
+    const b=n-1;     // line-gap coefficient
+    if(b===0) return Math.max(1,2*rI/a); // single line: width only
+    // Solve (a*fs)² + (b*(fs+2))² = (2*rI)²
+    // → (a²+b²)fs² + 4b²·fs + (4b²−4rI²) = 0
+    const A=a*a+b*b, B=4*b*b, C=4*b*b-4*rI*rI;
+    const disc=B*B-4*A*C;
+    if(disc<0)return 1;
+    return Math.max(1,(-B+Math.sqrt(disc))/(2*A));
+  }
+
+  // ringAngles with optional offset (used to interleave sg/lg angles)
+  function ringAngles(n,objId,tag,offset){
+    if(!n)return[];
+    const rng=srand(hashStr(objId+tag));
+    const step=2*Math.PI/n,start=rng()*2*Math.PI+(offset||0);
+    return Array.from({length:n},(_,j)=>start+j*step+(rng()-0.5)*step*0.45);
+  }
+
+  // ── V3-identical text rendering — font maximized per circle ──
+  // Returns {els, fs} so callers can store element refs for animation.
+  function circleLabel(parent,x,y,lines,r,fillHue,weight){
+    const fs=maxFsInCircle(lines,r,3);
+    const lh=fs+2,totalH=(lines.length-1)*lh;
+    const els=[];
+    lines.forEach((line,i)=>{
+      const ts=cSvgEl('text',{x,y:y-totalH/2+i*lh,
+        'text-anchor':'middle','dominant-baseline':'middle',
+        'font-size':fs,'font-family':'system-ui',
+        fill:cTextOn(fillHue),'font-weight':weight,
+        'pointer-events':'none'});
+      ts.textContent=line;parent.appendChild(ts);els.push(ts);
+    });
+    return{els,fs};
+  }
+
+  // Goal label — placed NEXT TO the goal dot (never on top of it).
+  // The anchor point is just outside the goal dot edge in the radial direction.
+  // Lines stack AWAY from the objective centre (upward for top goals, downward for bottom, etc.)
+  function goalLabel(parent,angle,ox,oy,ringR,text){
+    const lines=cWrapLines(text||'',20);
+    const lh=GOAL_FS+2;
+    // Anchor: just outside the goal dot edge, radially outward
+    const dist=ringR+R_GOAL+4;
+    const bx=ox+Math.cos(angle)*dist, by=oy+Math.sin(angle)*dist;
+    const ca=Math.cos(angle), sa=Math.sin(angle);
+    const anchor=Math.abs(ca)<0.28?'middle':ca>0?'start':'end';
+    // Vertical stacking direction: away from the objective centre
+    // vsign>0 → goal is in lower half of SVG → stack downward; <0 → upper half → upward; 0 → center
+    const vsign=Math.abs(sa)<0.28?0:Math.sign(sa);
+    const els=[];
+    lines.forEach((line,k)=>{
+      let lineY;
+      if(vsign>0)       lineY=by+k*lh;                        // downward
+      else if(vsign<0)  lineY=by-(lines.length-1-k)*lh;       // upward (last line closest to dot)
+      else              lineY=by-(lines.length-1)/2*lh+k*lh;  // centred
+      const lt=cSvgEl('text',{x:bx,y:lineY,
+        'text-anchor':anchor,'dominant-baseline':'middle',
+        'font-size':GOAL_FS,'font-family':'system-ui',
+        fill:'#ffffff','font-weight':'400',
+        'pointer-events':'none',display:'none'});
+      lt.textContent=line;parent.appendChild(lt);els.push(lt);
+    });
+    return els;
+  }
+
+  // ── Animation helpers — reposition a moving orbiter after its angle changes ──
+  function repositionTheme(o){
+    const x=o.ox+Math.cos(o.angle)*R1,y=o.oy+Math.sin(o.angle)*R1;
+    o.el.setAttribute('cx',x);o.el.setAttribute('cy',y);
+    const lh=o.fs+2,totalH=(o.lines.length-1)*lh;
+    o.labelEls.forEach((lt,i)=>{lt.setAttribute('x',x);lt.setAttribute('y',y-totalH/2+i*lh);});
+  }
+  function repositionGoal(o){
+    const x=o.ox+Math.cos(o.angle)*o.ringR,y=o.oy+Math.sin(o.angle)*o.ringR;
+    o.el.setAttribute('cx',x);o.el.setAttribute('cy',y);
+    const dist=o.ringR+R_GOAL+4;
+    const bx=o.ox+Math.cos(o.angle)*dist,by=o.oy+Math.sin(o.angle)*dist;
+    const ca=Math.cos(o.angle),sa=Math.sin(o.angle);
+    const anchor=Math.abs(ca)<0.28?'middle':ca>0?'start':'end';
+    const vsign=Math.abs(sa)<0.28?0:Math.sign(sa);
+    const lh=GOAL_FS+2;
+    o.labelEls.forEach((lt,k)=>{
+      let lineY;
+      if(vsign>0)       lineY=by+k*lh;
+      else if(vsign<0)  lineY=by-(o.labelEls.length-1-k)*lh;
+      else              lineY=by-(o.labelEls.length-1)/2*lh+k*lh;
+      lt.setAttribute('x',bx);lt.setAttribute('y',lineY);lt.setAttribute('text-anchor',anchor);
+    });
+  }
+
+  // Objective color
+  const sorted=[...SB.objectives].sort((a,b)=>(b.themeIds||[]).length-(a.themeIds||[]).length);
+  const oRankV4={};SB.objectives.forEach(o=>{const r=sorted.findIndex(x=>x.id===o.id);oRankV4[o.id]=r/Math.max(N-1,1);});
+
+  zg.appendChild(cSvgEl('ellipse',{'class':'gellipse',cx,cy,rx:ea,ry:eb,fill:'none',stroke:'#9a9ab8','stroke-width':1,opacity:0.12}));
+
+  // Zoom to fit the full system (including outermost ring) in viewport
+  function v4ZoomTo(px,py,sysR3){
+    const sidebar=document.getElementById('gside');
+    const sideW=sidebar&&sidebar.style.transform!=='translateX(120%)'?320:0;
+    const vw=cW-sideW;
+    // Extra padding beyond the outermost ring to include goal label text.
+    // Labels start at R_GOAL+4 past the dot edge and can stack up to 4 lines outward.
+    const labelPad=R_GOAL+4+4*(GOAL_FS+2);
+    const sysD=(sysR3+labelPad)*2+20;
+    const z=Math.min(6,vw/sysD,cH/sysD);
+    gAnimateTo((vw/2+sideW/2)-z*px,cH/2-z*py,z);
+  }
+
+  const systemEls=[];
+
+  SB.objectives.forEach((obj,oi)=>{
+    const pos=objPos[oi];
+    const hue=C_RAMP50[Math.round(oRankV4[obj.id]*(C_RAMP50.length-1))];
+    const themes=SB.themes.filter(t=>(obj.themeIds||[]).includes(t.id));
+    const sg=SB.goals.filter(g=>g.type==='short'&&(g.objectiveIds||[]).includes(obj.id));
+    const lg=SB.goals.filter(g=>g.type==='long'&&(g.objectiveIds||[]).includes(obj.id));
+
+    // sysG uses local coordinates (centre = 0,0); transform places it on the ellipse.
+    // This lets us orbit the entire system by updating one attribute.
+    const sysG=cSvgEl('g',{'class':'gcluster',transform:'translate('+pos.x+','+pos.y+')'});
+    zg.appendChild(sysG);
+    const goalLabelEls=[],ringLabelEls=[];
+    const themeOrb=[],sgOrb=[],lgOrb=[];
+
+    const clickHandler=e=>{
+      e.stopPropagation();
+      gShowSidebar(v4ObjSidebar(obj,themes,sg,lg,hue));
+      if(gSelectFn)gSelectFn(obj.id);
+    };
+
+    // Helper — writes text curving just outside a ring of radius r.
+    // Uses a slightly larger arc so the text floats above the dashed line.
+    // Returns the text element so it can be shown/hidden on zoom.
+    function ringLabel(r,text,idSuffix,clr){
+      const pid='rlp-'+obj.id+'-'+idSuffix;
+      const fs=Math.max(5,GOAL_FS*0.78);
+      const rOff=r+fs*0.55; // offset outward so text clears the ring
+      const d=`M 0,${-rOff} A ${rOff},${rOff} 0 1,1 0,${rOff} A ${rOff},${rOff} 0 1,1 0,${-rOff}`;
+      const defs=cSvgEl('defs',{});
+      defs.appendChild(cSvgEl('path',{id:pid,d,fill:'none'}));
+      sysG.appendChild(defs);
+      const txt=cSvgEl('text',{'font-size':fs,'font-family':'system-ui',
+        fill:clr,opacity:0.55,'letter-spacing':'1.5','pointer-events':'none',display:'none'});
+      const tp=document.createElementNS('http://www.w3.org/2000/svg','textPath');
+      tp.setAttribute('href','#'+pid);tp.setAttribute('startOffset','8%');
+      tp.textContent=text;txt.appendChild(tp);sysG.appendChild(txt);
+      return txt;
+    }
+
+    // Dashed orbital rings — centred at local 0,0
+    if(themes.length)sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R1,fill:'none',stroke:hue,'stroke-width':1,'stroke-dasharray':'6 5',opacity:0.32}));
+    if(sg.length){
+      sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R2,fill:'none',stroke:'#E8961E','stroke-width':1,'stroke-dasharray':'5 5',opacity:0.28}));
+      ringLabelEls.push(ringLabel(R2,'SHORT TERM GOALS','sg','#E8961E'));
+    }
+    if(lg.length){
+      sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R3,fill:'none',stroke:'#2C72B0','stroke-width':1,'stroke-dasharray':'5 5',opacity:0.28}));
+      ringLabelEls.push(ringLabel(R3,'LONG TERM GOALS','lg','#2C72B0'));
+    }
+
+    // Theme orbiters — local coordinates, ox/oy=0
+    const tAngles=ringAngles(themes.length,obj.id,'t');
+    const themeHue=cMix(hue,0.18);
+    themes.forEach((t,j)=>{
+      const angle=tAngles[j];
+      const x=Math.cos(angle)*R1,y=Math.sin(angle)*R1;
+      const c=cSvgEl('circle',{cx:x,cy:y,r:R_T_U,fill:themeHue,stroke:C_BG,'stroke-width':1,style:'cursor:pointer'});
+      c.addEventListener('click',clickHandler);
+      c.addEventListener('mouseenter',ev=>showTT(ev,t.name));c.addEventListener('mouseleave',hideTT);
+      sysG.appendChild(c);
+      const lines=themePrep[t.id]?.lines||[t.name];
+      const{els:tLabelEls,fs:tFs}=circleLabel(sysG,x,y,lines,R_T_U,themeHue,'500');
+      themeOrb.push({el:c,labelEls:tLabelEls,angle,lines,fs:tFs,ox:0,oy:0});
+    });
+
+    // Short goal dots — local coordinates
+    const sgAngles=ringAngles(sg.length,obj.id,'s');
+    const sgOffset=sg.length>0?Math.PI/sg.length:Math.PI/4;
+    const lgAngles=ringAngles(lg.length,obj.id,'l',sgOffset);
+
+    sg.forEach((g,j)=>{
+      const angle=sgAngles[j];
+      const x=Math.cos(angle)*R2,y=Math.sin(angle)*R2;
+      const c=cSvgEl('circle',{cx:x,cy:y,r:R_GOAL,fill:'#E8961E',stroke:C_BG,'stroke-width':0.7,style:'cursor:pointer'});
+      c.addEventListener('click',clickHandler);
+      c.addEventListener('mouseenter',ev=>showTT(ev,g.title));c.addEventListener('mouseleave',hideTT);
+      sysG.appendChild(c);
+      const glEls=goalLabel(sysG,angle,0,0,R2,g.title);
+      glEls.forEach(l=>goalLabelEls.push(l));
+      sgOrb.push({el:c,labelEls:glEls,angle,ringR:R2,ox:0,oy:0});
+    });
+
+    // Long goal dots — local coordinates
+    lg.forEach((g,j)=>{
+      const angle=lgAngles[j];
+      const x=Math.cos(angle)*R3,y=Math.sin(angle)*R3;
+      const c=cSvgEl('circle',{cx:x,cy:y,r:R_GOAL,fill:'#2C72B0',stroke:C_BG,'stroke-width':0.7,style:'cursor:pointer'});
+      c.addEventListener('click',clickHandler);
+      c.addEventListener('mouseenter',ev=>showTT(ev,g.title));c.addEventListener('mouseleave',hideTT);
+      sysG.appendChild(c);
+      const glEls=goalLabel(sysG,angle,0,0,R3,g.title);
+      glEls.forEach(l=>goalLabelEls.push(l));
+      lgOrb.push({el:c,labelEls:glEls,angle,ringR:R3,ox:0,oy:0});
+    });
+
+    // Objective circle — centred at local 0,0
+    sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R_OBJ_U+6,fill:hue,opacity:0.16}));
+    const oc=cSvgEl('circle',{cx:0,cy:0,r:R_OBJ_U,fill:hue,stroke:C_BG,'stroke-width':2,style:'cursor:pointer'});
+    oc.addEventListener('click',clickHandler);
+    oc.addEventListener('mouseenter',ev=>showTT(ev,obj.title+(obj.desc?' — '+obj.desc:'')));
+    oc.addEventListener('mouseleave',hideTT);
+    sysG.appendChild(oc);
+    circleLabel(sysG,0,0,objPrep[oi].lines,R_OBJ_U,hue,'600');
+
+    systemEls.push({id:obj.id,el:sysG,goalLabelEls,ringLabelEls,pos:{x:pos.x,y:pos.y},arcParam:objArcParams[oi],themeOrb,sgOrb,lgOrb});
+  });
+
+  // Dim non-selected, show goal labels for selected (orbital animation always runs)
+  let isZoomedIn=false;
+  gSelectFn=(selId)=>{
+    isZoomedIn=!!selId; gSelId=selId;
+    const sel=systemEls.find(s=>s.id===selId);
+    systemEls.forEach(s=>{
+      const selected=s.id===selId;
+      s.el.style.opacity=selId&&!selected?'0.1':'1';
+      s.goalLabelEls.forEach(l=>l.setAttribute('display',selected?'':'none'));
+      s.ringLabelEls.forEach(l=>l.setAttribute('display',selected?'':'none'));
+    });
+    if(selId&&sel)v4ZoomTo(sel.pos.x,sel.pos.y,R3);
+  };
+
+  // Global always-on animation loop.
+  // Ring speeds (rad/s, 0.7× of previous): themes 0.0735 CW, sg 0.049 CCW, lg 0.0343 CW
+  // Ellipse speed (zoom-out only): 0.4× theme speed → objectives crawl slowly around ellipse
+  const OBJ_ARC_SPEED=totLen*0.0735*0.4/(2*Math.PI); // arc-length units per second
+  let objArcOffset=0, lastT=null;
+  function globalOrbitTick(t){
+    if(lastT===null)lastT=t;
+    const dt=Math.min((t-lastT)/1000,0.05);
+    lastT=t;
+
+    // Ring orbiters — always animate
+    systemEls.forEach(s=>{
+      s.themeOrb.forEach(o=>{o.angle+=dt*0.0735;repositionTheme(o);});
+      s.sgOrb.forEach(o=>{o.angle-=dt*0.0490;repositionGoal(o);});
+      s.lgOrb.forEach(o=>{o.angle+=dt*0.0343;repositionGoal(o);});
+    });
+
+
+    gOrbitRAF=requestAnimationFrame(globalOrbitTick);
+  }
+  gOrbitRAF=requestAnimationFrame(globalOrbitTick);
+
+  // Fit view to actual content size (R3 = outermost ring) not the budget (maxR).
+  // No upper cap on z so content zooms in to fill the viewport when it's smaller.
+  const pad=28;
+  const fitR=R3+R_GOAL+pad;
+  const minX=cx-ea-fitR,maxX=cx+ea+fitR,minY=cy-eb-fitR,maxY=cy+eb+fitR;
+  const z=Math.min(4,cW/(maxX-minX),cH/(maxY-minY));
+  gFitView={x:cW/2-z*(minX+maxX)/2,y:cH/2-z*(minY+maxY)/2,z};
+  gResetView();
+}
+
+/* ---- GERTY init + reveal ---- */
+let gertyInited=false;
+function initGerty(){
+  const stage=document.getElementById('gertyStage');
+  const gSvg=document.getElementById('gsvg');
+  const cW=stage.clientWidth||innerWidth, cH=stage.clientHeight||innerHeight;
+  gSvg.setAttribute('width',cW); gSvg.setAttribute('height',cH);
+  gSvg.setAttribute('viewBox','0 0 '+cW+' '+cH);
+  drawV4(gSvg,cW,cH);
+  gWireView(gSvg);
+}
+function playGertyReveal(){
+  const zg=document.getElementById('gzoom-group'); if(!zg)return;
+  const ell=zg.querySelector('.gellipse');
+  const clusters=Array.prototype.slice.call(zg.querySelectorAll('.gcluster'));
+  let ecx=0,ecy=0; if(ell){ ecx=parseFloat(ell.getAttribute('cx'))||0; ecy=parseFloat(ell.getAttribute('cy'))||0; }
+  const posOf=g=>{ const m=/translate\(([-\d.]+),([-\d.]+)\)/.exec(g.getAttribute('transform')||''); return m?{x:parseFloat(m[1]),y:parseFloat(m[2])}:{x:0,y:0}; };
+  clusters.sort((a,b)=>{ const pa=posOf(a),pb=posOf(b); return Math.atan2(pa.y-ecy,pa.x-ecx)-Math.atan2(pb.y-ecy,pb.x-ecx); });
+  clusters.forEach(g=>{ g.style.opacity='0'; g.style.transition='opacity .6s ease'; });
+  if(ell){ ell.setAttribute('pathLength','1'); ell.style.strokeDasharray='1'; ell.style.strokeDashoffset='1'; ell.style.opacity='0.5'; ell.style.transition='stroke-dashoffset 1.8s ease'; }
+  setTimeout(()=>{ if(ell) ell.style.strokeDashoffset='0'; }, 200);
+  setTimeout(()=>{ if(ell){ ell.style.transition='opacity 1s ease'; ell.style.opacity='0.12'; } }, 2050);
+  let t=2100;
+  clusters.forEach((g,i)=>setTimeout(()=>{ g.style.opacity='1'; }, t+i*350));
+  t=t+clusters.length*350+300;
+  setTimeout(()=>{ const h=document.getElementById('ghint'); if(h) h.classList.add('show'); }, t);
+}
+new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting && !gertyInited){ gertyInited=true;
+  document.getElementById('gertyStage').classList.add('lit');
+  initGerty(); playGertyReveal(); holdScroll(document.getElementById('gertyPin').offsetTop,3000); } }); },{threshold:0.55}).observe(document.getElementById('gertyStage'));
+
+/* ===================== CARDS FINALE (monochrome, flip on click) ===================== */
+function renderCardsFinale(){
+  const grid=document.getElementById('cards-grid'); if(!grid)return;
+  grid.innerHTML='';
+  (SB.objectives||[]).forEach(obj=>{
+    const linkedThemes=(obj.themeIds||[]).map(tid=>SB.themes.find(t=>t.id===tid)).filter(Boolean);
+    const goals=SB.goals.filter(g=>(g.objectiveIds||[]).includes(obj.id));
+    const shortGoals=goals.filter(g=>g.type==='short');
+    const longGoals=goals.filter(g=>g.type!=='short');
+    const seen=new Set(),ideas=[];
+    linkedThemes.forEach(t=>(t.ideaIds||[]).forEach(iid=>{ if(!seen.has(iid)){ seen.add(iid); const i=SB.ideas.find(x=>x.id===iid); if(i)ideas.push(i); } }));
+    let content='<div class="flip-card-back-content">';
+    if(obj.desc) content+='<div class="fc-desc">'+cEsc(obj.desc)+'</div>';
+    if(goals.length){ content+='<div class="fc-section-bar">Goals</div>';
+      if(shortGoals.length){ content+='<div class="fc-goal-type">Short term</div>'; shortGoals.forEach(g=>content+='<div class="fc-goal">'+cEsc(g.title)+'</div>'); }
+      if(longGoals.length){ content+='<div class="fc-goal-type">Long term</div>'; longGoals.forEach(g=>content+='<div class="fc-goal">'+cEsc(g.title)+'</div>'); }
+    }
+    if(linkedThemes.length){ content+='<div class="fc-section-bar">Themes</div>';
+      linkedThemes.forEach(t=>{ content+='<div class="fc-theme-text">'+cEsc(t.name)+'</div>'; if(t.desc)content+='<div class="fc-theme-desc">'+cEsc(t.desc)+'</div>'; });
+    }
+    if(ideas.length){ content+='<div class="fc-section-bar">Ideas ('+ideas.length+')</div>';
+      ideas.forEach(i=>content+='<div class="fc-idea-text">'+cEsc(i.text)+'</div>');
+    }
+    content+='</div>';
+    const card=document.createElement('div'); card.className='flip-card';
+    card.innerHTML='<div class="flip-card-inner">'+
+      '<div class="flip-card-front">'+
+        '<div class="fc-top-space"></div>'+
+        '<div class="flip-card-front-name">'+cEsc(obj.title||'Objective')+'</div>'+
+        '<div class="fc-front-stats">'+
+          '<div class="fcs"><b>'+linkedThemes.length+'</b><span>Themes</span></div>'+
+          '<div class="fcs"><b>'+ideas.length+'</b><span>Ideas</span></div>'+
+          '<div class="fcs"><b>'+shortGoals.length+'</b><span>Short-term goals</span></div>'+
+          '<div class="fcs"><b>'+longGoals.length+'</b><span>Long-term goals</span></div>'+
+        '</div>'+
+        '<div class="fc-front-hint">Click to flip</div>'+
+      '</div>'+
+      '<div class="flip-card-back">'+
+        '<div class="flip-card-back-sticky"><div class="flip-card-back-title">'+cEsc(obj.title||'Objective')+'</div></div>'+
+        content+
+      '</div>'+
+    '</div>';
+    card.addEventListener('click',()=>card.classList.toggle('flipped'));
+    grid.appendChild(card);
+  });
+}
+renderCardsFinale();
+  fitSections(); setTimeout(fitSections,60); setTimeout(fitSections,400);
+
+  window.cSideClose=cSideClose; window.cSideSelect=cSideSelect; window.gDeselect=gDeselect; window.odyCloseSidebar=odyCloseSidebar; window.shuffleTars=shuffleTars;
+}
+loadData().then(function(sb){ runApp(sb||BAKED_SB, BAKED_ORIGIN); });
+
+</script>
+</body>
+</html>
