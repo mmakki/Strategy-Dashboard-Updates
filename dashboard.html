@@ -1762,10 +1762,10 @@ function mapRender(){
     (vis.initiatives||[]).forEach(n=>{
       const isA=h.initiatives.has(n.id);const isDim=hasSel&&!isA;
       const isLS=lm&&lSel===n.id;const isLH=hasLS&&lh.initiatives.has(n.id)&&lSel!==n.id;
-      const gc=(n.goalIds||[]).length;const ppl=(n.people||[]).join(', ');
+      const gc=(n.goalIds||[]).length;const pc=(n.people||[]).length;
       let hint='';
       if(lm&&lSel&&lSType==='objective'){const linked=initObjIds(n).includes(lSel);if(linked)hint=`<div style="font-size:8px;margin-top:3px;color:${INIT_ACC}">✓ linked via goals</div>`;}
-      const tile=mkTile(n.id,'initiative',n.title,`${gc} goal${gc!==1?'s':''}${ppl?' · '+ppl:''}`,isA,isDim,isLS,isLH,INIT_ACC,n.title+(n.desc?' — '+n.desc:'')+(ppl?' — People: '+ppl:''),sfM.initiatives,nF,nL);
+      const tile=mkTile(n.id,'initiative',n.title,`${gc} goal${gc!==1?'s':''} · ${pc} ${pc===1?'person':'people'}`,isA,isDim,isLS,isLH,INIT_ACC,n.title+(n.desc?' — '+n.desc:'')+` — ${gc} goal${gc!==1?'s':''}, ${pc} ${pc===1?'person':'people'}`,sfM.initiatives,nF,nL);
       if(hint)tile.insertAdjacentHTML('beforeend',hint);
       ng.appendChild(tile);
     });
