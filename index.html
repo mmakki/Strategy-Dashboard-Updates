@@ -757,7 +757,7 @@ function holdScroll(atY, ms){
 function playHalReveal(){
   if(!halSeq) return;
   const show=e=>{ if(e){ e.classList.remove('oe-hidden'); e.style.transform='none'; } };
-  const draw=e=>{ if(e) e.style.strokeDashoffset='0'; };
+  const draw=e=>{ if(e){ e.style.transition='stroke-dashoffset 1.4s ease'; void e.getBoundingClientRect(); e.style.strokeDashoffset='0'; } };
   // 1) ideas fade in first (0.5x)  [200 -> 1400]
   setTimeout(()=>{ halSeq.ideas.forEach(show); }, 200);
   // 2) dashed lines grow out to the themes  [1400 -> 2050]
@@ -1225,7 +1225,7 @@ function drawOdysseyArc(wrap,cW,cH){
       }
 
       // Obj→theme curve + theme→ideas dashed line
-      arcCurve(a,R_OBJ-R_OBJ_C-1,tAngle,R_THEME+R_THEME_C+1,color,1.1,0.35,null,g,'oe oe-conn1');
+      arcCurve(tAngle,R_THEME+R_THEME_C+1,a,R_OBJ-R_OBJ_C-1,color,1.1,0.35,null,g,'oe oe-conn1');
       const[ic0x,ic0y]=pos(R_THEME-R_THEME_C-2,tAngle);
       const[ic1x,ic1y]=pos(R_IDEA+R_IDEA_C+4,tAngle);
       const _cl=el('line',{'class':'oe oe-conn2',x1:ic0x,y1:ic0y,x2:ic1x,y2:ic1y,stroke:color,'stroke-width':'1.6',opacity:'0.38','stroke-dasharray':'4,5'},g);
@@ -1404,9 +1404,14 @@ function initHal(){
   halSeq.obj.concat(halSeq.ring?[halSeq.ring]:[]).forEach(e=>{ e.style.transition='opacity 1.4s ease'; });
   // Theme->obj connectors: undrawn strokes (draw out toward the objectives)
   halSeq.conn1.forEach(e=>{
-    e.setAttribute('pathLength','1');
-    e.style.transition='stroke-dashoffset 1.4s ease';
-    e.style.strokeDasharray='1'; e.style.strokeDashoffset='-1';
+    // Real-length dash draw (positive offset) — the pathLength shorthand is
+    // unreliable in Safari and draws from the wrong end before snapping.
+    // The transition is only enabled at reveal time; enabling it here would
+    // animate the initial hide as a visible draw-then-erase flash.
+    let L=100; try{L=e.getTotalLength();}catch(err){}
+    e.style.transition='none';
+    e.style.strokeDasharray=L+' '+L;
+    e.style.strokeDashoffset=L;
   });
   // Themes: fade in together (match dashed-line speed)
   halSeq.themeEls.concat(halSeq.themeRing?[halSeq.themeRing]:[]).forEach(e=>{ e.style.transition='opacity 1.3s ease'; });
@@ -2777,8 +2782,8 @@ function playGertyReveal(){
   const posOf=g=>{ const m=/translate\(([-\d.]+),([-\d.]+)\)/.exec(g.getAttribute('transform')||''); return m?{x:parseFloat(m[1]),y:parseFloat(m[2])}:{x:0,y:0}; };
   clusters.sort((a,b)=>{ const pa=posOf(a),pb=posOf(b); return Math.atan2(pa.y-ecy,pa.x-ecx)-Math.atan2(pb.y-ecy,pb.x-ecx); });
   clusters.forEach(g=>{ g.style.opacity='0'; g.style.transition='opacity .6s ease'; });
-  if(ell){ ell.setAttribute('pathLength','1'); ell.style.strokeDasharray='1'; ell.style.strokeDashoffset='1'; ell.style.opacity='0.5'; ell.style.transition='stroke-dashoffset 1.8s ease'; }
-  setTimeout(()=>{ if(ell) ell.style.strokeDashoffset='0'; }, 200);
+  if(ell){ let L=1000; try{L=ell.getTotalLength();}catch(err){} ell.style.transition='none'; ell.style.strokeDasharray=L+' '+L; ell.style.strokeDashoffset=String(L); ell.style.opacity='0.5'; }
+  setTimeout(()=>{ if(ell){ ell.style.transition='stroke-dashoffset 1.8s ease'; void ell.getBoundingClientRect(); ell.style.strokeDashoffset='0'; } }, 200);
   setTimeout(()=>{ if(ell){ ell.style.transition='opacity 1s ease'; ell.style.opacity='0.12'; } }, 2050);
   let t=2100;
   clusters.forEach((g,i)=>setTimeout(()=>{ g.style.opacity='1'; }, t+i*350));
