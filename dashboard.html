@@ -140,7 +140,7 @@ input[type=range]{width:70px}
 .flip-card-back-desc{font-size:11px;line-height:1.55;margin-bottom:0;padding:4px 2px}
 .fc-initiative{font-size:11px;font-weight:600;color:#2a2a2a;background:transparent;border-left:3px solid #4A80C8;padding:5px 8px;margin:2px 0;border-radius:0;line-height:1.35}
 .fc-init{font-size:11px;font-weight:600;color:#2a2a2a;border-left:3px solid #E8A060;padding:5px 8px;margin:2px 0;line-height:1.35}
-.fc-init-ppl{font-weight:400;color:#777;font-size:10px}
+.fc-init-ppl{font-weight:400;font-style:italic;color:#8a8a8a;font-size:10px}
 .fc-item-desc{font-weight:400;color:#888;font-size:10px;line-height:1.4;margin-top:2px}
 .v4-person{font-size:11px;color:#ddd;padding:5px 8px;border-radius:6px;background:rgba(255,255,255,0.05);margin-bottom:4px;cursor:grab;display:flex;justify-content:space-between;align-items:center;gap:6px;border:1px solid transparent;user-select:none}
 .v4-person:hover{background:rgba(53,196,168,0.12)}
@@ -4728,7 +4728,7 @@ function printReport(){
     nameLines.forEach(line=>{ doc.text(line,ML+3,y+lh*0.78); y+=lh; });
     if(people&&people.length){
       const ppt=9.5,plh=mm(ppt);
-      doc.setFont('helvetica','normal');doc.setFontSize(ppt);doc.setTextColor(100,100,100);
+      doc.setFont('helvetica','italic');doc.setFontSize(ppt);doc.setTextColor(138,138,138);
       doc.splitTextToSize('People: '+people.join(', '),w).forEach(line=>{ ensure(plh); doc.text(line,ML+3,y+plh*0.78); y+=plh; });
     }
     if(desc){
