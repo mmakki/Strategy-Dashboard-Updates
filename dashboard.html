@@ -138,12 +138,10 @@ input[type=range]{width:70px}
 .flip-card-back-title{font-size:13px;font-weight:800;line-height:1.3;letter-spacing:-0.01em}
 .flip-card-back-content{padding:8px 14px 16px}
 .flip-card-back-desc{font-size:11px;line-height:1.55;margin-bottom:0;padding:4px 2px}
-.fc-goal-type{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#B06018;margin:6px 0 3px 0}
-.fc-goal-type.long{color:#2860A8}
-.fc-goal{font-size:11px;font-weight:600;color:#2a2a2a;background:transparent;border-left:3px solid #E8A060;padding:5px 8px;margin:2px 0;border-radius:0;line-height:1.35}
-.fc-goal.long{background:transparent;border-left-color:#4A80C8}
-.fc-init{font-size:11px;font-weight:600;color:#2a2a2a;border-left:3px solid #2AAE94;padding:5px 8px;margin:2px 0;line-height:1.35}
+.fc-initiative{font-size:11px;font-weight:600;color:#2a2a2a;background:transparent;border-left:3px solid #4A80C8;padding:5px 8px;margin:2px 0;border-radius:0;line-height:1.35}
+.fc-init{font-size:11px;font-weight:600;color:#2a2a2a;border-left:3px solid #E8A060;padding:5px 8px;margin:2px 0;line-height:1.35}
 .fc-init-ppl{font-weight:400;color:#777;font-size:10px}
+.fc-item-desc{font-weight:400;color:#888;font-size:10px;line-height:1.4;margin-top:2px}
 .v4-person{font-size:11px;color:#ddd;padding:5px 8px;border-radius:6px;background:rgba(255,255,255,0.05);margin-bottom:4px;cursor:grab;display:flex;justify-content:space-between;align-items:center;gap:6px;border:1px solid transparent;user-select:none}
 .v4-person:hover{background:rgba(53,196,168,0.12)}
 .v4-person.on{border-color:#35C4A8;background:rgba(53,196,168,0.18)}
@@ -171,10 +169,10 @@ input[type=range]{width:70px}
   .pr-card-title{font-size:12px;font-weight:700;color:#111;padding:9px 12px;border-bottom:1px solid rgba(0,0,0,0.07)}
   .pr-card-desc{font-size:10px;color:#333;line-height:1.6;padding:7px 12px 5px}
   .pr-section-bar{font-size:8.5px;font-weight:700;color:#f0f0f0;text-transform:uppercase;letter-spacing:0.07em;padding:3px 10px;margin-top:3px}
-  .pr-goal-type{font-size:8.5px;font-weight:700;text-transform:uppercase;color:#B06018;padding:5px 12px 1px}
-  .pr-goal-type.long{color:#2860A8}
-  .pr-goal{font-size:9.5px;color:#333;padding:2px 12px 2px 20px;line-height:1.4;border-left:2px solid #E8A060;margin-left:12px}
-  .pr-goal.long{border-left-color:#4A80C8}
+  .pr-initiative-type{font-size:8.5px;font-weight:700;text-transform:uppercase;color:#B06018;padding:5px 12px 1px}
+  .pr-initiative-type.long{color:#2860A8}
+  .pr-initiative{font-size:9.5px;color:#333;padding:2px 12px 2px 20px;line-height:1.4;border-left:2px solid #E8A060;margin-left:12px}
+  .pr-initiative.long{border-left-color:#4A80C8}
   .pr-theme-name{font-size:10.5px;font-weight:600;color:#222;padding:4px 12px 1px}
   .pr-theme-desc{font-size:9px;color:#777;padding:0 12px 4px;line-height:1.45}
   .pr-idea{font-size:9.5px;color:#444;padding:2px 12px;line-height:1.35}
@@ -196,7 +194,7 @@ input[type=range]{width:70px}
   <div style="max-width:560px;padding:2.5rem 0 2rem">
     <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#aaa;margin-bottom:14px">Strategy Mapping Tool</div>
     <h1 style="font-size:28px;font-weight:700;line-height:1.3;color:#111;margin:0 0 18px">Map Ideas, Test Connections,<br>Shape Direction.</h1>
-    <p style="font-size:13px;line-height:1.85;color:#555;margin:0 0 28px">This tool maps ideas to strategic objectives and helps you see where the strongest connections lie. Load the Community of Practice Teaching &amp; Learning roadmap to explore and refine the ideas, themes, objectives and goals already mapped, or build your own from scratch using the template below. Once your data is in place, start moving things around, testing connections and seeing what emerges.</p>
+    <p style="font-size:13px;line-height:1.85;color:#555;margin:0 0 28px">This tool maps ideas to strategic objectives and helps you see where the strongest connections lie. Load the Community of Practice Teaching &amp; Learning roadmap to explore and refine the ideas, themes, objectives, initiatives and outcomes already mapped, or build your own from scratch using the template below. Once your data is in place, start moving things around, testing connections and seeing what emerges.</p>
     <!-- Landing choices (side by side, highlight on hover only) -->
     <div id="landing-choices" style="display:flex;flex-direction:row;flex-wrap:wrap;gap:12px;max-width:520px">
       <button class="land-btn" onclick="loadRoadmapData()"><span class="lb-title">Load the roadmap</span><span class="lb-sub">View the Community of Practice Teaching &amp; Learning strategy</span></button>
@@ -243,14 +241,13 @@ input[type=range]{width:70px}
   <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
     <div>
       <div style="font-size:17px;font-weight:500;margin-bottom:2px">Sandbox</div>
-      <div style="font-size:11px;color:#666">Organise consultation ideas into themes, objectives and goals</div>
+      <div style="font-size:11px;color:#666">Organise consultation ideas into themes, objectives, initiatives and outcomes</div>
       <div style="display:flex;gap:16px;align-items:center;margin-top:6px">
         <span style="font-size:11px;color:#999">Ideas <strong id="sb-fc-ideas" style="color:#111">0</strong></span>
         <span style="font-size:11px;color:#999">Themes <strong id="sb-fc-themes" style="color:#111">0</strong></span>
         <span style="font-size:11px;color:#999">Objectives <strong id="sb-fc-objectives" style="color:#111">0</strong></span>
-        <span style="font-size:11px;color:#999">Goals <strong id="sb-fc-goals" style="color:#111">0</strong></span>
         <span style="font-size:11px;color:#999">Initiatives <strong id="sb-fc-initiatives" style="color:#111">0</strong></span>
-        <span style="font-size:11px;color:#999">Goals covered <strong id="sb-fc-coverage" style="color:#12836F">0 of 0</strong></span>
+        <span style="font-size:11px;color:#999">Outcomes <strong id="sb-fc-outcomes" style="color:#111">0</strong></span>
       </div>
     </div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
@@ -319,11 +316,11 @@ input[type=range]{width:70px}
   </div><!-- /sb-themes-body -->
 </div>
 
-<!-- OBJECTIVES & GOALS -->
+<!-- OBJECTIVES, INITIATIVES & OUTCOMES -->
 <div style="background:#fff;border-radius:10px;padding:1rem;margin-bottom:1rem;border:0.5px solid #e5e5e5">
   <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid #f0f0f0" id="sb-obj-hdr">
     <div style="display:flex;align-items:center;gap:8px">
-      <div style="font-size:13px;font-weight:500">Objectives &amp; Goals</div>
+      <div style="font-size:13px;font-weight:500">Objectives, Initiatives &amp; Outcomes</div>
       <button id="sb-odesc-toggle" onclick="sbToggleObjDesc()" style="font-size:10px;padding:3px 10px">Hide descriptions</button>
       <button id="sb-obj-view-toggle" onclick="sbToggleObjView()" style="font-size:10px;padding:3px 10px;background:#fff;border:0.5px solid #ccc;border-radius:6px;cursor:pointer;color:#555">Grid view</button>
       <button id="sb-obj-collapse" onclick="sbCollapse('obj')" style="font-size:10px;padding:3px 10px;background:#fff;border:0.5px solid #ccc;border-radius:6px;cursor:pointer;color:#555">Collapse</button>
@@ -332,24 +329,6 @@ input[type=range]{width:70px}
   </div>
   <div id="sb-obj-body" style="margin-top:12px">
     <div id="sb-obj-row" style="display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;align-items:flex-start"></div>
-  </div>
-</div>
-
-<!-- INITIATIVES -->
-<div style="background:#fff;border-radius:10px;padding:1rem;margin-bottom:1rem;border:0.5px solid #e5e5e5">
-  <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid #f0f0f0">
-    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-      <div style="font-size:13px;font-weight:500">Initiatives</div>
-      <div id="sb-init-coverage" style="font-size:10px;color:#12836F;font-weight:600"></div>
-      <button id="sb-idesc-toggle" onclick="sbToggleInitDesc()" style="font-size:10px;padding:3px 10px">Hide descriptions</button>
-      <button id="sb-init-view-toggle" onclick="sbToggleInitView()" style="font-size:10px;padding:3px 10px">Grid view</button>
-      <button id="sb-init-collapse" onclick="sbCollapse('init')" style="font-size:10px;padding:3px 10px;background:#fff;border-color:#ccc;color:#555">Collapse</button>
-    </div>
-    <button class="pri" onclick="sbOpenModal('initiative')">+ Add Initiative</button>
-  </div>
-  <div id="sb-init-body" style="margin-top:12px">
-    <div style="font-size:11px;color:#666;margin-bottom:10px">Mechanisms that move objectives toward their goals — drag goals from the objective cards above into an initiative to link them</div>
-    <div id="sb-init-grid" style="display:flex;flex-wrap:wrap;gap:10px;min-height:32px;align-items:stretch"></div>
   </div>
 </div>
 
@@ -418,31 +397,25 @@ input[type=range]{width:70px}
       <div class="mapdiv" data-i="2"></div>
       <div class="colw" id="colw-initiatives">
         <div class="map-col-box">
-          <div class="map-col-zoom">Initiatives <input type="range" id="nzoom" min="1" max="5" value="3" oninput="mapRender()"></div>
+          <div class="map-col-zoom">Initiatives <input type="range" id="gzoom" min="1" max="5" value="3" oninput="mapRender()"></div>
           <div style="margin:4px 0 6px"><button id="clps-initiatives" onclick="mapCollapseCol('initiatives')" style="font-size:9px;padding:2px 10px">Collapse</button></div>
-          <div class="col-hdr" style="color:#12836F">Initiatives</div>
+          <div class="col-hdr">Initiatives</div>
           <div class="tgrid" id="map-initiatives"></div>
         </div>
       </div>
       <div class="mapdiv" data-i="3"></div>
-      <div class="colw" id="colw-goals">
-        <div class="map-col-box" style="display:flex;flex-direction:column;gap:10px">
-          <div class="map-col-zoom">Goals <input type="range" id="gzoom" min="1" max="5" value="3" oninput="mapRender()"></div>
-          <div style="margin:4px 0 6px"><button id="clps-goals" onclick="mapCollapseCol('goals')" style="font-size:9px;padding:2px 10px">Collapse</button></div>
-          <div>
-            <div class="col-hdr" style="color:#B06018;margin-bottom:4px">Short term</div>
-            <div class="tgrid" id="map-goals-short"></div>
-          </div>
-          <div style="border-top:1px dashed #e5e5e5;padding-top:8px">
-            <div class="col-hdr" style="color:#2860A8;margin-bottom:4px">Long term</div>
-            <div class="tgrid" id="map-goals-long"></div>
-          </div>
+      <div class="colw" id="colw-outcomes">
+        <div class="map-col-box">
+          <div class="map-col-zoom">Outcomes <input type="range" id="nzoom" min="1" max="5" value="3" oninput="mapRender()"></div>
+          <div style="margin:4px 0 6px"><button id="clps-outcomes" onclick="mapCollapseCol('outcomes')" style="font-size:9px;padding:2px 10px">Collapse</button></div>
+          <div class="col-hdr">Outcomes</div>
+          <div class="tgrid" id="map-outcomes"></div>
         </div>
       </div>
     </div>
   </div>
   <div class="det" id="mapdet">Click any tile to highlight its connections</div>
-  <div class="hint">In Link mode: click an idea then a theme · a theme then an objective · an objective then a goal · an initiative then a goal. An initiative's objectives derive automatically from its goals — objective→goal connections draw dashed until an initiative delivers that goal.</div>
+  <div class="hint">In Link mode: click an idea then a theme · a theme then an objective · an objective then an initiative · an initiative then an outcome. Outcomes connect through the initiatives that deliver them.</div>
 </div>
 
 <!-- TAB 3: VISUALISE -->
@@ -512,7 +485,6 @@ input[type=range]{width:70px}
         <div id="v4-people-list" style="overflow-y:auto;flex:1;min-height:40px"></div>
       </div>
 
-      <button id="v4-goaltext-btn" onclick="v4GoalTextToggle()" style="display:none;position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:32;background:rgba(13,13,22,0.85);border:1px solid #35C4A855;color:#9adacb;font-size:10px;letter-spacing:0.08em;padding:6px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(3px)">Show goal text</button>
       <!-- Odyssey detail sidebar -->
       <div id="ody-sidebar">
         <div id="ody-sidebar-inner">
@@ -781,8 +753,8 @@ function parseRows(rows,filename){
   const hasHeader=firstRow.some(h=>h.includes('idea')||h.includes('theme')||h.includes('col')||h.includes('text'));
   const startRow=hasHeader?1:0;
 
-  // Detect sandbox format (has Objective / Goal columns)
-  const isSandboxFmt=firstRow.some(h=>h==='objective'||h.includes('goal type')||h==='goal');
+  // Detect sandbox format (has Objective / Initiative / Outcome columns)
+  const isSandboxFmt=firstRow.some(h=>h==='objective'||h.includes('initiative type')||h==='initiative'||h==='outcome');
 
   // Build column index map from named headers (fallback to positional)
   function ci(terms,fallback){ const i=firstRow.findIndex(h=>terms.some(t=>h===t||h.includes(t))); return i>-1?i:fallback; }
@@ -792,11 +764,11 @@ function parseRows(rows,filename){
   const cStrat   =ci(['strategy','zone'],3);  // strategy and zone share the same column slot
   const cObj     =ci(['objective'],4);
   const cODesc   =ci(['objective description','objective desc'],5);
-  const cGoal    =ci(['goal'],6);
-  const cGType   =ci(['goal type'],7);
-  const cInit    =ci(['initiative people','initiative description','initiative desc','initiative'].slice(3),8);
-  const cIDesc   =ci(['initiative description','initiative desc'],9);
-  const cPeople  =ci(['initiative people','people'],10);
+  const cInitiative=ci(['initiative'],6);
+  const cIDesc   =ci(['initiative description','initiative desc'],7);
+  const cPeople  =ci(['people'],8);
+  const cOutc    =ci(['outcome'],9);
+  const cOutcDesc=ci(['outcome description','outcome desc'],10);
 
   // ── MAP data (ideas + themes + zone) ─────────────────────
   ideas=[];themes=[];
@@ -822,8 +794,8 @@ function parseRows(rows,filename){
 
   // ── SANDBOX data (full 8-column format) ──────────────────
   if(isSandboxFmt){
-    SB={ideas:[],themes:[],objectives:[],goals:[],initiatives:[],_n:1};
-    const sbTMap={},sbOMap={},sbNMap={};
+    SB={ideas:[],themes:[],objectives:[],initiatives:[],outcomes:[],_n:1};
+    const sbTMap={},sbOMap={},sbGMap={},sbNMap={};
     for(let i=startRow;i<rows.length;i++){
       const row=rows[i];
       const ideaText =String(row[cIdea]||'').trim();
@@ -832,10 +804,12 @@ function parseRows(rows,filename){
       const stratRaw =String(row[cStrat]||'').trim().toLowerCase();
       const objTitle =String(row[cObj]||'').trim();
       const objDesc  =String(row[cODesc]||'').trim();
-      const goalTitle=String(row[cGoal]||'').trim();
-      const gtRaw    =String(row[cGType]||'').trim().toLowerCase();
-      const goalType =gtRaw.includes('long')?'long':'short';
-      if(!ideaText&&!themeName&&!objTitle&&!goalTitle)continue;
+      const initiativeTitle=String(row[cInitiative]||'').trim();
+      const initiativeDesc =String(row[cIDesc]||'').trim();
+      const peopleRaw=String(row[cPeople]||'').trim();
+      const outcTitle=String(row[cOutc]||'').trim();
+      const outcDesc =String(row[cOutcDesc]||'').trim();
+      if(!ideaText&&!themeName&&!objTitle&&!initiativeTitle&&!outcTitle)continue;
 
       let idea=null;
       if(ideaText){ idea=SB.ideas.find(i=>i.text.trim().toLowerCase()===ideaText.toLowerCase()); if(!idea){idea={id:sbUid(),text:ideaText};SB.ideas.push(idea);} }
@@ -855,20 +829,27 @@ function parseRows(rows,filename){
         if(theme&&!obj.themeIds.includes(theme.id))obj.themeIds.push(theme.id);
       }
 
-      let goal=null;
-      if(goalTitle&&obj){
-        goal=SB.goals.find(g=>g.title===goalTitle&&g.objectiveIds.includes(obj.id));
-        if(!goal){goal={id:sbUid(),title:goalTitle,desc:'',type:goalType,objectiveIds:[obj.id]};SB.goals.push(goal);}
+      // Initiative — deduped by title; linked directly to the row's objective; carries people
+      let initiative=null;
+      if(initiativeTitle){
+        initiative=sbGMap[initiativeTitle];
+        if(!initiative){
+          initiative={id:sbUid(),title:initiativeTitle,desc:initiativeDesc,people:peopleRaw?peopleRaw.split(/[;,]/).map(x=>x.trim()).filter(Boolean):[],objectiveIds:[]};
+          sbGMap[initiativeTitle]=initiative;SB.initiatives.push(initiative);
+        } else {
+          if(initiativeDesc&&!initiative.desc)initiative.desc=initiativeDesc;
+          if(peopleRaw)peopleRaw.split(/[;,]/).map(x=>x.trim()).filter(Boolean).forEach(p=>{if(!initiative.people.includes(p))initiative.people.push(p);});
+        }
+        if(obj&&!initiative.objectiveIds.includes(obj.id))initiative.objectiveIds.push(obj.id);
       }
 
-      const initTitle=String(row[cInit]||'').trim();
-      if(initTitle){
-        const initDesc=String(row[cIDesc]||'').trim();
-        const peopleRaw=String(row[cPeople]||'').trim();
-        let init=sbNMap[initTitle];
-        if(!init){ init={id:sbUid(),title:initTitle,desc:initDesc,people:peopleRaw?peopleRaw.split(/[;,]/).map(x=>x.trim()).filter(Boolean):[],goalIds:[]}; sbNMap[initTitle]=init; SB.initiatives.push(init); }
-        else{ if(initDesc&&!init.desc)init.desc=initDesc; }
-        if(goal&&!init.goalIds.includes(goal.id))init.goalIds.push(goal.id);
+      // Outcome — deduped by title; linked to the row's objective AND to the row's initiative
+      if(outcTitle){
+        let outc=sbNMap[outcTitle];
+        if(!outc){ outc={id:sbUid(),title:outcTitle,desc:outcDesc,objectiveIds:[],initiativeIds:[]}; sbNMap[outcTitle]=outc; SB.outcomes.push(outc); }
+        else{ if(outcDesc&&!outc.desc)outc.desc=outcDesc; }
+        if(obj&&!outc.objectiveIds.includes(obj.id))outc.objectiveIds.push(obj.id);
+        if(initiative&&!outc.initiativeIds.includes(initiative.id))outc.initiativeIds.push(initiative.id);
       }
     }
     sbPersist();
@@ -884,16 +865,16 @@ function parseRows(rows,filename){
     `<div class="stat">Strategies: <strong>${isSandboxFmt?new Set(SB.themes.flatMap(t=>t.alignment||[])).size:new Set(themes.flatMap(t=>t.stratIds)).size}</strong></div>`;
   if(isSandboxFmt) statsHtml+=
     `<div class="stat">Objectives: <strong>${SB.objectives.length}</strong></div>`+
-    `<div class="stat">Goals: <strong>${SB.goals.length}</strong></div>`+
-    `<div class="stat">Initiatives: <strong>${(SB.initiatives||[]).length}</strong></div>`+
+    `<div class="stat">Initiatives: <strong>${SB.initiatives.length}</strong></div>`+
+    `<div class="stat">Outcomes: <strong>${(SB.outcomes||[]).length}</strong></div>`+
     `<div class="stat" style="color:#7050A0;border-color:#7050A055">→ Sandbox populated</div>`;
   document.getElementById('ustats').innerHTML=statsHtml;
 
   // Preview table — show all detected columns
   const previewCols=isSandboxFmt
-    ?['Idea','Theme','Strategy','Objective','Goal','Goal Type','Initiative']
+    ?['Idea','Theme','Strategy','Objective','Initiative','People','Outcome']
     :['Idea','Theme','Description','Zone'];
-  const previewIdx=isSandboxFmt?[cIdea,cTheme,cStrat,cObj,cGoal,cGType,cInit]:[0,1,2,3];
+  const previewIdx=isSandboxFmt?[cIdea,cTheme,cStrat,cObj,cInitiative,cPeople,cOutc]:[0,1,2,3];
   const maxRows=Math.min(5,rows.length);
   let tbl='<table style="border-collapse:collapse;width:100%"><tr style="background:#eee">';
   previewCols.forEach(h=>tbl+=`<th style="padding:3px 8px;text-align:left;border:0.5px solid #ddd">${h}</th>`);
@@ -949,8 +930,7 @@ function goSubTab(t,btn){
 function cSwitchLayout(mode,btn){
   cLayoutMode=mode;
   const _cs2=document.getElementById('cside');if(_cs2)_cs2.style.transform='translateX(120%)';
-  const _pp=document.getElementById('v4-people-panel');if(_pp)_pp.style.display='none';v4PickName=null;v4SelInit=null;
-  const _gtb=document.getElementById('v4-goaltext-btn');if(_gtb)_gtb.style.display='none';
+  const _pp=document.getElementById('v4-people-panel');if(_pp)_pp.style.display='none';v4PickName=null;v4Picked.clear();v4SelInit=null;
   const _os2=document.getElementById('ody-sidebar');if(_os2)_os2.classList.remove('open');
   document.querySelectorAll('.clb').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
@@ -971,8 +951,8 @@ let mapStratFilter='all'; // 'all' | 'uts' | 'ci' | 'fds'
 // SB relationship helpers (idea↔theme stored on theme.ideaIds)
 function sbIdeaThemes(ideaId){ return SB.themes.filter(t=>(t.ideaIds||[]).includes(ideaId)); }
 function sbThemeIdeas(themeId){ return SB.ideas.filter(i=>(SB.themes.find(t=>t.id===themeId)?.ideaIds||[]).includes(i.id)); }
-// An initiative's objectives are DERIVED from the goals it delivers
-function initObjIds(n){ const st=new Set(); ((n&&n.goalIds)||[]).forEach(gid=>{ const g=SB.goals.find(x=>x.id===gid); (g?.objectiveIds||[]).forEach(o=>st.add(o)); }); return [...st]; }
+// An outcome's objectives are DERIVED from the initiatives it delivers
+function outcObjIds(n){ return (n&&n.objectiveIds)||[]; }
 // ══════════════════════════════════════════════════════════════
 // FACULTY PEOPLE DIRECTORY — the embedded snapshot below is available
 // immediately (no load needed). On page open the dashboard also tries
@@ -1397,15 +1377,15 @@ async function loadAcademicsFromRepo(){
     return false;
   }catch(e){return false;}
 }
-// All known names, alphabetical by LAST name (directory + any free-text names on initiatives)
+// All known names, alphabetical by LAST name (directory + any free-text names on outcomes)
 function allPeople(){
   const seen=new Set();const list=[];
   peopleDir().forEach(x=>{if(!seen.has(x.n)){seen.add(x.n);list.push({n:x.n,l:x.l||x.n.split(' ').pop()});}});
   (SB.initiatives||[]).forEach(nn=>(nn.people||[]).forEach(x=>{if(!seen.has(x)){seen.add(x);list.push({n:x,l:x.split(' ').pop()});}}));
   return list.sort((a,b)=>a.l.toLowerCase().localeCompare(b.l.toLowerCase())||a.n.localeCompare(b.n)).map(x=>x.n);
 }
-function objInitiatives(objId){ return (SB.initiatives||[]).filter(n=>initObjIds(n).includes(objId)); }
-function goalInitiatives(goalId){ return (SB.initiatives||[]).filter(n=>(n.goalIds||[]).includes(goalId)); }
+function objOutcomes(objId){ return (SB.outcomes||[]).filter(n=>outcObjIds(n).includes(objId)); }
+function objInitiativesOf(objId){ return (SB.initiatives||[]).filter(g=>(g.objectiveIds||[]).includes(objId)); }
 
 function mapSetStratFilter(f){
   mapStratFilter=f;
@@ -1419,29 +1399,29 @@ function mapSetStratFilter(f){
 
 // Returns all SB items; sfMatch sets indicate which match the current strategy filter
 function mapVisible(){
-  return{ideas:SB.ideas,themes:SB.themes,objectives:SB.objectives,goals:SB.goals,initiatives:SB.initiatives||[]};
+  return{ideas:SB.ideas,themes:SB.themes,objectives:SB.objectives,initiatives:SB.initiatives,outcomes:SB.outcomes||[]};
 }
 function mapStratMatch(){
-  if(mapStratFilter==='all')return{ideas:null,themes:null,objectives:null,goals:null,initiatives:null}; // null = all match
+  if(mapStratFilter==='all')return{ideas:null,themes:null,objectives:null,initiatives:null,outcomes:null}; // null = all match
   const themes=new Set(SB.themes.filter(t=>(t.alignment||[]).includes(mapStratFilter)).map(t=>t.id));
   const ideas=new Set(SB.ideas.filter(i=>SB.themes.some(t=>themes.has(t.id)&&(t.ideaIds||[]).includes(i.id))).map(i=>i.id));
   const objectives=new Set(SB.objectives.filter(o=>(o.themeIds||[]).some(tid=>themes.has(tid))).map(o=>o.id));
-  const goals=new Set(SB.goals.filter(g=>(g.objectiveIds||[]).some(oid=>objectives.has(oid))).map(g=>g.id));
-  const initiatives=new Set((SB.initiatives||[]).filter(n=>(n.goalIds||[]).some(gid=>goals.has(gid))).map(n=>n.id));
-  return{ideas,themes,objectives,goals,initiatives};
+  const initiatives=new Set(SB.initiatives.filter(g=>(g.objectiveIds||[]).some(oid=>objectives.has(oid))).map(g=>g.id));
+  const outcomes=new Set((SB.outcomes||[]).filter(n=>(n.objectiveIds||[]).some(oid=>objectives.has(oid))).map(n=>n.id));
+  return{ideas,themes,objectives,initiatives,outcomes};
 }
 
 function mapGetConn(){
-  const empty={ideas:new Set(),themes:new Set(),objectives:new Set(),goals:new Set(),initiatives:new Set()};
+  const empty={ideas:new Set(),themes:new Set(),objectives:new Set(),initiatives:new Set(),outcomes:new Set()};
   if(!iSel||lm)return empty;
-  const h={ideas:new Set(),themes:new Set(),objectives:new Set(),goals:new Set(),initiatives:new Set()};
+  const h={ideas:new Set(),themes:new Set(),objectives:new Set(),initiatives:new Set(),outcomes:new Set()};
   if(iSType==='idea'){
     h.ideas.add(iSel);
     sbIdeaThemes(iSel).forEach(t=>{
       h.themes.add(t.id);
       SB.objectives.filter(o=>(o.themeIds||[]).includes(t.id)).forEach(o=>{
         h.objectives.add(o.id);
-        SB.goals.filter(g=>(g.objectiveIds||[]).includes(o.id)).forEach(g=>h.goals.add(g.id));
+        SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(o.id)).forEach(g=>h.initiatives.add(g.id));
       });
     });
   } else if(iSType==='theme'){
@@ -1449,7 +1429,7 @@ function mapGetConn(){
     sbThemeIdeas(iSel).forEach(i=>h.ideas.add(i.id));
     SB.objectives.filter(o=>(o.themeIds||[]).includes(iSel)).forEach(o=>{
       h.objectives.add(o.id);
-      SB.goals.filter(g=>(g.objectiveIds||[]).includes(o.id)).forEach(g=>h.goals.add(g.id));
+      SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(o.id)).forEach(g=>h.initiatives.add(g.id));
     });
   } else if(iSType==='objective'){
     h.objectives.add(iSel);
@@ -1458,40 +1438,40 @@ function mapGetConn(){
       h.themes.add(tid);
       sbThemeIdeas(tid).forEach(i=>h.ideas.add(i.id));
     });
-    SB.goals.filter(g=>(g.objectiveIds||[]).includes(iSel)).forEach(g=>h.goals.add(g.id));
-  } else if(iSType==='goal'){
-    h.goals.add(iSel);
-    const goal=SB.goals.find(g=>g.id===iSel);
-    (goal?.objectiveIds||[]).forEach(oid=>{
+    SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(iSel)).forEach(g=>h.initiatives.add(g.id));
+  } else if(iSType==='initiative'){
+    h.initiatives.add(iSel);
+    const initiative=SB.initiatives.find(g=>g.id===iSel);
+    (initiative?.objectiveIds||[]).forEach(oid=>{
       h.objectives.add(oid);
       const obj=SB.objectives.find(o=>o.id===oid);
       (obj?.themeIds||[]).forEach(tid=>{h.themes.add(tid);sbThemeIdeas(tid).forEach(i=>h.ideas.add(i.id));});
     });
-  } else if(iSType==='initiative'){
-    const n=(SB.initiatives||[]).find(x=>x.id===iSel);
-    h.initiatives.add(iSel);
-    (n?.goalIds||[]).forEach(gid=>h.goals.add(gid));
-    initObjIds(n).forEach(oid=>{
+  } else if(iSType==='outcome'){
+    const n=(SB.outcomes||[]).find(x=>x.id===iSel);
+    h.outcomes.add(iSel);
+    (n?.initiativeIds||[]).forEach(gid=>h.initiatives.add(gid));
+    outcObjIds(n).forEach(oid=>{
       h.objectives.add(oid);
       const obj=SB.objectives.find(o=>o.id===oid);
       (obj?.themeIds||[]).forEach(tid=>{h.themes.add(tid);sbThemeIdeas(tid).forEach(i=>h.ideas.add(i.id));});
     });
   }
-  if(iSType!=='initiative')(SB.initiatives||[]).forEach(n=>{ if((n.goalIds||[]).some(g=>h.goals.has(g))) h.initiatives.add(n.id); });
+  if(iSType!=='outcome')(SB.outcomes||[]).forEach(n=>{ if((n.initiativeIds||[]).some(g=>h.initiatives.has(g))||(iSType==='objective'&&(n.objectiveIds||[]).includes(iSel))) h.outcomes.add(n.id); });
   return h;
 }
 
 function mapGetLH(){
-  const empty={ideas:new Set(),themes:new Set(),objectives:new Set(),goals:new Set(),initiatives:new Set()};
+  const empty={ideas:new Set(),themes:new Set(),objectives:new Set(),initiatives:new Set(),outcomes:new Set()};
   if(!lSel)return empty;
-  const h={ideas:new Set(),themes:new Set(),objectives:new Set(),goals:new Set(),initiatives:new Set()};
+  const h={ideas:new Set(),themes:new Set(),objectives:new Set(),initiatives:new Set(),outcomes:new Set()};
   if(lSType==='idea'){
     h.ideas.add(lSel);
     sbIdeaThemes(lSel).forEach(t=>{
       h.themes.add(t.id);
       SB.objectives.filter(o=>(o.themeIds||[]).includes(t.id)).forEach(o=>{
         h.objectives.add(o.id);
-        SB.goals.filter(g=>(g.objectiveIds||[]).includes(o.id)).forEach(g=>h.goals.add(g.id));
+        SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(o.id)).forEach(g=>h.initiatives.add(g.id));
       });
     });
   } else if(lSType==='theme'){
@@ -1499,7 +1479,7 @@ function mapGetLH(){
     sbThemeIdeas(lSel).forEach(i=>h.ideas.add(i.id));
     SB.objectives.filter(o=>(o.themeIds||[]).includes(lSel)).forEach(o=>{
       h.objectives.add(o.id);
-      SB.goals.filter(g=>(g.objectiveIds||[]).includes(o.id)).forEach(g=>h.goals.add(g.id));
+      SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(o.id)).forEach(g=>h.initiatives.add(g.id));
     });
   } else if(lSType==='objective'){
     h.objectives.add(lSel);
@@ -1508,22 +1488,22 @@ function mapGetLH(){
       h.themes.add(tid);
       sbThemeIdeas(tid).forEach(i=>h.ideas.add(i.id));
     });
-    SB.goals.filter(g=>(g.objectiveIds||[]).includes(lSel)).forEach(g=>h.goals.add(g.id));
-  } else if(lSType==='goal'){
-    h.goals.add(lSel);
-    const goal=SB.goals.find(g=>g.id===lSel);
-    (goal?.objectiveIds||[]).forEach(oid=>{
+    SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(lSel)).forEach(g=>h.initiatives.add(g.id));
+  } else if(lSType==='initiative'){
+    h.initiatives.add(lSel);
+    const initiative=SB.initiatives.find(g=>g.id===lSel);
+    (initiative?.objectiveIds||[]).forEach(oid=>{
       h.objectives.add(oid);
       const obj=SB.objectives.find(o=>o.id===oid);
       (obj?.themeIds||[]).forEach(tid=>{h.themes.add(tid);sbThemeIdeas(tid).forEach(i=>h.ideas.add(i.id));});
     });
-  } else if(lSType==='initiative'){
-    const n=(SB.initiatives||[]).find(x=>x.id===lSel);
-    h.initiatives.add(lSel);
-    (n?.goalIds||[]).forEach(gid=>h.goals.add(gid));
-    initObjIds(n).forEach(oid=>h.objectives.add(oid));
+  } else if(lSType==='outcome'){
+    const n=(SB.outcomes||[]).find(x=>x.id===lSel);
+    h.outcomes.add(lSel);
+    (n?.initiativeIds||[]).forEach(gid=>h.initiatives.add(gid));
+    outcObjIds(n).forEach(oid=>h.objectives.add(oid));
   }
-  if(lSType!=='initiative')(SB.initiatives||[]).forEach(n=>{ if((n.goalIds||[]).some(g=>h.goals.has(g))) h.initiatives.add(n.id); });
+  if(lSType!=='outcome')(SB.outcomes||[]).forEach(n=>{ if((n.initiativeIds||[]).some(g=>h.initiatives.has(g))||(lSType==='objective'&&(n.objectiveIds||[]).includes(lSel))) h.outcomes.add(n.id); });
   return h;
 }
 
@@ -1542,16 +1522,16 @@ function handleTile(id,type){
     const obj=SB.objectives.find(o=>o.id===id);if(obj){if(!obj.themeIds)obj.themeIds=[];const idx=obj.themeIds.indexOf(lSel);if(idx>-1)obj.themeIds.splice(idx,1);else obj.themeIds.push(lSel);connected=true;}
   } else if(lSType==='objective'&&type==='theme'){
     const obj=SB.objectives.find(o=>o.id===lSel);if(obj){if(!obj.themeIds)obj.themeIds=[];const idx=obj.themeIds.indexOf(id);if(idx>-1)obj.themeIds.splice(idx,1);else obj.themeIds.push(id);connected=true;}
-  // Objective ↔ Goal
-  } else if(lSType==='objective'&&type==='goal'){
-    const goal=SB.goals.find(g=>g.id===id);if(goal){if(!goal.objectiveIds)goal.objectiveIds=[];const idx=goal.objectiveIds.indexOf(lSel);if(idx>-1)goal.objectiveIds.splice(idx,1);else goal.objectiveIds.push(lSel);connected=true;}
-  } else if(lSType==='goal'&&type==='objective'){
-    const goal=SB.goals.find(g=>g.id===lSel);if(goal){if(!goal.objectiveIds)goal.objectiveIds=[];const idx=goal.objectiveIds.indexOf(id);if(idx>-1)goal.objectiveIds.splice(idx,1);else goal.objectiveIds.push(id);connected=true;}
-  // Initiative ↔ Goal (objective links derive automatically from the goals)
-  } else if(lSType==='initiative'&&type==='goal'){
-    const n=SB.initiatives.find(x=>x.id===lSel);if(n){if(!n.goalIds)n.goalIds=[];const idx=n.goalIds.indexOf(id);if(idx>-1)n.goalIds.splice(idx,1);else n.goalIds.push(id);connected=true;}
-  } else if(lSType==='goal'&&type==='initiative'){
-    const n=SB.initiatives.find(x=>x.id===id);if(n){if(!n.goalIds)n.goalIds=[];const idx=n.goalIds.indexOf(lSel);if(idx>-1)n.goalIds.splice(idx,1);else n.goalIds.push(lSel);connected=true;}
+  // Objective ↔ Initiative
+  } else if(lSType==='objective'&&type==='initiative'){
+    const initiative=SB.initiatives.find(g=>g.id===id);if(initiative){if(!initiative.objectiveIds)initiative.objectiveIds=[];const idx=initiative.objectiveIds.indexOf(lSel);if(idx>-1)initiative.objectiveIds.splice(idx,1);else initiative.objectiveIds.push(lSel);connected=true;}
+  } else if(lSType==='initiative'&&type==='objective'){
+    const initiative=SB.initiatives.find(g=>g.id===lSel);if(initiative){if(!initiative.objectiveIds)initiative.objectiveIds=[];const idx=initiative.objectiveIds.indexOf(id);if(idx>-1)initiative.objectiveIds.splice(idx,1);else initiative.objectiveIds.push(id);connected=true;}
+  // Initiative ↔ Outcome
+  } else if(lSType==='initiative'&&type==='outcome'){
+    const n=SB.outcomes.find(x=>x.id===id);if(n){if(!n.initiativeIds)n.initiativeIds=[];const idx=n.initiativeIds.indexOf(lSel);if(idx>-1)n.initiativeIds.splice(idx,1);else n.initiativeIds.push(lSel);connected=true;}
+  } else if(lSType==='outcome'&&type==='initiative'){
+    const n=SB.outcomes.find(x=>x.id===lSel);if(n){if(!n.initiativeIds)n.initiativeIds=[];const idx=n.initiativeIds.indexOf(id);if(idx>-1)n.initiativeIds.splice(idx,1);else n.initiativeIds.push(id);connected=true;}
   }
   if(connected){sbPersist();mapRender();return;}
   lSel=id;lSType=type;mapRender();
@@ -1573,12 +1553,13 @@ function toggleLM(){
 }
 
 const ACC='#7050A0';
-const INIT_ACC='#12836F';
+const INIT_ACC='#2860A8';   // initiatives — blue
+const OUTC_ACC='#B06018';   // outcomes — orange
 
 // ── MAP COLUMN DIVIDERS (draggable) ──
 let mapColFr=[2.2,1.3,1,1,1.1];
-const MAP_COLS=['ideas','themes','objectives','initiatives','goals'];
-let mapColClosed={ideas:false,themes:false,objectives:false,initiatives:false,goals:false};
+const MAP_COLS=['ideas','themes','objectives','initiatives','outcomes'];
+let mapColClosed={ideas:false,themes:false,objectives:false,outcomes:false,initiatives:false};
 const MAP_GUT=10; // px width of each gutter/divider track
 const MAP_CLPS_W=86; // px width of a collapsed column
 function mapApplyCols(){
@@ -1662,7 +1643,7 @@ function mapRender(){
   }
   if(!SB.ideas.length&&!SB.themes.length){
     document.getElementById('map-ideas').innerHTML='<div style="color:#999;font-size:11px;padding:8px;grid-column:span 4">Upload your Excel file in Tab 1 first</div>';
-    ['map-themes','map-objectives','map-initiatives','map-goals-short','map-goals-long'].forEach(id=>document.getElementById(id).innerHTML='');
+    ['map-themes','map-objectives','map-outcomes','map-initiatives'].forEach(id=>document.getElementById(id).innerHTML='');
     document.getElementById('mapdet').textContent='Upload data in Tab 1 to get started';
     return;
   }
@@ -1746,49 +1727,49 @@ function mapRender(){
   vis.objectives.forEach(obj=>{
     const isA=h.objectives.has(obj.id);const isDim=hasSel&&!isA;
     const isLS=lm&&lSel===obj.id;const isLH=hasLS&&lh.objectives.has(obj.id)&&lSel!==obj.id;
-    const goalCnt=SB.goals.filter(g=>g.objectiveIds&&g.objectiveIds.includes(obj.id)).length;
+    const initiativeCnt=SB.initiatives.filter(g=>g.objectiveIds&&g.objectiveIds.includes(obj.id)).length;
+    const outcomeCnt=(SB.outcomes||[]).filter(n=>(n.objectiveIds||[]).includes(obj.id)).length;
     let hint='';
     if(lm&&lSel&&lSType==='theme'){const linked=(SB.objectives.find(o=>o.id===obj.id)?.themeIds||[]).includes(lSel);if(linked)hint=`<div style="font-size:8px;margin-top:3px;color:${ACC}">✓ linked</div>`;}
-    const tile=mkTile(obj.id,'objective',obj.title,`${goalCnt} goal${goalCnt!==1?'s':''}`,isA,isDim,isLS,isLH,ACC,obj.title+(obj.desc?' — '+obj.desc:''),sfM.objectives,oF,oL);
+    const tile=mkTile(obj.id,'objective',obj.title,`${initiativeCnt} initiative${initiativeCnt!==1?'s':''} · ${outcomeCnt} outcome${outcomeCnt!==1?'s':''}`,isA,isDim,isLS,isLH,ACC,obj.title+(obj.desc?' — '+obj.desc:''),sfM.objectives,oF,oL);
     if(hint)tile.insertAdjacentHTML('beforeend',hint);
     og.appendChild(tile);
   });
   if(!vis.objectives.length)og.innerHTML=`<div style="font-size:11px;color:#999;padding:8px;grid-column:span ${oC}">No objectives</div>`;
 
-  // INITIATIVES
-  const ng=document.getElementById('map-initiatives');
+  // OUTCOMES
+  const ng=document.getElementById('map-outcomes');
   if(ng){
     ng.style.gridTemplateColumns=`repeat(auto-fill,minmax(min(${nBase}px,100%),1fr))`;ng.innerHTML='';
-    (vis.initiatives||[]).forEach(n=>{
-      const isA=h.initiatives.has(n.id);const isDim=hasSel&&!isA;
-      const isLS=lm&&lSel===n.id;const isLH=hasLS&&lh.initiatives.has(n.id)&&lSel!==n.id;
-      const gc=(n.goalIds||[]).length;const pc=(n.people||[]).length;
+    (vis.outcomes||[]).forEach(n=>{
+      const isA=h.outcomes.has(n.id);const isDim=hasSel&&!isA;
+      const isLS=lm&&lSel===n.id;const isLH=hasLS&&lh.outcomes.has(n.id)&&lSel!==n.id;
+      const ic=(n.initiativeIds||[]).length;
       let hint='';
-      if(lm&&lSel&&lSType==='objective'){const linked=initObjIds(n).includes(lSel);if(linked)hint=`<div style="font-size:8px;margin-top:3px;color:${INIT_ACC}">✓ linked via goals</div>`;}
-      const tile=mkTile(n.id,'initiative',n.title,`${gc} goal${gc!==1?'s':''} · ${pc} ${pc===1?'person':'people'}`,isA,isDim,isLS,isLH,INIT_ACC,n.title+(n.desc?' — '+n.desc:'')+` — ${gc} goal${gc!==1?'s':''}, ${pc} ${pc===1?'person':'people'}`,sfM.initiatives,nF,nL);
+      if(lm&&lSel&&lSType==='initiative'){const linked=(n.initiativeIds||[]).includes(lSel);if(linked)hint=`<div style="font-size:8px;margin-top:3px;color:${OUTC_ACC}">✓ linked</div>`;}
+      const tile=mkTile(n.id,'outcome',n.title,`${ic} initiative${ic!==1?'s':''}`,isA,isDim,isLS,isLH,OUTC_ACC,n.title+(n.desc?' — '+n.desc:'')+` — ${ic} initiative${ic!==1?'s':''}`,sfM.outcomes,nF,nL);
       if(hint)tile.insertAdjacentHTML('beforeend',hint);
       ng.appendChild(tile);
     });
-    if(!(vis.initiatives||[]).length)ng.innerHTML=`<div style="font-size:11px;color:#999;padding:8px">No initiatives yet — add them in the Sandbox, or use Link mode here</div>`;
+    if(!(vis.outcomes||[]).length)ng.innerHTML=`<div style="font-size:11px;color:#999;padding:8px">No outcomes yet — add them in the Sandbox, or use Link mode here</div>`;
   }
 
-  // GOALS — split short/long
+  // INITIATIVES — single grid
   const gC=[4,3,3,2,2][gZ-1];
-  const gShort=vis.goals.filter(g=>g.type==='short');
-  const gLong=vis.goals.filter(g=>g.type!=='short');
-  const renderGoalGrid=(goals,elId)=>{
-    const gel=document.getElementById(elId);gel.style.gridTemplateColumns=`repeat(auto-fill,minmax(min(${gBase}px,100%),1fr))`;gel.innerHTML='';
-    goals.forEach(goal=>{
-      const isA=h.goals.has(goal.id);const isDim=hasSel&&!isA;
-      const isLS=lm&&lSel===goal.id;const isLH=hasLS&&lh.goals.has(goal.id)&&lSel!==goal.id;
-      const col=goal.type==='short'?'#B06018':'#2860A8';
-      const tile=mkTile(goal.id,'goal',goal.title,null,isA,isDim,isLS,isLH,col,goal.title+(goal.desc?' — '+goal.desc:''),sfM.goals,gF,gL);
+  {
+    const gel=document.getElementById('map-initiatives');gel.style.gridTemplateColumns=`repeat(auto-fill,minmax(min(${gBase}px,100%),1fr))`;gel.innerHTML='';
+    vis.initiatives.forEach(initiative=>{
+      const isA=h.initiatives.has(initiative.id);const isDim=hasSel&&!isA;
+      const isLS=lm&&lSel===initiative.id;const isLH=hasLS&&lh.initiatives.has(initiative.id)&&lSel!==initiative.id;
+      const pc=(initiative.people||[]).length;
+      let hint='';
+      if(lm&&lSel&&lSType==='objective'){const linked=(initiative.objectiveIds||[]).includes(lSel);if(linked)hint=`<div style="font-size:8px;margin-top:3px;color:${INIT_ACC}">✓ linked</div>`;}
+      const tile=mkTile(initiative.id,'initiative',initiative.title,pc?`${pc} ${pc===1?'person':'people'}`:null,isA,isDim,isLS,isLH,INIT_ACC,initiative.title+(initiative.desc?' — '+initiative.desc:'')+(pc?` — ${pc} ${pc===1?'person':'people'}`:''),sfM.initiatives,gF,gL);
+      if(hint)tile.insertAdjacentHTML('beforeend',hint);
       gel.appendChild(tile);
     });
-    if(!goals.length)gel.innerHTML=`<div style="font-size:10px;color:#ccc;font-style:italic;padding:4px">None</div>`;
-  };
-  renderGoalGrid(gShort,'map-goals-short');
-  renderGoalGrid(gLong,'map-goals-long');
+    if(!vis.initiatives.length)gel.innerHTML=`<div style="font-size:10px;color:#ccc;font-style:italic;padding:4px;grid-column:span ${gC}">No initiatives yet — add them in the Sandbox, or use Link mode here</div>`;
+  }
 
   // COLLAPSED COLUMNS — swap tile grids for a count badge
   const clpsBadge=(count,label,col)=>`<div style="text-align:center;padding:14px 4px;color:${col||'#999'}"><div style="font-size:22px;font-weight:600">${count}</div><div style="font-size:9px;letter-spacing:0.06em;text-transform:uppercase">${label}</div></div>`;
@@ -1802,11 +1783,8 @@ function mapRender(){
     if(c==='ideas')setBadge('map-ideas',clpsBadge(vis.ideas.length,'ideas'));
     if(c==='themes')setBadge('map-themes',clpsBadge(vis.themes.length,'themes'));
     if(c==='objectives')setBadge('map-objectives',clpsBadge(vis.objectives.length,'objectives',ACC));
-    if(c==='initiatives')setBadge('map-initiatives',clpsBadge((vis.initiatives||[]).length,'initiatives',INIT_ACC));
-    if(c==='goals'){
-      setBadge('map-goals-short',clpsBadge(vis.goals.filter(g=>g.type==='short').length,'short term','#B06018'));
-      setBadge('map-goals-long',clpsBadge(vis.goals.filter(g=>g.type!=='short').length,'long term','#2860A8'));
-    }
+    if(c==='outcomes')setBadge('map-outcomes',clpsBadge((vis.outcomes||[]).length,'outcomes',OUTC_ACC));
+    if(c==='initiatives')setBadge('map-initiatives',clpsBadge(vis.initiatives.length,'initiatives',INIT_ACC));
   });
 
   mapUpdateDet(h);
@@ -1861,36 +1839,25 @@ function drawMapWires(lh,hasLS,vis,h,hasSel){
       else wire(mr(thEl),ml(oEl),hasLS&&thHi&&lh.objectives.has(obj.id),ACC);
     });
   });
-  // objective → initiative → goal
-  const initsOn=!mapColClosed.initiatives;
-  if(initsOn)(SB.initiatives||[]).forEach(n=>{
-    const nEl=document.querySelector(`#map-initiatives [data-id="${n.id}"]`);if(!nEl)return;
-    const nHi=hasLS&&lh.initiatives.has(n.id);
-    initObjIds(n).forEach(oid=>{
-      const oEl=document.querySelector(`#map-objectives [data-id="${oid}"]`);if(!oEl)return;
-      if(dMode){if(dEdge(h.objectives.has(oid),h.initiatives.has(n.id)))wire(mr(oEl),ml(nEl),false,INIT_ACC);}
-      else wire(mr(oEl),ml(nEl),hasLS&&nHi&&lh.objectives.has(oid),INIT_ACC);
-    });
-    (n.goalIds||[]).forEach(gid=>{
-      const g=SB.goals.find(x=>x.id===gid);if(!g)return;
-      const gEl=document.querySelector(`#map-goals-${g.type==='short'?'short':'long'} [data-id="${gid}"]`);if(!gEl)return;
-      const gcol=g.type==='short'?'#B06018':'#2860A8';
-      if(dMode){if(dEdge(h.initiatives.has(n.id),h.goals.has(gid)))wire(mr(nEl),ml(gEl),false,gcol);}
-      else wire(mr(nEl),ml(gEl),hasLS&&nHi&&lh.goals.has(gid),gcol);
-    });
-  });
-  // objective → goal (dashed = no initiative bridges the pair yet; solid when initiatives column is hidden)
+  // objective → initiative (solid, blue)
   SB.objectives.forEach(obj=>{
     const oEl=document.querySelector(`#map-objectives [data-id="${obj.id}"]`);if(!oEl)return;
     const oHi=hasLS&&lh.objectives.has(obj.id);
-    const objGoals=SB.goals.filter(g=>g.objectiveIds&&g.objectiveIds.includes(obj.id));
-    objGoals.forEach(g=>{
-      const gEl=document.querySelector(`#map-goals-${g.type==='short'?'short':'long'} [data-id="${g.id}"]`);if(!gEl)return;
-      const gcol=g.type==='short'?'#B06018':'#2860A8';
-      const bridged=initsOn&&(SB.initiatives||[]).some(n=>(n.goalIds||[]).includes(g.id));
-      if(bridged)return; // this connection is routed through an initiative instead
-      if(dMode){if(dEdge(h.objectives.has(obj.id),h.goals.has(g.id)))wire(mr(oEl),ml(gEl),false,gcol,initsOn);}
-      else wire(mr(oEl),ml(gEl),hasLS&&oHi&&lh.goals.has(g.id),gcol,initsOn);
+    SB.initiatives.filter(g=>g.objectiveIds&&g.objectiveIds.includes(obj.id)).forEach(g=>{
+      const gEl=document.querySelector(`#map-initiatives [data-id="${g.id}"]`);if(!gEl)return;
+      if(dMode){if(dEdge(h.objectives.has(obj.id),h.initiatives.has(g.id)))wire(mr(oEl),ml(gEl),false,INIT_ACC);}
+      else wire(mr(oEl),ml(gEl),hasLS&&oHi&&lh.initiatives.has(g.id),INIT_ACC);
+    });
+  });
+  // initiative → outcome (solid, orange)
+  const outcsOn=!mapColClosed.outcomes;
+  if(outcsOn)(SB.outcomes||[]).forEach(n=>{
+    const nEl=document.querySelector(`#map-outcomes [data-id="${n.id}"]`);if(!nEl)return;
+    const nHi=hasLS&&lh.outcomes.has(n.id);
+    (n.initiativeIds||[]).forEach(gid=>{
+      const gEl=document.querySelector(`#map-initiatives [data-id="${gid}"]`);if(!gEl)return;
+      if(dMode){if(dEdge(h.initiatives.has(gid),h.outcomes.has(n.id)))wire(mr(gEl),ml(nEl),false,OUTC_ACC);}
+      else wire(mr(gEl),ml(nEl),hasLS&&nHi&&lh.initiatives.has(gid),OUTC_ACC);
     });
   });
   } // end paint()
@@ -1919,18 +1886,18 @@ function mapUpdateDet(h){
   const db=document.getElementById('mapdet');
   if(lm){
     const inst=document.getElementById('linst');
-    if(!lSel){inst.textContent='Click any tile to select it, then click another to link or unlink';db.textContent='Link mode — click idea→theme, theme→objective, objective→goal, or initiative→goal to connect/disconnect.';return;}
-    const labels={idea:'idea',theme:'theme',objective:'objective',initiative:'initiative',goal:'goal'};
-    const nextMap={idea:'theme',theme:'objective',objective:'goal',initiative:'goal',goal:'initiative or objective'};
-    inst.textContent=`Selected ${labels[lSType]}: "${(SB.ideas.find(i=>i.id===lSel)||SB.themes.find(t=>t.id===lSel)||SB.objectives.find(o=>o.id===lSel)||SB.goals.find(g=>g.id===lSel))?.text||(SB.objectives.find(o=>o.id===lSel)||SB.themes.find(t=>t.id===lSel))?.title||SB.goals.find(g=>g.id===lSel)?.title||(SB.initiatives||[]).find(n=>n.id===lSel)?.title||'...'}" — click a ${nextMap[lSType]} to link/unlink`;
+    if(!lSel){inst.textContent='Click any tile to select it, then click another to link or unlink';db.textContent='Link mode — click idea→theme, theme→objective, objective→initiative, or initiative→outcome to connect/disconnect.';return;}
+    const labels={idea:'idea',theme:'theme',objective:'objective',outcome:'outcome',initiative:'initiative'};
+    const nextMap={idea:'theme',theme:'objective',objective:'initiative',outcome:'initiative',initiative:'objective or outcome'};
+    inst.textContent=`Selected ${labels[lSType]}: "${(SB.ideas.find(i=>i.id===lSel)||SB.themes.find(t=>t.id===lSel)||SB.objectives.find(o=>o.id===lSel)||SB.initiatives.find(g=>g.id===lSel))?.text||(SB.objectives.find(o=>o.id===lSel)||SB.themes.find(t=>t.id===lSel))?.title||SB.initiatives.find(g=>g.id===lSel)?.title||(SB.outcomes||[]).find(n=>n.id===lSel)?.title||'...'}" — click a ${nextMap[lSType]} to link/unlink`;
     db.textContent='Click a compatible tile to link or unlink. Click ✕ to clear.';
     return;
   }
   if(!iSel){db.textContent='Click any tile to highlight its connections';return;}
-  const allItems=[...SB.ideas,...SB.themes,...SB.objectives,...SB.goals,...(SB.initiatives||[])];
+  const allItems=[...SB.ideas,...SB.themes,...SB.objectives,...SB.initiatives,...(SB.outcomes||[])];
   const item=allItems.find(x=>x.id===iSel);
   const name=item?.text||item?.title||item?.name||'';
-  const counts=`${h.ideas.size} idea${h.ideas.size!==1?'s':''} · ${h.themes.size} theme${h.themes.size!==1?'s':''} · ${h.objectives.size} objective${h.objectives.size!==1?'s':''} · ${h.initiatives.size} initiative${h.initiatives.size!==1?'s':''} · ${h.goals.size} goal${h.goals.size!==1?'s':''}`;
+  const counts=`${h.ideas.size} idea${h.ideas.size!==1?'s':''} · ${h.themes.size} theme${h.themes.size!==1?'s':''} · ${h.objectives.size} objective${h.objectives.size!==1?'s':''} · ${h.outcomes.size} outcome${h.outcomes.size!==1?'s':''} · ${h.initiatives.size} initiative${h.initiatives.size!==1?'s':''}`;
   db.innerHTML=`<strong style="font-weight:500">${name.slice(0,80)}</strong> — connected: ${counts}`;
 }
 
@@ -2240,7 +2207,7 @@ function hideTT(){tooltip.style.display='none';}
 // objectives are large stars, themes mid-size planets, ideas small moons.
 // Every link in the sandbox is an edge, so shared themes/ideas appear as
 // bridges between systems. Clicking a node highlights its neighbourhood
-// and opens a sidebar (goals for objectives, ideas for themes, etc.).
+// and opens a sidebar (initiatives for objectives, ideas for themes, etc.).
 // Labels are placed with collision detection — anything that can't fit
 // legibly is left to the tooltip and sidebar.
 let cSel=null;                 // {type:'obj'|'theme'|'idea', id}
@@ -2324,8 +2291,7 @@ function makeCGraph(){
     const oH=oLines.length*20.5;
     const n={id:o.id,type:'obj',label:o.title,desc:o.desc||'',hue,inLines:oLines,
       r:Math.max(72,Math.sqrt(oW*oW+oH*oH)/2+14)*(1+0.16*(cbMax>cbMin?(oComb[oi]-cbMin)/(cbMax-cbMin):0.5)),ideaCount:ideaSet.size,themeCount:themeIds.length,
-      goalsShort:SB.goals.filter(g=>g.type==='short'&&(g.objectiveIds||[]).includes(o.id)),
-      goalsLong:SB.goals.filter(g=>g.type!=='short'&&(g.objectiveIds||[]).includes(o.id)),
+      initiatives:SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(o.id)),
       x:0,y:0,vx:0,vy:0};
     nodes.push(n);byId[o.id]=n;
   });
@@ -2878,20 +2844,20 @@ function cHideSidebar(){const sb=document.getElementById('cside');if(sb)sb.style
 function cSideClose(){cSetSel(null);}
 function cSideSelect(type,id){cSetSel({type,id});}
 
-function cGoalList(goals,color,title){
-  if(!goals.length)return'';
+function cInitiativeList(initiatives,color,title){
+  if(!initiatives.length)return'';
   return'<div style="font-size:9px;letter-spacing:1px;color:'+color+';font-weight:600;margin:14px 0 6px">'+title+'</div>'+
-    goals.map(g=>'<div style="background:rgba(255,255,255,0.05);border:1px solid '+color+'44;border-left:3px solid '+color+
+    initiatives.map(g=>'<div style="background:rgba(255,255,255,0.05);border:1px solid '+color+'44;border-left:3px solid '+color+
       ';border-radius:6px;padding:7px 10px;font-size:11px;line-height:1.45;margin-bottom:6px">'+cEsc(g.title)+
+      ((g.people||[]).length?'<div style="color:'+color+';font-size:10px;margin-top:3px">'+cEsc(g.people.join(', '))+'</div>':'')+
       (g.desc?'<div style="color:#999;font-size:10px;margin-top:3px">'+cEsc(g.desc)+'</div>':'')+'</div>').join('');
 }
-function cInitList(inits){
+function cOutcList(inits){
   if(!inits.length)return'';
-  const col='#35C4A8';
-  return'<div style="font-size:9px;letter-spacing:1px;color:'+col+';font-weight:600;margin:14px 0 6px">INITIATIVES</div>'+
+  const col='#E8A04C';
+  return'<div style="font-size:9px;letter-spacing:1px;color:'+col+';font-weight:600;margin:14px 0 6px">OUTCOMES</div>'+
     inits.map(n=>'<div style="background:rgba(53,196,168,0.06);border:1px solid '+col+'44;border-left:3px solid '+col+
       ';border-radius:6px;padding:7px 10px;font-size:11px;line-height:1.45;margin-bottom:6px">'+cEsc(n.title)+
-      ((n.people||[]).length?'<div style="color:'+col+';font-size:10px;margin-top:3px">'+cEsc(n.people.join(', '))+'</div>':'')+
       (n.desc?'<div style="color:#999;font-size:10px;margin-top:3px">'+cEsc(n.desc)+'</div>':'')+'</div>').join('');
 }
 function cSidebarFor(G,sel){
@@ -2902,10 +2868,9 @@ function cSidebarFor(G,sel){
       '<div style="font-size:20px;font-weight:600;color:'+n.hue+';margin:4px 0 6px;line-height:1.3">'+cEsc(n.label)+'</div>'+
       (n.desc?'<div style="font-size:15px;color:#b8b8c2;line-height:1.5;margin-bottom:4px">'+cEsc(n.desc)+'</div>':'')+
       '<div style="font-size:13px;color:#777;margin-bottom:2px">'+n.themeCount+' themes · '+n.ideaCount+' ideas</div>'+
-      cGoalList(n.goalsShort,'#E8A04C','SHORT-TERM GOALS')+
-      cGoalList(n.goalsLong,'#6FA8E8','LONG-TERM GOALS')+
-      cInitList(objInitiatives(sel.id))+
-      ((n.goalsShort.length+n.goalsLong.length)===0?'<div style="font-size:11px;color:#777;margin-top:12px">No goals linked yet — add them in the Sandbox tab.</div>':'')+
+      cInitiativeList(n.initiatives,'#6FA8E8','INITIATIVES')+
+      cOutcList(objOutcomes(sel.id))+
+      (n.initiatives.length===0?'<div style="font-size:11px;color:#777;margin-top:12px">No initiatives linked yet — add them in the Sandbox tab.</div>':'')+
       '<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600;margin:16px 0 6px">THEMES</div>'+
       themes.map(t=>'<div onclick="cSideSelect(\'theme\',\''+t.id+'\')" style="cursor:pointer;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.05);margin-bottom:5px;line-height:1.4">'+
         cEsc(t.name)+' <span style="color:#777">· '+(t.ideaIds||[]).length+' ideas</span></div>').join('');
@@ -3033,7 +2998,7 @@ function cRenderGraph(){
     g.addEventListener('mouseenter',e=>{
       const kind=n.type==='obj'?'objective':n.type;
       let extra='';
-      if(n.type==='obj')extra=n.themeCount+' themes · '+n.ideaCount+' ideas · '+(n.goalsShort.length+n.goalsLong.length)+' goals';
+      if(n.type==='obj')extra=n.themeCount+' themes · '+n.ideaCount+' ideas · '+n.initiatives.length+' initiatives';
       else if(n.type==='theme')extra=n.ideaCount+' ideas'+(n.shared?' · shared across objectives':'');
       else extra=n.shared?'shared across themes':'';
       cTip(e,'<strong>'+cEsc(n.label)+'</strong>'+(n.desc?'<br>'+cEsc(n.desc):'')+
@@ -3098,7 +3063,11 @@ function wrapText(txt,maxLen){
 }
 function chintFade(show){ const c=document.getElementById('chint'); if(c)c.style.opacity=show?'0.7':'0'; }
 // ── GERTY people-assignment state & helpers ──
-let v4PickName=null,v4DragName=null,v4CurrentObjId=null,v4InitEls={},v4SystemById={},v4SelInit=null,v4ShowGoalText=false,v4GoalTextApply=null,v4GradSeq=0;
+let v4PickName=null,v4DragName=null,v4CurrentObjId=null,v4InitEls={},v4SystemById={},v4SelInit=null,v4GradSeq=0;
+// Multi-select state for the people list (ctrl/cmd toggles, shift selects a range)
+let v4Picked=new Set(),v4PickAnchor=null;
+function v4PickedNames(){ return [...v4Picked]; }
+function v4AssignPicked(initId){ const names=v4PickedNames(); if(!names.length)return; names.forEach(nm=>v4Assign(initId,nm)); v4Picked.clear();v4PickAnchor=null;v4RefreshPeopleList(); }
 // Glow curve — log scale reaching full power at ~12 people. Radius, overall
 // opacity AND the brightness/colour of the core all rise with crew size.
 function v4GlowVals(pc,baseR){
@@ -3108,15 +3077,14 @@ function v4GlowVals(pc,baseR){
           g=Math.round(((pa>>8)&255)+(((pb>>8)&255)-((pa>>8)&255))*k),
           bl=Math.round((pa&255)+((pb&255)-(pa&255))*k);
     return '#'+((1<<24)+(r<<16)+(g<<8)+bl).toString(16).slice(1);};
-  return{r:baseR*(0.85+0.85*t),op:pc?0.2+0.4*t:0,coreOp:0.35+0.65*t,coreCol:mix('#35C4A8','#C8FFEE',t*0.6)};
+  return{r:baseR*(0.85+0.85*t),op:pc?0.2+0.4*t:0,coreOp:0.35+0.65*t,coreCol:mix('#5B9BD5','#D6EBFF',t*0.6)};
 }
-function v4GoalTextToggle(){ v4ShowGoalText=!v4ShowGoalText; if(v4GoalTextApply)v4GoalTextApply(); }
 function v4Assign(initId,name){
   name=(name||'').trim();if(!name)return;
   const n=(SB.initiatives||[]).find(x=>x.id===initId);if(!n)return;
   if(!n.people)n.people=[];
   if(!n.people.includes(name))n.people.push(name);
-  v4PickName=null;v4DragName=null;
+  v4DragName=null;
   sbPersist();sbRender();
   v4AfterPeopleChange(initId);
 }
@@ -3137,17 +3105,35 @@ function v4AfterPeopleChange(initId){
   });
   if(v4CurrentObjId&&v4SystemById[v4CurrentObjId]){
     const sys=v4SystemById[v4CurrentObjId];
-    cShowSidebar(v4ObjSidebar(sys.obj,sys.themes,sys.sg,sys.lg,sys.hue));
+    cShowSidebar(v4ObjSidebar(sys.obj,sys.themes,sys.inits,sys.outs,sys.hue));
   }
   v4RefreshPeopleList();
 }
 function v4PeoplePanel(){
   const p=document.getElementById('v4-people-panel');if(!p)return;
-  if(cLayoutMode!=='v4'){p.style.display='none';v4PickName=null;return;}
+  if(cLayoutMode!=='v4'){p.style.display='none';v4Picked.clear();v4PickAnchor=null;return;}
   p.style.display='flex';
   v4RefreshPeopleList();
 }
-function v4PickPerson(nm){ v4PickName=v4PickName===nm?null:nm; v4RefreshPeopleList(); }
+// Click behaviour: plain click = select just this name (click again to clear) ·
+// ctrl/cmd+click = add/remove from the selection · shift+click = select the range from the last click
+function v4PickPerson(nm,ev){
+  const names=v4VisibleNames||[];
+  if(ev&&ev.shiftKey&&v4PickAnchor!==null&&names.includes(v4PickAnchor)&&names.includes(nm)){
+    const a=names.indexOf(v4PickAnchor),b=names.indexOf(nm);
+    const [lo,hi]=a<b?[a,b]:[b,a];
+    if(!(ev.ctrlKey||ev.metaKey))v4Picked.clear();
+    for(let i=lo;i<=hi;i++)v4Picked.add(names[i]);
+  } else if(ev&&(ev.ctrlKey||ev.metaKey)){
+    if(v4Picked.has(nm))v4Picked.delete(nm);else v4Picked.add(nm);
+    v4PickAnchor=nm;
+  } else {
+    if(v4Picked.size===1&&v4Picked.has(nm)){v4Picked.clear();v4PickAnchor=null;}
+    else{v4Picked.clear();v4Picked.add(nm);v4PickAnchor=nm;}
+  }
+  v4RefreshPeopleList();
+}
+let v4VisibleNames=[];
 let v4PplOpen=false;
 function v4PplToggle(){
   v4PplOpen=!v4PplOpen;
@@ -3182,28 +3168,32 @@ function v4RefreshPeopleList(){
     if(hintEl)hintEl.textContent='';
     return;
   }
-  if(hintEl)hintEl.textContent=v4PickName?`Now click an initiative (◆) to assign “${v4PickName}”`:'Drag a name onto an initiative ◆ - or click the name, then the initiative';
+  const pickedN=v4Picked.size;
+  const hintTxt=pickedN?`${pickedN} ${pickedN===1?'person':'people'} selected — click a blue initiative (●) to assign ${pickedN===1?'them':'them all'}`:'Drag a name onto a blue initiative ● — or click names (Ctrl/Shift for several), then click the initiative';
+  if(hintEl)hintEl.textContent=hintTxt;
   if(!v4PplOpen&&!raw){list.innerHTML='';return;}
   const names=allNames.filter(nm=>!q||nm.toLowerCase().includes(q));
+  v4VisibleNames=names.slice();
   let html=names.map(nm=>{
     const enc=encodeURIComponent(nm);
     const load=(SB.initiatives||[]).filter(n=>(n.people||[]).includes(nm)).length;
-    return `<div class="v4-person${v4PickName===nm?' on':''}" draggable="true"
+    return `<div class="v4-person${v4Picked.has(nm)?' on':''}" draggable="true" style="user-select:none"
       ondragstart="v4DragName=decodeURIComponent('${enc}');event.dataTransfer.setData('text/plain',v4DragName)"
-      onclick="v4PickPerson(decodeURIComponent('${enc}'))"><span>${sbEsc(nm)}</span>${load?`<span style="font-size:9px;color:#35C4A8">${load}</span>`:''}</div>`;
+      onclick="v4PickPerson(decodeURIComponent('${enc}'),event)"><span>${sbEsc(nm)}</span>${load?`<span style="font-size:9px;color:#35C4A8">${load}</span>`:''}</div>`;
   }).join('');
   if(raw&&!allNames.some(nm=>nm.toLowerCase()===q)){
     const encq=encodeURIComponent(raw);
-    html+=`<div class="v4-person add${v4PickName===raw?' on':''}" draggable="true"
+    v4VisibleNames.push(raw);
+    html+=`<div class="v4-person add${v4Picked.has(raw)?' on':''}" draggable="true" style="user-select:none"
       ondragstart="v4DragName=decodeURIComponent('${encq}');event.dataTransfer.setData('text/plain',v4DragName)"
-      onclick="v4PickPerson(decodeURIComponent('${encq}'))">+ Add “${sbEsc(raw)}”</div>`;
+      onclick="v4PickPerson(decodeURIComponent('${encq}'),event)">+ Add “${sbEsc(raw)}”</div>`;
   }
   if(!html)html='<div style="font-size:10px;color:#666;font-style:italic;padding:4px">No names yet — type a name above to add one.</div>';
   list.innerHTML=html;
   const hint=document.getElementById('v4-people-hint');
-  if(hint)hint.textContent=v4PickName?`Now click an initiative (◆) to assign “${v4PickName}”`:'Drag a name onto an initiative ◆ - or click a name, then click the initiative';
+  if(hint)hint.textContent=hintTxt;
 }
-function v4ObjSidebar(obj,themes,sg,lg,hue){
+function v4ObjSidebar(obj,themes,inits,outs,hue){
   const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
   const dot=(c,r)=>`<span style="display:inline-block;width:${r*2}px;height:${r*2}px;border-radius:50%;background:${c};vertical-align:middle;margin-right:5px;flex-shrink:0"></span>`;
   let h=`<div style="margin-bottom:14px"><div style="font-size:20px;font-weight:700;color:${hue};margin-bottom:5px;display:flex;align-items:center">${dot(hue,5)}${esc(obj.title)}</div>${obj.desc?`<div style="font-size:14px;color:#aaa;line-height:1.5">${esc(obj.desc)}</div>`:''}</div>`;
@@ -3211,21 +3201,17 @@ function v4ObjSidebar(obj,themes,sg,lg,hue){
     h+=`<div style="font-size:13px;letter-spacing:1px;color:${hue}99;font-weight:600;margin-bottom:6px">THEMES (${themes.length})</div>`;
     h+=themes.map(t=>`<div style="font-size:14px;color:#ddd;margin-bottom:4px;padding:5px 8px;background:rgba(255,255,255,0.05);border-left:2px solid ${hue};border-radius:3px">${esc(t.name)}</div>`).join('');
   }
-  if(sg.length){
-    h+=`<div style="font-size:13px;letter-spacing:1px;color:#E8961E99;font-weight:600;margin:10px 0 5px">SHORT TERM GOALS (${sg.length})</div>`;
-    h+=sg.map(g=>`<div style="font-size:14px;color:#ddd;margin-bottom:4px;padding:5px 8px;background:rgba(255,152,30,0.06);border-left:2px solid #E8961E;border-radius:3px"><div style="font-weight:600">${esc(g.title)}</div>${g.desc?`<div style="font-size:12px;color:#aaa;margin-top:2px">${esc(g.desc)}</div>`:''}</div>`).join('');
-  }
-  if(lg.length){
-    h+=`<div style="font-size:13px;letter-spacing:1px;color:#2C72B099;font-weight:600;margin:10px 0 5px">LONG TERM GOALS (${lg.length})</div>`;
-    h+=lg.map(g=>`<div style="font-size:14px;color:#ddd;margin-bottom:4px;padding:5px 8px;background:rgba(44,114,176,0.07);border-left:2px solid #2C72B0;border-radius:3px"><div style="font-weight:600">${esc(g.title)}</div>${g.desc?`<div style="font-size:12px;color:#aaa;margin-top:2px">${esc(g.desc)}</div>`:''}</div>`).join('');
-  }
-  const inits=objInitiatives(obj.id);
+  const initRow=g=>{
+    const ppl=(g.people||[]).map(x=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;background:rgba(91,155,213,0.14);color:#a8ccf0;border:1px solid #5B9BD555;border-radius:20px;padding:2px 8px;margin:2px 3px 0 0">${esc(x)}<span onclick="v4RemovePerson('${g.id}',decodeURIComponent('${encodeURIComponent(x)}'))" style="cursor:pointer;color:#5B9BD577">✕</span></span>`).join('');
+    return `<div style="font-size:14px;color:#ddd;margin-bottom:5px;padding:6px 9px;background:rgba(44,114,176,0.07);border-left:2px solid #2C72B0;border-radius:3px"><div style="font-weight:600">● ${esc(g.title)}</div>${g.desc?`<div style="font-size:12px;color:#aaa;margin-top:2px">${esc(g.desc)}</div>`:''}<div style="margin-top:3px">${ppl||'<span style="font-size:11px;color:#666;font-style:italic">No one assigned yet — use the People panel</span>'}</div></div>`;
+  };
   if(inits.length){
-    h+=`<div style="font-size:13px;letter-spacing:1px;color:#35C4A899;font-weight:600;margin:10px 0 5px">INITIATIVES (${inits.length})</div>`;
-    h+=inits.map(n=>{
-      const ppl=(n.people||[]).map(x=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;background:rgba(53,196,168,0.12);color:#7fd8c6;border:1px solid #35C4A855;border-radius:20px;padding:2px 8px;margin:2px 3px 0 0">${esc(x)}<span onclick="v4RemovePerson('${n.id}',decodeURIComponent('${encodeURIComponent(x)}'))" style="cursor:pointer;color:#35C4A877">✕</span></span>`).join('');
-      return `<div style="font-size:14px;color:#ddd;margin-bottom:5px;padding:6px 9px;background:rgba(53,196,168,0.07);border-left:2px solid #35C4A8;border-radius:3px"><div style="font-weight:600">${esc(n.title)}</div>${n.desc?`<div style="font-size:12px;color:#aaa;margin-top:2px">${esc(n.desc)}</div>`:''}<div style="margin-top:3px">${ppl||'<span style="font-size:11px;color:#666;font-style:italic">No one assigned yet — use the People panel</span>'}</div></div>`;
-    }).join('');
+    h+=`<div style="font-size:13px;letter-spacing:1px;color:#2C72B099;font-weight:600;margin:10px 0 5px">INITIATIVES (${inits.length})</div>`;
+    h+=inits.map(initRow).join('');
+  }
+  if(outs.length){
+    h+=`<div style="font-size:13px;letter-spacing:1px;color:#E8961E99;font-weight:600;margin:10px 0 5px">OUTCOMES (${outs.length})</div>`;
+    h+=outs.map(n=>`<div style="font-size:14px;color:#ddd;margin-bottom:5px;padding:6px 9px;background:rgba(255,152,30,0.06);border-left:2px solid #E8961E;border-radius:3px"><div style="font-weight:600">● ${esc(n.title)}</div>${n.desc?`<div style="font-size:12px;color:#aaa;margin-top:2px">${esc(n.desc)}</div>`:''}</div>`).join('');
   }
   return h;
 }
@@ -3242,7 +3228,7 @@ function drawV4(cSvg,cW,cH){
     document.head.appendChild(st);
   }
   const zg=cSvgEl('g',{id:'czoom-group',class:'cfade'});cSvg.appendChild(zg);cApplyTransform();
-  { // radial gradient for initiative glow — bright centre fading to nothing
+  { // radial gradient for outcome glow — bright centre fading to nothing
     const NS='http://www.w3.org/2000/svg';
     const gd=cSvgEl('defs',{});
     const rg=document.createElementNS(NS,'radialGradient');rg.setAttribute('id','v4gg');
@@ -3294,7 +3280,7 @@ function drawV4(cSvg,cW,cH){
   // ── V3 EXACT: compute natural radius from text bounding box ──
   // r = sqrt(textW² + textH²)/2 + pad   — same formula as makeCGraph
   // Then scale BOTH font AND radius by the same factor → text always fits
-  const REF_OBJ_FS=18, REF_T_FS=13.5, REF_GOAL_FS=8.8, R_GOAL_NAT=13;
+  const REF_OBJ_FS=18, REF_T_FS=13.5, REF_INITIATIVE_FS=8.8, R_INITIATIVE_NAT=13;
 
   function natR(lines,fs,minRad,pad){
     const tW=Math.max(...lines.map(l=>l.length))*fs*0.58;
@@ -3317,15 +3303,14 @@ function drawV4(cSvg,cW,cH){
   const maxNatObjR=Math.max(...objPrep.map(d=>d.r));
   const allNatThemeR=Object.values(themePrep).map(d=>d.r);
   const maxNatThemeR=allNatThemeR.length?Math.max(...allNatThemeR):20;
-  // Theme circles are 0.6× — reduce natSysR accordingly so objectives get a larger share
-  const natSysR=maxNatObjR+maxNatThemeR*0.6+R_GOAL_NAT*2+R_GOAL_NAT*2+22*3
-    +((SB.initiatives||[]).length?(R_GOAL_NAT*3+4.5*(REF_GOAL_FS*1.5+2)+22)/2:0);
+  // Theme circles are 0.6× — natural footprint = objective + themes ring + two equal ring gaps
+  const natSysR=maxNatObjR+maxNatThemeR*0.6+12+2*(maxNatThemeR*0.6+R_INITIATIVE_NAT+12);
 
   // Scale to fit — preserves text-fits-in-circle property
   const scale=Math.min(1,(maxR*0.88)/natSysR);
 
-  const GOAL_FS=REF_GOAL_FS*scale*1.5;
-  const R_GOAL=Math.max(3,R_GOAL_NAT*scale);
+  const INITIATIVE_FS=REF_INITIATIVE_FS*scale*1.5;
+  const R_INITIATIVE=Math.max(3,R_INITIATIVE_NAT*scale);
 
   // ── Uniform radii: every objective same size, every theme 0.6× ──
   const R_OBJ_U=maxNatObjR*scale;
@@ -3333,11 +3318,13 @@ function drawV4(cSvg,cW,cH){
 
   // Global ring radii (same for every system)
   const R1=R_OBJ_U+R_T_U+12*scale;
-  const R2=R1+R_T_U+R_GOAL+12*scale;
-  const R3=R2+R_GOAL*2+12*scale;
-  // Initiative ring — computed PER OBJECTIVE below: just far enough beyond the
-  // long-term ring to clear that objective's own longest goal label.
-  let maxR4=R3; // widest initiative ring across all systems (for view fitting)
+  // Equal spacing between themes→initiatives and initiatives→outcomes rings
+  const RING_GAP=R_T_U+R_INITIATIVE+12*scale;
+  const R2=R1+RING_GAP;
+  const R3=R2+RING_GAP;
+  // Outcome ring — computed PER OBJECTIVE below: just far enough beyond the
+  // long-term ring to clear that objective's own longest initiative label.
+  let maxR4=R3; // widest outcome ring across all systems (for view fitting)
 
   // Max font size that fills a circle of radius r.
   // Uses the exact diagonal formula: sqrt(W²+H²)/2 ≤ rI, solved as a quadratic.
@@ -3384,19 +3371,19 @@ function drawV4(cSvg,cW,cH){
     return{els,fs};
   }
 
-  // Goal label — placed NEXT TO the goal dot (never on top of it).
-  // The anchor point is just outside the goal dot edge in the radial direction.
-  // Lines stack AWAY from the objective centre (upward for top goals, downward for bottom, etc.)
-  function goalLabel(parent,angle,ox,oy,ringR,text){
+  // Initiative label — placed NEXT TO the initiative dot (never on top of it).
+  // The anchor point is just outside the initiative dot edge in the radial direction.
+  // Lines stack AWAY from the objective centre (upward for top initiatives, downward for bottom, etc.)
+  function initiativeLabel(parent,angle,ox,oy,ringR,text){
     const lines=cWrapLines(text||'',20);
-    const lh=GOAL_FS+2;
-    // Anchor: just outside the goal dot edge, radially outward
-    const dist=ringR+R_GOAL+4;
+    const lh=INITIATIVE_FS+2;
+    // Anchor: just outside the initiative dot edge, radially outward
+    const dist=ringR+R_INITIATIVE+4;
     const bx=ox+Math.cos(angle)*dist, by=oy+Math.sin(angle)*dist;
     const ca=Math.cos(angle), sa=Math.sin(angle);
     const anchor=Math.abs(ca)<0.28?'middle':ca>0?'start':'end';
     // Vertical stacking direction: away from the objective centre
-    // vsign>0 → goal is in lower half of SVG → stack downward; <0 → upper half → upward; 0 → center
+    // vsign>0 → initiative is in lower half of SVG → stack downward; <0 → upper half → upward; 0 → center
     const vsign=Math.abs(sa)<0.28?0:Math.sign(sa);
     const els=[];
     lines.forEach((line,k)=>{
@@ -3406,7 +3393,7 @@ function drawV4(cSvg,cW,cH){
       else              lineY=by-(lines.length-1)/2*lh+k*lh;  // centred
       const lt=cSvgEl('text',{x:bx,y:lineY,
         'text-anchor':anchor,'dominant-baseline':'middle',
-        'font-size':GOAL_FS,'font-family':'system-ui',
+        'font-size':INITIATIVE_FS,'font-family':'system-ui',
         fill:'#ffffff','font-weight':'400',
         'pointer-events':'none',display:'none'});
       lt.textContent=line;parent.appendChild(lt);els.push(lt);
@@ -3421,15 +3408,15 @@ function drawV4(cSvg,cW,cH){
     const lh=o.fs+2,totalH=(o.lines.length-1)*lh;
     o.labelEls.forEach((lt,i)=>{lt.setAttribute('x',x);lt.setAttribute('y',y-totalH/2+i*lh);});
   }
-  function repositionGoal(o){
+  function repositionInitiative(o){
     const x=o.ox+Math.cos(o.angle)*o.ringR,y=o.oy+Math.sin(o.angle)*o.ringR;
     o.el.setAttribute('cx',x);o.el.setAttribute('cy',y);
-    const dist=o.ringR+R_GOAL+4;
+    const dist=o.ringR+R_INITIATIVE+4;
     const bx=o.ox+Math.cos(o.angle)*dist,by=o.oy+Math.sin(o.angle)*dist;
     const ca=Math.cos(o.angle),sa=Math.sin(o.angle);
     const anchor=Math.abs(ca)<0.28?'middle':ca>0?'start':'end';
     const vsign=Math.abs(sa)<0.28?0:Math.sign(sa);
-    const lh=GOAL_FS+2;
+    const lh=INITIATIVE_FS+2;
     o.labelEls.forEach((lt,k)=>{
       let lineY;
       if(vsign>0)       lineY=by+k*lh;
@@ -3441,15 +3428,15 @@ function drawV4(cSvg,cW,cH){
 
 
 
-  function repositionInit(o){
+  function repositionOutc(o){
     const x=Math.cos(o.angle)*o.satR,y=Math.sin(o.angle)*o.satR;
     o.grp.setAttribute('transform','translate('+x+','+y+')');
-    const dist=o.satR+R_GOAL+4;
+    const dist=o.satR+R_INITIATIVE+4;
     const bx=Math.cos(o.angle)*dist,by=Math.sin(o.angle)*dist;
     const ca=Math.cos(o.angle),sa=Math.sin(o.angle);
     const anchor=Math.abs(ca)<0.28?'middle':ca>0?'start':'end';
     const vsign=Math.abs(sa)<0.28?0:Math.sign(sa);
-    const lh=GOAL_FS+2;
+    const lh=INITIATIVE_FS+2;
     o.labelEls.forEach((lt,k)=>{
       let lineY;
       if(vsign>0)lineY=by+k*lh;
@@ -3470,9 +3457,9 @@ function drawV4(cSvg,cW,cH){
     const sidebar=document.getElementById('cside');
     const sideW=sidebar&&sidebar.style.transform!=='translateX(120%)'?320:0;
     const vw=cW-sideW;
-    // Extra padding beyond the outermost ring to include goal label text.
-    // Labels start at R_GOAL+4 past the dot edge and can stack up to 4 lines outward.
-    const labelPad=R_GOAL+4+4*(GOAL_FS+2);
+    // Extra padding beyond the outermost ring to include initiative label text.
+    // Labels start at R_INITIATIVE+4 past the dot edge and can stack up to 4 lines outward.
+    const labelPad=R_INITIATIVE+4+4*(INITIATIVE_FS+2);
     const sysD=(sysR3+labelPad)*2+20;
     const z=Math.min(6,vw/sysD,cH/sysD);
     cAnimateTo((vw/2+sideW/2)-z*px,cH/2-z*py,z);
@@ -3484,24 +3471,20 @@ function drawV4(cSvg,cW,cH){
     const pos=objPos[oi];
     const hue=C_RAMP50[Math.round(oRankV4[obj.id]*(C_RAMP50.length-1))];
     const themes=SB.themes.filter(t=>(obj.themeIds||[]).includes(t.id));
-    const sg=SB.goals.filter(g=>g.type==='short'&&(g.objectiveIds||[]).includes(obj.id));
-    const lg=SB.goals.filter(g=>g.type==='long'&&(g.objectiveIds||[]).includes(obj.id));
-    const inits=objInitiatives(obj.id);
-    v4SystemById[obj.id]={obj,themes,sg,lg,hue};
-
-    // Initiative ring — fixed distance beyond the long-term ring (v7 spacing)
-    const R4=R3+(R_GOAL+4+4.5*(GOAL_FS+2)+R_GOAL*2)*0.65;
+    const inits=objInitiativesOf(obj.id);
+    const outs=objOutcomes(obj.id);
+    v4SystemById[obj.id]={obj,themes,inits,outs,hue};
 
     // sysG uses local coordinates (centre = 0,0); transform places it on the ellipse.
     // This lets us orbit the entire system by updating one attribute.
     const sysG=cSvgEl('g',{transform:'translate('+pos.x+','+pos.y+')'});
     zg.appendChild(sysG);
-    const goalLabelEls=[],ringLabelEls=[],initLabelEls=[];
-    const themeOrb=[],sgOrb=[],lgOrb=[];
+    const initiativeLabelEls=[],ringLabelEls=[],outcLabelEls=[];
+    const themeOrb=[],initOrbArr=[];
 
     const clickHandler=e=>{
       e.stopPropagation();
-      cShowSidebar(v4ObjSidebar(obj,themes,sg,lg,hue));
+      cShowSidebar(v4ObjSidebar(obj,themes,inits,outs,hue));
       if(v4SelectFn)v4SelectFn(obj.id);
     };
 
@@ -3510,7 +3493,7 @@ function drawV4(cSvg,cW,cH){
     // Returns the text element so it can be shown/hidden on zoom.
     function ringLabel(r,text,idSuffix,clr){
       const pid='rlp-'+obj.id+'-'+idSuffix;
-      const fs=Math.max(5,GOAL_FS*0.78);
+      const fs=Math.max(5,INITIATIVE_FS*0.78);
       const rOff=r+fs*0.55; // offset outward so text clears the ring
       const d=`M 0,${-rOff} A ${rOff},${rOff} 0 1,1 0,${rOff} A ${rOff},${rOff} 0 1,1 0,${-rOff}`;
       const defs=cSvgEl('defs',{});
@@ -3525,18 +3508,17 @@ function drawV4(cSvg,cW,cH){
     }
 
     // Dashed orbital rings — centred at local 0,0
-    if(themes.length)sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R1,fill:'none',stroke:hue,'stroke-width':1,'stroke-dasharray':'6 5',opacity:0.32}));
-    if(sg.length){
-      sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R2,fill:'none',stroke:'#E8961E','stroke-width':1,'stroke-dasharray':'5 5',opacity:0.28}));
-      ringLabelEls.push(ringLabel(R2,'SHORT TERM GOALS','sg','#E8961E'));
-    }
-    if(lg.length){
-      sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R3,fill:'none',stroke:'#2C72B0','stroke-width':1,'stroke-dasharray':'5 5',opacity:0.28}));
-      ringLabelEls.push(ringLabel(R3,'LONG TERM GOALS','lg','#2C72B0'));
+    if(themes.length){
+      sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R1,fill:'none',stroke:hue,'stroke-width':1,'stroke-dasharray':'6 5',opacity:0.32}));
+      ringLabelEls.push(ringLabel(R1,'THEMES','thm',hue));
     }
     if(inits.length){
-      sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R4,fill:'none',stroke:'#35C4A8','stroke-width':1,'stroke-dasharray':'2.5 6',opacity:0.22}));
-      ringLabelEls.push(ringLabel(R4,'INITIATIVES','init','#35C4A8'));
+      sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R2,fill:'none',stroke:'#2C72B0','stroke-width':1,'stroke-dasharray':'5 5',opacity:0.28}));
+      ringLabelEls.push(ringLabel(R2,'INITIATIVES','ini','#2C72B0'));
+    }
+    if(outs.length){
+      sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R3,fill:'none',stroke:'#E8961E','stroke-width':1,'stroke-dasharray':'5 5',opacity:0.28}));
+      ringLabelEls.push(ringLabel(R3,'OUTCOMES','out','#E8961E'));
     }
 
     // Theme orbiters — local coordinates, ox/oy=0
@@ -3554,69 +3536,37 @@ function drawV4(cSvg,cW,cH){
       themeOrb.push({el:c,labelEls:tLabelEls,angle,lines,fs:tFs,ox:0,oy:0});
     });
 
-    // Short goal dots — local coordinates
-    const sgAngles=ringAngles(sg.length,obj.id,'s');
-    const sgOffset=sg.length>0?Math.PI/sg.length:Math.PI/4;
-    const lgAngles=ringAngles(lg.length,obj.id,'l',sgOffset);
-
-    sg.forEach((g,j)=>{
-      const angle=sgAngles[j];
+    // Initiative diamonds (blue, ring R2) — people are assigned HERE.
+    // Each diamond glows with crew size and accepts click/drag people assignment.
+    const iAngles=ringAngles(inits.length,obj.id,'ini');
+    const iOffset=inits.length>0?Math.PI/inits.length:Math.PI/4;
+    const oAngles=ringAngles(outs.length,obj.id,'out',iOffset);
+    const NSs='http://www.w3.org/2000/svg';
+    inits.forEach((g,j)=>{
+      const angle=iAngles[j];
       const x=Math.cos(angle)*R2,y=Math.sin(angle)*R2;
-      const c=cSvgEl('circle',{cx:x,cy:y,r:R_GOAL,fill:'#E8961E',stroke:C_BG,'stroke-width':0.7,style:'cursor:pointer'});
-      c.addEventListener('click',clickHandler);
-      c.addEventListener('mouseenter',ev=>showTT(ev,g.title+(goalInitiatives(g.id).length?'':' — no initiative yet')));c.addEventListener('mouseleave',hideTT);
-      sysG.appendChild(c);
-      const glEls=goalLabel(sysG,angle,0,0,R2,g.title);
-      glEls.forEach(l=>goalLabelEls.push(l));
-      sgOrb.push({el:c,labelEls:glEls,angle,ringR:R2,ox:0,oy:0,gid:g.id});
-    });
-
-    // Long goal dots — local coordinates
-    lg.forEach((g,j)=>{
-      const angle=lgAngles[j];
-      const x=Math.cos(angle)*R3,y=Math.sin(angle)*R3;
-      const c=cSvgEl('circle',{cx:x,cy:y,r:R_GOAL,fill:'#2C72B0',stroke:C_BG,'stroke-width':0.7,style:'cursor:pointer'});
-      c.addEventListener('click',clickHandler);
-      c.addEventListener('mouseenter',ev=>showTT(ev,g.title+(goalInitiatives(g.id).length?'':' — no initiative yet')));c.addEventListener('mouseleave',hideTT);
-      sysG.appendChild(c);
-      const glEls=goalLabel(sysG,angle,0,0,R3,g.title);
-      glEls.forEach(l=>goalLabelEls.push(l));
-      lgOrb.push({el:c,labelEls:glEls,angle,ringR:R3,ox:0,oy:0,gid:g.id});
-    });
-
-    // Initiative satellites — static diamonds on a dedicated outer ring.
-    // Like themes and goals, they are not positionally tied to individual
-    // goals; the ring simply shows which initiatives serve this objective.
-    const initOrb=[];
-    const nAngles=ringAngles(inits.length,obj.id,'n');
-    inits.forEach((n,j)=>{
-      const angle0=nAngles[j];
-      const satR=R4;
-      const x=Math.cos(angle0)*satR,y=Math.sin(angle0)*satR;
       const grp=cSvgEl('g',{transform:'translate('+x+','+y+')',style:'cursor:pointer'});
-      const pc=(n.people||[]).length;
-      const baseR=R_GOAL*2.2;
+      const pc=(g.people||[]).length;
+      const baseR=R_INITIATIVE*2.2;
       const gv=v4GlowVals(pc,baseR);
-      const NSs='http://www.w3.org/2000/svg';
       const gradId='v4glow-'+(++v4GradSeq);
       const gdefs=cSvgEl('defs',{});
       const grad=document.createElementNS(NSs,'radialGradient');grad.setAttribute('id',gradId);
       const st1=document.createElementNS(NSs,'stop');st1.setAttribute('offset','0%');st1.setAttribute('stop-color',gv.coreCol);st1.setAttribute('stop-opacity',gv.coreOp);
-      const st2=document.createElementNS(NSs,'stop');st2.setAttribute('offset','100%');st2.setAttribute('stop-color','#35C4A8');st2.setAttribute('stop-opacity','0');
+      const st2=document.createElementNS(NSs,'stop');st2.setAttribute('offset','100%');st2.setAttribute('stop-color','#5B9BD5');st2.setAttribute('stop-opacity','0');
       grad.appendChild(st1);grad.appendChild(st2);gdefs.appendChild(grad);sysG.appendChild(gdefs);
       const glow=cSvgEl('circle',{cx:0,cy:0,r:gv.r,fill:'url(#'+gradId+')',opacity:gv.op,'pointer-events':'none'});
       grp.appendChild(glow);
-      const dR=R_GOAL*0.98;
-      const dia=cSvgEl('path',{d:'M 0,'+(-dR)+' L '+dR+',0 L 0,'+dR+' L '+(-dR)+',0 Z',fill:'#35C4A8',stroke:C_BG,'stroke-width':0.7});
+      const dia=cSvgEl('circle',{cx:0,cy:0,r:R_INITIATIVE,fill:'#2C72B0',stroke:C_BG,'stroke-width':0.7});
       grp.appendChild(dia);
-      grp.appendChild(cSvgEl('circle',{cx:0,cy:0,r:Math.max(10,dR*2),fill:'transparent'})); // generous hit/drop target
-      const tipFor=()=>{const k=(n.people||[]).length;return n.title+(n.desc?' — '+n.desc:'')+' — '+(k?k+(k===1?' person':' people')+' assigned':'no one assigned yet')+' (click for names)';};
+      grp.appendChild(cSvgEl('circle',{cx:0,cy:0,r:Math.max(10,R_INITIATIVE*2),fill:'transparent'})); // generous hit/drop target
+      const tipFor=()=>{const k=(g.people||[]).length;return g.title+(g.desc?' — '+g.desc:'')+' — '+(k?k+(k===1?' person':' people')+' assigned':'no one assigned yet')+' (click for names)';};
       grp.addEventListener('mouseenter',ev=>showTT(ev,tipFor()));
       grp.addEventListener('mouseleave',hideTT);
       grp.addEventListener('click',e=>{
         e.stopPropagation();
-        if(v4PickName){v4Assign(n.id,v4PickName);return;}
-        v4SelInit=n.id;v4RefreshPeopleList();
+        if(v4PickedNames().length){v4AssignPicked(g.id);return;}
+        v4SelInit=g.id;v4RefreshPeopleList();
         clickHandler(e);
       });
       grp.addEventListener('dragover',e=>{e.preventDefault();dia.setAttribute('stroke','#ffffff');dia.setAttribute('stroke-width','1.6');});
@@ -3624,17 +3574,36 @@ function drawV4(cSvg,cW,cH){
       grp.addEventListener('drop',e=>{
         e.preventDefault();dia.setAttribute('stroke',C_BG);dia.setAttribute('stroke-width','0.7');
         const nm=(e.dataTransfer&&e.dataTransfer.getData('text/plain'))||v4DragName;
-        if(nm)v4Assign(n.id,nm);
+        if(nm)v4Assign(g.id,nm);
       });
       sysG.appendChild(grp);
-      const glEls=goalLabel(sysG,angle0,0,0,satR,n.title);
-      glEls.forEach(l=>{l.setAttribute('fill','#8fe0cf');initLabelEls.push(l);});
-      initOrb.push({grp,glow,labelEls:glEls,angle:angle0,satR,initId:n.id});
-      if(!v4InitEls[n.id])v4InitEls[n.id]=[];
-      v4InitEls[n.id].push({glow,baseR,st1});
+      const glEls=initiativeLabel(sysG,angle,0,0,R2,g.title);
+      glEls.forEach(l=>{l.setAttribute('fill','#a8ccf0');initiativeLabelEls.push(l);});
+      initOrbArr.push({grp,glow,labelEls:glEls,angle,satR:R2,initId:g.id});
+      if(!v4InitEls[g.id])v4InitEls[g.id]=[];
+      v4InitEls[g.id].push({glow,baseR,st1});
     });
 
-    const sysR4=initOrb.length?Math.max(...initOrb.map(o=>o.satR)):R3;
+    // Outcome circles (orange, ring R3) — link to the objective's initiatives; no people here.
+    const outcOrb=[];
+    outs.forEach((n,j)=>{
+      const angle0=oAngles[j];
+      const satR=R3;
+      const x=Math.cos(angle0)*satR,y=Math.sin(angle0)*satR;
+      const grp=cSvgEl('g',{transform:'translate('+x+','+y+')',style:'cursor:pointer'});
+      const c=cSvgEl('circle',{cx:0,cy:0,r:R_INITIATIVE,fill:'#E8961E',stroke:C_BG,'stroke-width':0.7});
+      grp.appendChild(c);
+      grp.appendChild(cSvgEl('circle',{cx:0,cy:0,r:Math.max(10,R_INITIATIVE*2),fill:'transparent'})); // generous hit target
+      grp.addEventListener('mouseenter',ev=>showTT(ev,n.title+(n.desc?' — '+n.desc:'')));
+      grp.addEventListener('mouseleave',hideTT);
+      grp.addEventListener('click',clickHandler);
+      sysG.appendChild(grp);
+      const glEls=initiativeLabel(sysG,angle0,0,0,satR,n.title);
+      glEls.forEach(l=>{l.setAttribute('fill','#f0c88f');outcLabelEls.push(l);});
+      outcOrb.push({grp,labelEls:glEls,angle:angle0,satR,outcId:n.id});
+    });
+
+    const sysR4=R3;
     if(sysR4>maxR4)maxR4=sysR4;
 
     // Objective circle — centred at local 0,0
@@ -3646,10 +3615,10 @@ function drawV4(cSvg,cW,cH){
     sysG.appendChild(oc);
     circleLabel(sysG,0,0,objPrep[oi].lines,R_OBJ_U,hue,'600');
 
-    systemEls.push({id:obj.id,el:sysG,goalLabelEls,ringLabelEls,initLabelEls,pos:{x:pos.x,y:pos.y},arcParam:objArcParams[oi],themeOrb,sgOrb,lgOrb,initOrb,R4:sysR4});
+    systemEls.push({id:obj.id,el:sysG,initiativeLabelEls,ringLabelEls,outcLabelEls,pos:{x:pos.x,y:pos.y},arcParam:objArcParams[oi],themeOrb,initOrbArr,outcOrb,R4:sysR4});
   });
 
-  // Dim non-selected, show goal labels for selected (orbital animation always runs)
+  // Dim non-selected; initiative + outcome labels always show for the selected system
   let isZoomedIn=false;
   v4SelectFn=(selId)=>{
     isZoomedIn=!!selId;
@@ -3657,29 +3626,20 @@ function drawV4(cSvg,cW,cH){
     if(!selId)v4SelInit=null;
     chintFade(!selId);
     const sel=systemEls.find(s=>s.id===selId);
-    v4ShowGoalText=false;
     systemEls.forEach(s=>{
       const selected=s.id===selId;
       s.el.style.opacity=selId&&!selected?'0.1':'1';
-      s.goalLabelEls.forEach(l=>l.setAttribute('display','none')); // hidden until 'Show goal text'
-      s.initLabelEls.forEach(l=>l.setAttribute('display',selected?'':'none'));
+      s.initiativeLabelEls.forEach(l=>l.setAttribute('display',selected?'':'none'));
+      s.outcLabelEls.forEach(l=>l.setAttribute('display',selected?'':'none'));
       s.ringLabelEls.forEach(l=>l.setAttribute('display',selected?'':'none'));
     });
-    const gtb=document.getElementById('v4-goaltext-btn');
-    if(gtb){gtb.style.display=selId?'block':'none';gtb.textContent='Show goal text';}
     if(selId&&sel)v4ZoomTo(sel.pos.x,sel.pos.y,sel.R4);
     v4PeoplePanel();
   };
-  v4GoalTextApply=()=>{
-    const sel=systemEls.find(s=>s.id===v4CurrentObjId);
-    if(sel)sel.goalLabelEls.forEach(l=>l.setAttribute('display',v4ShowGoalText?'':'none'));
-    const b=document.getElementById('v4-goaltext-btn');
-    if(b)b.textContent=v4ShowGoalText?'Hide goal text':'Show goal text';
-  };
 
   // Global always-on animation loop.
-  // Ring speeds (rad/s, 0.7× of previous): themes 0.0735 CW, sg 0.049 CCW, lg 0.0343 CW
-  // Ellipse speed (zoom-out only): 0.4× theme speed → objectives crawl slowly around ellipse
+  // Ring speeds (rad/s): themes 0.0735 CW, initiatives 0.049 CCW, outcomes 0.0343 CW.
+  // When zoomed into a system, its rings pause so the always-on labels stay readable.
   const OBJ_ARC_SPEED=totLen*0.0735*0.4/(2*Math.PI); // arc-length units per second
   let objArcOffset=0, lastT=null;
   function globalOrbitTick(t){
@@ -3687,14 +3647,12 @@ function drawV4(cSvg,cW,cH){
     const dt=Math.min((t-lastT)/1000,0.05);
     lastT=t;
 
-    // Ring orbiters — always animate
+    // Ring orbiters — always animate (labels travel with their dots)
     systemEls.forEach(s=>{
       s.themeOrb.forEach(o=>{o.angle+=dt*0.0735;repositionTheme(o);});
-      s.sgOrb.forEach(o=>{o.angle-=dt*0.0490;repositionGoal(o);});
-      s.lgOrb.forEach(o=>{o.angle+=dt*0.0343;repositionGoal(o);});
-      if(!(isZoomedIn&&v4ShowGoalText))s.initOrb.forEach(o=>{o.angle-=dt*0.0280;repositionInit(o);});
+      s.initOrbArr.forEach(o=>{o.angle-=dt*0.0490;repositionOutc(o);});
+      s.outcOrb.forEach(o=>{o.angle+=dt*0.0343;repositionOutc(o);});
     });
-
 
     v4AnimId=requestAnimationFrame(globalOrbitTick);
   }
@@ -3703,7 +3661,7 @@ function drawV4(cSvg,cW,cH){
   // Fit view to actual content size (R3 = outermost ring) not the budget (maxR).
   // No upper cap on z so content zooms in to fill the viewport when it's smaller.
   const pad=28;
-  const fitR=maxR4+R_GOAL+pad;
+  const fitR=maxR4+R_INITIATIVE+pad;
   const minX=cx-ea-fitR,maxX=cx+ea+fitR,minY=cy-eb-fitR,maxY=cy+eb+fitR;
   const z=Math.min(4,cW/(maxX-minX),cH/(maxY-minY));
   cFitView={x:cW/2-z*(minX+maxX)/2,y:cH/2-z*(minY+maxY)/2,z};
@@ -3786,28 +3744,43 @@ window.addEventListener('resize',()=>{try{if(document.getElementById('panel-map'
 // ══════════════════════════════════════════
 
 // STATE
-let SB = { ideas:[], themes:[], objectives:[], goals:[], initiatives:[], _n:1 };
+let SB = { ideas:[], themes:[], objectives:[], initiatives:[], outcomes:[], _n:1 };
 let SBD = { type:null, id:null, fromObjId:null };
 let sbModalCtx = {};
 
 const sbUid = () => 'sb' + (SB._n++);
 
-function sbPersist(){ try{ localStorage.setItem('sb_v2', JSON.stringify(SB)); }catch(e){} }
+function sbPersist(){ try{ localStorage.setItem('sb_v4', JSON.stringify(SB)); }catch(e){} }
 function sbHydrate(){
-  try{ const d=localStorage.getItem('sb_v2'); if(d) SB=JSON.parse(d); }catch(e){}
+  try{
+    const d=localStorage.getItem('sb_v4');
+    if(d){ SB=JSON.parse(d); }
+    else{
+      // One-time migration from the previous model (typed initiatives, no initiative→outcome links)
+      const old=localStorage.getItem('sb_v3');
+      if(old){
+        const o=JSON.parse(old);
+        SB={ideas:o.ideas||[],themes:o.themes||[],objectives:o.objectives||[],initiatives:o.initiatives||[],outcomes:o.outcomes||[],_n:o._n||1};
+        SB.initiatives.forEach(g=>{delete g.type;});
+        SB.outcomes.forEach(n=>{if(!n.initiativeIds)n.initiativeIds=[];});
+        sbPersist();
+      }
+    }
+  }catch(e){}
   if(!SB.initiatives)SB.initiatives=[];
+  if(!SB.outcomes)SB.outcomes=[];
+  SB.initiatives.forEach(g=>{if(!g.people)g.people=[];});
+  SB.outcomes.forEach(n=>{if(!n.initiativeIds)n.initiativeIds=[];});
 }
 
 // RENDER
 function sbRender(){
-  sbRenderIdeas(); sbRenderThemes(); sbRenderBuckets(); sbRenderObjectives(); sbRenderInitiatives();
+  sbRenderIdeas(); sbRenderThemes(); sbRenderBuckets(); sbRenderObjectives();
   document.getElementById('sb-fc-ideas').textContent      = SB.ideas.length;
   document.getElementById('sb-fc-themes').textContent     = SB.themes.length;
   document.getElementById('sb-fc-objectives').textContent = SB.objectives.length;
-  document.getElementById('sb-fc-goals').textContent      = SB.goals.length;
-  const _fcI=document.getElementById('sb-fc-initiatives'); if(_fcI)_fcI.textContent=(SB.initiatives||[]).length;
-  const _cov=SB.goals.filter(g=>(SB.initiatives||[]).some(n=>(n.goalIds||[]).includes(g.id))).length;
-  const _fcC=document.getElementById('sb-fc-coverage'); if(_fcC)_fcC.textContent=_cov+' of '+SB.goals.length;
+  document.getElementById('sb-fc-initiatives').textContent      = SB.initiatives.length;
+  const _fcI=document.getElementById('sb-fc-outcomes'); if(_fcI)_fcI.textContent=(SB.outcomes||[]).length;
   sbPersist();
 }
 
@@ -3857,7 +3830,6 @@ function sbToggleThemeDesc(){
   sbThemeDescOn=!sbThemeDescOn;
   const btn=document.getElementById('sb-tdesc-toggle');
   btn.textContent=sbThemeDescOn?'Hide descriptions':'Show descriptions';
-  btn.className=sbThemeDescOn?'pri':'';
   document.querySelectorAll('.sb-tc-desc').forEach(el=>el.style.display=sbThemeDescOn?'block':'none');
 }
 
@@ -3866,36 +3838,19 @@ function sbToggleObjDesc(){
   sbObjDescOn=!sbObjDescOn;
   const btn=document.getElementById('sb-odesc-toggle');
   btn.textContent=sbObjDescOn?'Hide descriptions':'Show descriptions';
-  btn.className=sbObjDescOn?'pri':'';
   document.querySelectorAll('.sb-oc-desc').forEach(el=>el.style.display=sbObjDescOn?'block':'none');
 }
 
-let sbInitDescOn=true;
-function sbToggleInitDesc(){
-  sbInitDescOn=!sbInitDescOn;
-  const btn=document.getElementById('sb-idesc-toggle');
-  if(btn){btn.textContent=sbInitDescOn?'Hide descriptions':'Show descriptions';btn.className=sbInitDescOn?'pri':'';}
-  document.querySelectorAll('.sb-ic-desc').forEach(el=>el.style.display=sbInitDescOn?'block':'none');
-}
-let sbInitGridView=false;
-function sbToggleInitView(){
-  sbInitGridView=!sbInitGridView;
-  const btn=document.getElementById('sb-init-view-toggle');
-  if(btn){btn.textContent=sbInitGridView?'Card view':'Grid view';btn.className=sbInitGridView?'pri':'';}
-  const descBtn=document.getElementById('sb-idesc-toggle');
-  if(descBtn)descBtn.style.display=sbInitGridView?'none':'';
-  sbRenderInitiatives();
-}
 
 // Collapse / expand sections
-const sbCollapsed={ideas:false,themes:false,obj:false,init:false};
+const sbCollapsed={ideas:false,themes:false,obj:false};
 function sbCollapse(sec){
   sbCollapsed[sec]=!sbCollapsed[sec];
   const on=sbCollapsed[sec];
   const body=document.getElementById('sb-'+sec+'-body');
   const btn=document.getElementById('sb-'+sec+'-collapse');
   if(body) body.style.display=on?'none':'';
-  if(btn){ btn.textContent=on?'Expand':'Collapse'; btn.className=on?'pri':''; btn.style.background=on?'':'#fff'; btn.style.borderColor=on?'':'#ccc'; btn.style.color=on?'':'#555'; }
+  if(btn){ btn.textContent=on?'Expand':'Collapse'; }
 }
 
 // Theme grid / card view toggle
@@ -3904,7 +3859,6 @@ function sbToggleThemeView(){
   sbThemeGridView=!sbThemeGridView;
   const btn=document.getElementById('sb-themes-view-toggle');
   btn.textContent=sbThemeGridView?'Card view':'Grid view';
-  btn.className=sbThemeGridView?'pri':'';
   // Collapse bucket details (chips + empty text) and shrink sidebar in grid view
   document.querySelectorAll('.sb-bkt-detail').forEach(el=>el.style.display=sbThemeGridView?'none':'');
   ['uts','ci','fds'].forEach(a=>{
@@ -4015,7 +3969,7 @@ let sbObjGridView=false;
 function sbToggleObjView(){
   sbObjGridView=!sbObjGridView;
   const btn=document.getElementById('sb-obj-view-toggle');
-  if(btn){btn.textContent=sbObjGridView?'Card view':'Grid view';btn.className=sbObjGridView?'pri':'';}
+  if(btn){btn.textContent=sbObjGridView?'Card view':'Grid view';}
   const descBtn=document.getElementById('sb-odesc-toggle');
   if(descBtn)descBtn.style.display=sbObjGridView?'none':'';
   sbRenderObjectives();
@@ -4045,17 +3999,28 @@ function sbRenderObjectives(){
     const linkedThemes=SB.themes.filter(t=>obj.themeIds.includes(t.id));
     const themeChips=linkedThemes.map(t=>`<div style="font-size:9px;font-weight:500;background:#7050A011;color:#7050A0;border:1px solid #7050A033;border-radius:20px;padding:2px 8px;display:inline-flex;align-items:center;gap:3px">
       ${sbEsc(t.name)}<span onclick="sbUnlinkThemeFromObj('${t.id}','${obj.id}')" style="cursor:pointer;color:#7050A066;font-size:10px">✕</span></div>`).join('');
-    const shortGoals=SB.goals.filter(g=>g.type==='short'&&g.objectiveIds.includes(obj.id));
-    const longGoals=SB.goals.filter(g=>g.type==='long'&&g.objectiveIds.includes(obj.id));
-    const goalCards=(goals,objId)=>goals.map(g=>`<div style="background:#fafafa;border-radius:6px;padding:7px 9px;font-size:10px;margin-bottom:4px;border:0.5px solid #e5e5e5;cursor:grab;user-select:none"
-        draggable="true" data-sb-goal="${g.id}" data-sb-obj="${objId}"
-        ondragstart="sbGoalDS(event,'${g.id}','${objId}')" ondragend="sbGoalDE(event)">
+    const objInitiatives=SB.initiatives.filter(g=>g.objectiveIds.includes(obj.id));
+    const objOutcomesList=(SB.outcomes||[]).filter(n=>(n.objectiveIds||[]).includes(obj.id));
+    const initiativeCards=(initiatives,objId)=>initiatives.map(g=>`<div style="background:#fafafa;border-radius:6px;padding:7px 9px;font-size:10px;margin-bottom:4px;border:0.5px solid #e5e5e5;cursor:grab;user-select:none"
+        draggable="true" data-sb-initiative="${g.id}" data-sb-obj="${objId}"
+        ondragstart="sbInitiativeDS(event,'${g.id}','${objId}')" ondragend="sbInitiativeDE(event)">
       <div style="font-weight:600;color:#111;margin-bottom:1px;font-size:10px">${sbEsc(g.title)}</div>
       ${g.desc?`<div style="color:#999;font-size:9px;line-height:1.4">${sbEsc(g.desc)}</div>`:''}
+      ${(g.people||[]).length?`<div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:4px">${g.people.map(x=>`<span style="font-size:8px;background:#EEF3FF;color:#2860A8;border:1px solid #2860A833;border-radius:20px;padding:1px 6px">${sbEsc(x)}</span>`).join('')}</div>`:''}
       <div class="sb-hover-actions" style="display:none;gap:3px;margin-top:5px">
-        <button style="font-size:10px;padding:2px 7px" onclick="sbOpenModal('goal','${g.id}','${objId}')">Edit</button>
+        <button style="font-size:10px;padding:2px 7px" onclick="sbOpenModal('initiative','${g.id}','${objId}')">Edit</button>
         <button style="font-size:10px;padding:2px 7px" onclick="sbOpenCopyPicker('${g.id}','${objId}')">Copy</button>
-        <button style="font-size:10px;padding:2px 7px;color:#b03020;border-color:#f0c0b8" onclick="sbUnlinkGoal('${g.id}','${objId}')">Remove</button>
+        <button style="font-size:10px;padding:2px 7px;color:#b03020;border-color:#f0c0b8" onclick="sbUnlinkInitiative('${g.id}','${objId}')">Remove</button>
+      </div>
+    </div>`).join('');
+    const outcomeCards=(outcomes,objId)=>outcomes.map(n=>`<div style="background:#fafafa;border-radius:6px;padding:7px 9px;font-size:10px;margin-bottom:4px;border:0.5px solid #e5e5e5;cursor:grab;user-select:none"
+        draggable="true" data-sb-outcome="${n.id}" data-sb-obj="${objId}"
+        ondragstart="sbOutcomeDS(event,'${n.id}','${objId}')" ondragend="sbOutcomeDE(event)">
+      <div style="font-weight:600;color:#111;margin-bottom:1px;font-size:10px">${sbEsc(n.title)}</div>
+      ${n.desc?`<div style="color:#999;font-size:9px;line-height:1.4">${sbEsc(n.desc)}</div>`:''}
+      <div class="sb-hover-actions" style="display:none;gap:3px;margin-top:5px">
+        <button style="font-size:10px;padding:2px 7px" onclick="sbOpenModal('outcome','${n.id}','${objId}')">Edit</button>
+        <button style="font-size:10px;padding:2px 7px;color:#b03020;border-color:#f0c0b8" onclick="sbUnlinkOutcome('${n.id}','${objId}')">Remove</button>
       </div>
     </div>`).join('');
     return `<div style="background:#fff;border:0.5px solid #e5e5e5;border-radius:8px;padding:12px;min-width:230px;max-width:260px;flex-shrink:0" id="sb-oc-${obj.id}" data-sb-obj-card>
@@ -4065,25 +4030,26 @@ function sbRenderObjectives(){
         ondragover="sbObjThemeOver(event,'${obj.id}')" ondragleave="sbObjThemeLeave(event,'${obj.id}')" ondrop="sbObjThemeDrop(event,'${obj.id}')">
         ${themeChips||'<span style="font-size:9px;color:#bbb;font-style:italic">Drop themes here</span>'}
       </div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#B06018;margin-bottom:4px">Short Term</div>
-      <div id="sb-sb-${obj.id}" style="min-height:32px;border-radius:6px;padding:5px;border:1px dashed #DDA040;background:#FFF7EE;margin-bottom:8px"
-        ondragover="sbGBktOver(event,'${obj.id}','short')" ondragleave="sbGBktLeave(event,'${obj.id}','short')" ondrop="sbGBktDrop(event,'${obj.id}','short')">
-        ${goalCards(shortGoals,obj.id)||'<div style="font-size:9px;color:#ccc;text-align:center;padding:3px 0">Goals</div>'}
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2860A8;margin-bottom:4px">Initiatives</div>
+      <div id="sb-ib-${obj.id}" style="min-height:32px;border-radius:6px;padding:5px;border:1px dashed #6090D0;background:#EEF3FF;margin-bottom:8px"
+        ondragover="sbIBktOver(event,'${obj.id}')" ondragleave="sbIBktLeave(event,'${obj.id}')" ondrop="sbIBktDrop(event,'${obj.id}')">
+        ${initiativeCards(objInitiatives,obj.id)||'<div style="font-size:9px;color:#ccc;text-align:center;padding:3px 0">Initiatives</div>'}
       </div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2860A8;margin-bottom:4px">Long Term</div>
-      <div id="sb-lb-${obj.id}" style="min-height:32px;border-radius:6px;padding:5px;border:1px dashed #6090D0;background:#EEF3FF;margin-bottom:10px"
-        ondragover="sbGBktOver(event,'${obj.id}','long')" ondragleave="sbGBktLeave(event,'${obj.id}','long')" ondrop="sbGBktDrop(event,'${obj.id}','long')">
-        ${goalCards(longGoals,obj.id)||'<div style="font-size:9px;color:#ccc;text-align:center;padding:3px 0">Goals</div>'}
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#B06018;margin-bottom:4px">Outcomes</div>
+      <div id="sb-ob-${obj.id}" style="min-height:32px;border-radius:6px;padding:5px;border:1px dashed #DDA040;background:#FFF7EE;margin-bottom:10px"
+        ondragover="sbOBktOver(event,'${obj.id}')" ondragleave="sbOBktLeave(event,'${obj.id}')" ondrop="sbOBktDrop(event,'${obj.id}')">
+        ${outcomeCards(objOutcomesList,obj.id)||'<div style="font-size:9px;color:#ccc;text-align:center;padding:3px 0">Outcomes</div>'}
       </div>
-      <div style="display:flex;gap:5px;padding-top:8px;border-top:1px solid #f0f0f0">
-        <button class="pri" style="font-size:10px;padding:3px 8px" onclick="sbOpenModal('goal',null,'${obj.id}')">+ Goal</button>
+      <div style="display:flex;gap:5px;padding-top:8px;border-top:1px solid #f0f0f0;flex-wrap:wrap">
+        <button style="font-size:10px;padding:3px 8px;background:#EEF3FF;border:1px solid #6090D0;color:#2860A8;border-radius:6px;cursor:pointer" onclick="sbOpenModal('initiative',null,'${obj.id}')">+ Initiative</button>
+        <button style="font-size:10px;padding:3px 8px;background:#FFF7EE;border:1px solid #DDA040;color:#B06018;border-radius:6px;cursor:pointer" onclick="sbOpenModal('outcome',null,'${obj.id}')">+ Outcome</button>
         <button style="font-size:10px;padding:3px 8px" onclick="sbOpenModal('objective','${obj.id}')">Edit</button>
         <button style="font-size:10px;padding:3px 8px;color:#b03020;border-color:#f0c0b8" onclick="sbDelObjective('${obj.id}')">Delete</button>
       </div>
     </div>`;
   }).join('');
-  // attach hover listeners to goal cards
-  row.querySelectorAll('[data-sb-goal]').forEach(el=>{
+  // attach hover listeners to initiative + outcome cards
+  row.querySelectorAll('[data-sb-initiative],[data-sb-outcome]').forEach(el=>{
     el.addEventListener('mouseenter',()=>{ const a=el.querySelector('.sb-hover-actions'); if(a)a.style.display='flex'; });
     el.addEventListener('mouseleave',()=>{ const a=el.querySelector('.sb-hover-actions'); if(a)a.style.display='none'; });
   });
@@ -4093,65 +4059,9 @@ function sbRenderObjectives(){
   });
 }
 
-// RENDER: INITIATIVES
-function sbRenderInitiatives(){
-  const g=document.getElementById('sb-init-grid'); if(!g)return;
-  const cov=document.getElementById('sb-init-coverage');
-  if(cov){
-    const c=SB.goals.filter(gl=>(SB.initiatives||[]).some(n=>(n.goalIds||[]).includes(gl.id))).length;
-    cov.textContent=SB.goals.length?`Goals covered: ${c} of ${SB.goals.length}`:'';
-  }
-  if(!(SB.initiatives||[]).length){
-    g.style.display='flex';g.style.columns='';
-    g.innerHTML='<span style="font-size:11px;color:#bbb;font-style:italic">No initiatives yet — click + Add Initiative, then drag goals from the objective cards above into it.</span>';
-    return;
-  }
-  // GRID VIEW — compact title chips
-  if(sbInitGridView){
-    g.style.display='block';g.style.columns='8 120px';g.style.columnGap='8px';
-    g.innerHTML=SB.initiatives.map(n=>{
-      const gc=(n.goalIds||[]).length;
-      return `<div style="background:#EAF5F2;border:0.5px solid #8FC7BB;border-radius:5px;padding:4px 7px;font-size:10px;color:#333;margin-bottom:5px;break-inside:avoid;cursor:pointer;display:flex;align-items:center;gap:3px"
-        onclick="sbOpenModal('initiative','${n.id}')" title="${sbEsc(n.title)}${n.desc?' — '+sbEsc(n.desc):''}">
-        <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">${sbEsc(n.title)}</span>
-        <span style="color:#aaa;font-size:9px;flex-shrink:0">${gc}g</span>
-        <span style="cursor:pointer;color:#ccc;font-size:9px;flex-shrink:0" title="Edit">✎</span>
-      </div>`;
-    }).join('');
-    return;
-  }
-  // CARD VIEW (default) — goals are linked by drag & drop; objectives derive from goals
-  g.style.display='flex';g.style.columns='';
-  g.innerHTML=SB.initiatives.map(n=>{
-    const objIds=initObjIds(n);
-    const objs=SB.objectives.filter(o=>objIds.includes(o.id));
-    const goals=SB.goals.filter(gl=>(n.goalIds||[]).includes(gl.id));
-    const ppl=(n.people||[]).map(x=>`<span style="font-size:9px;background:#EAF5F2;color:#12836F;border:1px solid #12836F44;border-radius:20px;padding:2px 8px">${sbEsc(x)}</span>`).join('');
-    const goalChips=goals.map(gl=>{const c=gl.type==='short'?'#B06018':'#2860A8';return `<span style="font-size:9px;background:${c}11;color:${c};border:1px solid ${c}33;border-radius:20px;padding:2px 8px;display:inline-flex;align-items:center;gap:3px">${sbEsc(gl.title)}<span onclick="sbInitUnlinkGoal('${n.id}','${gl.id}')" style="cursor:pointer;color:${c}66;font-size:10px">✕</span></span>`;}).join('');
-    const objChips=objs.map(o=>`<span style="font-size:9px;background:#7050A011;color:#7050A0;border:1px solid #7050A033;border-radius:20px;padding:2px 8px">${sbEsc(o.title)}</span>`).join('');
-    return `<div style="background:#fff;border:0.5px solid #e5e5e5;border-left:3px solid #12836F;border-radius:8px;padding:12px;min-width:230px;max-width:290px;flex:1;display:flex;flex-direction:column">
-      <div style="font-size:12px;font-weight:600;color:#111;margin-bottom:3px">${sbEsc(n.title)}</div>
-      ${n.desc?`<div class="sb-ic-desc" style="font-size:10px;color:#999;line-height:1.4;margin-bottom:8px;display:${sbInitDescOn?'block':'none'}">${sbEsc(n.desc)}</div>`:''}
-      ${ppl?`<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;align-items:center"><span style="font-size:9px;color:#999">People:</span>${ppl}</div>`:''}
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-bottom:3px">Serves objectives</div>
-      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">${objChips||'<span style="font-size:9px;color:#bbb;font-style:italic">None yet</span>'}</div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#12836F;margin-bottom:4px">Delivers goals</div>
-      <div id="sb-igd-${n.id}" style="min-height:34px;border:1px dashed #8FC7BB;border-radius:6px;padding:5px 6px;background:#F4FAF8;display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-bottom:8px"
-        ondragover="sbInitGoalOver(event,'${n.id}')" ondragleave="sbInitGoalLeave(event,'${n.id}')" ondrop="sbInitGoalDrop(event,'${n.id}')">
-        ${goalChips||'<span style="font-size:9px;color:#bbb;font-style:italic">Drag goals here</span>'}
-      </div>
-      <div style="display:flex;gap:5px;padding-top:8px;border-top:1px solid #f0f0f0;margin-top:auto">
-        <button style="font-size:10px;padding:3px 8px" onclick="sbOpenModal('initiative','${n.id}')">Edit</button>
-        <button style="font-size:10px;padding:3px 8px;color:#b03020;border-color:#f0c0b8" onclick="sbDelInitiative('${n.id}')">Delete</button>
-      </div>
-    </div>`;
-  }).join('');
-}
-function sbInitUnlinkGoal(initId,goalId){ const n=SB.initiatives.find(x=>x.id===initId); if(n){n.goalIds=(n.goalIds||[]).filter(x=>x!==goalId);sbRender();} }
-function sbInitGoalOver(e,initId){ if(SBD.type!=='goal')return; e.preventDefault(); e.stopPropagation(); document.getElementById('sb-igd-'+initId)?.style.setProperty('border','1px solid #12836F'); }
-function sbInitGoalLeave(e,initId){ document.getElementById('sb-igd-'+initId)?.style.setProperty('border','1px dashed #8FC7BB'); }
-function sbInitGoalDrop(e,initId){ e.preventDefault(); e.stopPropagation(); sbInitGoalLeave(e,initId); if(SBD.type!=='goal')return; const n=SB.initiatives.find(x=>x.id===initId); if(!n)return; if(!n.goalIds)n.goalIds=[]; if(!n.goalIds.includes(SBD.id))n.goalIds.push(SBD.id); sbRender(); }
-function sbDelInitiative(id){ if(!confirm('Delete this initiative?'))return; SB.initiatives=SB.initiatives.filter(n=>n.id!==id); sbRender(); }
+// CRUD: OUTCOMES (cards live inside objective cards)
+function sbUnlinkOutcome(outcId,objId){ const n=SB.outcomes.find(x=>x.id===outcId); if(!n)return; n.objectiveIds=(n.objectiveIds||[]).filter(x=>x!==objId); if(!n.objectiveIds.length){SB.outcomes=SB.outcomes.filter(x=>x.id!==outcId);} sbRender(); }
+function sbDelOutcome(id){ if(!confirm('Delete this outcome?'))return; SB.outcomes=SB.outcomes.filter(n=>n.id!==id); sbRender(); }
 
 // DRAG: IDEAS
 function sbIdeaDS(e,id,fromThemeId){ e.stopPropagation(); SBD={type:'idea',id,fromThemeId}; e.dataTransfer.effectAllowed='move'; document.body.classList.add('sb-di'); setTimeout(()=>document.querySelectorAll(`[data-sb-id="${id}"]`).forEach(el=>el.style.setProperty('opacity','0.4')),0); }
@@ -4173,13 +4083,20 @@ function sbObjThemeOver(e,objId){ if(SBD.type!=='theme')return; e.preventDefault
 function sbObjThemeLeave(e,objId){ document.getElementById('sb-otd-'+objId)?.style.setProperty('border','1px dashed #ddd'); }
 function sbObjThemeDrop(e,objId){ e.preventDefault(); e.stopPropagation(); sbObjThemeLeave(e,objId); if(SBD.type!=='theme')return; const obj=SB.objectives.find(o=>o.id===objId); if(obj&&!obj.themeIds.includes(SBD.id)){obj.themeIds.push(SBD.id);sbRender();} }
 
-// DRAG: GOALS
-function sbGoalDS(e,id,fromObjId){ SBD={type:'goal',id,fromObjId}; e.dataTransfer.effectAllowed='move'; document.body.classList.add('sb-dg'); setTimeout(()=>document.querySelectorAll(`[data-sb-goal="${id}"]`).forEach(el=>el.style.setProperty('opacity','0.4')),0); }
-function sbGoalDE(){ document.body.classList.remove('sb-dg'); document.querySelectorAll('[data-sb-goal]').forEach(el=>el.style.removeProperty('opacity')); SBD={type:null}; }
+// DRAG: INITIATIVES
+function sbInitiativeDS(e,id,fromObjId){ e.stopPropagation(); SBD={type:'initiative',id,fromObjId}; e.dataTransfer.effectAllowed='move'; document.body.classList.add('sb-dg'); setTimeout(()=>document.querySelectorAll(`[data-sb-initiative="${id}"]`).forEach(el=>el.style.setProperty('opacity','0.4')),0); }
+function sbInitiativeDE(){ document.body.classList.remove('sb-dg'); document.querySelectorAll('[data-sb-initiative]').forEach(el=>el.style.removeProperty('opacity')); SBD={type:null}; }
 
-function sbGBktOver(e,objId,type){ if(SBD.type!=='goal')return; e.preventDefault(); e.stopPropagation(); document.getElementById((type==='short'?'sb-sb-':'sb-lb-')+objId)?.style.setProperty('filter','brightness(0.94)'); }
-function sbGBktLeave(e,objId,type){ document.getElementById((type==='short'?'sb-sb-':'sb-lb-')+objId)?.style.removeProperty('filter'); }
-function sbGBktDrop(e,objId,type){ e.preventDefault(); e.stopPropagation(); sbGBktLeave(e,objId,type); if(SBD.type!=='goal')return; const g=SB.goals.find(g=>g.id===SBD.id); if(!g)return; g.type=type; if(SBD.fromObjId&&SBD.fromObjId!==objId){g.objectiveIds=g.objectiveIds.filter(x=>x!==SBD.fromObjId);} if(!g.objectiveIds.includes(objId))g.objectiveIds.push(objId); sbRender(); }
+// DRAG: OUTCOMES (between objective cards)
+function sbOutcomeDS(e,id,fromObjId){ e.stopPropagation(); SBD={type:'outcome',id,fromObjId}; e.dataTransfer.effectAllowed='move'; document.body.classList.add('sb-dg'); setTimeout(()=>document.querySelectorAll(`[data-sb-outcome="${id}"]`).forEach(el=>el.style.setProperty('opacity','0.4')),0); }
+function sbOutcomeDE(){ document.body.classList.remove('sb-dg'); document.querySelectorAll('[data-sb-outcome]').forEach(el=>el.style.removeProperty('opacity')); if(SBD.type==='outcome')SBD={type:null}; }
+
+function sbIBktOver(e,objId){ if(SBD.type!=='initiative')return; e.preventDefault(); e.stopPropagation(); document.getElementById('sb-ib-'+objId)?.style.setProperty('filter','brightness(0.94)'); }
+function sbIBktLeave(e,objId){ document.getElementById('sb-ib-'+objId)?.style.removeProperty('filter'); }
+function sbIBktDrop(e,objId){ e.preventDefault(); e.stopPropagation(); sbIBktLeave(e,objId); if(SBD.type!=='initiative')return; const g=SB.initiatives.find(g=>g.id===SBD.id); if(!g)return; if(SBD.fromObjId&&SBD.fromObjId!==objId){g.objectiveIds=g.objectiveIds.filter(x=>x!==SBD.fromObjId);} if(!g.objectiveIds.includes(objId))g.objectiveIds.push(objId); sbRender(); }
+function sbOBktOver(e,objId){ if(SBD.type!=='outcome')return; e.preventDefault(); e.stopPropagation(); document.getElementById('sb-ob-'+objId)?.style.setProperty('filter','brightness(0.94)'); }
+function sbOBktLeave(e,objId){ document.getElementById('sb-ob-'+objId)?.style.removeProperty('filter'); }
+function sbOBktDrop(e,objId){ e.preventDefault(); e.stopPropagation(); sbOBktLeave(e,objId); if(SBD.type!=='outcome')return; const n=SB.outcomes.find(x=>x.id===SBD.id); if(!n)return; if(!n.objectiveIds)n.objectiveIds=[]; if(SBD.fromObjId&&SBD.fromObjId!==objId){n.objectiveIds=n.objectiveIds.filter(x=>x!==SBD.fromObjId);} if(!n.objectiveIds.includes(objId))n.objectiveIds.push(objId); sbRender(); }
 
 // CRUD: IDEAS
 function sbDelIdea(id){ if(!confirm('Delete this idea?'))return; SB.ideas=SB.ideas.filter(i=>i.id!==id); SB.themes.forEach(t=>{t.ideaIds=t.ideaIds.filter(x=>x!==id);}); sbRender(); }
@@ -4191,25 +4108,25 @@ function sbToggleAlign(tid,a){ const t=SB.themes.find(t=>t.id===tid); if(!t)retu
 function sbRemoveAlign(tid,a){ const t=SB.themes.find(t=>t.id===tid); if(t){t.alignment=t.alignment.filter(x=>x!==a);sbRender();} }
 
 // CRUD: OBJECTIVES
-function sbDelObjective(id){ if(!confirm('Delete this objective?'))return; SB.objectives=SB.objectives.filter(o=>o.id!==id); SB.goals.forEach(g=>{g.objectiveIds=g.objectiveIds.filter(x=>x!==id);}); (SB.initiatives||[]).forEach(n=>{n.objectiveIds=(n.objectiveIds||[]).filter(x=>x!==id);}); sbRender(); }
+function sbDelObjective(id){ if(!confirm('Delete this objective?'))return; SB.objectives=SB.objectives.filter(o=>o.id!==id); SB.initiatives.forEach(g=>{g.objectiveIds=g.objectiveIds.filter(x=>x!==id);}); (SB.outcomes||[]).forEach(n=>{n.objectiveIds=(n.objectiveIds||[]).filter(x=>x!==id);}); sbRender(); }
 function sbUnlinkThemeFromObj(themeId,objId){ const o=SB.objectives.find(o=>o.id===objId); if(o){o.themeIds=o.themeIds.filter(x=>x!==themeId);sbRender();} }
 
-// CRUD: GOALS
-function sbUnlinkGoal(goalId,objId){ const g=SB.goals.find(g=>g.id===goalId); if(!g)return; g.objectiveIds=g.objectiveIds.filter(x=>x!==objId); if(!g.objectiveIds.length){SB.goals=SB.goals.filter(x=>x.id!==goalId);(SB.initiatives||[]).forEach(n=>{n.goalIds=(n.goalIds||[]).filter(x=>x!==goalId);});} sbRender(); }
+// CRUD: INITIATIVES
+function sbUnlinkInitiative(initiativeId,objId){ const g=SB.initiatives.find(g=>g.id===initiativeId); if(!g)return; g.objectiveIds=g.objectiveIds.filter(x=>x!==objId); if(!g.objectiveIds.length){SB.initiatives=SB.initiatives.filter(x=>x.id!==initiativeId);(SB.outcomes||[]).forEach(n=>{n.initiativeIds=(n.initiativeIds||[]).filter(x=>x!==initiativeId);});} sbRender(); }
 
-function sbOpenCopyPicker(goalId,fromObjId){
+function sbOpenCopyPicker(initiativeId,fromObjId){
   const others=SB.objectives.filter(o=>o.id!==fromObjId);
   if(!others.length){alert('No other objectives to copy to.');return;}
-  sbModalCtx={type:'copy',goalId,fromObjId};
-  document.getElementById('sb-m-title').textContent='Copy Goal to Objective';
+  sbModalCtx={type:'copy',initiativeId,fromObjId};
+  document.getElementById('sb-m-title').textContent='Copy Initiative to Objective';
   document.getElementById('sb-m-body').innerHTML=`<div style="font-size:11px;color:#666;margin-bottom:8px">Select an objective:</div>
     <div style="display:flex;flex-direction:column;gap:5px;max-height:200px;overflow-y:auto">
-      ${others.map(o=>`<button onclick="sbDoCopy('${goalId}','${o.id}')" style="text-align:left;font-size:11px">${sbEsc(o.title)}</button>`).join('')}
+      ${others.map(o=>`<button onclick="sbDoCopy('${initiativeId}','${o.id}')" style="text-align:left;font-size:11px">${sbEsc(o.title)}</button>`).join('')}
     </div>`;
   document.getElementById('sb-m-save').style.display='none';
   document.getElementById('sb-overlay').style.display='flex';
 }
-function sbDoCopy(goalId,targetObjId){ const g=SB.goals.find(g=>g.id===goalId); if(g&&!g.objectiveIds.includes(targetObjId)){g.objectiveIds.push(targetObjId);sbRender();} sbCloseModal(); }
+function sbDoCopy(initiativeId,targetObjId){ const g=SB.initiatives.find(g=>g.id===initiativeId); if(g&&!g.objectiveIds.includes(targetObjId)){g.objectiveIds.push(targetObjId);sbRender();} sbCloseModal(); }
 
 // MODAL
 function sbOpenModal(type,id=null,parentId=null){
@@ -4244,22 +4161,20 @@ function sbOpenModal(type,id=null,parentId=null){
     const item=id?SB.objectives.find(o=>o.id===id):null;
     title.textContent=item?'Edit Objective':'Add Objective';
     body.innerHTML=mf('Title')+inp('sb-mf-title',item?sbEsc(item.title):'','Objective title...')+mf('Description')+ta('sb-mf-desc',item?sbEsc(item.desc):'','Describe this objective...');
-  } else if(type==='goal'){
-    const item=id?SB.goals.find(g=>g.id===id):null;
-    title.textContent=item?'Edit Goal':'Add Goal';
-    const tOpts=['short','long'].map(v=>`<option value="${v}"${item&&item.type===v?' selected':''}>${v==='short'?'Short Term':'Long Term'}</option>`).join('');
-    body.innerHTML=mf('Goal Title')+inp('sb-mf-title',item?sbEsc(item.title):'','Goal title...')+mf('Description')+ta('sb-mf-desc',item?sbEsc(item.desc):'','Optional description...')+`<div style="margin-bottom:10px"><label style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#999;margin-bottom:4px">Type</label><select id="sb-mf-type" style="width:100%;padding:7px 10px;font-size:12px;border:0.5px solid #ccc;border-radius:6px;background:#fff;color:#111"><option value="">-- select --</option>${tOpts}</select></div>`;
   } else if(type==='initiative'){
-    const item=id?SB.initiatives.find(n=>n.id===id):null;
+    const item=id?SB.initiatives.find(g=>g.id===id):null;
     title.textContent=item?'Edit Initiative':'Add Initiative';
     sbModalCtx._people=item?[...(item.people||[])]:[];
-    body.innerHTML=mf('Initiative Name')+inp('sb-mf-title',item?sbEsc(item.title):'','Initiative name...')
-      +mf('Description')+ta('sb-mf-desc',item?sbEsc(item.desc):'','What will actually be done...')
+    body.innerHTML=mf('Initiative Title')+inp('sb-mf-title',item?sbEsc(item.title):'','Initiative title...')+mf('Description')+ta('sb-mf-desc',item?sbEsc(item.desc):'','What will actually be done...')
       +mf('People')+`<div id="sb-ppl-chips" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;min-height:20px"></div>
       <input id="sb-mf-people-search" type="text" placeholder="Click to browse, or type to search..." autocomplete="off" oninput="sbPplFilter()" onfocus="sbPplFilter()" style="width:100%;padding:7px 10px;font-size:12px;border:0.5px solid #ccc;border-radius:6px;background:#fff;color:#111">
-      <div id="sb-ppl-list" style="display:none;max-height:150px;overflow-y:auto;border:0.5px solid #eee;border-radius:6px;margin-top:4px"></div></div>`
-      +`<div style="font-size:10px;color:#999;line-height:1.5;background:#F4FAF8;border:0.5px solid #8FC7BB55;border-radius:6px;padding:8px 10px">Link goals by dragging them from the objective cards into this initiative's <strong style="color:#12836F">Delivers goals</strong> area. Objectives are linked automatically through the goals.</div>`;
+      <div id="sb-ppl-list" style="display:none;max-height:150px;overflow-y:auto;border:0.5px solid #eee;border-radius:6px;margin-top:4px"></div></div>`;
     setTimeout(sbPplRender,0);
+  } else if(type==='outcome'){
+    const item=id?SB.outcomes.find(n=>n.id===id):null;
+    title.textContent=item?'Edit Outcome':'Add Outcome';
+    body.innerHTML=mf('Outcome Name')+inp('sb-mf-title',item?sbEsc(item.title):'','Outcome name...')
+      +mf('Description')+ta('sb-mf-desc',item?sbEsc(item.desc):'','The change we expect to see...');
   }
   document.getElementById('sb-overlay').style.display='flex';
 }
@@ -4309,27 +4224,27 @@ function sbModalSave(){
     const title=document.getElementById('sb-mf-title')?.value.trim();if(!title)return;
     const desc=document.getElementById('sb-mf-desc')?.value.trim()||'';
     if(id){const o=SB.objectives.find(o=>o.id===id);if(o){o.title=title;o.desc=desc;}}
-    else SB.objectives.push({id:sbUid(),title,desc,themeIds:[],goalIds:[]});
-  } else if(type==='goal'){
-    const title=document.getElementById('sb-mf-title')?.value.trim();if(!title)return;
-    const desc=document.getElementById('sb-mf-desc')?.value.trim()||'';
-    const gtype=document.getElementById('sb-mf-type')?.value||'short';
-    if(id){const g=SB.goals.find(g=>g.id===id);if(g){g.title=title;g.desc=desc;g.type=gtype;}}
-    else{const g={id:sbUid(),title,desc,type:gtype,objectiveIds:[]};if(parentId)g.objectiveIds.push(parentId);SB.goals.push(g);}
+    else SB.objectives.push({id:sbUid(),title,desc,themeIds:[]});
   } else if(type==='initiative'){
     const title=document.getElementById('sb-mf-title')?.value.trim();if(!title)return;
     const desc=document.getElementById('sb-mf-desc')?.value.trim()||'';
     const people=[...(sbModalCtx._people||[])];
-    if(id){const n=SB.initiatives.find(n=>n.id===id);if(n){n.title=title;n.desc=desc;n.people=people;}}
-    else SB.initiatives.push({id:sbUid(),title,desc,people,goalIds:[]});
+    if(id){const g=SB.initiatives.find(g=>g.id===id);if(g){g.title=title;g.desc=desc;g.people=people;}}
+    else{const g={id:sbUid(),title,desc,people,objectiveIds:[]};if(parentId)g.objectiveIds.push(parentId);SB.initiatives.push(g);}
+  } else if(type==='outcome'){
+    const title=document.getElementById('sb-mf-title')?.value.trim();if(!title)return;
+    const desc=document.getElementById('sb-mf-desc')?.value.trim()||'';
+    if(id){const n=SB.outcomes.find(n=>n.id===id);if(n){n.title=title;n.desc=desc;}}
+    else{const n={id:sbUid(),title,desc,objectiveIds:[],initiativeIds:[]};if(parentId)n.objectiveIds.push(parentId);SB.outcomes.push(n);}
   }
   sbPersist();sbCloseModal();sbRender();
 }
 
 // EXPORT / BACKUP
 function sbExportCSV(){
-  const rows=[['Idea','Theme','Theme Description','Strategy Alignment','Objective','Objective Description','Goal','Goal Type','Initiative','Initiative Description','Initiative People']];
-  const initCols=n=>n?[n.title,n.desc||'',(n.people||[]).join('; ')]:['','',''];
+  const rows=[['Idea','Theme','Theme Description','Strategy Alignment','Objective','Objective Description','Initiative','Initiative Description','People','Outcome','Outcome Description']];
+  const initCols=g=>g?[g.title,g.desc||'',(g.people||[]).join('; ')]:['','',''];
+  const outCols=n=>n?[n.title,n.desc||'']:['',''];
   SB.ideas.forEach(idea=>{
     const linkedThemes=SB.themes.filter(t=>(t.ideaIds||[]).includes(idea.id));
     if(!linkedThemes.length){rows.push([idea.text,'','','','','','','','','','']);return;}
@@ -4337,19 +4252,29 @@ function sbExportCSV(){
       const objs=SB.objectives.filter(o=>(o.themeIds||[]).includes(theme.id));
       if(!objs.length){rows.push([idea.text,theme.name,theme.desc,(theme.alignment||[]).join(';'),'','','','','','','']);return;}
       objs.forEach(obj=>{
-        const goals=SB.goals.filter(g=>(g.objectiveIds||[]).includes(obj.id));
-        if(!goals.length){rows.push([idea.text,theme.name,theme.desc,(theme.alignment||[]).join(';'),obj.title,obj.desc,'','','','','']);return;}
-        goals.forEach(g=>{
-          const inits=(SB.initiatives||[]).filter(n=>(n.goalIds||[]).includes(g.id));
-          if(!inits.length){rows.push([idea.text,theme.name,theme.desc,(theme.alignment||[]).join(';'),obj.title,obj.desc,g.title,g.type,'','','']);return;}
-          inits.forEach(n=>rows.push([idea.text,theme.name,theme.desc,(theme.alignment||[]).join(';'),obj.title,obj.desc,g.title,g.type,...initCols(n)]));
+        const base=[idea.text,theme.name,theme.desc,(theme.alignment||[]).join(';'),obj.title,obj.desc];
+        const initiatives=SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(obj.id));
+        const objOuts=(SB.outcomes||[]).filter(n=>(n.objectiveIds||[]).includes(obj.id));
+        if(!initiatives.length&&!objOuts.length){rows.push([...base,'','','','','']);return;}
+        if(!initiatives.length){objOuts.forEach(n=>rows.push([...base,'','','',...outCols(n)]));return;}
+        const pairedOutIds=new Set();
+        initiatives.forEach(g=>{
+          const outs=objOuts.filter(n=>(n.initiativeIds||[]).includes(g.id));
+          outs.forEach(n=>pairedOutIds.add(n.id));
+          if(!outs.length){rows.push([...base,...initCols(g),'','']);return;}
+          outs.forEach(n=>rows.push([...base,...initCols(g),...outCols(n)]));
         });
+        // outcomes on this objective not paired to any of its initiatives
+        objOuts.filter(n=>!pairedOutIds.has(n.id)).forEach(n=>rows.push([...base,'','','',...outCols(n)]));
       });
     });
   });
-  // initiatives with no linked goal still export
-  (SB.initiatives||[]).filter(n=>!(n.goalIds||[]).length).forEach(n=>{
-    rows.push(['','','','','','','','',...initCols(n)]);
+  // initiatives / outcomes with no linked objective still export
+  SB.initiatives.filter(g=>!(g.objectiveIds||[]).length).forEach(g=>{
+    rows.push(['','','','','','',...initCols(g),'','']);
+  });
+  (SB.outcomes||[]).filter(n=>!(n.objectiveIds||[]).length).forEach(n=>{
+    rows.push(['','','','','','','','','',...outCols(n)]);
   });
   const csv=rows.map(r=>r.map(v=>'"'+(String(v||'').replace(/"/g,'""'))+'"').join(',')).join('\r\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='fds_sandbox.csv';a.click();
@@ -4363,11 +4288,11 @@ function sbLoadBackup(){
   inp.onchange=e=>{
     const file=e.target.files[0];if(!file)return;
     const reader=new FileReader();
-    reader.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(d.ideas&&d.themes){Object.assign(SB,d);if(!SB.initiatives)SB.initiatives=[];SB._n=Math.max(...[...SB.ideas,...SB.themes,...SB.objectives,...SB.goals,...SB.initiatives].map(x=>parseInt(x.id.replace('sb',''))||0).filter(Boolean),SB._n)+1;sbPersist();sbRender();}}catch(err){alert('Invalid backup file.');}};
+    reader.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(d.ideas&&d.themes){Object.assign(SB,d);if(!SB.outcomes)SB.outcomes=[];SB._n=Math.max(...[...SB.ideas,...SB.themes,...SB.objectives,...SB.initiatives,...SB.outcomes].map(x=>parseInt(x.id.replace('sb',''))||0).filter(Boolean),SB._n)+1;sbPersist();sbRender();}}catch(err){alert('Invalid backup file.');}};
     reader.readAsText(file);
   };inp.click();
 }
-function sbClearAll(){if(!confirm('Clear all sandbox data?'))return;SB={ideas:[],themes:[],objectives:[],goals:[],initiatives:[],_n:1};sbPersist();sbRender();}
+function sbClearAll(){if(!confirm('Clear all sandbox data?'))return;SB={ideas:[],themes:[],objectives:[],initiatives:[],outcomes:[],_n:1};sbPersist();sbRender();}
 
 // KEYBOARD
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){sbCloseModal();hideTT();}});
@@ -4838,7 +4763,7 @@ function cardHatchStyle(startColor, endColor) {
   return 'background:linear-gradient(180deg,' + startColor + ' 0%, ' + endColor + ' 100%)';
 }
 
-// Grey section bar for Goals / Themes / Ideas headings
+// Grey section bar for Initiatives / Themes / Ideas headings
 function fcSectionBar(label, barColor) {
   return '<div class="fc-section-bar" style="background:' + barColor + ';color:#f5f5f5">' + label + '</div>';
 }
@@ -4871,9 +4796,7 @@ function renderCards() {
   allObjs.forEach((obj, idx) => {
     const {front, grad, gradEnd, border, titleText, frontAlpha, barColor} = cardColors(idx, allObjs.length);
     const linkedThemes = (obj.themeIds || []).map(tid => SB.themes.find(t => t.id === tid)).filter(Boolean);
-    const goals = SB.goals.filter(g => (g.objectiveIds || []).includes(obj.id));
-    const shortGoals = goals.filter(g => g.type === 'short');
-    const longGoals = goals.filter(g => g.type !== 'short');
+    const initiatives = SB.initiatives.filter(g => (g.objectiveIds || []).includes(obj.id));
 
     // Collect all unique ideas across all linked themes (deduped by id)
     const seenIds = new Set();
@@ -4898,23 +4821,20 @@ function renderCards() {
     if (obj.desc) {
       content += '<div class="flip-card-back-desc" style="color:#111">' + cEsc(obj.desc) + '</div>';
     }
-    if (goals.length) {
-      content += fcSectionBar('Goals', barColor);
-      if (shortGoals.length) {
-        content += '<div class="fc-goal-type">Short Term</div>';
-        shortGoals.forEach(g => { content += '<div class="fc-goal">' + cEsc(g.title) + '</div>'; });
-      }
-      if (longGoals.length) {
-        content += '<div class="fc-goal-type long">Long Term</div>';
-        longGoals.forEach(g => { content += '<div class="fc-goal long">' + cEsc(g.title) + '</div>'; });
-      }
-    }
-    const objInits = objInitiatives(obj.id);
-    if (objInits.length) {
+    if (initiatives.length) {
       content += fcSectionBar('Initiatives', barColor);
+      initiatives.forEach(g => {
+        content += '<div class="fc-initiative">' + cEsc(g.title) +
+          ((g.people||[]).length ? '<span class="fc-init-ppl"> — ' + cEsc(g.people.join(', ')) + '</span>' : '') +
+          (g.desc ? '<div class="fc-item-desc">' + cEsc(g.desc) + '</div>' : '') + '</div>';
+      });
+    }
+    const objInits = objOutcomes(obj.id);
+    if (objInits.length) {
+      content += fcSectionBar('Outcomes', barColor);
       objInits.forEach(n => {
         content += '<div class="fc-init">' + cEsc(n.title) +
-          ((n.people||[]).length ? '<span class="fc-init-ppl"> — ' + cEsc(n.people.join(', ')) + '</span>' : '') + '</div>';
+          (n.desc ? '<div class="fc-item-desc">' + cEsc(n.desc) + '</div>' : '') + '</div>';
       });
     }
     if (linkedThemes.length) {
@@ -5020,7 +4940,7 @@ function dlvLegend(){
 function dlvPersonCard(nm,inits){
   const mine=inits.filter(n=>(n.people||[]).includes(nm));
   const{m,lv}=dlvLevelInfo(nm);
-  const gCount=new Set(mine.flatMap(n=>n.goalIds||[])).size;
+  const gCount=new Set(mine.flatMap(n=>n.objectiveIds||[])).size;
   const purl=m&&m.u?m.u:null;
   return `<div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:11px;min-width:200px;max-width:260px;flex:1">
     <div style="font-size:12px;font-weight:600;color:#fff">${purl?`<a href="${purl}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,0.35);text-underline-offset:2px" title="Open UTS profile">${sbEsc(nm)}</a>`:sbEsc(nm)}</div>
@@ -5028,22 +4948,20 @@ function dlvPersonCard(nm,inits){
       <span style="font-size:8px;letter-spacing:0.05em;text-transform:uppercase;color:${DLV_LV[lv].col};border:1px solid ${DLV_LV[lv].col}66;border-radius:20px;padding:2px 8px">${m?sbEsc(m.r||DLV_LV[lv].label):DLV_LV[lv].label}</span>
       ${m&&m.d?`<span style="font-size:8px;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:2px 8px">${sbEsc(m.d)}</span>`:''}
     </div>
-    <div style="font-size:9px;color:rgba(255,255,255,0.5);margin-bottom:6px">${mine.length} initiative${mine.length!==1?'s':''} · ${gCount} goal${gCount!==1?'s':''}</div>
-    ${mine.map(n=>`<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:3px 8px;border-left:2px solid #8FC8B4;background:rgba(143,200,180,0.12);border-radius:3px;margin-bottom:3px">◆ ${sbEsc(n.title)}</div>`).join('')}
+    <div style="font-size:9px;color:rgba(255,255,255,0.5);margin-bottom:6px">${mine.length} initiative${mine.length!==1?'s':''} · ${gCount} objective${gCount!==1?'s':''}</div>
+    ${mine.map(n=>`<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:3px 8px;border-left:2px solid #9FB8DC;background:rgba(159,184,220,0.12);border-radius:3px;margin-bottom:3px">◆ ${sbEsc(n.title)}</div>`).join('')}
   </div>`;
 }
 function renderDelivery(){
   const sum=document.getElementById('dlv-summary'),body=document.getElementById('dlv-body');
   if(!sum||!body)return;
   const inits=SB.initiatives||[];
-  const covered=SB.goals.filter(g=>inits.some(n=>(n.goalIds||[]).includes(g.id)));
-  const uncovered=SB.goals.length-covered.length;
   const crew=allPeople().filter(nm=>inits.some(n=>(n.people||[]).includes(nm)));
   const chip=(v,l)=>`<div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:10px 16px;min-width:96px"><div style="font-size:22px;font-weight:700;color:#fff">${v}</div><div style="font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5)">${l}</div></div>`;
   const dirN=peopleDir().length;
   sum.innerHTML=chip(SB.objectives.length,'objectives')
     +chip(inits.length,'initiatives')
-    +chip(covered.length+' / '+uncovered,'goals covered / uncovered')
+    +chip((SB.outcomes||[]).length,'outcomes')
     +chip(crew.length+(dirN?' / '+dirN:''),'academics engaged');
   if(!SB.objectives.length&&!inits.length){
     body.innerHTML='<div style="color:rgba(255,255,255,0.55);font-size:12px">No data yet — load or build a roadmap in the Sandbox tab.</div>';
@@ -5058,17 +4976,21 @@ function dlvBalance(inits){
   const pplChip=n=>{const k=(n.people||[]).length;return k?`<span style="font-size:9px;color:#9FB8DC;border:1px solid #9FB8DC66;border-radius:20px;padding:1px 8px;flex-shrink:0">${k} ${k===1?'person':'people'}</span>`:'<span style="font-size:9px;color:#F0A868;border:1px dashed #F0A86877;border-radius:20px;padding:1px 8px;flex-shrink:0">no people</span>';};
   const initRow=n=>{
     const k='init:'+n.id;const io=!!dlvOpen[k];
-    return `<div onclick="event.stopPropagation();dlvToggle('${k}')" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-left:3px solid #8FC8B4;border-radius:4px;padding:5px 9px;margin-bottom:5px;cursor:pointer">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;color:rgba(255,255,255,0.9)"><span><span style="color:rgba(255,255,255,0.35);font-size:8px">${io?'▾':'▸'}</span> ◆ ${sbEsc(n.title)}</span>${pplChip(n)}</div>
-      ${io?`<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px">${(n.people||[]).map(x=>{const pu=(peopleDir().find(pp=>pp.n===x)||{}).u;const inner=pu?`<a href="${pu}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color:#B8E4D4;text-decoration:underline;text-decoration-color:#8FC8B455;text-underline-offset:2px" title="Open UTS profile">${sbEsc(x)}</a>`:sbEsc(x);return `<span style="font-size:9px;background:rgba(143,200,180,0.15);color:#B8E4D4;border:1px solid #8FC8B455;border-radius:20px;padding:2px 8px">${inner}</span>`;}).join('')||'<span style="font-size:9px;color:rgba(255,255,255,0.4);font-style:italic">No one assigned yet</span>'}</div>`:''}
+    return `<div onclick="event.stopPropagation();dlvToggle('${k}')" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-left:3px solid #9FB8DC;border-radius:4px;padding:5px 9px;margin-bottom:5px;cursor:pointer">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;color:rgba(255,255,255,0.9)"><span><span style="color:rgba(255,255,255,0.35);font-size:8px">${io?'▾':'▸'}</span> <span style="color:#9FB8DC">◆</span> ${sbEsc(n.title)}</span>${pplChip(n)}</div>
+      ${io?`<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px">${(n.people||[]).map(x=>{const pu=(peopleDir().find(pp=>pp.n===x)||{}).u;const inner=pu?`<a href="${pu}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color:#C8DCF4;text-decoration:underline;text-decoration-color:#9FB8DC55;text-underline-offset:2px" title="Open UTS profile">${sbEsc(x)}</a>`:sbEsc(x);return `<span style="font-size:9px;background:rgba(159,184,220,0.15);color:#C8DCF4;border:1px solid #9FB8DC55;border-radius:20px;padding:2px 8px">${inner}</span>`;}).join('')||'<span style="font-size:9px;color:rgba(255,255,255,0.4);font-style:italic">No one assigned yet</span>'}</div>`:''}
     </div>`;
   };
+  const outcomeChip=n=>`<div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-left:3px solid #F0A868;border-radius:4px;padding:5px 9px;margin-bottom:5px">
+      <div style="display:flex;align-items:center;gap:8px;font-size:10px;color:rgba(255,255,255,0.9)"><span><span style="color:#F0A868">●</span> ${sbEsc(n.title)}</span></div>
+    </div>`;
 
-  // ── BY OBJECTIVE — click a row: initiatives (click one for names) beside goals ──
+  // ── BY OBJECTIVE — click a row: initiatives (click one for names) beside outcomes ──
   h+='<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px"><span style="font-size:10px;letter-spacing:0.08em;font-weight:700;color:rgba(255,255,255,0.75)">BY OBJECTIVE</span><span style="font-size:9px;color:rgba(255,255,255,0.4);font-style:italic">click to expand</span></div>';
   SB.objectives.forEach(o=>{
     const key='obj:'+o.id;const open=!!dlvOpen[key];
-    const oInits=objInitiatives(o.id);
+    const oInits=objInitiativesOf(o.id);
+    const oOuts=objOutcomes(o.id);
     const ppl=[...new Set(oInits.flatMap(n=>n.people||[]))];
     const counts={};ppl.forEach(nm=>{const lv=dlvLevelInfo(nm).lv;counts[lv]=(counts[lv]||0)+1;});
     let note;
@@ -5082,19 +5004,14 @@ function dlvBalance(inits){
       <div style="flex:1;min-width:80px">${dlvBar(counts)}</div>
     </div>`;
     if(open){
-      const goals=SB.goals.filter(g=>(g.objectiveIds||[]).includes(o.id));
-      const sg=goals.filter(g=>g.type==='short'),lg=goals.filter(g=>g.type!=='short');
-      const goalRow=(g,c)=>`<div style="display:flex;align-items:flex-start;gap:7px;font-size:10px;color:rgba(255,255,255,0.8);padding:3px 0"><span style="width:7px;height:7px;border-radius:50%;background:${c};margin-top:3px;flex-shrink:0"></span><span>${sbEsc(g.title)}</span></div>`;
       h+=`<div style="display:flex;gap:26px;flex-wrap:wrap;padding:12px 14px 14px 31px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.1);border-top:none;border-radius:0 0 6px 6px;margin-bottom:5px">
         <div style="flex:1;min-width:230px">
-          <div style="font-size:9px;letter-spacing:0.08em;font-weight:700;color:#8FC8B4;margin-bottom:6px">INITIATIVES (${oInits.length})</div>
+          <div style="font-size:9px;letter-spacing:0.08em;font-weight:700;color:#9FB8DC;margin-bottom:6px">INITIATIVES (${oInits.length})</div>
           ${oInits.length?oInits.map(initRow).join(''):'<div style="font-size:10px;color:rgba(255,255,255,0.4);font-style:italic">None yet</div>'}
         </div>
         <div style="flex:1;min-width:230px">
-          <div style="font-size:9px;letter-spacing:0.08em;font-weight:700;color:#F0A868;margin-bottom:6px">SHORT TERM GOALS (${sg.length})</div>
-          ${sg.map(g=>goalRow(g,'#F0A868')).join('')||'<div style="font-size:10px;color:rgba(255,255,255,0.4);font-style:italic">None</div>'}
-          <div style="font-size:9px;letter-spacing:0.08em;font-weight:700;color:#9FB8DC;margin:10px 0 6px">LONG TERM GOALS (${lg.length})</div>
-          ${lg.map(g=>goalRow(g,'#9FB8DC')).join('')||'<div style="font-size:10px;color:rgba(255,255,255,0.4);font-style:italic">None</div>'}
+          <div style="font-size:9px;letter-spacing:0.08em;font-weight:700;color:#F0A868;margin-bottom:6px">OUTCOMES (${oOuts.length})</div>
+          ${oOuts.map(outcomeChip).join('')||'<div style="font-size:10px;color:rgba(255,255,255,0.4);font-style:italic">None</div>'}
         </div>
       </div>`;
     }
@@ -5181,21 +5098,31 @@ function printReport(){
     doc.text(label.toUpperCase(),ML+3.5,y+4.4,{charSpace:0.3});
     y+=6.5+3.5;
   }
-  function goalType(label,rgb){
+  function initiativeType(label,rgb){
     ensure(5.5);
     doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor(rgb[0],rgb[1],rgb[2]);
     doc.text(label.toUpperCase(),ML+2,y+3.6,{charSpace:0.2});
     y+=5.5;
   }
-  function goalItem(text,accent){
+  // Initiative / outcome entry — bold name (10pt), optional people line and
+  // description (9.5pt grey) underneath. No coloured accent bar.
+  function initiativeItem(title,desc,people){
     const pt=10,lh=mm(pt),w=CW-12;
-    doc.setFont('helvetica','normal');doc.setFontSize(pt);doc.setTextColor(55,55,55);
-    const lines=doc.splitTextToSize(String(text),w);
-    const blockH=lines.length*lh;
-    ensure(blockH+2.5);
-    doc.setFillColor(accent[0],accent[1],accent[2]);
-    doc.rect(ML+3,y+0.6,1.3,blockH,'F');
-    lines.forEach(line=>{ doc.text(line,ML+8,y+lh*0.78); y+=lh; });
+    doc.setFont('helvetica','bold');doc.setFontSize(pt);
+    const nameLines=doc.splitTextToSize(String(title),w);
+    ensure(nameLines.length*lh+2.5);
+    doc.setTextColor(40,40,40);
+    nameLines.forEach(line=>{ doc.text(line,ML+3,y+lh*0.78); y+=lh; });
+    if(people&&people.length){
+      const ppt=9.5,plh=mm(ppt);
+      doc.setFont('helvetica','normal');doc.setFontSize(ppt);doc.setTextColor(100,100,100);
+      doc.splitTextToSize('People: '+people.join(', '),w).forEach(line=>{ ensure(plh); doc.text(line,ML+3,y+plh*0.78); y+=plh; });
+    }
+    if(desc){
+      const dpt=9.5,dlh=mm(dpt);
+      doc.setFont('helvetica','normal');doc.setFontSize(dpt);doc.setTextColor(120,120,120);
+      doc.splitTextToSize(String(desc),w).forEach(line=>{ ensure(dlh); doc.text(line,ML+3,y+dlh*0.78); y+=dlh; });
+    }
     y+=2.5;
   }
   function ideasTwoCol(ideas){
@@ -5278,24 +5205,30 @@ function printReport(){
   doc.text(ds.toUpperCase(),ML,69,{charSpace:0.7});
   // stats
   doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(60,60,60);
-  doc.text(SB.ideas.length+'  IDEAS        '+SB.themes.length+'  THEMES        '+SB.objectives.length+'  OBJECTIVES        '+SB.goals.length+'  GOALS',ML,78,{charSpace:0.2});
+  doc.text(SB.ideas.length+'  IDEAS      '+SB.themes.length+'  THEMES      '+SB.objectives.length+'  OBJECTIVES      '+SB.initiatives.length+'  INITIATIVES      '+(SB.outcomes||[]).length+'  OUTCOMES',ML,78,{charSpace:0.2});
   // divider separating masthead from the list
   doc.setDrawColor(225,225,225);doc.setLineWidth(0.3);doc.line(ML,85,PW-MR,85);
 
   // ---- objectives list (coloured left bar only, no background/counts) ---
+  // All bars share the height of the tallest (most-wrapped) objective name,
+  // and the spacing between entries is uniform accordingly.
   y=95;
+  doc.setFont('helvetica','bold');doc.setFontSize(11.5);
+  const listLines=SB.objectives.map(obj=>doc.splitTextToSize(String(obj.title||'Objective'),CW-10));
+  const maxListLines=Math.max(1,...listLines.map(l=>l.length));
+  const listBlockH=maxListLines*mm(11.5);
   SB.objectives.forEach((obj,idx)=>{
     const bar=hsl(cardColors(idx,SB.objectives.length).barColor);
     doc.setFont('helvetica','bold');doc.setFontSize(11.5);
-    const tLines=doc.splitTextToSize(String(obj.title||'Objective'),CW-10);
-    const blockH=tLines.length*mm(11.5);
-    if(y+blockH+4.5>PH-MB){ doc.addPage();runHeader();y=MT; }
+    const tLines=listLines[idx];
+    if(y+listBlockH+4.5>PH-MB){ doc.addPage();runHeader();y=MT; }
     doc.setFillColor(bar[0],bar[1],bar[2]);
-    doc.rect(ML,y,2.2,blockH,'F');
+    doc.rect(ML,y,2.2,listBlockH,'F');
     doc.setTextColor(30,30,30);
-    let ty=y+mm(11.5)*0.74;
+    // vertically centre the (possibly shorter) name within the uniform bar height
+    let ty=y+(listBlockH-tLines.length*mm(11.5))/2+mm(11.5)*0.74;
     tLines.forEach(l=>{ doc.text(l,ML+7,ty); ty+=mm(11.5); });
-    y+=blockH+4.5;
+    y+=listBlockH+4.5;
   });
 
   // ---- one objective per page ------------------------------------------
@@ -5303,9 +5236,7 @@ function printReport(){
     const cc=cardColors(idx,SB.objectives.length);
     const front=hsl(cc.front), bar=hsl(cc.barColor), titleTx=hsl(cc.titleText);
     const linkedThemes=(obj.themeIds||[]).map(tid=>SB.themes.find(t=>t.id===tid)).filter(Boolean);
-    const goals=SB.goals.filter(g=>(g.objectiveIds||[]).includes(obj.id));
-    const shortGoals=goals.filter(g=>g.type==='short');
-    const longGoals=goals.filter(g=>g.type!=='short');
+    const initiatives=SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(obj.id));
     const seen=new Set(),allIdeas=[];
     linkedThemes.forEach(t=>(t.ideaIds||[]).forEach(iid=>{if(!seen.has(iid)){seen.add(iid);const i=SB.ideas.find(x=>x.id===iid);if(i)allIdeas.push(i);}}));
 
@@ -5326,20 +5257,19 @@ function printReport(){
 
     if(obj.desc) para(obj.desc,ML,CW,11,'normal',[60,60,60],3);
 
-    if(goals.length){
-      sectionBar('Goals',bar);
-      if(shortGoals.length){ goalType('Short Term',[176,96,24]); shortGoals.forEach(g=>goalItem(g.title,[232,160,96])); }
-      if(longGoals.length){ goalType('Long Term',[40,96,168]); longGoals.forEach(g=>goalItem(g.title,[74,128,200])); }
-    }
-    const objInits=objInitiatives(obj.id);
-    if(objInits.length){
+    if(initiatives.length){
       sectionBar('Initiatives',bar);
-      objInits.forEach(n=>goalItem(n.title+((n.people||[]).length?'  —  '+n.people.join(', '):''),[42,174,148]));
+      initiatives.forEach(g=>initiativeItem(g.title,g.desc,g.people||[]));
+    }
+    const objInits=objOutcomes(obj.id);
+    if(objInits.length){
+      sectionBar('Outcomes',bar);
+      objInits.forEach(n=>initiativeItem(n.title,n.desc,null));
     }
     if(linkedThemes.length){
       sectionBar('Themes',bar);
       linkedThemes.forEach(t=>{
-        para(t.name,ML+2,CW-4,11.5,'bold',[34,34,34],0.5);
+        para(t.name,ML+2,CW-4,9.5,'bold',[34,34,34],0.5);
         if(t.desc) para(t.desc,ML+2,CW-4,9.5,'normal',[120,120,120],2.5);
       });
     }
@@ -5362,5 +5292,6 @@ function printReport(){
 }
 </script>
 <div id="print-report"></div>
+<!-- v0.4 — flow updated: Ideas > Themes > Objectives > Initiatives (short/long) > Outcomes -->
 </body>
 </html>
