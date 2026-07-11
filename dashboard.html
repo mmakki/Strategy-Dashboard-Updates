@@ -506,8 +506,8 @@ input[type=range]{width:70px}
     </div>
   </div>
 
-  <div class="subpanel" id="subpanel-delivery">
-    <div style="background:#251408;border-radius:14px;padding:1.4rem;min-height:72vh">
+  <div class="subpanel" id="subpanel-delivery" style="margin:-1rem;padding:0">
+    <div style="background:#251408;padding:1.4rem;min-height:calc(100vh - 140px);box-sizing:border-box">
       <div style="font-size:14px;font-weight:700;color:#fff;letter-spacing:0.12em;margin-bottom:14px">COLLECTIVE</div>
       <div id="dlv-summary" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px"></div>
       <div id="dlv-body"></div>
@@ -4433,7 +4433,7 @@ function renderCards() {
       content += fcSectionBar('Initiatives', barColor);
       initiatives.forEach(g => {
         content += '<div class="fc-initiative">' + cEsc(g.title) +
-          ((g.people||[]).length ? '<span class="fc-init-ppl"> — ' + cEsc(g.people.join(', ')) + '</span>' : '') +
+          ((g.people||[]).length ? '<span class="fc-init-ppl"> - ' + cEsc(g.people.join(', ')) + '</span>' : '') +
           (g.desc ? '<div class="fc-item-desc">' + cEsc(g.desc) + '</div>' : '') + '</div>';
       });
     }
@@ -4729,7 +4729,7 @@ function printReport(){
     if(people&&people.length){
       const ppt=9.5,plh=mm(ppt);
       doc.setFont('helvetica','italic');doc.setFontSize(ppt);doc.setTextColor(138,138,138);
-      doc.splitTextToSize('People: '+people.join(', '),w).forEach(line=>{ ensure(plh); doc.text(line,ML+3,y+plh*0.78); y+=plh; });
+      doc.splitTextToSize(people.join(', '),w).forEach(line=>{ ensure(plh); doc.text(line,ML+3,y+plh*0.78); y+=plh; });
     }
     if(desc){
       const dpt=9.5,dlh=mm(dpt);
@@ -4806,7 +4806,7 @@ function printReport(){
   doc.setDrawColor(17,17,17);doc.setLineWidth(0.4);doc.line(ML,18,PW-MR,18);
   // kicker
   doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(125,125,125);
-  doc.text('COMMUNITY OF PRACTICE  —  TEACHING & LEARNING',ML,26,{charSpace:1.1});
+  doc.text('COMMUNITY OF PRACTICE  -  TEACHING & LEARNING',ML,26,{charSpace:1.1});
   // title
   doc.setFont('helvetica','normal');doc.setFontSize(30);doc.setTextColor(17,17,17);
   doc.text('Strategy Mapping',ML,48);
