@@ -138,8 +138,8 @@ input[type=range]{width:70px}
 .flip-card-back-title{font-size:13px;font-weight:800;line-height:1.3;letter-spacing:-0.01em}
 .flip-card-back-content{padding:8px 14px 16px}
 .flip-card-back-desc{font-size:11px;line-height:1.55;margin-bottom:0;padding:4px 2px}
-.fc-initiative{font-size:11px;font-weight:600;color:#2a2a2a;background:transparent;border-left:3px solid #4A80C8;padding:5px 8px;margin:2px 0;border-radius:0;line-height:1.35}
-.fc-init{font-size:11px;font-weight:600;color:#2a2a2a;border-left:3px solid #E8A060;padding:5px 8px;margin:2px 0;line-height:1.35}
+.fc-initiative{font-size:11px;font-weight:600;color:#2a2a2a;background:transparent;padding:5px 8px;margin:2px 0;border-radius:0;line-height:1.35}
+.fc-init{font-size:11px;font-weight:600;color:#2a2a2a;padding:5px 8px;margin:2px 0;line-height:1.35}
 .fc-init-ppl{font-weight:400;font-style:italic;color:#8a8a8a;font-size:10px}
 .fc-item-desc{font-weight:400;color:#888;font-size:10px;line-height:1.4;margin-top:2px}
 .v4-person{font-size:11px;color:#ddd;padding:5px 8px;border-radius:6px;background:rgba(255,255,255,0.05);margin-bottom:4px;cursor:grab;display:flex;justify-content:space-between;align-items:center;gap:6px;border:1px solid transparent;user-select:none}
@@ -147,8 +147,8 @@ input[type=range]{width:70px}
 .v4-person.on{border-color:#35C4A8;background:rgba(53,196,168,0.18)}
 .v4-person.add{color:#35C4A8;font-style:italic}
 .fc-section-bar{font-size:10px;font-weight:700;padding:4px 9px;border-radius:5px;margin:10px 0 5px;letter-spacing:0.06em;text-transform:uppercase;display:block}
-.fc-theme-text{font-size:12px;font-weight:700;color:#222;padding:4px 2px;line-height:1.3}
-.fc-theme-desc{font-size:10px;color:#777;padding:0 2px 5px;line-height:1.45}
+.fc-theme-text{font-size:11px;font-weight:600;color:#2a2a2a;padding:5px 8px;margin:2px 0;line-height:1.35}
+.fc-theme-desc{font-size:10px;color:#777;padding:0 8px 5px;line-height:1.45}
 .fc-idea-text{font-size:11px;color:#333;padding:3px 2px;line-height:1.35}
 .flip-card-empty{font-size:12px;color:#999;padding:2rem;text-align:center}
 
@@ -180,7 +180,7 @@ input[type=range]{width:70px}
 </style>
 </head><body>
 <div class="app">
-<div class="hdr"><h1>Strategy Mapping Tool - V0.3</h1><p>Community of Practice Teaching and Learning - Faculty of Design &amp; Society</p></div>
+<div class="hdr"><h1>Strategy Mapping Tool - V0.5</h1><p>Community of Practice Teaching and Learning - Faculty of Design &amp; Society</p></div>
 <div class="tabs">
   <button class="tab on" onclick="goTab('upload',this)">Load data</button>
   <button class="tab" onclick="goTab('sandbox',this)">Sandbox</button>
@@ -246,6 +246,7 @@ input[type=range]{width:70px}
         <span style="font-size:11px;color:#999">Ideas <strong id="sb-fc-ideas" style="color:#111">0</strong></span>
         <span style="font-size:11px;color:#999">Themes <strong id="sb-fc-themes" style="color:#111">0</strong></span>
         <span style="font-size:11px;color:#999">Objectives <strong id="sb-fc-objectives" style="color:#111">0</strong></span>
+        <span style="font-size:11px;color:#999">Focus areas <strong id="sb-fc-fa" style="color:#111">0</strong></span>
         <span style="font-size:11px;color:#999">Initiatives <strong id="sb-fc-initiatives" style="color:#111">0</strong></span>
         <span style="font-size:11px;color:#999">Outcomes <strong id="sb-fc-outcomes" style="color:#111">0</strong></span>
       </div>
@@ -332,6 +333,21 @@ input[type=range]{width:70px}
   </div>
 </div>
 
+<!-- FOCUS AREAS -->
+<div style="background:#fff;border-radius:10px;padding:1rem;margin-bottom:1rem;border:0.5px solid #e5e5e5">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid #f0f0f0" id="sb-fa-hdr">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <div style="font-size:13px;font-weight:500">Focus Areas</div>
+      <span style="font-size:10px;color:#999">group objectives into a shared direction — drag objectives onto a card</span>
+      <button id="sb-fa-collapse" onclick="sbCollapse('fa')" style="font-size:10px;padding:3px 10px;background:#fff;border:0.5px solid #ccc;border-radius:6px;cursor:pointer;color:#555">Collapse</button>
+    </div>
+    <button class="pri" onclick="sbOpenModal('fa')">+ Add Focus Area</button>
+  </div>
+  <div id="sb-fa-body" style="margin-top:12px">
+    <div id="sb-fa-grid" style="display:flex;flex-wrap:wrap;gap:10px;min-height:32px"></div>
+  </div>
+</div>
+
 </div><!-- /panel-sandbox -->
 
 <!-- SANDBOX MODAL -->
@@ -359,6 +375,10 @@ input[type=range]{width:70px}
     <button class="sfbtn" id="sfbtn-uts" onclick="mapSetStratFilter('uts')">UTS 2030</button>
     <button class="sfbtn" id="sfbtn-ci" onclick="mapSetStratFilter('ci')">Creative Industry</button>
     <button class="sfbtn" id="sfbtn-fds" onclick="mapSetStratFilter('fds')">FDS Strategy</button>
+  </div>
+  <div class="sfbar" id="map-fabar" style="display:none">
+    <span style="font-size:10px;color:#999">Highlight a focus area:</span>
+    <span id="map-fabar-btns" style="display:inline-flex;gap:4px;flex-wrap:wrap"></span>
   </div>
   <div style="font-size:10px;color:#aaa;margin-bottom:8px">Drag the dividers between columns to resize — a wider column flows its buttons into more sub-columns. Use each column's zoom slider for button size.</div>
   <div class="lbanner" id="lbanner">
@@ -434,6 +454,7 @@ input[type=range]{width:70px}
           <button id="venn-show-ideas" onclick="setVennMode('ideas')" style="font-size:12px;padding:5px 14px">Ideas</button>
           <button id="venn-show-themes" onclick="setVennMode('themes')" style="font-size:12px;padding:5px 14px">Themes</button>
           <button id="venn-show-objectives" onclick="setVennMode('objectives')" style="font-size:12px;padding:5px 14px">Objectives</button>
+          <button id="venn-show-fas" onclick="setVennMode('fas')" style="font-size:12px;padding:5px 14px">Focus areas</button>
         </div>
         <div class="legend" style="margin:0 0 10px;flex-wrap:wrap">
           <div class="li"><div class="ld" style="background:#185FA5"></div>UTS 2030 Strategy</div>
@@ -499,6 +520,7 @@ input[type=range]{width:70px}
         <button class="clb" id="clb-compact" onclick="cSwitchLayout('compact',this)">Tars</button>
         <button class="clb" id="clb-v4"      onclick="cSwitchLayout('v4',this)">Gerty</button>
       </div>
+      <button class="clb" id="v4-freeze" onclick="v4ToggleFreeze()" style="position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:31;display:none">Freeze</button>
       <button class="clb on" id="clb-zoomclick" onclick="odyToggleZoomOnClick(this)" style="position:absolute;bottom:12px;left:12px;z-index:30;display:none">Zoom on click</button>
       <!-- Shuffle button (Stellar mode only) -->
       <button id="stellar-shuffle" class="clb" onclick="sStellarPositions=null;initConstellation();" style="position:fixed;right:30px;z-index:200;display:none">Shuffle</button>
@@ -769,6 +791,7 @@ function parseRows(rows,filename){
   const cPeople  =ci(['people'],8);
   const cOutc    =ci(['outcome'],9);
   const cOutcDesc=ci(['outcome description','outcome desc'],10);
+  const cFA     =ci(['focus area','focus-area','focusarea'],-1);
 
   // ── MAP data (ideas + themes + zone) ─────────────────────
   ideas=[];themes=[];
@@ -794,8 +817,8 @@ function parseRows(rows,filename){
 
   // ── SANDBOX data (full 8-column format) ──────────────────
   if(isSandboxFmt){
-    SB={ideas:[],themes:[],objectives:[],initiatives:[],outcomes:[],_n:1};
-    const sbTMap={},sbOMap={},sbGMap={},sbNMap={};
+    SB={ideas:[],themes:[],objectives:[],initiatives:[],outcomes:[],focusAreas:[],_n:1};
+    const sbTMap={},sbOMap={},sbGMap={},sbNMap={},sbFMap={};
     for(let i=startRow;i<rows.length;i++){
       const row=rows[i];
       const ideaText =String(row[cIdea]||'').trim();
@@ -809,7 +832,8 @@ function parseRows(rows,filename){
       const peopleRaw=String(row[cPeople]||'').trim();
       const outcTitle=String(row[cOutc]||'').trim();
       const outcDesc =String(row[cOutcDesc]||'').trim();
-      if(!ideaText&&!themeName&&!objTitle&&!initiativeTitle&&!outcTitle)continue;
+      const faName   =cFA>-1?String(row[cFA]||'').trim():'';
+      if(!ideaText&&!themeName&&!objTitle&&!initiativeTitle&&!outcTitle&&!faName)continue;
 
       let idea=null;
       if(ideaText){ idea=SB.ideas.find(i=>i.text.trim().toLowerCase()===ideaText.toLowerCase()); if(!idea){idea={id:sbUid(),text:ideaText};SB.ideas.push(idea);} }
@@ -827,6 +851,12 @@ function parseRows(rows,filename){
         obj=sbOMap[objTitle];
         if(!obj){ obj={id:sbUid(),title:objTitle,desc:objDesc,themeIds:[]}; sbOMap[objTitle]=obj;SB.objectives.push(obj); }
         if(theme&&!obj.themeIds.includes(theme.id))obj.themeIds.push(theme.id);
+      }
+
+      if(faName){
+        let fa=sbFMap[faName];
+        if(!fa){ fa={id:sbUid(),name:faName,desc:'',alignment:[],objectiveIds:[]}; sbFMap[faName]=fa; SB.focusAreas.push(fa); }
+        if(obj&&!fa.objectiveIds.includes(obj.id))fa.objectiveIds.push(obj.id);
       }
 
       // Initiative — deduped by title; linked directly to the row's objective; carries people
@@ -867,6 +897,7 @@ function parseRows(rows,filename){
     `<div class="stat">Objectives: <strong>${SB.objectives.length}</strong></div>`+
     `<div class="stat">Initiatives: <strong>${SB.initiatives.length}</strong></div>`+
     `<div class="stat">Outcomes: <strong>${(SB.outcomes||[]).length}</strong></div>`+
+    ((SB.focusAreas||[]).length?`<div class="stat">Focus areas: <strong>${SB.focusAreas.length}</strong></div>`:'')+
     `<div class="stat" style="color:#7050A0;border-color:#7050A055">→ Sandbox populated</div>`;
   document.getElementById('ustats').innerHTML=statsHtml;
 
@@ -1019,6 +1050,59 @@ function mapStratMatch(){
   return{ideas,themes,objectives,initiatives,outcomes};
 }
 
+// ── FOCUS AREA HIGHLIGHT FILTER — dims everything outside the chosen FA's chain ──
+let mapFAFilter='all';    // 'all' | focusArea id | 'none' (ungrouped)
+function mapFAMatch(){
+  const fas=SB.focusAreas||[];
+  if(mapFAFilter==='all'||!fas.length)return{ideas:null,themes:null,objectives:null,initiatives:null,outcomes:null};
+  let objIds;
+  if(mapFAFilter==='none'){
+    const inFA=new Set(fas.flatMap(f=>f.objectiveIds||[]));
+    objIds=new Set(SB.objectives.filter(o=>!inFA.has(o.id)).map(o=>o.id));
+  } else {
+    const f=fas.find(x=>x.id===mapFAFilter);
+    objIds=new Set(f?(f.objectiveIds||[]):[]);
+  }
+  const themes=new Set(SB.themes.filter(t=>SB.objectives.some(o=>objIds.has(o.id)&&(o.themeIds||[]).includes(t.id))).map(t=>t.id));
+  const ideas=new Set(SB.ideas.filter(i=>SB.themes.some(t=>themes.has(t.id)&&(t.ideaIds||[]).includes(i.id))).map(i=>i.id));
+  const initiatives=new Set(SB.initiatives.filter(g=>(g.objectiveIds||[]).some(oid=>objIds.has(oid))).map(g=>g.id));
+  const outcomes=new Set((SB.outcomes||[]).filter(n=>(n.objectiveIds||[]).some(oid=>objIds.has(oid))).map(n=>n.id));
+  return{ideas,themes,objectives:objIds,initiatives,outcomes};
+}
+function mapCombineMatch(a,b){
+  const out={};
+  ['ideas','themes','objectives','initiatives','outcomes'].forEach(k=>{
+    if(a[k]===null&&b[k]===null){out[k]=null;return;}
+    if(a[k]===null){out[k]=b[k];return;}
+    if(b[k]===null){out[k]=a[k];return;}
+    out[k]=new Set([...a[k]].filter(x=>b[k].has(x)));
+  });
+  return out;
+}
+function mapSetFAFilter(f){
+  mapFAFilter=f;
+  iSel=null;iSType=null;lSel=null;lSType=null;
+  mapRender();
+}
+function mapRenderFABar(){
+  const bar=document.getElementById('map-fabar');const holder=document.getElementById('map-fabar-btns');
+  if(!bar||!holder)return;
+  const fas=SB.focusAreas||[];
+  if(mapFAFilter!=='all'&&mapFAFilter!=='none'&&!fas.some(f=>f.id===mapFAFilter))mapFAFilter='all';
+  if(!fas.length){bar.style.display='none';mapFAFilter='all';return;}
+  bar.style.display='';
+  const inFA=new Set(fas.flatMap(f=>f.objectiveIds||[]));
+  const ungrouped=SB.objectives.some(o=>!inFA.has(o.id));
+  const fbtn=(label,id,title)=>{
+    const on=mapFAFilter===id;
+    return `<button class="sfbtn${on?' on':''}" style="border-color:${on?'#555':'#aaa'};${on?'background:#555;color:#fff;':'color:#555;'}" onclick="mapSetFAFilter('${id}')"${title?` title="${title}"`:''}>${label}</button>`;
+  };
+  let h=fbtn('All','all');
+  h+=fas.map(f=>fbtn(sbEsc(f.name),f.id,sbEsc(f.desc||f.name))).join('');
+  if(ungrouped)h+=fbtn('Ungrouped','none');
+  holder.innerHTML=h;
+}
+
 function mapGetConn(){
   const empty={ideas:new Set(),themes:new Set(),objectives:new Set(),initiatives:new Set(),outcomes:new Set()};
   if(!iSel||lm)return empty;
@@ -1163,6 +1247,7 @@ function toggleLM(){
 const ACC='#7050A0';
 const INIT_ACC='#2860A8';   // initiatives — blue
 const OUTC_ACC='#B06018';   // outcomes — orange
+const FA_ACC='#185FA5';     // focus areas — deep blue
 
 // ── MAP COLUMN DIVIDERS (draggable) ──
 let mapColFr=[2.2,1.3,1,1,1.1];
@@ -1257,7 +1342,8 @@ function mapRender(){
   }
   const h=mapGetConn();const lh=mapGetLH();
   const hasSel=!!iSel&&!lm;const hasLS=lm&&!!lSel;
-  const sfM=mapStratMatch(); // strategy filter match sets (null = all match)
+  mapRenderFABar();
+  const sfM=mapCombineMatch(mapStratMatch(),mapFAMatch()); // strategy + focus-area highlight (null = all match)
   const iZ=parseInt(document.getElementById('izoom').value);
   const tZ=parseInt(document.getElementById('tzoom').value);
   const oZ=parseInt(document.getElementById('ozoom').value);
@@ -1329,10 +1415,10 @@ function mapRender(){
   });
   if(!vis.themes.length)tg.innerHTML=`<div style="font-size:11px;color:#999;padding:8px;grid-column:span ${tC}">No themes</div>`;
 
-  // OBJECTIVES
+  // OBJECTIVES — grouped under focus area bands when focus areas exist
   const oC=[4,3,3,2,2][oZ-1];
   const og=document.getElementById('map-objectives');og.style.gridTemplateColumns=`repeat(auto-fill,minmax(min(${oBase}px,100%),1fr))`;og.innerHTML='';
-  vis.objectives.forEach(obj=>{
+  function renderObjTile(obj){
     const isA=h.objectives.has(obj.id);const isDim=hasSel&&!isA;
     const isLS=lm&&lSel===obj.id;const isLH=hasLS&&lh.objectives.has(obj.id)&&lSel!==obj.id;
     const initiativeCnt=SB.initiatives.filter(g=>g.objectiveIds&&g.objectiveIds.includes(obj.id)).length;
@@ -1341,9 +1427,30 @@ function mapRender(){
     if(lm&&lSel&&lSType==='theme'){const linked=(SB.objectives.find(o=>o.id===obj.id)?.themeIds||[]).includes(lSel);if(linked)hint=`<div style="font-size:8px;margin-top:3px;color:${ACC}">✓ linked</div>`;}
     const tile=mkTile(obj.id,'objective',obj.title,`${initiativeCnt} initiative${initiativeCnt!==1?'s':''} · ${outcomeCnt} outcome${outcomeCnt!==1?'s':''}`,isA,isDim,isLS,isLH,ACC,obj.title+(obj.desc?' — '+obj.desc:''),sfM.objectives,oF,oL);
     if(hint)tile.insertAdjacentHTML('beforeend',hint);
-    og.appendChild(tile);
-  });
+    // Focus-area highlight: when a FA is chosen in the bar, its member objectives
+    // light up in the FA colour and show chips for EVERY focus area they belong to
+    // (so shared objectives across FAs are visible at a glance).
+    if(mapFAFilter!=='all'&&!lm&&!hasSel){
+      const objFAsAll=(SB.focusAreas||[]).filter(f=>(f.objectiveIds||[]).includes(obj.id));
+      const selFA=mapFAFilter!=='none'?(SB.focusAreas||[]).find(f=>f.id===mapFAFilter):null;
+      const member=selFA?(selFA.objectiveIds||[]).includes(obj.id):objFAsAll.length===0;
+      if(member){
+        tile.style.borderColor='#555';tile.style.borderWidth='2px';tile.style.background='#5555550d';
+        tile.style.boxShadow='0 0 0 2px #55555522';
+        if(objFAsAll.length){
+          const chips=objFAsAll.map(f=>{
+            const isSel2=selFA&&f.id===selFA.id;
+            return `<span style="font-size:8px;font-weight:600;padding:1px 6px;border-radius:20px;border:1px solid ${isSel2?'#555':'#bbb'};color:${isSel2?'#333':'#888'};background:${isSel2?'#ebebe9':'transparent'}">${sbEsc(f.name)}</span>`;
+          }).join('');
+          tile.insertAdjacentHTML('beforeend',`<div style="display:flex;flex-wrap:wrap;gap:2px;margin-top:3px">${chips}</div>`);
+        }
+      }
+    }
+    return tile;
+  }
+  vis.objectives.forEach(obj=>og.appendChild(renderObjTile(obj)));
   if(!vis.objectives.length)og.innerHTML=`<div style="font-size:11px;color:#999;padding:8px;grid-column:span ${oC}">No objectives</div>`;
+
 
   // OUTCOMES
   const ng=document.getElementById('map-outcomes');
@@ -1394,6 +1501,18 @@ function mapRender(){
     if(c==='outcomes')setBadge('map-outcomes',clpsBadge((vis.outcomes||[]).length,'outcomes',OUTC_ACC));
     if(c==='initiatives')setBadge('map-initiatives',clpsBadge(vis.initiatives.length,'initiatives',INIT_ACC));
   });
+
+  // Focus-area highlight, part 2: everything else in the chosen FA's chain gets a lighter grey
+  if(mapFAFilter!=='all'&&!lm&&!hasSel){
+    const m=mapFAMatch();
+    [['ideas','map-ideas'],['themes','map-themes'],['initiatives','map-initiatives'],['outcomes','map-outcomes']].forEach(([k,elId])=>{
+      if(!m[k])return;
+      m[k].forEach(id=>{
+        const t=document.querySelector('#'+elId+' [data-id="'+id+'"]');
+        if(t){t.style.borderColor='#b5b5b0';t.style.background='#f4f4f2';}
+      });
+    });
+  }
 
   mapUpdateDet(h);
   drawMapWires(lh,hasLS,vis,h,hasSel);
@@ -1530,7 +1649,46 @@ function _vApplyTileZoom(){vTileZoom(vTileZoomV);}
 function vRenderCurrent(){
   if(vennMode==='themes')renderVennTiles();
   else if(vennMode==='ideas')renderVennIdeas();
+  else if(vennMode==='fas')renderVennFAs();
   else renderVennObjectives();
+}
+function faZone(f){return stratsToZone(f.alignment||[])||'none';}
+function renderVennFAs(){
+  const list=document.getElementById('venn-tiles');list.innerHTML='';
+  const fas=(SB.focusAreas||[]).map(f=>({...f,zone:faZone(f)}));
+  const filtered=vF.size?fas.filter(f=>vF.has(f.zone)):fas;
+  const total=fas.length;
+  document.getElementById('vcnt').textContent=vF.size?`${filtered.length} of ${total}`:`(${total})`;
+  const badge=document.getElementById('vbadge');
+  if(vF.size){
+    badge.style.display='inline-block';const zones=[...vF];const col=zones.length===1?(ZC[zones[0]]||'#888'):'#555';
+    badge.style.color=col;badge.style.borderColor=col+'55';badge.style.background=col+'11';
+    badge.textContent=zones.map(z=>ZL[z]).join(' + ');
+  } else badge.style.display='none';
+  if(!total){list.innerHTML='<div style="font-size:11px;color:#999;padding:8px">No focus areas yet — add them in the Sandbox tab, and set their strategy alignment.</div>';return;}
+  if(!filtered.length){list.innerHTML='<div style="font-size:11px;color:#999;padding:8px">No focus areas in this zone.</div>';return;}
+  filtered.forEach(f=>{
+    const isSel=vSel===f.id;const col=ZC[f.zone]||sbFAColor(f);
+    const tile=document.createElement('div');
+    tile.className='tile'+(isSel?' sel':'');
+    tile.style.borderColor=isSel?col:'';tile.style.background=isSel?col+'11':'';
+    const oc=(f.objectiveIds||[]).length;
+    tile.innerHTML=`<div class="tt" style="font-size:10px"><span style="display:inline-block;width:7px;height:7px;border-radius:2px;background:${col};margin-right:4px;vertical-align:middle"></span>${sbEsc(f.name)}</div><div class="tm">${oc} objective${oc!==1?'s':''} · ${ZL[f.zone]||'unaligned'}</div>`;
+    tile.addEventListener('mouseenter',e=>showTT(e,f.name+(f.desc?' — '+f.desc:'')));
+    tile.addEventListener('mouseleave',hideTT);tile.addEventListener('mousemove',moveTT);
+    tile.onclick=()=>{vSel=vSel===f.id?null:f.id;drawVenn();renderVennFAs();updateVFADet(vSel?f:null);};
+    list.appendChild(tile);
+  });
+  _vApplyTileZoom();
+}
+function updateVFADet(f){
+  const db=document.getElementById('vdet');
+  if(f){
+    const oc=(f.objectiveIds||[]).length;
+    db.innerHTML=`<strong style="font-weight:500">${sbEsc(f.name)}</strong> · ${oc} objective${oc!==1?'s':''} · ${ZL[faZone(f)]||'unaligned'}`;
+    return;
+  }
+  updateVDet(null);
 }
 
 function setVennMode(mode){
@@ -1538,8 +1696,9 @@ function setVennMode(mode){
   document.getElementById('venn-show-ideas').className=mode==='ideas'?'pri':'';
   document.getElementById('venn-show-themes').className=mode==='themes'?'pri':'';
   document.getElementById('venn-show-objectives').className=mode==='objectives'?'pri':'';
+  const fbtn=document.getElementById('venn-show-fas');if(fbtn)fbtn.className=mode==='fas'?'pri':'';
   const lhdr=document.getElementById('venn-left-hdr');
-  if(lhdr)lhdr.childNodes[0].textContent=mode==='themes'?'Themes':mode==='ideas'?'Ideas':'Objectives';
+  if(lhdr)lhdr.childNodes[0].textContent=mode==='themes'?'Themes':mode==='ideas'?'Ideas':mode==='fas'?'Focus areas':'Objectives';
   vSel=null;vF.clear();
   drawVenn();vRenderCurrent();updateVDet(null);
 }
@@ -1799,6 +1958,26 @@ function drawVenn(){
       const ty=dotGridTop(zIdeas.length,c.y);
       vg.appendChild(svgE('text',{x:c.x,y:ty,'text-anchor':'middle','font-size':10,'font-weight':'bold',fill:'rgba(0,0,0,0.5)',opacity:faded?0.15:1},String(zIdeas.length)));
     });
+  } else if(vennMode==='fas'){
+    const fasByZone={};
+    (SB.focusAreas||[]).forEach(f=>{const z=faZone(f);if(!fasByZone[z])fasByZone[z]=[];fasByZone[z].push(f);});
+    Object.entries(fasByZone).forEach(([zone,zFAs])=>{
+      if(!zFAs.length||zone==='none')return;
+      const c=C[zone]||C.none;const faded=hasF&&!vF.has(zone);
+      const positions=placeDots(zFAs.length,c.x,c.y);
+      zFAs.forEach((f,i)=>{
+        const p=positions[i];if(!p)return;
+        const isSel=vSel===f.id;const col=ZC[zone]||'#888';
+        const size=isSel?DOT_SQ+5:DOT_SQ+1;
+        const dot=svgE('rect',{x:p.x-size/2,y:p.y-size/2,width:size,height:size,fill:col,opacity:faded?0.08:1,stroke:isSel?'#333':'rgba(0,0,0,0.25)','stroke-width':isSel?1.5:0.8,rx:3,style:'cursor:pointer'});
+        dot.addEventListener('click',e=>{e.stopPropagation();vSel=vSel===f.id?null:f.id;drawVenn();renderVennFAs();updateVFADet(vSel?f:null);});
+        dot.addEventListener('mouseenter',e=>showTT(e,f.name+(f.desc?' — '+f.desc:'')+' — '+(f.objectiveIds||[]).length+' objectives'));
+        dot.addEventListener('mouseleave',hideTT);
+        vg.appendChild(dot);
+      });
+      const ty=dotGridTop(zFAs.length,c.y);
+      vg.appendChild(svgE('text',{x:c.x,y:ty,'text-anchor':'middle','font-size':10,'font-weight':'bold',fill:'rgba(0,0,0,0.5)',opacity:faded?0.15:1},String(zFAs.length)));
+    });
   }
 
   setupVennInteraction(svg);
@@ -1810,8 +1989,74 @@ function showTT(e,t){tooltip.textContent=t;tooltip.style.display='block';moveTT(
 function moveTT(e){tooltip.style.left=Math.min(e.clientX+14,window.innerWidth-260)+'px';tooltip.style.top=Math.min(e.clientY+14,window.innerHeight-80)+'px';}
 function hideTT(){tooltip.style.display='none';}
 
+// ── FOCUS-AREA VIEW MODEL for the constellation views ──────────────
+// When focus areas exist, Hal / Tars / Gerty climb one level: focus areas
+// take the anchor slot, objectives take the ring slot, ideas stay ideas.
+// Initiatives / outcomes are re-parented onto the focus areas of their
+// objectives (copies — real data is untouched; people arrays are shared
+// so crew assignment still works). With no focus areas, views fall back
+// to the original Objectives → Themes → Ideas hierarchy unchanged.
+let _csbCache=null,_csbDirty=true;
+function CSBon(){return !!(SB.focusAreas&&SB.focusAreas.length);}
+// Tars (compact) keeps the original Objectives → Themes → Ideas hierarchy;
+// Hal (ring) and Gerty (v4) climb to the focus-area hierarchy when FAs exist.
+let cFAFilter='all'; // Tars-only focus-area highlight filter
+function CSRC(){return cLayoutMode==='compact'?SB:CSB();}
+// Gate for the constellation views — no fallback to the old theme hierarchy.
+// Hal + Tars need objectives AND focus areas; Gerty needs focus areas.
+function cViewsReady(mode){
+  const hasFA=!!(SB.focusAreas&&SB.focusAreas.length);
+  const hasObj=!!(SB.objectives&&SB.objectives.length);
+  return mode==='v4'?hasFA:(hasFA&&hasObj);
+}
+const C_NEEDMSG={
+  ring:'Hal needs objectives and focus areas — add both in the Sandbox tab first',
+  compact:'Tars needs objectives and focus areas — add both in the Sandbox tab first',
+  v4:'Gerty needs focus areas — add them in the Sandbox tab first'
+};
+function cShimOn(){return CSRC()!==SB;} // true only when the active view runs on the focus-area hierarchy
+function cSetFAFilter(id){
+  cFAFilter=id;
+  cRenderTarsFABar();
+  if(cLayoutMode==='compact'&&CG){
+    if(cSel){cSel=null;cHideSidebar();cRenderGraph();cApplyTarsFAFade();}
+    else cApplyTarsFAFade(); // cross-fade in place — no rebuild, no blink
+  }
+}
+function cRenderTarsFABar(){
+  let bar=document.getElementById('tars-fabar');
+  const cont=document.getElementById('const-container');
+  if(!bar&&cont){bar=document.createElement('div');bar.id='tars-fabar';bar.style.cssText='position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:62%';cont.appendChild(bar);}
+  if(!bar)return;
+  const fas=SB.focusAreas||[];
+  if(cLayoutMode!=='compact'||!fas.length){bar.style.display='none';if(!fas.length)cFAFilter='all';return;}
+  if(cFAFilter!=='all'&&!fas.some(f=>f.id===cFAFilter))cFAFilter='all';
+  bar.style.display='flex';
+  const btn=(label,id)=>{const on=cFAFilter===id;return `<button onclick="cSetFAFilter('${id}')" style="font-size:10px;letter-spacing:0.05em;padding:5px 13px;border-radius:20px;cursor:pointer;border:1px solid ${on?'#c8c8d8':'#55556a'};background:${on?'#c8c8d8':'rgba(16,16,22,0.72)'};color:${on?'#101016':'#c8c8d8'};font-weight:600;transition:all .18s">${label}</button>`;};
+  bar.innerHTML=btn('All','all')+fas.map(f=>btn(sbEsc(f.name),f.id)).join('');
+}
+
+function CSB(){
+  const fas=SB.focusAreas||[];
+  if(!fas.length)return SB;
+  if(_csbCache&&!_csbDirty)return _csbCache;
+  const objById={};SB.objectives.forEach(o=>objById[o.id]=o);
+  const faIdsByObj={};fas.forEach(f=>(f.objectiveIds||[]).forEach(oid=>{if(objById[oid])(faIdsByObj[oid]=faIdsByObj[oid]||[]).push(f.id);}));
+  const objectives=fas.map(f=>({id:f.id,title:f.name,desc:f.desc||'',alignment:f.alignment||[],themeIds:(f.objectiveIds||[]).filter(oid=>objById[oid])}));
+  const themes=SB.objectives.map(o=>{
+    const ideaIds=[...new Set((o.themeIds||[]).flatMap(tid=>{const t=SB.themes.find(x=>x.id===tid);return t?(t.ideaIds||[]):[];}))];
+    const align=[...new Set((o.themeIds||[]).flatMap(tid=>{const t=SB.themes.find(x=>x.id===tid);return t?(t.alignment||[]):[];}))];
+    return {id:o.id,name:o.title,desc:o.desc||'',alignment:align,ideaIds};
+  });
+  const initiatives=SB.initiatives.map(g=>{if(!g.people)g.people=[];return {...g,objectiveIds:[...new Set((g.objectiveIds||[]).flatMap(oid=>faIdsByObj[oid]||[]))]};});
+  const outcomes=(SB.outcomes||[]).map(n=>({...n,objectiveIds:[...new Set((n.objectiveIds||[]).flatMap(oid=>faIdsByObj[oid]||[]))]}));
+  _csbCache={ideas:SB.ideas,themes,objectives,initiatives,outcomes,focusAreas:fas,_n:SB._n};
+  _csbDirty=false;
+  return _csbCache;
+}
+
 // ── CONSTELLATION CHART — force-directed network: Objectives → Themes → Ideas ──
-// Driven by SANDBOX data (SB). A dark, pannable, zoomable constellation:
+// Driven by SANDBOX data (CSRC()). A dark, pannable, zoomable constellation:
 // objectives are large stars, themes mid-size planets, ideas small moons.
 // Every link in the sandbox is an edge, so shared themes/ideas appear as
 // bridges between systems. Clicking a node highlights its neighbourhood
@@ -1824,6 +2069,8 @@ let sStellarPositions=null;    // saved Stellar node positions {id:{x,y}} — pe
 let cPanX=0,cPanY=0,cZoom=1;   // view transform
 let CG=null;                   // graph {nodes,edges,byId}
 let v4SelectFn=null;           // set by drawV4; called on click/deselect
+let v4Frozen=false;            // Gerty freeze — halts ring rotation while zoomed
+function v4ToggleFreeze(){v4Frozen=!v4Frozen;const b=document.getElementById('v4-freeze');if(b)b.textContent=v4Frozen?'Resume':'Freeze';}
 let v4AnimId=null;             // global rAF id for V4 orbital animation
 let cDragMoved=false;
 
@@ -1877,34 +2124,34 @@ function cTipHide(){document.getElementById('ctip').style.display='none';}
 // ---- graph construction ----
 function makeCGraph(){
   const nodes=[],edges=[],byId={};
-  const oCounts=SB.objectives.map(o=>{
+  const oCounts=CSRC().objectives.map(o=>{
     const set=new Set();
-    (o.themeIds||[]).forEach(tid=>{const t=SB.themes.find(x=>x.id===tid);if(t)(t.ideaIds||[]).forEach(i=>set.add(i));});
+    (o.themeIds||[]).forEach(tid=>{const t=CSRC().themes.find(x=>x.id===tid);if(t)(t.ideaIds||[]).forEach(i=>set.add(i));});
     return set.size;
   });
-  const oOrder=SB.objectives.map((o,i)=>i).sort((a,b)=>oCounts[b]-oCounts[a]);
+  const oOrder=CSRC().objectives.map((o,i)=>i).sort((a,b)=>oCounts[b]-oCounts[a]);
   const oRank={};oOrder.forEach((idx,r)=>oRank[idx]=r);
-  const NO=SB.objectives.length;
-  const oComb=SB.objectives.map((o,i)=>oCounts[i]+(o.themeIds||[]).length);
+  const NO=CSRC().objectives.length;
+  const oComb=CSRC().objectives.map((o,i)=>oCounts[i]+(o.themeIds||[]).length);
   const cbMin=Math.min(...oComb),cbMax=Math.max(...oComb);
-  const tCountsAll=SB.themes.map(t=>(t.ideaIds||[]).length);
+  const tCountsAll=CSRC().themes.map(t=>(t.ideaIds||[]).length);
   const tcMin=Math.min(...tCountsAll),tcMax=Math.max(...tCountsAll);
-  SB.objectives.forEach((o,oi)=>{
+  CSRC().objectives.forEach((o,oi)=>{
     const hue=C_RAMP50[NO>1?Math.round(oRank[oi]*(C_RAMP50.length-1)/(NO-1)):0];
     const themeIds=o.themeIds||[];
     const ideaSet=new Set();
-    themeIds.forEach(tid=>{const t=SB.themes.find(x=>x.id===tid);if(t)(t.ideaIds||[]).forEach(i=>ideaSet.add(i));});
+    themeIds.forEach(tid=>{const t=CSRC().themes.find(x=>x.id===tid);if(t)(t.ideaIds||[]).forEach(i=>ideaSet.add(i));});
     const oLines=cWrapLines(o.title,18);
     const oW=Math.max(...oLines.map(l=>l.length))*18*0.58;
     const oH=oLines.length*20.5;
     const n={id:o.id,type:'obj',label:o.title,desc:o.desc||'',hue,inLines:oLines,
       r:Math.max(72,Math.sqrt(oW*oW+oH*oH)/2+14)*(1+0.16*(cbMax>cbMin?(oComb[oi]-cbMin)/(cbMax-cbMin):0.5)),ideaCount:ideaSet.size,themeCount:themeIds.length,
-      initiatives:SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(o.id)),
+      initiatives:CSRC().initiatives.filter(g=>(g.objectiveIds||[]).includes(o.id)),
       x:0,y:0,vx:0,vy:0};
     nodes.push(n);byId[o.id]=n;
   });
-  SB.themes.forEach(t=>{
-    const parents=SB.objectives.filter(o=>(o.themeIds||[]).includes(t.id));
+  CSRC().themes.forEach(t=>{
+    const parents=CSRC().objectives.filter(o=>(o.themeIds||[]).includes(t.id)&&byId[o.id]);
     if(!parents.length)return; // unallocated themes stay in the sandbox
     const hue=byId[parents[0].id].hue;
     const m=(t.ideaIds||[]).length;
@@ -1916,8 +2163,8 @@ function makeCGraph(){
     nodes.push(n);byId[t.id]=n;
     parents.forEach((p,pi)=>edges.push({a:p.id,b:t.id,len:150,k:0.05,hue:byId[p.id].hue,kind:'ot',sec:pi>0}));
   });
-  SB.ideas.forEach(i=>{
-    const parents=SB.themes.filter(t=>(t.ideaIds||[]).includes(i.id)&&byId[t.id]);
+  CSRC().ideas.forEach(i=>{
+    const parents=CSRC().themes.filter(t=>(t.ideaIds||[]).includes(i.id)&&byId[t.id]);
     if(!parents.length)return;
     const hue=byId[parents[0].id].hue;
     const n={id:i.id,type:'idea',label:i.text,hue,shared:parents.length>1,
@@ -2275,21 +2522,21 @@ function cHighlight(G){
   const set=new Set([cSel.id]);
   const{byId}=G;
   if(cSel.type==='obj'){
-    const o=SB.objectives.find(x=>x.id===cSel.id);
+    const o=CSRC().objectives.find(x=>x.id===cSel.id);
     (o?.themeIds||[]).forEach(tid=>{
       if(!byId[tid])return;set.add(tid);
-      const t=SB.themes.find(x=>x.id===tid);
+      const t=CSRC().themes.find(x=>x.id===tid);
       (t?.ideaIds||[]).forEach(iid=>{if(byId[iid])set.add(iid);});
     });
   }else if(cSel.type==='theme'){
-    const t=SB.themes.find(x=>x.id===cSel.id);
+    const t=CSRC().themes.find(x=>x.id===cSel.id);
     (t?.ideaIds||[]).forEach(iid=>{if(byId[iid])set.add(iid);});
-    SB.objectives.forEach(o=>{if((o.themeIds||[]).includes(cSel.id))set.add(o.id);});
+    CSRC().objectives.forEach(o=>{if((o.themeIds||[]).includes(cSel.id))set.add(o.id);});
   }else{
-    SB.themes.forEach(t=>{
+    CSRC().themes.forEach(t=>{
       if((t.ideaIds||[]).includes(cSel.id)&&byId[t.id]){
         set.add(t.id);
-        SB.objectives.forEach(o=>{if((o.themeIds||[]).includes(t.id))set.add(o.id);});
+        CSRC().objectives.forEach(o=>{if((o.themeIds||[]).includes(t.id))set.add(o.id);});
       }
     });
   }
@@ -2471,23 +2718,23 @@ function cOutcList(inits){
 function cSidebarFor(G,sel){
   const n=G.byId[sel.id];if(!n)return'';
   if(sel.type==='obj'){
-    const themes=SB.themes.filter(t=>{const o=SB.objectives.find(x=>x.id===sel.id);return(o?.themeIds||[]).includes(t.id);});
-    return'<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600">OBJECTIVE</div>'+
+    const themes=CSRC().themes.filter(t=>{const o=CSRC().objectives.find(x=>x.id===sel.id);return(o?.themeIds||[]).includes(t.id);});
+    return'<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600">'+(cShimOn()?'FOCUS AREA':'OBJECTIVE')+'</div>'+
       '<div style="font-size:20px;font-weight:600;color:'+n.hue+';margin:4px 0 6px;line-height:1.3">'+cEsc(n.label)+'</div>'+
       (n.desc?'<div style="font-size:15px;color:#b8b8c2;line-height:1.5;margin-bottom:4px">'+cEsc(n.desc)+'</div>':'')+
-      '<div style="font-size:13px;color:#777;margin-bottom:2px">'+n.themeCount+' themes · '+n.ideaCount+' ideas</div>'+
+      '<div style="font-size:13px;color:#777;margin-bottom:2px">'+n.themeCount+(cShimOn()?' objectives · ':' themes · ')+n.ideaCount+' ideas</div>'+
       cInitiativeList(n.initiatives,'#6FA8E8','INITIATIVES')+
-      cOutcList(objOutcomes(sel.id))+
+      cOutcList((CSRC().outcomes||[]).filter(n=>(n.objectiveIds||[]).includes(sel.id)))+
       (n.initiatives.length===0?'<div style="font-size:11px;color:#777;margin-top:12px">No initiatives linked yet — add them in the Sandbox tab.</div>':'')+
-      '<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600;margin:16px 0 6px">THEMES</div>'+
+      '<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600;margin:16px 0 6px">'+(cShimOn()?'OBJECTIVES':'THEMES')+'</div>'+
       themes.map(t=>'<div onclick="cSideSelect(\'theme\',\''+t.id+'\')" style="cursor:pointer;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.05);margin-bottom:5px;line-height:1.4">'+
         cEsc(t.name)+' <span style="color:#777">· '+(t.ideaIds||[]).length+' ideas</span></div>').join('');
   }
   if(sel.type==='theme'){
-    const t=SB.themes.find(x=>x.id===sel.id);
-    const ideas=SB.ideas.filter(i=>(t?.ideaIds||[]).includes(i.id));
-    const parents=SB.objectives.filter(o=>(o.themeIds||[]).includes(sel.id));
-    return'<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600">THEME</div>'+
+    const t=CSRC().themes.find(x=>x.id===sel.id);
+    const ideas=CSRC().ideas.filter(i=>(t?.ideaIds||[]).includes(i.id));
+    const parents=CSRC().objectives.filter(o=>(o.themeIds||[]).includes(sel.id));
+    return'<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600">'+(cShimOn()?'OBJECTIVE':'THEME')+'</div>'+
       '<div style="font-size:20px;font-weight:600;color:'+n.hue+';margin:4px 0 6px;line-height:1.3">'+cEsc(n.label)+'</div>'+
       (n.desc?'<div style="font-size:15px;color:#b8b8c2;line-height:1.5;margin-bottom:4px">'+cEsc(n.desc)+'</div>':'')+
       '<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600;margin:14px 0 6px">CONTRIBUTES TO</div>'+
@@ -2495,7 +2742,7 @@ function cSidebarFor(G,sel){
       '<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600;margin:14px 0 6px">IDEAS ('+ideas.length+')</div>'+
       ideas.map(i=>'<div style="font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.05);margin-bottom:5px;line-height:1.4;border-left:3px solid '+n.hue+'66">'+cEsc(i.text)+'</div>').join('');
   }
-  const themes=SB.themes.filter(t=>(t.ideaIds||[]).includes(sel.id));
+  const themes=CSRC().themes.filter(t=>(t.ideaIds||[]).includes(sel.id));
   return'<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600">IDEA</div>'+
     '<div style="font-size:18px;font-weight:500;color:#eee;margin:4px 0 6px;line-height:1.45">'+cEsc(n.label)+'</div>'+
     '<div style="font-size:12px;letter-spacing:1px;color:#777;font-weight:600;margin:14px 0 6px">BELONGS TO '+(themes.length>1?'(shared)':'')+'</div>'+
@@ -2524,6 +2771,36 @@ function cSetSel(sel){
   cRenderGraph();
 }
 
+// Tars focus-area filter: which node ids are ghosted (returns null when off)
+function cTarsFAHide(G){
+  if(!(cLayoutMode==='compact'&&cFAFilter!=='all'&&(SB.focusAreas||[]).length&&G))return null;
+  const memb=new Set((((SB.focusAreas||[]).find(f=>f.id===cFAFilter)||{}).objectiveIds)||[]);
+  const faHide=new Set();
+  G.nodes.forEach(n=>{
+    if(n.type==='obj'){if(!memb.has(n.id))faHide.add(n.id);}
+    else if(n.type==='theme'){if(!(n.parents||[]).some(p=>memb.has(p)))faHide.add(n.id);}
+  });
+  G.nodes.forEach(n=>{
+    if(n.type==='idea'&&!(n.parents||[]).some(p=>!faHide.has(p)))faHide.add(n.id);
+  });
+  return faHide;
+}
+// Cross-fade the ghost state in place (no rebuild — no blink)
+function cApplyTarsFAFade(){
+  const svg=document.getElementById('csvg');if(!svg||!CG)return;
+  const faHide=cTarsFAHide(CG);
+  svg.querySelectorAll('[data-cid]').forEach(el=>{
+    const hid=!!(faHide&&faHide.has(el.dataset.cid));
+    el.style.opacity=hid?'0.08':'1';
+    el.style.pointerEvents=hid?'none':'';
+    el.style.cursor=hid?'default':'pointer';
+  });
+  svg.querySelectorAll('[data-ea]').forEach(el=>{
+    const hid=!!(faHide&&(faHide.has(el.dataset.ea)||faHide.has(el.dataset.eb)));
+    const base=parseFloat(el.dataset.op||'1');
+    el.style.opacity=String(hid?base*0.08:base);
+  });
+}
 function cRenderGraph(){
   const cSvg=document.getElementById('csvg');
   const G=CG;if(!G)return;
@@ -2542,6 +2819,7 @@ function cRenderGraph(){
   cApplyTransform();
 
   const hl=cHighlight(G);
+  const faHide=cTarsFAHide(G);
   const edgeLayer=cSvgEl('g',{});zg.appendChild(edgeLayer);
   const nodeLayer=cSvgEl('g',{});zg.appendChild(nodeLayer);
   const labelLayer=cSvgEl('g',{});zg.appendChild(labelLayer);
@@ -2557,8 +2835,13 @@ function cRenderGraph(){
     const objNodes=G.nodes.filter(n=>n.type==='obj');
     for(let i=0;i<objNodes.length;i++)for(let j=i+1;j<objNodes.length;j++){
       const a=objNodes[i],b=objNodes[j];
-      edgeLayer.appendChild(cSvgEl('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,
-        stroke:'#a8a8c8','stroke-width':1,opacity:hl?0.024:0.13}));
+      const ghost=faHide&&(faHide.has(a.id)||faHide.has(b.id));
+      const base=hl?0.024:0.13;
+      const ln=cSvgEl('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:'#a8a8c8','stroke-width':1});
+      ln.dataset.ea=a.id;ln.dataset.eb=b.id;ln.dataset.op=base;
+      ln.style.transition='opacity .5s ease';
+      ln.style.opacity=String(ghost?base*0.08:base);
+      edgeLayer.appendChild(ln);
     }
   }
   // edges
@@ -2571,13 +2854,19 @@ function cRenderGraph(){
       op=both?(e.kind==='ot'?0.85:0.7):one?0.2:0.03;
       if(both)w+=0.4;
     }
-    const eAttrs={x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:e.hue,'stroke-width':w,opacity:op};
+    const eGhost=faHide&&(faHide.has(e.a)||faHide.has(e.b));
+    const eAttrs={x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:e.hue,'stroke-width':w};
     if(e.sec)eAttrs['stroke-dasharray']='3,4';
-    edgeLayer.appendChild(cSvgEl('line',eAttrs));
+    const eln=cSvgEl('line',eAttrs);
+    eln.dataset.ea=e.a;eln.dataset.eb=e.b;eln.dataset.op=op;
+    eln.style.transition='opacity .5s ease';
+    eln.style.opacity=String(eGhost?op*0.08:op);
+    edgeLayer.appendChild(eln);
   });
 
   // nodes
   G.nodes.forEach(n=>{
+    const ghost=faHide&&faHide.has(n.id);
     const dim=hl&&!hl.has(n.id);
     const selN=cSel&&cSel.id===n.id;
     const g=document.createElementNS('http://www.w3.org/2000/svg','g');
@@ -2613,17 +2902,20 @@ function cRenderGraph(){
         '<br><span style="color:#999">'+kind+(extra?' · '+extra:'')+' — click to explore</span>');
     });
     g.addEventListener('mouseleave',cTipHide);
+    g.dataset.cid=n.id;
+    g.style.transition='opacity .5s ease';
+    if(ghost){g.style.opacity='0.08';g.style.pointerEvents='none';g.style.cursor='default';}
     nodeLayer.appendChild(g);
   });
 
   // labels (collision-aware, priority: selected > objectives > themes > ideas)
   const placed=[];
   // reserve node bubbles so labels don't sit on top of big nodes
-  G.nodes.forEach(n=>{if(n.r>8&&(!hl||hl.has(n.id)))placed.push({x:n.x-n.r,y:n.y-n.r,w:n.r*2,h:n.r*2});});
+  G.nodes.forEach(n=>{if(faHide&&faHide.has(n.id))return;if(n.r>8&&(!hl||hl.has(n.id)))placed.push({x:n.x-n.r,y:n.y-n.r,w:n.r*2,h:n.r*2});});
   const items=[];
   const selNode=cSel?G.byId[cSel.id]:null;
   if(selNode&&selNode.type==='idea')items.push({node:selNode,lines:cWrapLines(selNode.label,24),fs:13,fill:'#fff',weight:'700'});
-  if(hl)G.nodes.filter(n=>n.type==='idea'&&hl.has(n.id)&&(!selNode||n.id!==selNode.id)).forEach(n=>{
+  if(hl)G.nodes.filter(n=>n.type==='idea'&&hl.has(n.id)&&!(faHide&&faHide.has(n.id))&&(!selNode||n.id!==selNode.id)).forEach(n=>{
     items.push({node:n,lines:cWrapLines(n.label,20),fs:8.8,fill:'#ffffff'});
   });
   cPlaceLabels(labelLayer,items,placed);
@@ -2689,7 +2981,7 @@ function v4GlowVals(pc,baseR){
 }
 function v4Assign(initId,name){
   name=(name||'').trim();if(!name)return;
-  const n=(SB.initiatives||[]).find(x=>x.id===initId);if(!n)return;
+  const n=(CSRC().initiatives||[]).find(x=>x.id===initId);if(!n)return;
   if(!n.people)n.people=[];
   if(!n.people.includes(name))n.people.push(name);
   v4DragName=null;
@@ -2697,13 +2989,13 @@ function v4Assign(initId,name){
   v4AfterPeopleChange(initId);
 }
 function v4RemovePerson(initId,name){
-  const n=(SB.initiatives||[]).find(x=>x.id===initId);if(!n)return;
+  const n=(CSRC().initiatives||[]).find(x=>x.id===initId);if(!n)return;
   n.people=(n.people||[]).filter(x=>x!==name);
   sbPersist();sbRender();
   v4AfterPeopleChange(initId);
 }
 function v4AfterPeopleChange(initId){
-  const n=(SB.initiatives||[]).find(x=>x.id===initId);
+  const n=(CSRC().initiatives||[]).find(x=>x.id===initId);
   const pc=(n?.people||[]).length;
   (v4InitEls[initId]||[]).forEach(r=>{
     const gv=v4GlowVals(pc,r.baseR);
@@ -2754,11 +3046,11 @@ function v4RefreshPeopleList(){
   // crew of the clicked initiative — shown under the search bar regardless of search text
   const crewEl=document.getElementById('v4-init-crew');
   if(crewEl){
-    const selN=v4SelInit?(SB.initiatives||[]).find(x=>x.id===v4SelInit):null;
+    const selN=v4SelInit?(CSRC().initiatives||[]).find(x=>x.id===v4SelInit):null;
     if(!selN)crewEl.innerHTML='';
     else{
       const rows=(selN.people||[]).map(nm=>{
-        const load=(SB.initiatives||[]).filter(nn=>(nn.people||[]).includes(nm)).length;
+        const load=(CSRC().initiatives||[]).filter(nn=>(nn.people||[]).includes(nm)).length;
         return `<div style="display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:11px;color:#ddd;padding:4px 8px;border-radius:6px;background:rgba(53,196,168,0.08);margin-bottom:3px"><span>${sbEsc(nm)}</span><span style="display:flex;align-items:center;gap:6px"><span style="font-size:9px;color:#35C4A8" title="total initiatives assigned">${load}</span><span onclick="v4RemovePerson('${selN.id}',decodeURIComponent('${encodeURIComponent(nm)}'))" style="cursor:pointer;color:#35C4A877;font-size:10px">✕</span></span></div>`;
       }).join('');
       crewEl.innerHTML=`<div style="font-size:9px;letter-spacing:1px;color:#35C4A8;font-weight:600;margin:2px 0 4px">ASSIGNED - ${sbEsc(selN.title).toUpperCase()}</div>`
@@ -2784,7 +3076,7 @@ function v4RefreshPeopleList(){
   v4VisibleNames=names.slice();
   let html=names.map(nm=>{
     const enc=encodeURIComponent(nm);
-    const load=(SB.initiatives||[]).filter(n=>(n.people||[]).includes(nm)).length;
+    const load=(CSRC().initiatives||[]).filter(n=>(n.people||[]).includes(nm)).length;
     return `<div class="v4-person${v4Picked.has(nm)?' on':''}" draggable="true" style="user-select:none"
       ondragstart="v4DragName=decodeURIComponent('${enc}');event.dataTransfer.setData('text/plain',v4DragName)"
       onclick="v4PickPerson(decodeURIComponent('${enc}'),event)"><span>${sbEsc(nm)}</span>${load?`<span style="font-size:9px;color:#35C4A8">${load}</span>`:''}</div>`;
@@ -2806,7 +3098,7 @@ function v4ObjSidebar(obj,themes,inits,outs,hue){
   const dot=(c,r)=>`<span style="display:inline-block;width:${r*2}px;height:${r*2}px;border-radius:50%;background:${c};vertical-align:middle;margin-right:5px;flex-shrink:0"></span>`;
   let h=`<div style="margin-bottom:14px"><div style="font-size:20px;font-weight:700;color:${hue};margin-bottom:5px;display:flex;align-items:center">${dot(hue,5)}${esc(obj.title)}</div>${obj.desc?`<div style="font-size:14px;color:#aaa;line-height:1.5">${esc(obj.desc)}</div>`:''}</div>`;
   if(themes.length){
-    h+=`<div style="font-size:13px;letter-spacing:1px;color:${hue}99;font-weight:600;margin-bottom:6px">THEMES (${themes.length})</div>`;
+    h+=`<div style="font-size:13px;letter-spacing:1px;color:${hue}99;font-weight:600;margin-bottom:6px">${cShimOn()?'OBJECTIVES':'THEMES'} (${themes.length})</div>`;
     h+=themes.map(t=>`<div style="font-size:14px;color:#ddd;margin-bottom:4px;padding:5px 8px;background:rgba(255,255,255,0.05);border-left:2px solid ${hue};border-radius:3px">${esc(t.name)}</div>`).join('');
   }
   const initRow=g=>{
@@ -2825,6 +3117,8 @@ function v4ObjSidebar(obj,themes,inits,outs,hue){
 }
 function drawV4(cSvg,cW,cH){
   if(v4AnimId){cancelAnimationFrame(v4AnimId);v4AnimId=null;}
+  v4Frozen=false;
+  {const fz=document.getElementById('v4-freeze');if(fz){fz.style.display='none';fz.textContent='Freeze';}}
   v4InitEls={};v4SystemById={};
   cSvg.innerHTML='';
   // Star field background
@@ -2845,7 +3139,7 @@ function drawV4(cSvg,cW,cH){
     rg.appendChild(s1);rg.appendChild(s2);gd.appendChild(rg);cSvg.appendChild(gd);
   }
 
-  const N=SB.objectives.length;if(!N)return;
+  const N=CSRC().objectives.length;if(!N)return;
   const cx=cW/2,cy=cH/2;
 
   // Ellipse path for objective positions
@@ -2876,7 +3170,7 @@ function drawV4(cSvg,cW,cH){
   const posOrder=Array.from({length:N},(_,i)=>i);
   const shuffleRng=srand(hashStr('v4objpos'));
   for(let i=N-1;i>0;i--){const j=Math.floor(shuffleRng()*(i+1));[posOrder[i],posOrder[j]]=[posOrder[j],posOrder[i]];}
-  const objArcParams=SB.objectives.map((_,i)=>totLen*posOrder[i]/N);
+  const objArcParams=CSRC().objectives.map((_,i)=>totLen*posOrder[i]/N);
   const objPos=objArcParams.map(a=>arcLenToPos(a));
 
   // Min adjacent distance → max system radius budget
@@ -2897,12 +3191,12 @@ function drawV4(cSvg,cW,cH){
   }
 
   // Pre-compute at V3 reference font sizes
-  const objPrep=SB.objectives.map(obj=>{
+  const objPrep=CSRC().objectives.map(obj=>{
     const lines=cWrapLines(obj.title,18);
     return{lines,r:natR(lines,REF_OBJ_FS,72,14)};
   });
   const themePrep={};
-  SB.themes.forEach(t=>{
+  CSRC().themes.forEach(t=>{
     const lines=cWrapLines(t.name,14);
     themePrep[t.id]={lines,r:natR(lines,REF_T_FS,34,11)};
   });
@@ -3055,8 +3349,8 @@ function drawV4(cSvg,cW,cH){
   }
 
   // Objective color
-  const sorted=[...SB.objectives].sort((a,b)=>(b.themeIds||[]).length-(a.themeIds||[]).length);
-  const oRankV4={};SB.objectives.forEach(o=>{const r=sorted.findIndex(x=>x.id===o.id);oRankV4[o.id]=r/Math.max(N-1,1);});
+  const sorted=[...CSRC().objectives].sort((a,b)=>(b.themeIds||[]).length-(a.themeIds||[]).length);
+  const oRankV4={};CSRC().objectives.forEach(o=>{const r=sorted.findIndex(x=>x.id===o.id);oRankV4[o.id]=r/Math.max(N-1,1);});
 
   zg.appendChild(cSvgEl('ellipse',{cx,cy,rx:ea,ry:eb,fill:'none',stroke:'#9a9ab8','stroke-width':1,opacity:0.12}));
 
@@ -3075,12 +3369,12 @@ function drawV4(cSvg,cW,cH){
 
   const systemEls=[];
 
-  SB.objectives.forEach((obj,oi)=>{
+  CSRC().objectives.forEach((obj,oi)=>{
     const pos=objPos[oi];
     const hue=C_RAMP50[Math.round(oRankV4[obj.id]*(C_RAMP50.length-1))];
-    const themes=SB.themes.filter(t=>(obj.themeIds||[]).includes(t.id));
-    const inits=objInitiativesOf(obj.id);
-    const outs=objOutcomes(obj.id);
+    const themes=CSRC().themes.filter(t=>(obj.themeIds||[]).includes(t.id));
+    const inits=(CSRC().initiatives||[]).filter(g=>(g.objectiveIds||[]).includes(obj.id));
+    const outs=(CSRC().outcomes||[]).filter(n=>(n.objectiveIds||[]).includes(obj.id));
     v4SystemById[obj.id]={obj,themes,inits,outs,hue};
 
     // sysG uses local coordinates (centre = 0,0); transform places it on the ellipse.
@@ -3118,7 +3412,7 @@ function drawV4(cSvg,cW,cH){
     // Dashed orbital rings — centred at local 0,0
     if(themes.length){
       sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R1,fill:'none',stroke:hue,'stroke-width':1,'stroke-dasharray':'6 5',opacity:0.32}));
-      ringLabelEls.push(ringLabel(R1,'THEMES','thm',hue));
+      ringLabelEls.push(ringLabel(R1,cShimOn()?'OBJECTIVES':'THEMES','thm',hue));
     }
     if(inits.length){
       sysG.appendChild(cSvgEl('circle',{cx:0,cy:0,r:R2,fill:'none',stroke:'#2C72B0','stroke-width':1,'stroke-dasharray':'5 5',opacity:0.28}));
@@ -3232,6 +3526,8 @@ function drawV4(cSvg,cW,cH){
     isZoomedIn=!!selId;
     v4CurrentObjId=selId;
     if(!selId)v4SelInit=null;
+    {const fz=document.getElementById('v4-freeze');
+     if(fz){fz.style.display=selId?'':'none';if(!selId){v4Frozen=false;fz.textContent='Freeze';}}}
     chintFade(!selId);
     const sel=systemEls.find(s=>s.id===selId);
     systemEls.forEach(s=>{
@@ -3255,8 +3551,8 @@ function drawV4(cSvg,cW,cH){
     const dt=Math.min((t-lastT)/1000,0.05);
     lastT=t;
 
-    // Ring orbiters — always animate (labels travel with their dots)
-    systemEls.forEach(s=>{
+    // Ring orbiters — animate unless frozen (Freeze button, shown when zoomed in)
+    if(!v4Frozen)systemEls.forEach(s=>{
       s.themeOrb.forEach(o=>{o.angle+=dt*0.0735;repositionTheme(o);});
       s.initOrbArr.forEach(o=>{o.angle-=dt*0.0490;repositionOutc(o);});
       s.outcOrb.forEach(o=>{o.angle+=dt*0.0343;repositionOutc(o);});
@@ -3278,6 +3574,8 @@ function drawV4(cSvg,cW,cH){
 }
 function initConstellation(){
   cSyncLayoutBtns();
+  cRenderTarsFABar();
+  {const _fz=document.getElementById('v4-freeze');if(_fz&&cLayoutMode!=='v4')_fz.style.display='none';}
   if(cLayoutMode==='ring'){const _sf=document.getElementById('stellar-shuffle');if(_sf)_sf.style.display='none';const _zc=document.getElementById('clb-zoomclick');if(_zc)_zc.style.display='block';const _ch=document.getElementById('chint');if(_ch){_ch.textContent='Click to Explore';_ch.style.display='';_ch.style.opacity='0.7';}initOdyssey();return;}
   // Leaving ring mode — tear down Odyssey
   const odyw=document.getElementById('odyssey-wrap');
@@ -3305,8 +3603,9 @@ function initConstellation(){
     cSvg.style.width=cW+'px';cSvg.style.height=cH+'px';
     const sl=document.getElementById('czoom');
     if(sl){sl.min=25;sl.max=400;}
-    if(!SB.objectives.length){
-      cSvg.innerHTML='<text x="'+cW/2+'" y="'+cH/2+'" text-anchor="middle" font-size="13" fill="#888" font-family="system-ui">Upload full sandbox data in Tab 1 (or build objectives in the Sandbox tab) first</text>';
+    if(!cViewsReady(cLayoutMode)){
+      cSvg.innerHTML='<text x="'+cW/2+'" y="'+cH/2+'" text-anchor="middle" font-size="13" fill="#888" font-family="system-ui">'+(C_NEEDMSG[cLayoutMode]||C_NEEDMSG.compact)+'</text>';
+      const _tb=document.getElementById('tars-fabar');if(_tb)_tb.style.display='none';
       return;
     }
     cSel=null;cHideSidebar();
@@ -3352,13 +3651,13 @@ window.addEventListener('resize',()=>{try{if(document.getElementById('panel-map'
 // ══════════════════════════════════════════
 
 // STATE
-let SB = { ideas:[], themes:[], objectives:[], initiatives:[], outcomes:[], _n:1 };
+let SB = { ideas:[], themes:[], objectives:[], initiatives:[], outcomes:[], focusAreas:[], _n:1 };
 let SBD = { type:null, id:null, fromObjId:null };
 let sbModalCtx = {};
 
 const sbUid = () => 'sb' + (SB._n++);
 
-function sbPersist(){ try{ localStorage.setItem('sb_v4', JSON.stringify(SB)); }catch(e){} }
+function sbPersist(){ _csbDirty=true; try{ localStorage.setItem('sb_v4', JSON.stringify(SB)); }catch(e){} }
 function sbHydrate(){
   try{
     const d=localStorage.getItem('sb_v4');
@@ -3368,7 +3667,7 @@ function sbHydrate(){
       const old=localStorage.getItem('sb_v3');
       if(old){
         const o=JSON.parse(old);
-        SB={ideas:o.ideas||[],themes:o.themes||[],objectives:o.objectives||[],initiatives:o.initiatives||[],outcomes:o.outcomes||[],_n:o._n||1};
+        SB={ideas:o.ideas||[],themes:o.themes||[],objectives:o.objectives||[],initiatives:o.initiatives||[],outcomes:o.outcomes||[],focusAreas:o.focusAreas||[],_n:o._n||1};
         SB.initiatives.forEach(g=>{delete g.type;});
         SB.outcomes.forEach(n=>{if(!n.initiativeIds)n.initiativeIds=[];});
         sbPersist();
@@ -3377,18 +3676,21 @@ function sbHydrate(){
   }catch(e){}
   if(!SB.initiatives)SB.initiatives=[];
   if(!SB.outcomes)SB.outcomes=[];
+  if(!SB.focusAreas)SB.focusAreas=[];
+  SB.focusAreas.forEach(f=>{if(!f.alignment)f.alignment=[];});
   SB.initiatives.forEach(g=>{if(!g.people)g.people=[];});
   SB.outcomes.forEach(n=>{if(!n.initiativeIds)n.initiativeIds=[];});
 }
 
 // RENDER
 function sbRender(){
-  sbRenderIdeas(); sbRenderThemes(); sbRenderBuckets(); sbRenderObjectives();
+  sbRenderIdeas(); sbRenderThemes(); sbRenderBuckets(); sbRenderFAs(); sbRenderObjectives();
   document.getElementById('sb-fc-ideas').textContent      = SB.ideas.length;
   document.getElementById('sb-fc-themes').textContent     = SB.themes.length;
   document.getElementById('sb-fc-objectives').textContent = SB.objectives.length;
   document.getElementById('sb-fc-initiatives').textContent      = SB.initiatives.length;
   const _fcI=document.getElementById('sb-fc-outcomes'); if(_fcI)_fcI.textContent=(SB.outcomes||[]).length;
+  const _fcF=document.getElementById('sb-fc-fa'); if(_fcF)_fcF.textContent=(SB.focusAreas||[]).length;
   sbPersist();
 }
 
@@ -3451,7 +3753,7 @@ function sbToggleObjDesc(){
 
 
 // Collapse / expand sections
-const sbCollapsed={ideas:false,themes:false,obj:false};
+const sbCollapsed={ideas:false,themes:false,obj:false,fa:false};
 function sbCollapse(sec){
   sbCollapsed[sec]=!sbCollapsed[sec];
   const on=sbCollapsed[sec];
@@ -3572,6 +3874,48 @@ function sbRenderBuckets(){
   });
 }
 
+// ── FOCUS AREAS (group objectives — Option B: chain untouched) ──
+const FA_PALETTE=['#185FA5','#0F6E56','#993C1D','#7050A0','#B85CA0','#B06018','#2860A8','#4A8020','#993556','#534AB7'];
+function sbFAColor(f){const i=(SB.focusAreas||[]).findIndex(x=>x.id===f.id);return FA_PALETTE[(i<0?0:i)%FA_PALETTE.length];}
+function sbObjFAs(objId){return (SB.focusAreas||[]).filter(f=>(f.objectiveIds||[]).includes(objId));}
+function sbRenderFAs(){
+  const g=document.getElementById('sb-fa-grid');if(!g)return;
+  if(!(SB.focusAreas||[]).length){g.innerHTML='<span style="font-size:11px;color:#bbb;font-style:italic">No focus areas yet — click + Add Focus Area, then drag objectives onto a card to group them.</span>';return;}
+  g.innerHTML=SB.focusAreas.map(f=>{
+    const c=sbFAColor(f);
+    const objs=SB.objectives.filter(o=>(f.objectiveIds||[]).includes(o.id));
+    const faAlignTags=['uts','ci','fds'].map(a=>{
+      const on=(f.alignment||[]).includes(a);
+      return `<span onclick="sbToggleFAAlign('${f.id}','${a}')" style="font-size:9px;font-weight:600;letter-spacing:0.04em;padding:2px 7px;border-radius:20px;border:1px solid #ccc;color:${on?'#333':'#bbb'};background:${on?'#ebebeb':'transparent'};cursor:pointer">${a.toUpperCase()}</span>`;
+    }).join('');
+    const chips=objs.map(o=>`<div style="font-size:9px;background:#f5f5f3;border:0.5px solid #e5e5e5;border-radius:4px;padding:2px 5px 2px 7px;color:#555;display:inline-flex;align-items:center;gap:3px;max-width:180px">
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${sbEsc(o.title)}">${sbEsc(o.title)}</span>
+      <span onclick="sbUnlinkObjFromFA('${o.id}','${f.id}')" style="cursor:pointer;color:#ccc;font-size:10px;line-height:1;flex-shrink:0">✕</span></div>`).join('');
+    return `<div id="sb-fac-${f.id}" style="background:#fff;border:0.5px solid ${c}55;border-left:3px solid ${c};border-radius:8px;padding:12px;width:215px"
+      ondragover="sbFAOver(event,'${f.id}')" ondragleave="sbFALeave(event,'${f.id}')" ondrop="sbFADrop(event,'${f.id}')">
+      <div style="font-size:12px;font-weight:600;color:${c};margin-bottom:3px">${sbEsc(f.name)}</div>
+      ${f.desc?`<div style="font-size:10px;color:#999;margin-bottom:8px;line-height:1.4;word-break:break-word">${sbEsc(f.desc)}</div>`:''}
+      <div style="min-height:22px;display:flex;flex-wrap:wrap;gap:3px;margin-bottom:8px">
+        ${chips||'<span style="font-size:9px;color:#ccc;font-style:italic">Drop objectives here</span>'}
+      </div>
+      <div style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding-bottom:6px;margin-bottom:6px;border-bottom:1px solid #f0f0f0">${faAlignTags}</div>
+      <div style="display:flex;gap:4px;align-items:center;padding-top:0">
+        <button style="font-size:10px;padding:3px 8px" onclick="sbOpenModal('fa','${f.id}')">Edit</button>
+        <button style="font-size:10px;padding:3px 8px;color:#b03020;border-color:#f0c0b8" onclick="sbDelFA('${f.id}')">Delete</button>
+        <span style="font-size:9px;color:#ccc;margin-left:auto">${objs.length} objective${objs.length!==1?'s':''}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+function sbObjDS(e,id){ e.stopPropagation(); SBD={type:'objective',id}; e.dataTransfer.effectAllowed='copy'; setTimeout(()=>document.getElementById('sb-oc-'+id)?.style.setProperty('opacity','0.4'),0); }
+function sbObjDE(){ SB.objectives.forEach(o=>document.getElementById('sb-oc-'+o.id)?.style.removeProperty('opacity')); if(SBD.type==='objective')SBD={type:null}; }
+function sbFAOver(e,fid){ if(SBD.type!=='objective')return; e.preventDefault(); document.getElementById('sb-fac-'+fid)?.style.setProperty('box-shadow','0 0 0 2px #185FA555'); }
+function sbFALeave(e,fid){ document.getElementById('sb-fac-'+fid)?.style.removeProperty('box-shadow'); }
+function sbFADrop(e,fid){ e.preventDefault(); sbFALeave(e,fid); if(SBD.type!=='objective')return; const f=(SB.focusAreas||[]).find(x=>x.id===fid); if(f){ if(!f.objectiveIds)f.objectiveIds=[]; if(!f.objectiveIds.includes(SBD.id))f.objectiveIds.push(SBD.id); sbRender(); } }
+function sbToggleFAAlign(fid,a){ const f=(SB.focusAreas||[]).find(x=>x.id===fid); if(!f)return; f.alignment=f.alignment||[]; f.alignment=f.alignment.includes(a)?f.alignment.filter(x=>x!==a):[...f.alignment,a]; sbRender(); }
+function sbUnlinkObjFromFA(objId,faId){ const f=(SB.focusAreas||[]).find(x=>x.id===faId); if(f){ f.objectiveIds=(f.objectiveIds||[]).filter(x=>x!==objId); sbRender(); } }
+function sbDelFA(id){ if(!confirm('Delete this focus area? Its objectives are kept.'))return; SB.focusAreas=(SB.focusAreas||[]).filter(f=>f.id!==id); sbRender(); }
+
 // RENDER: OBJECTIVES
 let sbObjGridView=false;
 function sbToggleObjView(){
@@ -3591,8 +3935,10 @@ function sbRenderObjectives(){
     row.style.display='block';row.style.overflow='';row.style.columns='8 120px';row.style.columnGap='8px';
     row.innerHTML=SB.objectives.map(obj=>{
       const tc=(obj.themeIds||[]).length;
+      const fc=sbObjFAs(obj.id).length;
       return `<div style="background:#f5f0fa;border:0.5px solid #c8a8d8;border-radius:5px;padding:4px 7px;font-size:10px;color:#333;margin-bottom:5px;break-inside:avoid;cursor:pointer;display:flex;align-items:center;gap:3px"
-        onclick="sbOpenModal('objective','${obj.id}')" title="${sbEsc(obj.title)}${obj.desc?' — '+sbEsc(obj.desc):''}">
+        draggable="true" ondragstart="sbObjDS(event,'${obj.id}')" ondragend="sbObjDE(event)"
+        onclick="sbOpenModal('objective','${obj.id}')" title="${sbEsc(obj.title)}${obj.desc?' — '+sbEsc(obj.desc):''}${fc?' — in '+fc+' focus area'+(fc!==1?'s':''):''}">
         <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">${sbEsc(obj.title)}</span>
         <span style="color:#aaa;font-size:9px;flex-shrink:0">${tc}t</span>
         <span onclick="event.stopPropagation();sbOpenModal('objective','${obj.id}')" style="cursor:pointer;color:#ccc;font-size:9px;flex-shrink:0" title="Edit">✎</span>
@@ -3631,8 +3977,12 @@ function sbRenderObjectives(){
         <button style="font-size:10px;padding:2px 7px;color:#b03020;border-color:#f0c0b8" onclick="sbUnlinkOutcome('${n.id}','${objId}')">Remove</button>
       </div>
     </div>`).join('');
-    return `<div style="background:#fff;border:0.5px solid #e5e5e5;border-radius:8px;padding:12px;min-width:230px;max-width:260px;flex-shrink:0" id="sb-oc-${obj.id}" data-sb-obj-card>
+    const objFAsL=sbObjFAs(obj.id);
+    const faTags=objFAsL.map((f,fi)=>{const c=sbFAColor(f);return `<span style="font-size:8.5px;font-weight:600;padding:1px 7px;border-radius:20px;border:1px solid ${c}${fi?'55':''};color:${c};background:${fi?'transparent':c+'11'}" title="${fi?'Secondary':'Primary'} focus area — remove in the Focus Areas section">${sbEsc(f.name)}</span>`;}).join('');
+    return `<div style="background:#fff;border:0.5px solid #e5e5e5;border-radius:8px;padding:12px;min-width:230px;max-width:260px;flex-shrink:0;cursor:grab" id="sb-oc-${obj.id}" data-sb-obj-card
+        draggable="true" ondragstart="sbObjDS(event,'${obj.id}')" ondragend="sbObjDE(event)">
       <div style="font-size:12px;font-weight:600;color:#111;margin-bottom:3px">${sbEsc(obj.title)}</div>
+      ${faTags?`<div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:6px">${faTags}</div>`:''}
       ${obj.desc?`<div class="sb-oc-desc" style="display:none;font-size:10px;color:#999;margin-bottom:8px;line-height:1.4">${sbEsc(obj.desc)}</div>`:''}
       <div id="sb-otd-${obj.id}" style="min-height:28px;border:1px dashed #ddd;border-radius:6px;padding:5px 6px;background:#fafafa;display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-bottom:10px"
         ondragover="sbObjThemeOver(event,'${obj.id}')" ondragleave="sbObjThemeLeave(event,'${obj.id}')" ondrop="sbObjThemeDrop(event,'${obj.id}')">
@@ -3783,6 +4133,22 @@ function sbOpenModal(type,id=null,parentId=null){
     title.textContent=item?'Edit Outcome':'Add Outcome';
     body.innerHTML=mf('Outcome Name')+inp('sb-mf-title',item?sbEsc(item.title):'','Outcome name...')
       +mf('Description')+ta('sb-mf-desc',item?sbEsc(item.desc):'','The change we expect to see...');
+  } else if(type==='fa'){
+    const item=id?(SB.focusAreas||[]).find(f=>f.id===id):null;
+    const aHtml=['uts','ci','fds'].map(a=>{
+      const colors={uts:{c:'#185FA5',bg:'#EAF2FB'},ci:{c:'#4A8020',bg:'#EDF5E0'},fds:{c:'#B85CA0',bg:'#F7EAF5'}};
+      const on=item&&(item.alignment||[]).includes(a); const clr=colors[a];
+      return `<span class="sb-align-pick" data-sa="${a}" onclick="this.classList.toggle('on');this.style.background=this.classList.contains('on')?'${clr.bg}':'transparent';this.style.opacity=this.classList.contains('on')?1:0.35"
+        style="font-size:10px;font-weight:600;letter-spacing:0.04em;padding:4px 12px;border-radius:20px;border:1px solid ${clr.c};color:${clr.c};background:${on?clr.bg:'transparent'};cursor:pointer;opacity:${on?1:0.35}" id="sb-mfa-${a}">${a.toUpperCase()}</span>`;
+    }).join('');
+    title.textContent=item?'Edit Focus Area':'Add Focus Area';
+    body.innerHTML=mf('Focus Area Name')+inp('sb-mf-name',item?sbEsc(item.name):'','Focus area name...')
+      +mf('Description')+ta('sb-mf-desc',item?sbEsc(item.desc):'','What this focus area is about...')
+      +`<div style="margin-bottom:10px"><label style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#999;margin-bottom:4px">Strategy Alignment</label><div style="display:flex;gap:8px;padding:4px 0">${aHtml}</div></div>`;
+    ['uts','ci','fds'].forEach(a=>{
+      const el=document.getElementById('sb-mfa-'+a);
+      if(el&&item&&(item.alignment||[]).includes(a))el.classList.add('on');
+    });
   }
   document.getElementById('sb-overlay').style.display='flex';
 }
@@ -3844,46 +4210,69 @@ function sbModalSave(){
     const desc=document.getElementById('sb-mf-desc')?.value.trim()||'';
     if(id){const n=SB.outcomes.find(n=>n.id===id);if(n){n.title=title;n.desc=desc;}}
     else{const n={id:sbUid(),title,desc,objectiveIds:[],initiativeIds:[]};if(parentId)n.objectiveIds.push(parentId);SB.outcomes.push(n);}
+  } else if(type==='fa'){
+    const name=document.getElementById('sb-mf-name')?.value.trim();if(!name)return;
+    const desc=document.getElementById('sb-mf-desc')?.value.trim()||'';
+    const faAlign=[...document.querySelectorAll('.sb-align-pick.on')].map(el=>el.dataset.sa);
+    if(id){const f=(SB.focusAreas||[]).find(f=>f.id===id);if(f){f.name=name;f.desc=desc;f.alignment=faAlign;}}
+    else{SB.focusAreas=SB.focusAreas||[];SB.focusAreas.push({id:sbUid(),name,desc,alignment:faAlign,objectiveIds:[]});}
   }
   sbPersist();sbCloseModal();sbRender();
 }
 
 // EXPORT / BACKUP
 function sbExportCSV(){
-  const rows=[['Idea','Theme','Theme Description','Strategy Alignment','Objective','Objective Description','Initiative','Initiative Description','People','Outcome','Outcome Description']];
+  const rows=[['Idea','Theme','Theme Description','Strategy Alignment','Objective','Objective Description','Focus Area','Initiative','Initiative Description','People','Outcome','Outcome Description']];
+  const faStr=objId=>(SB.focusAreas||[]).filter(f=>(f.objectiveIds||[]).includes(objId)).map(f=>f.name).join('; ');
   const initCols=g=>g?[g.title,g.desc||'',(g.people||[]).join('; ')]:['','',''];
   const outCols=n=>n?[n.title,n.desc||'']:['',''];
+  const coveredThemes=new Set(),coveredObjs=new Set();
+
+  function emitObj(ideaText,themeName,themeDesc,align,obj){
+    coveredObjs.add(obj.id);
+    const base=[ideaText,themeName,themeDesc,align,obj.title,obj.desc,faStr(obj.id)];
+    const initiatives=SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(obj.id));
+    const objOuts=(SB.outcomes||[]).filter(n=>(n.objectiveIds||[]).includes(obj.id));
+    if(!initiatives.length&&!objOuts.length){rows.push([...base,'','','','','']);return;}
+    if(!initiatives.length){objOuts.forEach(n=>rows.push([...base,'','','',...outCols(n)]));return;}
+    const pairedOutIds=new Set();
+    initiatives.forEach(g=>{
+      const outs=objOuts.filter(n=>(n.initiativeIds||[]).includes(g.id));
+      outs.forEach(n=>pairedOutIds.add(n.id));
+      if(!outs.length){rows.push([...base,...initCols(g),'','']);return;}
+      outs.forEach(n=>rows.push([...base,...initCols(g),...outCols(n)]));
+    });
+    objOuts.filter(n=>!pairedOutIds.has(n.id)).forEach(n=>rows.push([...base,'','','',...outCols(n)]));
+  }
+  function emitTheme(ideaText,theme){
+    coveredThemes.add(theme.id);
+    const objs=SB.objectives.filter(o=>(o.themeIds||[]).includes(theme.id));
+    if(!objs.length){rows.push([ideaText,theme.name,theme.desc,(theme.alignment||[]).join(';'),'','','','','','','','']);return;}
+    objs.forEach(obj=>emitObj(ideaText,theme.name,theme.desc,(theme.alignment||[]).join(';'),obj));
+  }
+
+  // 1. every idea, with its themes and everything downstream
   SB.ideas.forEach(idea=>{
     const linkedThemes=SB.themes.filter(t=>(t.ideaIds||[]).includes(idea.id));
-    if(!linkedThemes.length){rows.push([idea.text,'','','','','','','','','','']);return;}
-    linkedThemes.forEach(theme=>{
-      const objs=SB.objectives.filter(o=>(o.themeIds||[]).includes(theme.id));
-      if(!objs.length){rows.push([idea.text,theme.name,theme.desc,(theme.alignment||[]).join(';'),'','','','','','','']);return;}
-      objs.forEach(obj=>{
-        const base=[idea.text,theme.name,theme.desc,(theme.alignment||[]).join(';'),obj.title,obj.desc];
-        const initiatives=SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(obj.id));
-        const objOuts=(SB.outcomes||[]).filter(n=>(n.objectiveIds||[]).includes(obj.id));
-        if(!initiatives.length&&!objOuts.length){rows.push([...base,'','','','','']);return;}
-        if(!initiatives.length){objOuts.forEach(n=>rows.push([...base,'','','',...outCols(n)]));return;}
-        const pairedOutIds=new Set();
-        initiatives.forEach(g=>{
-          const outs=objOuts.filter(n=>(n.initiativeIds||[]).includes(g.id));
-          outs.forEach(n=>pairedOutIds.add(n.id));
-          if(!outs.length){rows.push([...base,...initCols(g),'','']);return;}
-          outs.forEach(n=>rows.push([...base,...initCols(g),...outCols(n)]));
-        });
-        // outcomes on this objective not paired to any of its initiatives
-        objOuts.filter(n=>!pairedOutIds.has(n.id)).forEach(n=>rows.push([...base,'','','',...outCols(n)]));
-      });
-    });
+    if(!linkedThemes.length){rows.push([idea.text,'','','','','','','','','','','']);return;}
+    linkedThemes.forEach(theme=>emitTheme(idea.text,theme));
   });
-  // initiatives / outcomes with no linked objective still export
+  // 2. themes with no ideas still export (with their objectives etc.)
+  SB.themes.filter(t=>!coveredThemes.has(t.id)).forEach(t=>emitTheme('',t));
+  // 3. objectives not reachable through any theme still export
+  SB.objectives.filter(o=>!coveredObjs.has(o.id)).forEach(o=>emitObj('','','','',o));
+  // 4. initiatives / outcomes with no linked objective still export
   SB.initiatives.filter(g=>!(g.objectiveIds||[]).length).forEach(g=>{
-    rows.push(['','','','','','',...initCols(g),'','']);
+    rows.push(['','','','','','','',...initCols(g),'','']);
   });
   (SB.outcomes||[]).filter(n=>!(n.objectiveIds||[]).length).forEach(n=>{
-    rows.push(['','','','','','','','','',...outCols(n)]);
+    rows.push(['','','','','','','','','','',...outCols(n)]);
   });
+  // 5. focus areas with no objectives still export
+  (SB.focusAreas||[]).filter(f=>!(f.objectiveIds||[]).length).forEach(f=>{
+    rows.push(['','','','','','',f.name,'','','','','']);
+  });
+
   const csv=rows.map(r=>r.map(v=>'"'+(String(v||'').replace(/"/g,'""'))+'"').join(',')).join('\r\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='fds_sandbox.csv';a.click();
 }
@@ -3896,11 +4285,11 @@ function sbLoadBackup(){
   inp.onchange=e=>{
     const file=e.target.files[0];if(!file)return;
     const reader=new FileReader();
-    reader.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(d.ideas&&d.themes){Object.assign(SB,d);if(!SB.outcomes)SB.outcomes=[];SB._n=Math.max(...[...SB.ideas,...SB.themes,...SB.objectives,...SB.initiatives,...SB.outcomes].map(x=>parseInt(x.id.replace('sb',''))||0).filter(Boolean),SB._n)+1;sbPersist();sbRender();}}catch(err){alert('Invalid backup file.');}};
+    reader.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(d.ideas&&d.themes){Object.assign(SB,d);if(!SB.outcomes)SB.outcomes=[];if(!SB.focusAreas)SB.focusAreas=[];SB._n=Math.max(...[...SB.ideas,...SB.themes,...SB.objectives,...SB.initiatives,...SB.outcomes].map(x=>parseInt(x.id.replace('sb',''))||0).filter(Boolean),SB._n)+1;sbPersist();sbRender();}}catch(err){alert('Invalid backup file.');}};
     reader.readAsText(file);
   };inp.click();
 }
-function sbClearAll(){if(!confirm('Clear all sandbox data?'))return;SB={ideas:[],themes:[],objectives:[],initiatives:[],outcomes:[],_n:1};sbPersist();sbRender();}
+function sbClearAll(){if(!confirm('Clear all sandbox data?'))return;SB={ideas:[],themes:[],objectives:[],initiatives:[],outcomes:[],focusAreas:[],_n:1};sbPersist();sbRender();}
 
 // KEYBOARD
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){sbCloseModal();hideTT();}});
@@ -3943,8 +4332,8 @@ function initOdyssey(){
     document.getElementById('chint').style.display='none';
     const wrap=document.getElementById('odyssey-wrap');
     wrap.style.display='block';
-    if(!SB.objectives.length){
-      wrap.innerHTML='<div style="color:rgba(255,255,255,0.35);font-size:13px;font-family:system-ui;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center">No objectives yet — upload data in Tab 1 or build your strategy in the Sandbox tab.</div>';
+    if(!cViewsReady('ring')){
+      wrap.innerHTML='<div style="color:#888;font-size:13px;font-weight:400;font-family:system-ui;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;max-width:70%">'+C_NEEDMSG.ring+'</div>';
       return;
     }
     drawOdysseyArc(wrap, window.innerWidth, cH);
@@ -3954,18 +4343,18 @@ function initOdyssey(){
 function drawOdysseyArc(wrap,cW,cH){
   wrap.innerHTML='';
 
-  // ── Build lookup tables from SB ──
+  // ── Build lookup tables from CSB() ──
   const themeById={};
-  SB.themes.forEach(t=>{themeById[t.id]=t;});
+  CSB().themes.forEach(t=>{themeById[t.id]=t;});
   const ideaById={};
-  SB.ideas.forEach(i=>{ideaById[i.id]=i;});
+  CSB().ideas.forEach(i=>{ideaById[i.id]=i;});
   // Attach idea names + count to each theme (temp properties)
-  SB.themes.forEach(t=>{
+  CSB().themes.forEach(t=>{
     t._ideaNames=(t.ideaIds||[]).map(iid=>(ideaById[iid]||{text:'Idea'}).text);
     t._ideaCount=(t.ideaIds||[]).length;
   });
 
-  const objs=SB.objectives;
+  const objs=CSB().objectives;
   const N=objs.length;
   // Resolve each objective's themes
   const objThemes=objs.map(o=>(o.themeIds||[]).map(tid=>themeById[tid]).filter(Boolean));
@@ -4307,7 +4696,7 @@ function odyPopulateSidebar(oi,objs,objThemes){
   // Objective header
   const header=document.getElementById('ody-obj-header');
   header.innerHTML=
-    '<div class="ody-obj-label" style="color:'+color+'">Objective</div>'+
+    '<div class="ody-obj-label" style="color:'+color+'">'+(cShimOn()?'Focus area':'Objective')+'</div>'+
     '<div class="ody-obj-name">'+cEsc(obj.title||obj.name||'')+'</div>'+
     '<div class="ody-obj-desc">'+cEsc(obj.desc||'No description yet.')+'</div>';
   header.style.borderBottom='1px solid '+color+'28';
@@ -4319,7 +4708,7 @@ function odyPopulateSidebar(oi,objs,objThemes){
 
   // Themes section
   const ts=document.createElement('div');ts.className='ody-section';
-  const tLabel=document.createElement('div');tLabel.className='ody-section-label';tLabel.style.color=color;tLabel.textContent='Themes';
+  const tLabel=document.createElement('div');tLabel.className='ody-section-label';tLabel.style.color=color;tLabel.textContent=cShimOn()?'Objectives':'Themes';
   ts.appendChild(tLabel);
   themes.forEach(th=>{
     if(!th)return;
@@ -4350,6 +4739,27 @@ function odyPopulateSidebar(oi,objs,objThemes){
 
 // ── CARDS VIEW ──
 let _cardsAllFlipped = false;
+
+// One entry per card. With focus areas: card = focus area, sections list its
+// objectives, initiatives, outcomes, themes and ideas (all reached through the
+// member objectives, deduped). Without focus areas: card = objective (original).
+function cardsItems(){
+  const fas=SB.focusAreas||[];
+  if(fas.length){
+    return fas.map(f=>{
+      const objs=(f.objectiveIds||[]).map(oid=>SB.objectives.find(o=>o.id===oid)).filter(Boolean);
+      const oid=new Set(objs.map(o=>o.id));
+      const initiatives=SB.initiatives.filter(g=>(g.objectiveIds||[]).some(x=>oid.has(x)));
+      const outcomes=(SB.outcomes||[]).filter(n=>(n.objectiveIds||[]).some(x=>oid.has(x)));
+      const tSeen=new Set(),themes=[];
+      objs.forEach(o=>(o.themeIds||[]).forEach(tid=>{if(!tSeen.has(tid)){tSeen.add(tid);const t=SB.themes.find(x=>x.id===tid);if(t)themes.push(t);}}));
+      const iSeen=new Set(),ideas=[];
+      themes.forEach(t=>(t.ideaIds||[]).forEach(iid=>{if(!iSeen.has(iid)){iSeen.add(iid);const i=SB.ideas.find(x=>x.id===iid);if(i)ideas.push(i);}}));
+      return{title:f.name,desc:f.desc||'',objectives:objs,initiatives,outcomes,themes,ideas,kind:'fa'};
+    });
+  }
+  return []; // no focus areas — cards (and the PDF report) stay empty by design
+}
 
 // Golden-angle HSL palette — always distinct regardless of count, consistent pastel feel
 function cardColors(idx, total) {
@@ -4389,72 +4799,61 @@ function renderCards() {
   const btn = document.getElementById('cards-flip-all-btn');
   if (btn) btn.textContent = 'Flip all';
 
-  if (!SB.objectives || !SB.objectives.length) {
-    grid.innerHTML = '<div class="flip-card-empty">No objectives yet — add data in the Sandbox tab first.</div>';
+  const items = cardsItems();
+  if (!items.length) {
+    grid.innerHTML = '<div class="flip-card-empty">Cards are built from focus areas — add them in the Sandbox tab first.</div>';
     return;
   }
 
-  const allObjs = SB.objectives;
-  const cols = cardsGridCols(allObjs.length);
-  const rows = Math.max(1, Math.ceil(allObjs.length / cols));
+  const cols = cardsGridCols(items.length);
+  const rows = Math.max(1, Math.ceil(items.length / cols));
   grid.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
   grid.style.gridTemplateRows = 'repeat(' + rows + ', 1fr)';
   grid.style.gridAutoFlow = 'row';
 
-  allObjs.forEach((obj, idx) => {
-    const {front, grad, gradEnd, border, titleText, frontAlpha, barColor} = cardColors(idx, allObjs.length);
-    const linkedThemes = (obj.themeIds || []).map(tid => SB.themes.find(t => t.id === tid)).filter(Boolean);
-    const initiatives = SB.initiatives.filter(g => (g.objectiveIds || []).includes(obj.id));
+  items.forEach((item, idx) => {
+    const {front, grad, gradEnd, border, titleText, frontAlpha, barColor} = cardColors(idx, items.length);
 
-    // Collect all unique ideas across all linked themes (deduped by id)
-    const seenIds = new Set();
-    const allIdeas = [];
-    linkedThemes.forEach(theme => {
-      (theme.ideaIds || []).forEach(iid => {
-        if (!seenIds.has(iid)) {
-          seenIds.add(iid);
-          const idea = SB.ideas.find(i => i.id === iid);
-          if (idea) allIdeas.push(idea);
-        }
-      });
-    });
-
-    // Sticky header (always visible when scrolling)
     let sticky = '<div class="flip-card-back-sticky" style="background:linear-gradient(140deg,' + grad + ' 0%, #ffffff 90%)">' +
-      '<div class="flip-card-back-title" style="color:#111">' + cEsc(obj.title || 'Objective') + '</div>' +
+      '<div class="flip-card-back-title" style="color:#111">' + cEsc(item.title || (item.kind==='fa'?'Focus Area':'Objective')) + '</div>' +
       '</div>';
 
-    // Scrollable content
     let content = '<div class="flip-card-back-content">';
-    if (obj.desc) {
-      content += '<div class="flip-card-back-desc" style="color:#111">' + cEsc(obj.desc) + '</div>';
+    if (item.desc) {
+      content += '<div class="flip-card-back-desc" style="color:#111">' + cEsc(item.desc) + '</div>';
     }
-    if (initiatives.length) {
+    if (item.objectives && item.objectives.length) {
+      content += fcSectionBar('Objectives', barColor);
+      item.objectives.forEach(o => {
+        content += '<div class="fc-initiative">' + cEsc(o.title) +
+          (o.desc ? '<div class="fc-item-desc">' + cEsc(o.desc) + '</div>' : '') + '</div>';
+      });
+    }
+    if (item.initiatives.length) {
       content += fcSectionBar('Initiatives', barColor);
-      initiatives.forEach(g => {
+      item.initiatives.forEach(g => {
         content += '<div class="fc-initiative">' + cEsc(g.title) +
           ((g.people||[]).length ? '<span class="fc-init-ppl"> - ' + cEsc(g.people.join(', ')) + '</span>' : '') +
           (g.desc ? '<div class="fc-item-desc">' + cEsc(g.desc) + '</div>' : '') + '</div>';
       });
     }
-    const objInits = objOutcomes(obj.id);
-    if (objInits.length) {
+    if (item.outcomes.length) {
       content += fcSectionBar('Outcomes', barColor);
-      objInits.forEach(n => {
+      item.outcomes.forEach(n => {
         content += '<div class="fc-init">' + cEsc(n.title) +
           (n.desc ? '<div class="fc-item-desc">' + cEsc(n.desc) + '</div>' : '') + '</div>';
       });
     }
-    if (linkedThemes.length) {
+    if (item.themes.length) {
       content += fcSectionBar('Themes', barColor);
-      linkedThemes.forEach(theme => {
+      item.themes.forEach(theme => {
         content += '<div class="fc-theme-text">' + cEsc(theme.name) + '</div>';
         if (theme.desc) content += '<div class="fc-theme-desc">' + cEsc(theme.desc) + '</div>';
       });
     }
-    if (allIdeas.length) {
+    if (item.ideas.length) {
       content += fcSectionBar('Ideas', barColor);
-      allIdeas.forEach(idea => {
+      item.ideas.forEach(idea => {
         content += '<div class="fc-idea-text">' + cEsc(idea.text) + '</div>';
       });
     }
@@ -4465,7 +4864,7 @@ function renderCards() {
     card.innerHTML =
       '<div class="flip-card-inner">' +
         '<div class="flip-card-front" style="' + cardHatchStyle(grad, gradEnd) + '">' +
-          '<div class="flip-card-front-name" style="color:' + titleText + '">' + cEsc(obj.title || 'Objective') + '</div>' +
+          '<div class="flip-card-front-name" style="color:' + titleText + '">' + cEsc(item.title || '') + '</div>' +
           '<div class="fc-front-hint"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 4.5l4 3 4-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Tap to explore</div>' +
         '</div>' +
         '<div class="flip-card-back" style="border-color:' + border + '">' +
@@ -4658,7 +5057,8 @@ function dlvBalance(inits){
 }
 
 function printReport(){
-  if(!SB.objectives||!SB.objectives.length){alert('No objectives yet — add data in the Sandbox tab first.');return;}
+  const repItems=cardsItems();
+  if(!repItems.length){alert('The report is built from focus areas — add them in the Sandbox tab first.');return;}
   if(!(window.jspdf&&window.jspdf.jsPDF)){alert('PDF library not loaded — check your internet connection and try again.');return;}
   const { jsPDF } = window.jspdf;
 
@@ -4818,7 +5218,7 @@ function printReport(){
   doc.text(ds.toUpperCase(),ML,69,{charSpace:0.7});
   // stats
   doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(60,60,60);
-  doc.text(SB.ideas.length+'  IDEAS      '+SB.themes.length+'  THEMES      '+SB.objectives.length+'  OBJECTIVES      '+SB.initiatives.length+'  INITIATIVES      '+(SB.outcomes||[]).length+'  OUTCOMES',ML,78,{charSpace:0.2});
+  doc.text(SB.ideas.length+'  IDEAS      '+SB.themes.length+'  THEMES      '+SB.objectives.length+'  OBJECTIVES      '+((SB.focusAreas||[]).length?(SB.focusAreas.length+'  FOCUS AREAS      '):'')+SB.initiatives.length+'  INITIATIVES      '+(SB.outcomes||[]).length+'  OUTCOMES',ML,78,{charSpace:0.2});
   // divider separating masthead from the list
   doc.setDrawColor(225,225,225);doc.setLineWidth(0.3);doc.line(ML,85,PW-MR,85);
 
@@ -4827,11 +5227,11 @@ function printReport(){
   // and the spacing between entries is uniform accordingly.
   y=95;
   doc.setFont('helvetica','bold');doc.setFontSize(11.5);
-  const listLines=SB.objectives.map(obj=>doc.splitTextToSize(String(obj.title||'Objective'),CW-10));
+  const listLines=repItems.map(it=>doc.splitTextToSize(String(it.title||''),CW-10));
   const maxListLines=Math.max(1,...listLines.map(l=>l.length));
   const listBlockH=maxListLines*mm(11.5);
-  SB.objectives.forEach((obj,idx)=>{
-    const bar=hsl(cardColors(idx,SB.objectives.length).barColor);
+  repItems.forEach((it,idx)=>{
+    const bar=hsl(cardColors(idx,repItems.length).barColor);
     doc.setFont('helvetica','bold');doc.setFontSize(11.5);
     const tLines=listLines[idx];
     if(y+listBlockH+4.5>PH-MB){ doc.addPage();runHeader();y=MT; }
@@ -4844,20 +5244,19 @@ function printReport(){
     y+=listBlockH+4.5;
   });
 
-  // ---- one objective per page ------------------------------------------
-  SB.objectives.forEach((obj,idx)=>{
-    const cc=cardColors(idx,SB.objectives.length);
+  // ---- one card (focus area, or objective when no FAs) per page ---------
+  repItems.forEach((it,idx)=>{
+    const cc=cardColors(idx,repItems.length);
     const front=hsl(cc.front), bar=hsl(cc.barColor), titleTx=hsl(cc.titleText);
-    const linkedThemes=(obj.themeIds||[]).map(tid=>SB.themes.find(t=>t.id===tid)).filter(Boolean);
-    const initiatives=SB.initiatives.filter(g=>(g.objectiveIds||[]).includes(obj.id));
-    const seen=new Set(),allIdeas=[];
-    linkedThemes.forEach(t=>(t.ideaIds||[]).forEach(iid=>{if(!seen.has(iid)){seen.add(iid);const i=SB.ideas.find(x=>x.id===iid);if(i)allIdeas.push(i);}}));
+    const linkedThemes=it.themes;
+    const initiatives=it.initiatives;
+    const allIdeas=it.ideas;
 
     doc.addPage();runHeader();y=MT;
 
     // title band
     doc.setFont('helvetica','bold');doc.setFontSize(15);
-    const tLines=doc.splitTextToSize(String(obj.title||'Objective'),CW-14);
+    const tLines=doc.splitTextToSize(String(it.title||''),CW-14);
     const bandH=8+tLines.length*mm(15);
     doc.setFillColor(front[0],front[1],front[2]);
     doc.roundedRect(ML,y,CW,bandH,2.5,2.5,'F');
@@ -4868,16 +5267,19 @@ function printReport(){
     tLines.forEach(line=>{ doc.text(line,ML+9,ty+mm(15)*0.3); ty+=mm(15); });
     y+=bandH+5;
 
-    if(obj.desc) para(obj.desc,ML,CW,11,'normal',[60,60,60],3);
+    if(it.desc) para(it.desc,ML,CW,11,'normal',[60,60,60],3);
 
+    if(it.objectives&&it.objectives.length){
+      sectionBar('Objectives',bar);
+      it.objectives.forEach(o=>initiativeItem(o.title,o.desc,null));
+    }
     if(initiatives.length){
       sectionBar('Initiatives',bar);
       initiatives.forEach(g=>initiativeItem(g.title,g.desc,g.people||[]));
     }
-    const objInits=objOutcomes(obj.id);
-    if(objInits.length){
+    if(it.outcomes.length){
       sectionBar('Outcomes',bar);
-      objInits.forEach(n=>initiativeItem(n.title,n.desc,null));
+      it.outcomes.forEach(n=>initiativeItem(n.title,n.desc,null));
     }
     if(linkedThemes.length){
       sectionBar('Themes',bar);
@@ -4907,4 +5309,4 @@ function printReport(){
 <div id="print-report"></div>
 <!-- v0.4 — flow updated: Ideas > Themes > Objectives > Initiatives (short/long) > Outcomes -->
 </body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+</html>
